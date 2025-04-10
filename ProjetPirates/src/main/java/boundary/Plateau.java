@@ -20,14 +20,15 @@ import java.io.IOException;
 public class Plateau extends javax.swing.JPanel {
 
     private JZoneInteraction zoneInteraction = null;
-    private JCarte carte ;
+    private JCarte carte;
     private GestionnaireCartes gestionnaire = new GestionnaireCartes();
+
     /**
      * Creates new form Plateau
      */
     public Plateau() {
         initComponents();
-        zoneInteraction = zoneInteraction1;
+        /*zoneInteraction = zoneInteraction1;
         carte = jCarte1;
         jCarte1.changeCardFace();
         gestionnaire.ajouterCarte(carte);
@@ -35,7 +36,7 @@ public class Plateau extends javax.swing.JPanel {
         gestionnaire.ajouterCarte(carte);
         gestionnaire.ajouterCarte(carte);
         gestionnaire.ajouterZone(zoneInteraction1);
-        setNbViesRestantes(4);
+        setNbViesRestantes(4);*/
         //imagePanelJ1.setImage("ressources/Icon12.png");
         //imageJ2.setImage("com/ilu4/jeuxpirate/boundary/ressources/Icon12.png");
         //PopJ1.setImage("com/ilu4/jeuxpirate/boundary/ressources/Icon12.png");
@@ -47,7 +48,7 @@ public class Plateau extends javax.swing.JPanel {
     public GestionnaireCartes getGestionnaire() {
         return gestionnaire;
     }
-   
+
     public void verifierZoneInteraction(Rectangle boundsCarte) {
         zoneInteraction1.verifierCarte(carte);
         Rectangle boundsZone = zoneInteraction.getBounds();
@@ -55,6 +56,7 @@ public class Plateau extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(this, "Carte déposée dans la zone !");    // debuggage
         }
     }
+
     public void setNbViesRestantes(int n) {
         Component[] composants = JaugePoint_de_vie.getComponents();
         for (int i = 0; i < composants.length; i++) {
@@ -66,7 +68,7 @@ public class Plateau extends javax.swing.JPanel {
 
 
     private void initComponents() {
-
+        /*
         zoneInteraction1 = new boundary.components.JZoneInteraction();
         jCarte2 = new boundary.components.JCarte();
         jCarte1 = new boundary.components.JCarte();
@@ -447,11 +449,14 @@ public class Plateau extends javax.swing.JPanel {
         );
 
         add(PopJ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 150));
+       */
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JaugePoint_de_vie;
+
+    // End of variables declaration//GEN-END:variables
+    /*private javax.swing.JPanel JaugePoint_de_vie;
     private javax.swing.JPanel JaugePoint_de_vie1;
     private boundary.components.JPanelWithBackground PopJ1;
     private boundary.components.JPanelWithBackground PopJ2;
@@ -477,6 +482,6 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JZoneInteraction zoneInteraction5;
     private boundary.components.JZoneInteraction zoneInteraction6;
     private boundary.components.JZoneInteraction zoneInteraction7;
-    private boundary.components.JZoneInteraction zoneInteraction8;
-    // End of variables declaration//GEN-END:variables
+    private boundary.components.JZoneInteraction zoneInteraction8;*/
+    }
 }
