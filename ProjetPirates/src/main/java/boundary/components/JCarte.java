@@ -171,7 +171,7 @@ public void deplacerVers(int xFinal, int yFinal) {
         repaint();
         Container root = SwingUtilities.getWindowAncestor(this);
         if (root instanceof Plateau plateau) {
-             plateau.getGestionnaire().verifierToutesZones(this); // C’est bien la méthode du gestionnaire
+            //plateau.getGestionnaire().verifierToutesZones(this); // C’est bien la méthode du gestionnaire
         }
         //détecte pas getGestionnaire ?
     }//GEN-LAST:event_formMouseReleased

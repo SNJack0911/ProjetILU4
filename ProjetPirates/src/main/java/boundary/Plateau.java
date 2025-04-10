@@ -44,7 +44,7 @@ public class Plateau extends javax.swing.JPanel {
         //imagePanel1.setImage("/boundary.ressources/blackSmoke00.png");
     }
 
-
+/*
     public GestionnaireCartes getGestionnaire() {
         return gestionnaire;
     }
@@ -66,7 +66,7 @@ public class Plateau extends javax.swing.JPanel {
         }
     }
 
-
+*/
     private void initComponents() {
         /*
         zoneInteraction1 = new boundary.components.JZoneInteraction();
@@ -450,7 +450,7 @@ public class Plateau extends javax.swing.JPanel {
 
         add(PopJ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 150));
        */
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -484,4 +484,3 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JZoneInteraction zoneInteraction7;
     private boundary.components.JZoneInteraction zoneInteraction8;*/
     }
-}
