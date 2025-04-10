@@ -38,7 +38,7 @@ public class JButtonCustom extends JButton{
         super.paintComponent(g);
     }
     
-    public void setImage() throws IOException {
+    public void setImage() {
         this.setBorderPainted(false);
         this.setContentAreaFilled(false);
         this.setFocusPainted(false);
@@ -61,8 +61,13 @@ public class JButtonCustom extends JButton{
         setIcon();
     }
     
-    private void setIcon() throws IOException{
-        defaultIcon = ImageIO.read(new File("src/main/java/com/ilu4/jeuxpirate/boundary/ressources/ButtonNormal.png"));
-        pressedIcon = ImageIO.read(new File("src/main/java/com/ilu4/jeuxpirate/boundary/ressources/ButtonPressed.png"));
+    private void setIcon(){
+        try{
+            defaultIcon = ImageIO.read(new File("src/main/ressources/ButtonNormal.png"));
+            pressedIcon = ImageIO.read(new File("src/main/ressources/ButtonPressed.png"));
+        } catch (IOException e){
+            String userDirectory = new File("").getAbsolutePath();
+            System.out.print("Background not found : " + userDirectory);
+        }
     }
 }

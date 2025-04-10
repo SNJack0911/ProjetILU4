@@ -39,10 +39,14 @@ public class JPanelWithBackground extends JPanel {
 
     }
 
-    public void setImage(String fileName) throws IOException {
-        backgroundImage = ImageIO.read(new File("src/main/java/com/ilu4/jeuxpirate/boundary/ressources/" + fileName));
+    public void setImage(String fileName){
+       try{
+            backgroundImage = ImageIO.read(new File("src/main/ressources/" + fileName));
+        } catch (IOException e){
+            String userDirectory = new File("").getAbsolutePath();
+            System.out.print("Background not found : " + userDirectory);
+        }        
         //backgroundImage = ImageIO.read(new File(fileName));
-
     }
 }
 

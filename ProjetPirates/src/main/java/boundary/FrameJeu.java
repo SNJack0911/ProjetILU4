@@ -37,8 +37,11 @@ public class FrameJeu extends javax.swing.JFrame {
         menuPanelBackground = new boundary.components.JPanelWithBackground();
         titleMenu = new javax.swing.JLabel();
         startButton = new boundary.components.JButtonCustom();
+        startButton.setImage();
         optionButton = new boundary.components.JButtonCustom();
+        optionButton.setImage();
         quitButton = new boundary.components.JButtonCustom();
+        quitButton.setImage();
         optionPanel = new javax.swing.JPanel();
         optionPanelBackground = new boundary.components.JPanelWithBackground();
         titleOption = new javax.swing.JLabel();
@@ -63,7 +66,10 @@ public class FrameJeu extends javax.swing.JFrame {
 
         jPanelParent.setLayout(new java.awt.CardLayout());
 
+        menuPanelBackground.setImage("pirates_background(4).png");
+
         titleMenu.setFont(new java.awt.Font("Windlass", 0, 48)); // NOI18N
+        titleMenu.setForeground(new java.awt.Color(255, 255, 255));
         titleMenu.setText("ArgoNautes");
 
         startButton.setText("Start");
@@ -135,7 +141,10 @@ public class FrameJeu extends javax.swing.JFrame {
 
         jPanelParent.add(menuPanel, "card2");
 
+        optionPanelBackground.setImage("pirates_background(4).png");
+
         titleOption.setFont(new java.awt.Font("Windlass", 0, 48)); // NOI18N
+        titleOption.setForeground(new java.awt.Color(255, 255, 255));
         titleOption.setText("ArgoNautes");
 
         resolutionLabel.setFont(new java.awt.Font("Windlass", 0, 18)); // NOI18N
@@ -154,6 +163,7 @@ public class FrameJeu extends javax.swing.JFrame {
         });
 
         leftArrowRes.setText("<");
+        leftArrowRes.setImage();
         leftArrowRes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leftArrowResActionPerformed(evt);
@@ -161,6 +171,7 @@ public class FrameJeu extends javax.swing.JFrame {
         });
 
         rightArrowRes.setText(">");
+        rightArrowRes.setImage();
         rightArrowRes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rightArrowResActionPerformed(evt);
@@ -189,12 +200,12 @@ public class FrameJeu extends javax.swing.JFrame {
                         .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fullscreenCheckBox)
                             .addGroup(optionPanelRoundLayout.createSequentialGroup()
-                                .addComponent(leftArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55)
-                                .addComponent(resolutionNbLabel)
-                                .addGap(55, 55, 55)
-                                .addComponent(rightArrowRes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(100, 100, 100))
+                                .addComponent(leftArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(resolutionNbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(50, 50, 50)
+                                .addComponent(rightArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         optionPanelRoundLayout.setVerticalGroup(
             optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,6 +229,7 @@ public class FrameJeu extends javax.swing.JFrame {
 
         menuBoutonOp.setText("Retrun Menu");
         menuBoutonOp.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
+        menuBoutonOp.setImage();
         menuBoutonOp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuBoutonOpActionPerformed(evt);
@@ -271,7 +283,7 @@ public class FrameJeu extends javax.swing.JFrame {
         plateauPanel.setLayout(plateauPanelLayout);
         plateauPanelLayout.setHorizontalGroup(
             plateauPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 723, Short.MAX_VALUE)
         );
         plateauPanelLayout.setVerticalGroup(
             plateauPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,14 +353,24 @@ public class FrameJeu extends javax.swing.JFrame {
     private Image getIcon(String filename){
         Image res = null;
         try{
-            res  = ImageIO.read(new File("src/main/java/com/ilu4/jeuxpirate/boundary/ressources/" + filename));
+            /*ImageIcon icon = new ImageIcon(getClass().getResource(fileName));
+            res = icon.getImage();*/
+            res  = ImageIO.read(new File("src/main/ressources/" + filename));
         }catch(IOException e){
-            System.out.print("Icon not found");
+            String userDirectory = new File("").getAbsolutePath();
+            System.out.print("Icon not found : " + userDirectory + "src/main/ressources/" + filename);
         }
         return res;
     }
 
-
+    /*private void setBackgroundPanel(String filename){
+        try{
+            menuPanelBackground.setImage(filename);
+        } catch (IOException e){
+            String userDirectory = new File("").getAbsolutePath();
+            System.out.print("Background not found : " + userDirectory);
+        }
+    }*/
 
     /**
      * @param args the command line arguments
