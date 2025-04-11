@@ -38,7 +38,7 @@ public class JButtonCustom extends JButton{
         super.paintComponent(g);
     }
     
-    public void setImage() {
+    private void initComp(){
         this.setBorderPainted(false);
         this.setContentAreaFilled(false);
         this.setFocusPainted(false);
@@ -57,17 +57,27 @@ public class JButtonCustom extends JButton{
                 repaint();
             }
         });
-        
-        setIcon();
     }
     
-    private void setIcon(){
-        try{
-            defaultIcon = ImageIO.read(new File("src/main/ressources/ButtonNormal.png"));
-            pressedIcon = ImageIO.read(new File("src/main/ressources/ButtonPressed.png"));
-        } catch (IOException e){
-            String userDirectory = new File("").getAbsolutePath();
-            System.out.print("Background not found : " + userDirectory);
+    public void setImage(String type) {
+        initComp();
+        if (type.equals("B")){
+            try{
+                defaultIcon = ImageIO.read(new File("src/main/ressources/ButtonNormalG.png"));
+                pressedIcon = ImageIO.read(new File("src/main/ressources/ButtonPressedG.png"));
+            } catch (IOException e){
+                String userDirectory = new File("").getAbsolutePath();
+                System.out.print("Background not found : " + userDirectory);
+            }
+        } else if (type.equals("R") || type.equals("L")){
+            try{
+                defaultIcon = ImageIO.read(new File("src/main/ressources/Button" + type + "ArrowNormalG.png"));
+                pressedIcon = ImageIO.read(new File("src/main/ressources/Button" + type + "ArrowPressedG.png"));
+            } catch (IOException e){
+                String userDirectory = new File("").getAbsolutePath();
+                System.out.print("Background not found : " + userDirectory);
+            }
         }
     }
+    
 }

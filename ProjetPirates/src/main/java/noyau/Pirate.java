@@ -21,7 +21,7 @@ public class Pirate {
        HP < 0 = enlever des HP
     */
     public void addHP(int value) {
-        int newHP = HP += value;
+        int newHP = HP + value;
         if (newHP > 5) {
             this.HP = 5;
         } else if (newHP < 0) {
