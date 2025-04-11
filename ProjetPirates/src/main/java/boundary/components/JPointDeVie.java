@@ -25,7 +25,7 @@ public class JPointDeVie extends javax.swing.JPanel {
      */
     public JPointDeVie() {
         initComponents();
-        setPreferredSize(new Dimension(24, 24));
+        setPreferredSize(new Dimension(20, 20)); //24x24 Normaly
         setOpaque(false);
     }
     

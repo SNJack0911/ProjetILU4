@@ -56,6 +56,7 @@ public class FrameJeu extends javax.swing.JFrame {
         resolutionNbLabel = new javax.swing.JLabel();
         menuBoutonOp = new boundary.components.JButtonCustom();
         plateauPanel = new javax.swing.JPanel();
+        plateau2 = new boundary.Plateau();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Argonautes");
@@ -63,6 +64,7 @@ public class FrameJeu extends javax.swing.JFrame {
             getIcon("Icon23.png")
         );
         setPreferredSize(new java.awt.Dimension(720, 480));
+        setResizable(false);
 
         jPanelParent.setLayout(new java.awt.CardLayout());
 
@@ -205,7 +207,7 @@ public class FrameJeu extends javax.swing.JFrame {
                                 .addComponent(resolutionNbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(50, 50, 50)
                                 .addComponent(rightArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionPanelRoundLayout.setVerticalGroup(
             optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,11 +285,15 @@ public class FrameJeu extends javax.swing.JFrame {
         plateauPanel.setLayout(plateauPanelLayout);
         plateauPanelLayout.setHorizontalGroup(
             plateauPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 723, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plateauPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(plateau2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         plateauPanelLayout.setVerticalGroup(
             plateauPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plateauPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(plateau2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelParent.add(plateauPanel, "card4");
@@ -419,6 +425,7 @@ public class FrameJeu extends javax.swing.JFrame {
     private javax.swing.JPanel optionPanel;
     private boundary.components.JPanelWithBackground optionPanelBackground;
     private boundary.components.JPanelRound optionPanelRound;
+    private boundary.Plateau plateau2;
     private javax.swing.JPanel plateauPanel;
     private boundary.components.JButtonCustom quitButton;
     private javax.swing.JLabel resolutionLabel;
@@ -442,7 +449,7 @@ public class FrameJeu extends javax.swing.JFrame {
     private javax.swing.JPanel optionPanel;
     private boundary.components.JPanelWithBackground optionPanelBackground;
     private boundary.components.JPanelRound optionPanelRound;
-    private boundary.Plateau plateau1;
+    private boundary.Plateau2 plateau1;
     private javax.swing.JPanel plateauPanel;
     private boundary.components.JButtonCustom quitButton;
     private javax.swing.JLabel resolutionLabel;

@@ -12,10 +12,15 @@
             <version>RELEASE250</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>com.ilu4</groupId>
+            <artifactId>JeuxPirate</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>24</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>boundary.FrameJeu</exec.mainClass>
     </properties>
 </project>
