@@ -14,7 +14,7 @@ public class CarteAttack extends Carte{
     }
 
     @Override
-    public void appliqueEffet() {
+    public void appliqueEffets() {
         //TODO
     }
 }

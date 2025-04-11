@@ -55,11 +55,11 @@ public class Plateau extends javax.swing.JPanel {
         jPointDeVie7 = new boundary.components.JPointDeVie();
         jPointDeVie8 = new boundary.components.JPointDeVie();
         jPointDeVie9 = new boundary.components.JPointDeVie();
-        jPointDeVie10 = new boundary.components.JPointDeVie();
+        jPointDeVie0 = new boundary.components.JPointDeVie();
         jaugePopulariteP1 = new boundary.components.JPanelWithBackground();
         jaugePopulariteP1.setImage("Icon12.png");
         infoPanelP2 = new javax.swing.JPanel();
-        jPointDeVie1 = new boundary.components.JPointDeVie();
+        jPointDeVie = new boundary.components.JPointDeVie();
         jPointDeVie2 = new boundary.components.JPointDeVie();
         jPointDeVie3 = new boundary.components.JPointDeVie();
         jPointDeVie4 = new boundary.components.JPointDeVie();
@@ -131,7 +131,6 @@ public class Plateau extends javax.swing.JPanel {
         infoPanelP1.setLayout(new java.awt.GridBagLayout());
 
         jPointDeVie6.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie6.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout jPointDeVie6Layout = new javax.swing.GroupLayout(jPointDeVie6);
         jPointDeVie6.setLayout(jPointDeVie6Layout);
@@ -149,7 +148,6 @@ public class Plateau extends javax.swing.JPanel {
         infoPanelP1.add(jPointDeVie6, gridBagConstraints);
 
         jPointDeVie7.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie7.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout jPointDeVie7Layout = new javax.swing.GroupLayout(jPointDeVie7);
         jPointDeVie7.setLayout(jPointDeVie7Layout);
@@ -167,7 +165,6 @@ public class Plateau extends javax.swing.JPanel {
         infoPanelP1.add(jPointDeVie7, gridBagConstraints);
 
         jPointDeVie8.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie8.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout jPointDeVie8Layout = new javax.swing.GroupLayout(jPointDeVie8);
         jPointDeVie8.setLayout(jPointDeVie8Layout);
@@ -185,7 +182,6 @@ public class Plateau extends javax.swing.JPanel {
         infoPanelP1.add(jPointDeVie8, gridBagConstraints);
 
         jPointDeVie9.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie9.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout jPointDeVie9Layout = new javax.swing.GroupLayout(jPointDeVie9);
         jPointDeVie9.setLayout(jPointDeVie9Layout);
@@ -202,23 +198,22 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         infoPanelP1.add(jPointDeVie9, gridBagConstraints);
 
-        jPointDeVie10.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie10.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPointDeVie0.setMinimumSize(new java.awt.Dimension(20, 20));
 
-        javax.swing.GroupLayout jPointDeVie10Layout = new javax.swing.GroupLayout(jPointDeVie10);
-        jPointDeVie10.setLayout(jPointDeVie10Layout);
-        jPointDeVie10Layout.setHorizontalGroup(
-            jPointDeVie10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPointDeVie0Layout = new javax.swing.GroupLayout(jPointDeVie0);
+        jPointDeVie0.setLayout(jPointDeVie0Layout);
+        jPointDeVie0Layout.setHorizontalGroup(
+            jPointDeVie0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPointDeVie10Layout.setVerticalGroup(
-            jPointDeVie10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPointDeVie0Layout.setVerticalGroup(
+            jPointDeVie0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        infoPanelP1.add(jPointDeVie10, gridBagConstraints);
+        infoPanelP1.add(jPointDeVie0, gridBagConstraints);
 
         jaugePopulariteP1.setOpaque(false);
         jaugePopulariteP1.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -252,26 +247,24 @@ public class Plateau extends javax.swing.JPanel {
         infoPanelP2.setPreferredSize(new java.awt.Dimension(138, 148));
         infoPanelP2.setLayout(new java.awt.GridBagLayout());
 
-        jPointDeVie1.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie1.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPointDeVie.setMinimumSize(new java.awt.Dimension(20, 20));
 
-        javax.swing.GroupLayout jPointDeVie1Layout = new javax.swing.GroupLayout(jPointDeVie1);
-        jPointDeVie1.setLayout(jPointDeVie1Layout);
-        jPointDeVie1Layout.setHorizontalGroup(
-            jPointDeVie1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPointDeVieLayout = new javax.swing.GroupLayout(jPointDeVie);
+        jPointDeVie.setLayout(jPointDeVieLayout);
+        jPointDeVieLayout.setHorizontalGroup(
+            jPointDeVieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPointDeVie1Layout.setVerticalGroup(
-            jPointDeVie1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPointDeVieLayout.setVerticalGroup(
+            jPointDeVieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        infoPanelP2.add(jPointDeVie1, gridBagConstraints);
+        infoPanelP2.add(jPointDeVie, gridBagConstraints);
 
         jPointDeVie2.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie2.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout jPointDeVie2Layout = new javax.swing.GroupLayout(jPointDeVie2);
         jPointDeVie2.setLayout(jPointDeVie2Layout);
@@ -289,7 +282,6 @@ public class Plateau extends javax.swing.JPanel {
         infoPanelP2.add(jPointDeVie2, gridBagConstraints);
 
         jPointDeVie3.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie3.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout jPointDeVie3Layout = new javax.swing.GroupLayout(jPointDeVie3);
         jPointDeVie3.setLayout(jPointDeVie3Layout);
@@ -307,7 +299,6 @@ public class Plateau extends javax.swing.JPanel {
         infoPanelP2.add(jPointDeVie3, gridBagConstraints);
 
         jPointDeVie4.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie4.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout jPointDeVie4Layout = new javax.swing.GroupLayout(jPointDeVie4);
         jPointDeVie4.setLayout(jPointDeVie4Layout);
@@ -325,7 +316,6 @@ public class Plateau extends javax.swing.JPanel {
         infoPanelP2.add(jPointDeVie4, gridBagConstraints);
 
         jPointDeVie5.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPointDeVie5.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout jPointDeVie5Layout = new javax.swing.GroupLayout(jPointDeVie5);
         jPointDeVie5.setLayout(jPointDeVie5Layout);
@@ -599,8 +589,8 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JCarte jCarte1;
     private boundary.components.JCarte jCarte2;
     private javax.swing.JLabel jLabel1;
-    private boundary.components.JPointDeVie jPointDeVie1;
-    private boundary.components.JPointDeVie jPointDeVie10;
+    private boundary.components.JPointDeVie jPointDeVie;
+    private boundary.components.JPointDeVie jPointDeVie0;
     private boundary.components.JPointDeVie jPointDeVie2;
     private boundary.components.JPointDeVie jPointDeVie3;
     private boundary.components.JPointDeVie jPointDeVie4;

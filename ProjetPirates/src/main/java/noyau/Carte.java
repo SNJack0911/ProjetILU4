@@ -23,5 +23,9 @@ public abstract class Carte implements ICarte {
         return description;
     }
     
-    public abstract void appliqueEffet();
+    public void appliqueEffets(){
+        for (Effet effet : effets) {
+            effet.appliqueEffet();
+        }
+    }
 }

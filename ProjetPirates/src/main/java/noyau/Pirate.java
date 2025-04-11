@@ -70,7 +70,7 @@ public class Pirate {
     public void supprimerCarteMain(Carte carte) {
         if (hands.contains(carte)) {
             hands.remove(carte);
-            carte.appliqueEffet();
+            carte.appliqueEffets();
         } else {
             throw new IllegalArgumentException("Carte non trouvée dans la main du joueur\n");
         }
