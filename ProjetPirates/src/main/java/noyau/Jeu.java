@@ -1,10 +1,10 @@
-package com.ilu4.jeuxpirate.noyau;
+package noyau;
 
 import java.util.ArrayList;
 
 public class Jeu {
-    private Joueur joueur1;
-    private Joueur joueur2;
+    private Pirate joueur1;
+    private Pirate joueur2;
     private Pioche pioche;
     private int tour;
 
@@ -13,26 +13,26 @@ public class Jeu {
     }
 
     public void initJeu() {
-        joueur1 = new Joueur("J1");
-        joueur2 = new Joueur("J2");
+        joueur1 = new Pirate("J1");
+        joueur2 = new Pirate("J2");
         pioche = new Pioche(new JeuDeCarte().remplirPioche());
         tour = 0;
         for(int i =0; i<4; i++){
-            joueur1.ajouterCarte(pioche.piocher());
-            joueur2.ajouterCarte(pioche.piocher());
+            joueur1.addCarte(pioche.piocher());
+            joueur2.addCarte(pioche.piocher());
         }
     }
 
     private boolean isJeuTermine(){
-        return joueur1.getPointPopularite() == 5 || joueur2.getPointPopularite() == 5 ||
-               joueur1.getPointVie() == 0 || joueur2.getPointVie() == 0;
+        return joueur1.getPP() == 5 || joueur2.getPP() == 5 ||
+               joueur1.getHP() == 0 || joueur2.getHP() == 0;
     }
 
     //not == but >=
     private String getGagnant(){
-        if (joueur1.getPointPopularite() >= 5 || joueur2.getPointVie() >= 0){
+        if (joueur1.getPP() >= 5 || joueur2.getHP() >= 0){
             return joueur1.getNom();
-        } else if (joueur2.getPointPopularite() >= 5 || joueur1.getPointVie() >= 0){
+        } else if (joueur2.getPP() >= 5 || joueur1.getHP() >= 0){
             return joueur2.getNom();
         }
         return "Pas de gagnant";
@@ -49,12 +49,15 @@ public class Jeu {
     }
 
     //Renvoyer un joueur si les cartes ne sont pas ajouter à la main du joueur
-    private ArrayList<Carte> piocherInf5(Joueur joueur){
+    private ArrayList<Carte> piocherInf5(Pirate joueur){
         Carte carte;
         ArrayList<Carte> cartesLst = new ArrayList<>();
         while (joueur.getNbCarte()<5){
+            if (pioche.estVide()){
+                pioche = new Pioche(new JeuDeCarte().remplirPioche());
+            }
             carte = pioche.piocher();
-            joueur.ajouterCarte(carte);
+            joueur.addCarte(carte);
             cartesLst.add(carte);
         }
         return cartesLst;
@@ -67,12 +70,12 @@ public class Jeu {
             mainPirate = joueur1.getMain();
             carte = getCarteMain(nomCarte, mainPirate);
             //Applique effet Carte
-            joueur1.suppimerCarteMain(carte);
+            joueur1.supprimerCarteMain(carte);
         } else {
             mainPirate = joueur2.getMain();
             carte = getCarteMain(nomCarte, mainPirate);
             //Applique effet Carte
-            joueur1.suppimerCarteMain(carte);
+            joueur1.supprimerCarteMain(carte);
         }
         tour++;
         return getGagnant();

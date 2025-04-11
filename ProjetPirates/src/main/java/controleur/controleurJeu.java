@@ -1,7 +1,7 @@
-package com.ilu4.jeuxpirate.controleur;
+package controleur;
 
-import com.ilu4.jeuxpirate.noyau.Carte;
-import com.ilu4.jeuxpirate.noyau.Jeu;
+import noyau.Carte;
+import noyau.Jeu;
 
 import java.util.ArrayList;
 

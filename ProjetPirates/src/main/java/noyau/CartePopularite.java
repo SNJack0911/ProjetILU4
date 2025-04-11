@@ -13,4 +13,9 @@ public class CartePopularite extends Carte {
     public IEffet getEffet() {
         return null;
     }
+
+    @Override
+    public void appliqueEffet() {
+        //TODO
+    }
 }

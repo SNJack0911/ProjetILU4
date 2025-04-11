@@ -12,4 +12,9 @@ public class CarteAttack extends Carte{
     public IEffet getEffet() {
         return null;
     }
+
+    @Override
+    public void appliqueEffet() {
+        //TODO
+    }
 }

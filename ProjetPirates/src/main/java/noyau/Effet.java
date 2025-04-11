@@ -7,6 +7,11 @@ public class Effet implements IEffet {
     private Pirate player;
     private Map<String, Integer> effet;
 
+    public Effet (Pirate player, Map<String, Integer> effet){
+        this.player = player;
+        this.effet = effet;
+    }
+    
     @Override
     public void appliqueEffet() {
         for (String stat : effet.keySet()) {
