@@ -4,17 +4,37 @@
  */
 package boundary;
 
+import boundary.component_manager.GestionnaireCartes;
+import boundary.components.JCarte;
+import boundary.components.JPointDeVie;
+import boundary.components.JZoneInteraction;
+
+import java.awt.*;
+
 /**
  *
  * @author yannf
  */
 public class Plateau extends javax.swing.JPanel {
+    private JZoneInteraction zoneInteraction = null;
+    private JCarte carte;
+    private GestionnaireCartes gestionnaire = new GestionnaireCartes();
 
     /**
      * Creates new form Plateau
      */
     public Plateau() {
         initComponents();
+
+        zoneInteraction = zoneInteraction1;
+        carte = jCarte1;
+        jCarte1.changeCardFace();
+        gestionnaire.ajouterCarte(carte);
+        carte = jCarte2;
+        gestionnaire.ajouterCarte(carte);
+        gestionnaire.ajouterCarte(carte);
+        gestionnaire.ajouterZone(zoneInteraction1);
+        setNbViesRestantes(1, 4);
     }
 
     /**
@@ -538,6 +558,33 @@ public class Plateau extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public GestionnaireCartes getGestionnaire() {
+        return gestionnaire;
+    }
+
+    public void verifierZoneInteraction(Rectangle boundsCarte) {
+        zoneInteraction1.verifierCarte(carte);
+        Rectangle boundsZone = zoneInteraction.getBounds();
+        if (boundsZone.intersects(boundsCarte)) {
+            //JOptionPane.showMessageDialog(this, "Carte déposée dans la zone !");    // debuggage
+        }
+    }
+
+    public void setNbViesRestantes(int Pirate , int n) {
+        Component[] composants;
+        if (Pirate == 1) {
+            composants = infoPanelP1.getComponents();
+        } else if (Pirate == 2) {
+            composants = infoPanelP2.getComponents();
+        } else {
+            return;
+        }
+        for (int i = 0; i < composants.length; i++) {
+            if (composants[i] instanceof JPointDeVie coeur) {
+                coeur.setEtat(i < n); // les premiers pleins, le reste vides
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private boundary.components.JZoneInteraction ZoneInteractionCentral;

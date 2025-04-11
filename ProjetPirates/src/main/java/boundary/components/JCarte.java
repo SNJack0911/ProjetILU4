@@ -1,6 +1,6 @@
 package boundary.components;
 
-import boundary.Plateau1;
+import boundary.Plateau;
 import boundary.components.JCartePopUp;
 import java.awt.Component;
 import java.awt.Container;
@@ -170,7 +170,7 @@ public void deplacerVers(int xFinal, int yFinal) {
 	this.isSelected = false;
         repaint();
         Container root = SwingUtilities.getWindowAncestor(this);
-        if (root instanceof Plateau1 plateau) {
+        if (root instanceof Plateau plateau) {
             //plateau.getGestionnaire().verifierToutesZones(this); // C’est bien la méthode du gestionnaire
         }
         //détecte pas getGestionnaire ?
