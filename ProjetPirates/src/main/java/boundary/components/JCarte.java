@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package boundary.components;
 
 import boundary.Plateau;
@@ -18,6 +22,11 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+
+/**
+ *
+ * @author choue
+ */
 public class JCarte extends javax.swing.JPanel {
     private Image frontCard;
     private Image backCard;
@@ -25,6 +34,7 @@ public class JCarte extends javax.swing.JPanel {
     private Point origine = null;
     private boolean isSelected = false;
     private JCartePopUp popUp = null;
+    
     /**
      * Creates new form JCarte
      */
@@ -33,23 +43,6 @@ public class JCarte extends javax.swing.JPanel {
         double w = getWidth();
         double h = w*1.4;
         setSize((int)w, (int)h);
-
-    }
-
-    public void setFrontCard(Image image) {
-        this.frontCard = image;
-    }
-
-    public void setBackCard(Image image) {
-        this.backCard = image;
-    }
-
-    public Image getImage() {
-        return isFront ? frontCard : backCard;
-    }
-
-    public void setIsFront(boolean front) {
-        this.isFront = front;
     }
 
     @Override 
@@ -67,6 +60,25 @@ public class JCarte extends javax.swing.JPanel {
         g2d.dispose();
     }
     
+    //Projet pour faire les effet de particule    
+    public void deplacerVers(int xFinal, int yFinal) {
+        Timer timer = new Timer(10, null);
+        timer.addActionListener(e -> {
+            int x = getX();
+            int y = getY();
+            int dx = (xFinal - x) / 5;
+            int dy = (yFinal - y) / 5;
+
+            if (Math.abs(xFinal - x) < 2 && Math.abs(yFinal - y) < 2) {
+                setLocation(xFinal, yFinal);
+                timer.stop();
+            } else {
+                setLocation(x + dx, y + dy);
+            }
+        });
+        timer.start();
+    }
+    
     public Point getCentreCarte() {
         return new Point(getX() + getWidth() / 2, getY() + getHeight() / 2);
     }
@@ -75,29 +87,36 @@ public class JCarte extends javax.swing.JPanel {
         isFront = !isFront;
     }
     
-    public void setImage(String cardName) throws IOException {
-        backCard = ImageIO.read(new File("src/main/java/com/ilu4/jeuxpirate/boundary/ressources/" + "Card1Back.png"));
-        frontCard = ImageIO.read(new File("src/main/java/com/ilu4/jeuxpirate/boundary/ressources/" + cardName));
+    public void setImage(String cardName) {
+        try {
+            backCard = ImageIO.read(new File("src/main/ressources/" + "Card1Back.png"));
+            frontCard = ImageIO.read(new File("src/main/ressources/" + cardName));
+        } catch (IOException e){
+            String userDirectory = new File("").getAbsolutePath();
+            System.out.print("Card not found : " + userDirectory);
+        } 
     }
-  
-//Projet pour faire les effet de particule    
-public void deplacerVers(int xFinal, int yFinal) {
-    Timer timer = new Timer(10, null);
-    timer.addActionListener(e -> {
-        int x = getX();
-        int y = getY();
-        int dx = (xFinal - x) / 5;
-        int dy = (yFinal - y) / 5;
+    
+    //Is it really necessary ??
+    public void setFrontCard(Image image) {
+        this.frontCard = image;
+    }
 
-        if (Math.abs(xFinal - x) < 2 && Math.abs(yFinal - y) < 2) {
-            setLocation(xFinal, yFinal);
-            timer.stop();
-        } else {
-            setLocation(x + dx, y + dy);
-        }
-    });
-    timer.start();
-}    
+    //Is it really necessary ??
+    public void setBackCard(Image image) {
+        this.backCard = image;
+    }
+
+    //Is it really necessary ??
+    public Image getImage() {
+        return isFront ? frontCard : backCard;
+    }
+    
+    //Is it really necessary ??
+    public void setIsFront(boolean front) {
+        this.isFront = front;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,13 +147,54 @@ public void deplacerVers(int xFinal, int yFinal) {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 136, Short.MAX_VALUE)
+            .addGap(0, 135, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 190, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+        this.origine = evt.getPoint();
+	this.isSelected = true;
+        repaint();
+        SwingUtilities.getWindowAncestor(this).setComponentZOrder(this, 0);
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+        // TODO add your handling code here:
+        origine = null;
+	this.isSelected = false;
+        repaint();
+        Container root = SwingUtilities.getWindowAncestor(this);
+        if (root instanceof Plateau plateau) {
+            //plateau.getGestionnaire().verifierToutesZones(this); // C’est bien la méthode du gestionnaire
+        }
+        //détecte pas getGestionnaire ?
+    }//GEN-LAST:event_formMouseReleased
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if (evt.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(evt) && isFront && frontCard != null) {
+                    JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
+
+                    if (popUp != null) {
+                        popUp.dispose(); // si une précédente pop-up traîne
+                    }
+
+                    // Crée une image agrandie pour le zoom
+                    int width = frontCard.getWidth(this);
+                    int height = frontCard.getHeight(this);
+                    if (width <= 0 || height <= 0) {
+                        width = 100;
+                        height = 150;
+                    }
+                    Image scaledImage = frontCard.getScaledInstance(width * 3, height * 3, Image.SCALE_SMOOTH);
+
+                    popUp = new JCartePopUp(parentFrame, scaledImage);
+        }
+    }//GEN-LAST:event_formMouseClicked
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         if (origine != null) {
@@ -158,47 +218,7 @@ public void deplacerVers(int xFinal, int yFinal) {
         }
     }//GEN-LAST:event_formMouseDragged
 
-    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        this.origine = evt.getPoint();
-	this.isSelected = true;
-        repaint();
-        SwingUtilities.getWindowAncestor(this).setComponentZOrder(this, 0);
-    }//GEN-LAST:event_formMousePressed
-
-    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-        origine = null;
-	this.isSelected = false;
-        repaint();
-        Container root = SwingUtilities.getWindowAncestor(this);
-        if (root instanceof Plateau plateau) {
-            //plateau.getGestionnaire().verifierToutesZones(this); // C’est bien la méthode du gestionnaire
-        }
-        //détecte pas getGestionnaire ?
-    }//GEN-LAST:event_formMouseReleased
-
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        if (evt.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(evt) && isFront && frontCard != null) {
-                    JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
-
-                    if (popUp != null) {
-                        popUp.dispose(); // si une précédente pop-up traîne
-                    }
-
-                    // Crée une image agrandie pour le zoom
-                    int width = frontCard.getWidth(JCarte.this);
-                    int height = frontCard.getHeight(JCarte.this);
-                    if (width <= 0 || height <= 0) {
-                        width = 100;
-                        height = 150;
-                    }
-                    Image scaledImage = frontCard.getScaledInstance(width * 3, height * 3, Image.SCALE_SMOOTH);
-
-                    popUp = new JCartePopUp(parentFrame, scaledImage);
-        }
-        }    
-    }//GEN-LAST:event_formMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
+}

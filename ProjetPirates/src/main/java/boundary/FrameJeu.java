@@ -7,6 +7,9 @@ package boundary;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Image;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -67,6 +70,12 @@ public class FrameJeu extends javax.swing.JFrame {
         setResizable(false);
 
         jPanelParent.setLayout(new java.awt.CardLayout());
+
+        menuPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                menuPanelComponentShown(evt);
+            }
+        });
 
         menuPanelBackground.setImage("pirates_background(4).png");
 
@@ -148,6 +157,12 @@ public class FrameJeu extends javax.swing.JFrame {
         );
 
         jPanelParent.add(menuPanel, "card2");
+
+        optionPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                optionPanelComponentShown(evt);
+            }
+        });
 
         optionPanelBackground.setImage("pirates_background(4).png");
 
@@ -295,6 +310,17 @@ public class FrameJeu extends javax.swing.JFrame {
 
         jPanelParent.add(optionPanel, "card3");
 
+        plateauPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                plateauPanelComponentShown(evt);
+            }
+        });
+        plateauPanel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                plateauPanelKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout plateauPanelLayout = new javax.swing.GroupLayout(plateauPanel);
         plateauPanel.setLayout(plateauPanelLayout);
         plateauPanelLayout.setHorizontalGroup(
@@ -328,6 +354,7 @@ public class FrameJeu extends javax.swing.JFrame {
 
     private void menuBoutonOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBoutonOpActionPerformed
         switchPanel(menuPanel);
+        optionPanel.setVisible(false);
     }//GEN-LAST:event_menuBoutonOpActionPerformed
 
     private void leftArrowResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftArrowResActionPerformed
@@ -349,10 +376,12 @@ public class FrameJeu extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom1ActionPerformed
         switchPanel(plateauPanel);
+        menuPanel.setVisible(false);
     }//GEN-LAST:event_jButtonCustom1ActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom2ActionPerformed
         switchPanel(optionPanel);
+        menuPanel.setVisible(false);
     }//GEN-LAST:event_jButtonCustom2ActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom3ActionPerformed
@@ -362,10 +391,37 @@ public class FrameJeu extends javax.swing.JFrame {
     private void fullscreenCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullscreenCheckBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fullscreenCheckBoxActionPerformed
+    
+
+    private void plateauPanelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plateauPanelKeyPressed
+
+        //System.out.println("Key pressed1!");
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            //System.out.println("Escape pressed1!");
+            switchPanel(menuPanel);
+            plateauPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_plateauPanelKeyPressed
+
+    private void plateauPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_plateauPanelComponentShown
+        plateauPanel.requestFocusInWindow();
+    }//GEN-LAST:event_plateauPanelComponentShown
+
+    private void menuPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_menuPanelComponentShown
+        menuPanel.requestFocusInWindow();
+    }//GEN-LAST:event_menuPanelComponentShown
+
+    private void optionPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_optionPanelComponentShown
+       optionPanel.requestFocusInWindow();
+    }//GEN-LAST:event_optionPanelComponentShown
 
     private void switchPanel (JPanel p){
         jPanelParent.removeAll();
         jPanelParent.add(p);
+        p.setVisible(true);
+        p.setFocusable(true);
+        p.setEnabled(true);
+        p.setRequestFocusEnabled(true);
         repaint();
         revalidate();
     }
@@ -382,15 +438,6 @@ public class FrameJeu extends javax.swing.JFrame {
         }
         return res;
     }
-
-    /*private void setBackgroundPanel(String filename){
-        try{
-            menuPanelBackground.setImage(filename);
-        } catch (IOException e){
-            String userDirectory = new File("").getAbsolutePath();
-            System.out.print("Background not found : " + userDirectory);
-        }
-    }*/
 
     /**
      * @param args the command line arguments

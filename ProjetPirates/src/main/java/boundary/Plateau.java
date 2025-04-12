@@ -361,7 +361,6 @@ public class Plateau extends javax.swing.JPanel {
         plateauBackground.add(infoPanelP2, gridBagConstraints);
 
         zoneInteraction1.setOpaque(false);
-        zoneInteraction1.setPreferredSize(new java.awt.Dimension(420, 160));
 
         javax.swing.GroupLayout zoneInteraction1Layout = new javax.swing.GroupLayout(zoneInteraction1);
         zoneInteraction1.setLayout(zoneInteraction1Layout);
@@ -380,7 +379,6 @@ public class Plateau extends javax.swing.JPanel {
         plateauBackground.add(zoneInteraction1, gridBagConstraints);
 
         ZoneInteractionCentral.setOpaque(false);
-        ZoneInteractionCentral.setPreferredSize(new java.awt.Dimension(420, 160));
         ZoneInteractionCentral.setLayout(new java.awt.GridBagLayout());
 
         depotPopP1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -465,11 +463,11 @@ public class Plateau extends javax.swing.JPanel {
         plateauBackground.add(ZoneInteractionCentral, gridBagConstraints);
 
         zoneInteraction3.setOpaque(false);
-        zoneInteraction3.setPreferredSize(new java.awt.Dimension(420, 160));
         zoneInteraction3.setLayout(new java.awt.GridBagLayout());
 
         jCarte1.setMinimumSize(new java.awt.Dimension(84, 117));
         jCarte1.setPreferredSize(new java.awt.Dimension(84, 117));
+        jCarte1.setImage("Card1FrontAttack.png");
 
         javax.swing.GroupLayout jCarte1Layout = new javax.swing.GroupLayout(jCarte1);
         jCarte1.setLayout(jCarte1Layout);
@@ -488,6 +486,7 @@ public class Plateau extends javax.swing.JPanel {
 
         jCarte2.setMinimumSize(new java.awt.Dimension(84, 117));
         jCarte2.setPreferredSize(new java.awt.Dimension(84, 117));
+        jCarte2.setImage("Card1FrontPopularity.png");
 
         javax.swing.GroupLayout jCarte2Layout = new javax.swing.GroupLayout(jCarte2);
         jCarte2.setLayout(jCarte2Layout);
