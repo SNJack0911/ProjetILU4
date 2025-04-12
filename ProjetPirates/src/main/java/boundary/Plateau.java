@@ -81,6 +81,7 @@ public class Plateau extends javax.swing.JPanel {
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
         plateauBackground.setName(""); // NOI18N
+        plateauBackground.setPreferredSize(new java.awt.Dimension(720, 480));
         plateauBackground.setImage("Plateau.png");
         plateauBackground.setLayout(new java.awt.GridBagLayout());
 
@@ -102,7 +103,10 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(13, 8, 13, 8);
         plateauBackground.add(iconP1, gridBagConstraints);
 
         iconP2.setBackground(new java.awt.Color(204, 204, 0));
@@ -123,7 +127,10 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(13, 8, 13, 8);
         plateauBackground.add(iconP2, gridBagConstraints);
 
         infoPanelP1.setOpaque(false);
@@ -239,6 +246,9 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         plateauBackground.add(infoPanelP1, gridBagConstraints);
 
@@ -357,6 +367,9 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         plateauBackground.add(infoPanelP2, gridBagConstraints);
 
@@ -376,6 +389,9 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         plateauBackground.add(zoneInteraction1, gridBagConstraints);
 
         ZoneInteractionCentral.setOpaque(false);
@@ -460,6 +476,9 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         plateauBackground.add(ZoneInteractionCentral, gridBagConstraints);
 
         zoneInteraction3.setOpaque(false);
@@ -506,6 +525,9 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         plateauBackground.add(zoneInteraction3, gridBagConstraints);
 
         piochePanel.setBackground(new java.awt.Color(255, 0, 51));
@@ -520,7 +542,7 @@ public class Plateau extends javax.swing.JPanel {
             .addGroup(piochePanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         piochePanelLayout.setVerticalGroup(
             piochePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,6 +555,9 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         plateauBackground.add(piochePanel, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

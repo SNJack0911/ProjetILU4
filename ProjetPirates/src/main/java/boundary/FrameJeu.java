@@ -4,9 +4,9 @@
  */
 package boundary;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
@@ -59,7 +59,7 @@ public class FrameJeu extends javax.swing.JFrame {
         resolutionNbLabel = new javax.swing.JLabel();
         menuBoutonOp = new boundary.components.JButtonCustom();
         plateauPanel = new javax.swing.JPanel();
-        plateau2 = new boundary.Plateau();
+        plateau1 = new boundary.Plateau();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Argonautes");
@@ -158,6 +158,7 @@ public class FrameJeu extends javax.swing.JFrame {
 
         jPanelParent.add(menuPanel, "card2");
 
+        optionPanel.setPreferredSize(new java.awt.Dimension(720, 480));
         optionPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 optionPanelComponentShown(evt);
@@ -325,11 +326,15 @@ public class FrameJeu extends javax.swing.JFrame {
         plateauPanel.setLayout(plateauPanelLayout);
         plateauPanelLayout.setHorizontalGroup(
             plateauPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateau2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plateauPanelLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(plateau1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         plateauPanelLayout.setVerticalGroup(
             plateauPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateau2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plateauPanelLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(plateau1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelParent.add(plateauPanel, "card4");
@@ -391,8 +396,9 @@ public class FrameJeu extends javax.swing.JFrame {
     
     private void plateauPanelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plateauPanelKeyPressed
 
-        //System.out.println("Key pressed1!");
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+        //System.out.println(getFocusOwner());
+        Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && plateauPanel.equals(focused)){
             //System.out.println("Escape pressed1!");
             switchPanel(menuPanel);
             plateauPanel.setVisible(false);
@@ -482,7 +488,7 @@ public class FrameJeu extends javax.swing.JFrame {
     private javax.swing.JPanel optionPanel;
     private boundary.components.JPanelWithBackground optionPanelBackground;
     private boundary.components.JPanelRound optionPanelRound;
-    private boundary.Plateau plateau2;
+    private boundary.Plateau plateau1;
     private javax.swing.JPanel plateauPanel;
     private boundary.components.JButtonCustom quitButton;
     private javax.swing.JLabel resolutionLabel;
