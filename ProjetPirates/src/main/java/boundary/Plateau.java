@@ -75,8 +75,8 @@ public class Plateau extends javax.swing.JPanel {
         zoneInteraction3 = new boundary.components.JZoneInteraction();
         jCarte1 = new boundary.components.JCarte();
         jCarte2 = new boundary.components.JCarte();
+        jPioche1 = new boundary.components.JPioche();
         piochePanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -530,30 +530,44 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(zoneInteraction3, gridBagConstraints);
 
+        jPioche1.setPreferredSize(new java.awt.Dimension(142, 90));
+
+        javax.swing.GroupLayout jPioche1Layout = new javax.swing.GroupLayout(jPioche1);
+        jPioche1.setLayout(jPioche1Layout);
+        jPioche1Layout.setHorizontalGroup(
+            jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 143, Short.MAX_VALUE)
+        );
+        jPioche1Layout.setVerticalGroup(
+            jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 90, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(35, 4, 35, 4);
+        plateauBackground.add(jPioche1, gridBagConstraints);
+
         piochePanel.setBackground(new java.awt.Color(255, 0, 51));
         piochePanel.setPreferredSize(new java.awt.Dimension(150, 160));
-
-        jLabel1.setText("Pioche");
 
         javax.swing.GroupLayout piochePanelLayout = new javax.swing.GroupLayout(piochePanel);
         piochePanel.setLayout(piochePanelLayout);
         piochePanelLayout.setHorizontalGroup(
             piochePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(piochePanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addContainerGap(66, Short.MAX_VALUE))
+            .addGap(0, 151, Short.MAX_VALUE)
         );
         piochePanelLayout.setVerticalGroup(
             piochePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(piochePanelLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1)
-                .addContainerGap(76, Short.MAX_VALUE))
+            .addGap(0, 160, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -612,7 +626,7 @@ public class Plateau extends javax.swing.JPanel {
     private javax.swing.JPanel infoPanelP2;
     private boundary.components.JCarte jCarte1;
     private boundary.components.JCarte jCarte2;
-    private javax.swing.JLabel jLabel1;
+    private boundary.components.JPioche jPioche1;
     private boundary.components.JPointDeVie jPointDeVie;
     private boundary.components.JPointDeVie jPointDeVie0;
     private boundary.components.JPointDeVie jPointDeVie2;
