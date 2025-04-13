@@ -44,7 +44,7 @@ public class JCarte extends javax.swing.JPanel {
         double h = w*1.4;
         setSize((int)w, (int)h);
     }
-
+    
     @Override 
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -156,7 +156,7 @@ public class JCarte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        // TODO add your handling code here:
+        System.out.println("MousePressed");
         this.origine = evt.getPoint();
 	this.isSelected = true;
         repaint();
@@ -170,13 +170,15 @@ public class JCarte extends javax.swing.JPanel {
         repaint();
         Container root = SwingUtilities.getWindowAncestor(this);
         if (root instanceof Plateau plateau) {
-            //plateau.getGestionnaire().verifierToutesZones(this); // C’est bien la méthode du gestionnaire
+            plateau.getGestionnaire().verifierToutesZones(this); // C’est bien la méthode du gestionnaire
         }
         //détecte pas getGestionnaire ?
     }//GEN-LAST:event_formMouseReleased
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        System.out.println("MouseClicked");
         if (evt.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(evt) && isFront && frontCard != null) {
+            System.out.println("DoubleClick + is front : " + isFront);
                     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 
                     if (popUp != null) {

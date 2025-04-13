@@ -81,7 +81,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="titleMenu" min="-2" pref="322" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
@@ -102,12 +102,12 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="titleMenu" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="startButton" pref="40" max="32767" attributes="0"/>
+                          <Component id="startButton" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="optionButton" pref="40" max="32767" attributes="0"/>
+                          <Component id="optionButton" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="quitButton" pref="40" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+                          <Component id="quitButton" min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace pref="228" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

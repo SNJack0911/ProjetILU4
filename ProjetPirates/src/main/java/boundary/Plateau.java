@@ -76,7 +76,6 @@ public class Plateau extends javax.swing.JPanel {
         jCarte1 = new boundary.components.JCarte();
         jCarte2 = new boundary.components.JCarte();
         jPioche1 = new boundary.components.JPioche();
-        piochePanel = new javax.swing.JPanel();
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -552,28 +551,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(35, 4, 35, 4);
         plateauBackground.add(jPioche1, gridBagConstraints);
 
-        piochePanel.setBackground(new java.awt.Color(255, 0, 51));
-        piochePanel.setPreferredSize(new java.awt.Dimension(150, 160));
-
-        javax.swing.GroupLayout piochePanelLayout = new javax.swing.GroupLayout(piochePanel);
-        piochePanel.setLayout(piochePanelLayout);
-        piochePanelLayout.setHorizontalGroup(
-            piochePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 151, Short.MAX_VALUE)
-        );
-        piochePanelLayout.setVerticalGroup(
-            piochePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        plateauBackground.add(piochePanel, gridBagConstraints);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -639,7 +616,6 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPointDeVie jPointDeVie9;
     private boundary.components.JPanelWithBackground jaugePopulariteP1;
     private boundary.components.JPanelWithBackground jaugePopulariteP2;
-    private javax.swing.JPanel piochePanel;
     private boundary.components.JPanelWithBackground plateauBackground;
     private boundary.components.JZoneInteraction zoneInteraction1;
     private boundary.components.JZoneInteraction zoneInteraction3;
