@@ -7,6 +7,7 @@ public class Jeu {
     private Pirate joueur2;
     private Pioche pioche;
     private int tour;
+    private boolean nuit=false;
 
     public Jeu(){
         initJeu();
@@ -63,18 +64,19 @@ public class Jeu {
         return cartesLst;
     }
 
+    //Update String return
     public String jouerCarte(String nomCarte){
         ArrayList<Carte> mainPirate;
         Carte carte;
         if(tour %2 == 0){
             mainPirate = joueur1.getMain();
             carte = getCarteMain(nomCarte, mainPirate);
-            //Applique effet Carte
+            //Applique effet Carte TODO
             joueur1.supprimerCarteMain(carte);
         } else {
             mainPirate = joueur2.getMain();
             carte = getCarteMain(nomCarte, mainPirate);
-            //Applique effet Carte
+            //Applique effet Carte TODO
             joueur1.supprimerCarteMain(carte);
         }
         tour++;
@@ -86,5 +88,13 @@ public class Jeu {
             if (carte.getNom().equals(nomCarte)) {return carte;}
         }
         return null;
+    }
+
+    public boolean isNuit() {
+        return nuit;
+    }
+
+    public void setNuit(boolean nuit) {
+        this.nuit = nuit;
     }
 }

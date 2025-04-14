@@ -3,7 +3,15 @@ package noyau;
 import java.util.ArrayList;
 
 public class JeuDeCarte {
-    private Configuration[] config = {new Configuration(new CarteAttack("1", "d", null), 0),
+    private Configuration[] config = {new Configuration(new CarteDefense("Ode à la Joie", "Le joueur Gagne 3PV",3, 0, false ), 7),
+            new Configuration(new CarteDefense("Douceur ensoleillé", "Gagne 1 PV, Gagne 1 PV de plus si le jour",1, 0, true ), 13)};
+
+
+
+
+
+
+        /*{new Configuration(new CarteAttack("1", "d", null), 0),
             new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
             new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
             new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
@@ -12,6 +20,14 @@ public class JeuDeCarte {
             new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
             new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
             new Configuration(new CarteAttack("1", "d", null), 0),};
+
+            new Carte() {
+            @Override
+            public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
+
+            }
+        })
+            */
 
     private static class Configuration{
         Carte carte;
