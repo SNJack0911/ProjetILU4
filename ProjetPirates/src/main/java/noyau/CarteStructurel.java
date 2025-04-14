@@ -1,4 +1,4 @@
-package boundary.component_manager;
+package noyau;
 
 public class CarteStructurel {
     private String nom;

@@ -22,7 +22,11 @@ public class FrameJeu extends javax.swing.JFrame {
     /**
      * Creates new form FrameJeu
      */
-    public FrameJeu() {
+    public FrameJeu(boolean fullScreen) {
+        
+        if (fullScreen) {
+            setUndecorated(true);
+        }
         initComponents();
     }
 
@@ -52,7 +56,7 @@ public class FrameJeu extends javax.swing.JFrame {
         resolutionLabel = new javax.swing.JLabel();
         fullScreenLabel = new javax.swing.JLabel();
         volumeLabel = new javax.swing.JLabel();
-        fullscreenCheckBox = new javax.swing.JCheckBox();
+        fullScreenCheckBox = new javax.swing.JCheckBox();
         volumeSlider = new javax.swing.JSlider();
         leftArrowRes = new boundary.components.JButtonCustom();
         rightArrowRes = new boundary.components.JButtonCustom();
@@ -180,9 +184,9 @@ public class FrameJeu extends javax.swing.JFrame {
         volumeLabel.setFont(new java.awt.Font("Windlass", 0, 18)); // NOI18N
         volumeLabel.setText("Volume : ");
 
-        fullscreenCheckBox.addActionListener(new java.awt.event.ActionListener() {
+        fullScreenCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fullscreenCheckBoxActionPerformed(evt);
+                fullScreenCheckBoxActionPerformed(evt);
             }
         });
 
@@ -219,7 +223,7 @@ public class FrameJeu extends javax.swing.JFrame {
                             .addComponent(fullScreenLabel))
                         .addGap(56, 56, 56)
                         .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fullscreenCheckBox)
+                            .addComponent(fullScreenCheckBox)
                             .addGroup(optionPanelRoundLayout.createSequentialGroup()
                                 .addComponent(leftArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69)
@@ -248,13 +252,13 @@ public class FrameJeu extends javax.swing.JFrame {
                         .addComponent(resolutionNbLabel)
                         .addGap(21, 21, 21)))
                 .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fullscreenCheckBox)
+                    .addComponent(fullScreenCheckBox)
                     .addComponent(fullScreenLabel))
                 .addGap(18, 18, 18)
                 .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(volumeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(93, 93, 93))
+                .addGap(64, 64, 64))
         );
 
         menuBoutonOp.setBackground(new java.awt.Color(0, 51, 102));
@@ -292,8 +296,8 @@ public class FrameJeu extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(titleOption)
                 .addGap(18, 18, 18)
-                .addComponent(optionPanelRound, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(optionPanelRound, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(menuBoutonOp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
@@ -389,9 +393,19 @@ public class FrameJeu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCustom3ActionPerformed
 
-    private void fullscreenCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullscreenCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fullscreenCheckBoxActionPerformed
+    private void fullScreenCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullScreenCheckBoxActionPerformed
+        FrameJeu newFrame = new FrameJeu(fullScreenCheckBox.isSelected());
+        this.dispose();
+        fullScreenOptionEnable(newFrame, !fullScreenCheckBox.isSelected());
+        newFrame.fullScreenCheckBox.setSelected(fullScreenCheckBox.isSelected());
+        
+        if (fullScreenCheckBox.isSelected()) {
+            newFrame.setExtendedState(MAXIMIZED_BOTH);
+        }
+
+        newFrame.openOptionsPanel();
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_fullScreenCheckBoxActionPerformed
     
     
     private void plateauPanelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plateauPanelKeyPressed
@@ -440,6 +454,18 @@ public class FrameJeu extends javax.swing.JFrame {
         }
         return res;
     }
+    
+    private void openOptionsPanel() {
+        switchPanel(optionPanel);
+        optionPanelRound.repaint();
+    }
+    
+    private void fullScreenOptionEnable(FrameJeu frame, boolean bool) {
+        frame.leftArrowRes.setEnabled(bool);
+        frame.rightArrowRes.setEnabled(bool);
+        frame.resolutionLabel.setEnabled(bool);
+        frame.resolutionNbLabel.setEnabled(bool);
+    }
 
     /**
      * @param args the command line arguments
@@ -471,14 +497,14 @@ public class FrameJeu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameJeu().setVisible(true);
+                new FrameJeu(false).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox fullScreenCheckBox;
     private javax.swing.JLabel fullScreenLabel;
-    private javax.swing.JCheckBox fullscreenCheckBox;
     private javax.swing.JPanel jPanelParent;
     private boundary.components.JButtonCustom leftArrowRes;
     private boundary.components.JButtonCustom menuBoutonOp;

@@ -4,7 +4,7 @@
  */
 package boundary;
 
-import boundary.component_manager.GestionnaireCartes;
+import noyau.GestionnaireCartes;
 import boundary.components.JCarte;
 import boundary.components.JPointDeVie;
 import boundary.components.JZoneInteraction;
