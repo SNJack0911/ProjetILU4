@@ -138,7 +138,7 @@ public class JCarte extends javax.swing.JPanel {
     }
     
     //Is it really necessary ??
-    public void setFrontCard(Image image) {
+    /*public void setFrontCard(Image image) {
         this.frontCard = image;
     }
 
@@ -155,7 +155,7 @@ public class JCarte extends javax.swing.JPanel {
     //Is it really necessary ??
     public void setIsFront(boolean front) {
         this.isFront = front;
-    }
+    }*/
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -196,7 +196,7 @@ public class JCarte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        System.out.println("MousePressed");
+        //System.out.println("MousePressed");
         this.origine = evt.getPoint();
 	this.isSelected = true;
         repaint();
@@ -216,9 +216,9 @@ public class JCarte extends javax.swing.JPanel {
     }//GEN-LAST:event_formMouseReleased
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        System.out.println("MouseClicked");
+        //System.out.println("MouseClicked");
         if (evt.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(evt) && isFront && frontCard != null) {
-            System.out.println("DoubleClick + is front : " + isFront);
+            //System.out.println("DoubleClick + is front : " + isFront);
                     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 
                     if (popUp != null) {
