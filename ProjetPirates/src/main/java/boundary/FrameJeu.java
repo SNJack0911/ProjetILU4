@@ -7,10 +7,15 @@ package boundary;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineEvent;
 import javax.swing.JPanel;
 
 /**
@@ -61,6 +66,7 @@ public class FrameJeu extends javax.swing.JFrame {
         leftArrowRes = new boundary.components.JButtonCustom();
         rightArrowRes = new boundary.components.JButtonCustom();
         resolutionNbLabel = new javax.swing.JLabel();
+        volumeValueLabel = new javax.swing.JLabel();
         menuBoutonOp = new boundary.components.JButtonCustom();
         plateauPanel = new javax.swing.JPanel();
         plateau1 = new boundary.Plateau();
@@ -72,6 +78,11 @@ public class FrameJeu extends javax.swing.JFrame {
         );
         setPreferredSize(new java.awt.Dimension(720, 480));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanelParent.setLayout(new java.awt.CardLayout());
 
@@ -175,20 +186,33 @@ public class FrameJeu extends javax.swing.JFrame {
         titleOption.setForeground(new java.awt.Color(255, 255, 255));
         titleOption.setText("ArgoNautes");
 
+        optionPanelRound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         resolutionLabel.setFont(new java.awt.Font("Windlass", 0, 18)); // NOI18N
         resolutionLabel.setText("Resolution : ");
+        optionPanelRound.add(resolutionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 94, -1, -1));
 
         fullScreenLabel.setFont(new java.awt.Font("Windlass", 0, 18)); // NOI18N
         fullScreenLabel.setText("FullScreen : ");
+        optionPanelRound.add(fullScreenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 137, -1, -1));
 
         volumeLabel.setFont(new java.awt.Font("Windlass", 0, 18)); // NOI18N
         volumeLabel.setText("Volume : ");
+        optionPanelRound.add(volumeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 179, -1, -1));
 
         fullScreenCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fullScreenCheckBoxActionPerformed(evt);
             }
         });
+        optionPanelRound.add(fullScreenCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 137, -1, -1));
+
+        volumeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                volumeSliderStateChanged(evt);
+            }
+        });
+        optionPanelRound.add(volumeSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 183, -1, -1));
 
         leftArrowRes.setPreferredSize(new java.awt.Dimension(20, 20));
         leftArrowRes.setImage("L");
@@ -197,6 +221,7 @@ public class FrameJeu extends javax.swing.JFrame {
                 leftArrowResActionPerformed(evt);
             }
         });
+        optionPanelRound.add(leftArrowRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 94, -1, -1));
 
         rightArrowRes.setPreferredSize(new java.awt.Dimension(20, 20));
         rightArrowRes.setImage("R");
@@ -205,65 +230,21 @@ public class FrameJeu extends javax.swing.JFrame {
                 rightArrowResActionPerformed(evt);
             }
         });
+        optionPanelRound.add(rightArrowRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 94, -1, -1));
 
         resolutionNbLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         resolutionNbLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resolutionNbLabel.setText("720x480");
+        optionPanelRound.add(resolutionNbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 96, 85, -1));
 
-        javax.swing.GroupLayout optionPanelRoundLayout = new javax.swing.GroupLayout(optionPanelRound);
-        optionPanelRound.setLayout(optionPanelRoundLayout);
-        optionPanelRoundLayout.setHorizontalGroup(
-            optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(optionPanelRoundLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(optionPanelRoundLayout.createSequentialGroup()
-                        .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(resolutionLabel)
-                            .addComponent(fullScreenLabel))
-                        .addGap(56, 56, 56)
-                        .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fullScreenCheckBox)
-                            .addGroup(optionPanelRoundLayout.createSequentialGroup()
-                                .addComponent(leftArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
-                                .addComponent(resolutionNbLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
-                                .addComponent(rightArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(optionPanelRoundLayout.createSequentialGroup()
-                        .addComponent(volumeLabel)
-                        .addGap(90, 90, 90)
-                        .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        optionPanelRoundLayout.setVerticalGroup(
-            optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(optionPanelRoundLayout.createSequentialGroup()
-                .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(optionPanelRoundLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(resolutionLabel)
-                            .addComponent(leftArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rightArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelRoundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(resolutionNbLabel)
-                        .addGap(21, 21, 21)))
-                .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fullScreenCheckBox)
-                    .addComponent(fullScreenLabel))
-                .addGap(18, 18, 18)
-                .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(volumeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64))
-        );
+        volumeValueLabel.setBackground(new java.awt.Color(0, 0, 0));
+        volumeValueLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        volumeValueLabel.setText("50%");
+        optionPanelRound.add(volumeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 37, -1));
 
         menuBoutonOp.setBackground(new java.awt.Color(0, 51, 102));
         menuBoutonOp.setForeground(new java.awt.Color(255, 255, 255));
-        menuBoutonOp.setText("Retrun Menu");
+        menuBoutonOp.setText("Return Menu");
         menuBoutonOp.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
         menuBoutonOp.setImage("B");
         menuBoutonOp.addActionListener(new java.awt.event.ActionListener() {
@@ -296,8 +277,8 @@ public class FrameJeu extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(titleOption)
                 .addGap(18, 18, 18)
-                .addComponent(optionPanelRound, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(optionPanelRound, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(menuBoutonOp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
@@ -390,6 +371,7 @@ public class FrameJeu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCustom2ActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom3ActionPerformed
+        stopMusic();
         dispose();
     }//GEN-LAST:event_jButtonCustom3ActionPerformed
 
@@ -431,6 +413,26 @@ public class FrameJeu extends javax.swing.JFrame {
        optionPanel.requestFocusInWindow();
     }//GEN-LAST:event_optionPanelComponentShown
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // Uniquement des fichiers audio .wav !
+        // Ajoutez le fichier nommé SongX.wav avec X = nb_musics +1
+        // Pensez à incrémenter le nombre de musique
+        int nb_musics = 4;
+        ArrayList<String> playlist = new ArrayList<>();
+        for (int i = 1; i <= nb_musics; i++) {
+            playlist.add("src/main/ressources/Song" + i + ".wav");
+        }
+        Collections.shuffle(playlist);
+        
+        playMusics(playlist);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void volumeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_volumeSliderStateChanged
+        int volume = volumeSlider.getValue();
+        volumeValueLabel.setText(volume + "%");
+        setVolume((float) volume/100);
+    }//GEN-LAST:event_volumeSliderStateChanged
+
     private void switchPanel (JPanel p){
         jPanelParent.removeAll();
         jPanelParent.add(p);
@@ -465,6 +467,68 @@ public class FrameJeu extends javax.swing.JFrame {
         frame.rightArrowRes.setEnabled(bool);
         frame.resolutionLabel.setEnabled(bool);
         frame.resolutionNbLabel.setEnabled(bool);
+    }
+    
+    private void playCurrentTrack() {
+        try {
+            if (currentIndex >= playlist.size()) {
+                currentIndex = 0; // 🔁 Boucle sur la playlist
+            }
+
+            String filepath = playlist.get(currentIndex);
+            File audioFile = new File(filepath);
+
+            if (!audioFile.exists()) {
+                System.out.println("Fichier introuvable : " + filepath);
+                currentIndex++;
+                playCurrentTrack();
+                return;
+            }
+
+            audioStream = AudioSystem.getAudioInputStream(audioFile);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            setVolume(0.5f);
+            clip.start();
+
+            // Quand le son est fini, passer au suivant
+            clip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    clip.close();
+                    currentIndex++;
+                    playCurrentTrack();
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void playMusics(ArrayList<String> filepaths) {
+        if (filepaths == null || filepaths.isEmpty()) {
+            System.out.println("La liste de lecture est vide.");
+            return;
+        }
+        this.playlist = filepaths;
+        this.currentIndex = 0;
+        playCurrentTrack();
+    }
+    
+    public void stopMusic() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+        }
+    }
+    
+    // Volume doit être compris entre 0 et 1
+    public void setVolume(float volume) {
+        if (clip != null && clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float range = gainControl.getMaximum() - gainControl.getMinimum();
+            float gain = (range * volume) + gainControl.getMinimum();
+            gainControl.setValue(gain);
+        }
     }
 
     /**
@@ -525,6 +589,7 @@ public class FrameJeu extends javax.swing.JFrame {
     private javax.swing.JLabel titleOption;
     private javax.swing.JLabel volumeLabel;
     private javax.swing.JSlider volumeSlider;
+    private javax.swing.JLabel volumeValueLabel;
     // End of variables declaration//GEN-END:variables
 
     /*private javax.swing.JCheckBox fullscreenCheckBox;
@@ -551,4 +616,8 @@ public class FrameJeu extends javax.swing.JFrame {
     private javax.swing.JLabel volumeLabel1;*/
     private final String[] resolution ={"720x480", "1280x720", "1920x1080"};
     private int currentRes = 0;
+    private AudioInputStream audioStream;
+    private Clip clip;
+    private ArrayList<String> playlist = new ArrayList<>();
+    private int currentIndex = 0;
 }
