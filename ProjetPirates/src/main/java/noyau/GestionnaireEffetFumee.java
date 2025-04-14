@@ -7,6 +7,7 @@ package noyau;
 import boundary.components.SmokeEffect;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,28 @@ import javax.swing.Timer;
  *
  * @author choue
  */
+
+public class GestionnaireEffetFumee {
+
+    private final List<Image> images = new ArrayList<>();
+
+    public GestionnaireEffetFumee() {
+        try {
+            for (int i = 0; i <=3 ; i++) {
+                Image img = ImageIO.read(new File("src/main/ressources/blackSmoke" + String.format("%02d", i) + ".png"));
+                images.add(img);
+            }
+        } catch (IOException | IllegalArgumentException e) {
+            System.err.println("Erreur chargement fumées : " + e.getMessage());
+        }
+    }
+
+    public Image getRandomImage() {
+        if (images.isEmpty()) return null;
+        return images.get(new Random().nextInt(images.size()));
+    }
+}
+/*
 public class GestionnaireEffetFumee {
 
     private List<SmokeEffect> effets = new ArrayList<>();
@@ -30,7 +53,7 @@ public class GestionnaireEffetFumee {
         images = new Image[10];
         for (int i = 0; i < images.length; i++) {
             try {
-                images[i] = ImageIO.read(getClass().getResource("/les_pngBlackSmoke/blackSmoke" + String.format("%02d", i) + ".png"));
+                images[i] = ImageIO.read(new File("src/main/ressources/blackSmoke" + String.format("%02d", i) + ".png"));
             } catch (IOException e) {
                 System.err.println("Erreur chargement image fumée : " + i);
             }
@@ -55,3 +78,4 @@ public class GestionnaireEffetFumee {
         }
     }
 }
+*/

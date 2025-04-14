@@ -6,6 +6,7 @@ package boundary.components;
 
 import boundary.Plateau;
 import boundary.components.JCartePopUp;
+import java.awt.AlphaComposite;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -17,10 +18,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import noyau.GestionnaireEffetFumee;
 
 
 /**
@@ -35,6 +39,10 @@ public class JCarte extends javax.swing.JPanel {
     private boolean isSelected = false;
     private JCartePopUp popUp = null;
     
+    private final List<SmokeEffect> fumées = new ArrayList<>();
+    private final GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
+    private Timer timerFumée;
+    
     /**
      * Creates new form JCarte
      */
@@ -43,6 +51,29 @@ public class JCarte extends javax.swing.JPanel {
         double w = getWidth();
         double h = w*1.4;
         setSize((int)w, (int)h);
+    }
+
+    public void lancerFumée() {
+        if (timerFumée != null && timerFumée.isRunning()) return;
+
+        timerFumée = new Timer(150, e -> {
+            Image img = effets.getRandomImage();
+            if (img != null) {
+                Point centre = getCentreCarte();
+                fumées.add(new SmokeEffect(img, centre.x, centre.y));
+            }
+
+            // Diminue la transparence
+            for (SmokeEffect f : fumées) {
+                f.diminuerAlpha(0.05f);
+            }
+
+            // Nettoie les fumées finies
+            fumées.removeIf(SmokeEffect::estTerminee);
+
+            repaint();
+        });
+        timerFumée.start();
     }
     
     @Override 
@@ -58,6 +89,15 @@ public class JCarte extends javax.swing.JPanel {
         }
         
         g2d.dispose();
+
+	// Dessin des fumées
+        for (SmokeEffect f : fumées) {
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, f.alpha));
+            int localX = f.x - getX();  // Adapter aux coordonnées locales
+            int localY = f.y - getY();
+            g2d.drawImage(f.image, localX - 15, localY - 15, 30, 30, this);
+            g2d.dispose();
+        }
     }
     
     //Projet pour faire les effet de particule    
