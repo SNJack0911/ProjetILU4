@@ -1,4 +1,4 @@
-package boundary.component_manager;
+package noyau;
 
 import boundary.components.JCarte;
 import boundary.components.JZoneInteraction;
