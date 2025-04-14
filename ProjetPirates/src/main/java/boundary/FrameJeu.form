@@ -250,8 +250,8 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="titleOption" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="optionPanelRound" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="optionPanelRound" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="55" max="32767" attributes="0"/>
                           <Component id="menuBoutonOp" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
@@ -285,7 +285,7 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="fullscreenCheckBox" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fullScreenCheckBox" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Component id="leftArrowRes" min="-2" pref="20" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
@@ -325,7 +325,7 @@
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="fullscreenCheckBox" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fullScreenCheckBox" min="-2" max="-2" attributes="0"/>
                                   <Component id="fullScreenLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -333,7 +333,7 @@
                                   <Component id="volumeLabel" alignment="3" max="32767" attributes="0"/>
                                   <Component id="volumeSlider" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -363,9 +363,9 @@
                         <Property name="text" type="java.lang.String" value="Volume : "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JCheckBox" name="fullscreenCheckBox">
+                    <Component class="javax.swing.JCheckBox" name="fullScreenCheckBox">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fullscreenCheckBoxActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fullScreenCheckBoxActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JSlider" name="volumeSlider">
