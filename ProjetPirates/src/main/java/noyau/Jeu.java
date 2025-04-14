@@ -1,6 +1,9 @@
 package noyau;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Jeu {
     private Pirate joueur1;
@@ -8,6 +11,7 @@ public class Jeu {
     private Pioche pioche;
     private int tour;
     private boolean nuit=false;
+    private Map<Carte, Integer> carteNonJouer = new TreeMap<Carte, Integer>();
 
     public Jeu(){
         initJeu();
