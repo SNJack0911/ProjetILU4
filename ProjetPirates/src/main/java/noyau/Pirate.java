@@ -88,7 +88,8 @@ public class Pirate {
                 ", nom='" + nom + '\'' +
                 '}';
     }
-   
+
+    //Useless now
     public ArrayList<Carte> getMain() {
         return hands;
     }

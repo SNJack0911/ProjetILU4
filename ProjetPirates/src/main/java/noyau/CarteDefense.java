@@ -1,9 +1,6 @@
 package noyau;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class CarteDefense extends  Carte{
     private int PVajout;
@@ -18,7 +15,8 @@ public class CarteDefense extends  Carte{
     }
 
     @Override
-    public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
+    public List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
+        //List<String> listeFace = new ArrayList<String>();
         if(affecterNuit && !jeu.isNuit()){
             PVajout += PVajout;
         }
@@ -27,10 +25,6 @@ public class CarteDefense extends  Carte{
         //Voir pour ajouter effet
 
         //Effet e = new Effet(joueur,  new Map<String, Integer>());
+        return new ArrayList<String>();
     }
 }
-/*
-CarteDefense c1 = new CarteDefense("Hymne", "desc", 1, 0);
-Carte ca = new UniqueCarte(){
-
-};*/

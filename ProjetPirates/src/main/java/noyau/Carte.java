@@ -23,7 +23,7 @@ public abstract class Carte {
 
     public String getCategorie() {return categorie.toString();}
 
-    public abstract void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu);
+    public abstract List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu);
 
     //private List<Effet> effets;
     /*

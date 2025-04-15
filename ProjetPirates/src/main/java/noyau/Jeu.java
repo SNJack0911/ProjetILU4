@@ -69,30 +69,34 @@ public class Jeu {
     }
 
     //Update String return
-    public String jouerCarte(String nomCarte){
-        ArrayList<Carte> mainPirate;
+    public List<String> jouerCarte(String nomCarte){
+        List<String> resutatTour;
         Carte carte;
         if(tour %2 == 0){
-            mainPirate = joueur1.getMain();
-            carte = getCarteMain(nomCarte, mainPirate);
-            //Applique effet Carte TODO
+            /*mainPirate = joueur1.getMain();
+            carte = getCarteMain(nomCarte, mainPirate);*/
+            carte = joueur1.getCarteMain(nomCarte);
+            resutatTour = carte.appliquerEffet(joueur1, joueur2, this);
             joueur1.supprimerCarteMain(carte);
         } else {
-            mainPirate = joueur2.getMain();
-            carte = getCarteMain(nomCarte, mainPirate);
-            //Applique effet Carte TODO
-            joueur1.supprimerCarteMain(carte);
+            /*mainPirate = joueur2.getMain();
+            carte = getCarteMain(nomCarte, mainPirate);*/
+            carte = joueur2.getCarteMain(nomCarte);
+            resutatTour = carte.appliquerEffet(joueur2, joueur1, this);
+            joueur2.supprimerCarteMain(carte);
         }
         tour++;
-        return getGagnant();
+        resutatTour.add(getGagnant());
+        return resutatTour;
     }
 
-    public Carte getCarteMain(String nomCarte, ArrayList<Carte> mainPirate){
+    //Same Function in Pirate
+    /*public Carte getCarteMain(String nomCarte, ArrayList<Carte> mainPirate){
         for (Carte carte : mainPirate) {
             if (carte.getNom().equals(nomCarte)) {return carte;}
         }
         return null;
-    }
+    }*/
 
     public boolean isNuit() {
         return nuit;
