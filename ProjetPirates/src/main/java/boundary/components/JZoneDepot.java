@@ -4,6 +4,7 @@
  */
 package boundary.components;
 
+
 import java.awt.Image;
 import noyau.CategorieCarte;
 
@@ -30,6 +31,8 @@ public class JZoneDepot extends javax.swing.JPanel {
     
     public boolean ajouterCarte (JCarte carte){
         return true;
+
+
     }
     
     /**
@@ -41,17 +44,21 @@ public class JZoneDepot extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addGap(0, 81, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 114, Short.MAX_VALUE)
+
         );
     }// </editor-fold>//GEN-END:initComponents
 

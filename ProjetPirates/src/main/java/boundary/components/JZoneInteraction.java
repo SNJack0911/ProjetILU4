@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 import noyau.CategorieCarte;
 
 
+
 /**
  *
  * @author choue
@@ -54,15 +55,18 @@ public class JZoneInteraction extends javax.swing.JPanel {
 
     // Méthode pour vérifier si une carte a été déposée dans la zone
     public void verifierCarte(JCarte carte) {
-        Point centre = carte.getCentreCarte();
-        Rectangle zone = this.getBounds();
+        Point centre = carte.getCentreCarte(); // dans coord du parent de carte
+        Point centreConverti = SwingUtilities.convertPoint(carte.getParent(), centre, this); // vers référentiel zone
+        boolean dedans = this.contains(centreConverti);
 
-        boolean dedans = zone.contains(centre);
-        if (dedans != carteDedans) {
-            carteDedans = dedans;
-            repaint();
-        }
+    if (dedans != carteDedans) {
+        carteDedans = dedans;
+        repaint();
+        }System.out.println("Vérification carte dans zone : " + this);
+
     }
+
+
     
     public boolean ajouteCarte (JCarte carte, Point p, JPanel panelPlateau){
         Point pointInZoneIntract = SwingUtilities.convertPoint(panelPlateau, p, jPanel1);
@@ -95,6 +99,11 @@ public class JZoneInteraction extends javax.swing.JPanel {
         jZoneDepot4 = new boundary.components.JZoneDepot();
 
         setBackground(new java.awt.Color(255, 153, 153));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
@@ -189,6 +198,10 @@ public class JZoneInteraction extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
