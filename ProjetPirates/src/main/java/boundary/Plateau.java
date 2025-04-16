@@ -553,7 +553,7 @@ public class Plateau extends javax.swing.JPanel {
                 zoneInteractionJ2.repaint();*/
             }
         }
-        //jPioche1.setEnabled(false);
+        jPioche1.setEnabled(false);
     }//GEN-LAST:event_jPioche1MouseClicked
 
     
