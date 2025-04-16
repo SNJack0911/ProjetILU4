@@ -472,7 +472,7 @@ public class FrameJeu extends javax.swing.JFrame {
     private void playCurrentTrack() {
         try {
             if (currentIndex >= playlist.size()) {
-                currentIndex = 0; // 🔁 Boucle sur la playlist
+                currentIndex = 0;
             }
 
             String filepath = playlist.get(currentIndex);
@@ -485,7 +485,7 @@ public class FrameJeu extends javax.swing.JFrame {
                 return;
             }
 
-            audioStream = AudioSystem.getAudioInputStream(audioFile);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
             clip = AudioSystem.getClip();
             clip.open(audioStream);
             setVolume(0.5f);
@@ -616,7 +616,6 @@ public class FrameJeu extends javax.swing.JFrame {
     private javax.swing.JLabel volumeLabel1;*/
     private final String[] resolution ={"720x480", "1280x720", "1920x1080"};
     private int currentRes = 0;
-    private AudioInputStream audioStream;
     private Clip clip;
     private ArrayList<String> playlist = new ArrayList<>();
     private int currentIndex = 0;
