@@ -9,21 +9,20 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
-import javax.swing.SwingUtilities;
 
 
 /**
  *
  * @author choue
  */
-public class JZoneInteraction extends javax.swing.JPanel {
+public class JZoneDepot extends javax.swing.JPanel {
     
     private int origine = 0;
     private boolean carteDedans = false;
     /**
      * Creates new form JZoneInteraction
      */
-    public JZoneInteraction() {
+    public JZoneDepot() {
         initComponents();
         //setBackground(Color.PINK);
         setBounds(500,200,150,150);
@@ -43,18 +42,19 @@ public class JZoneInteraction extends javax.swing.JPanel {
 
     // Méthode pour vérifier si une carte a été déposée dans la zone
     public void verifierCarte(JCarte carte) {
-        Point centre = carte.getCentreCarte(); // dans coord du parent de carte
-        Point centreConverti = SwingUtilities.convertPoint(carte.getParent(), centre, this); // vers référentiel zone
-        boolean dedans = this.contains(centreConverti);
+        Point centre = carte.getCentreCarte();
+        Rectangle zone = this.getBounds();
 
-    if (dedans != carteDedans) {
-        carteDedans = dedans;
-        repaint();
-        }System.out.println("Vérification carte dans zone : " + this);
-
+        boolean dedans = zone.contains(centre);
+        if (dedans != carteDedans) {
+            carteDedans = dedans;
+            repaint();
+        }
     }
-
-
+    
+    public String cartecapte(JCarte carte){
+        return "carte";
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,11 +66,6 @@ public class JZoneInteraction extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(255, 153, 153));
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                formMouseEntered(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -83,10 +78,6 @@ public class JZoneInteraction extends javax.swing.JPanel {
             .addGap(0, 160, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

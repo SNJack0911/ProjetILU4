@@ -22,6 +22,8 @@ public class GestionnaireCartes {
         for (JZoneInteraction zone : zones) {
             zone.verifierCarte(carte); // délégué à la zone
         }
+System.out.println("Nombre de zones enregistrées : " + zones.size());
+
     }
 
     public List<JCarte> getCartes() {
