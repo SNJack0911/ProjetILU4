@@ -434,7 +434,8 @@ public class Plateau extends javax.swing.JPanel {
 
     private void jPioche1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPioche1MouseClicked
         if(!jPioche1.isEnabled()) {return;}
-
+        
+        
         //get carte from noyeau
         List<String> listNomCarte = new ArrayList<>(List.of("Popularity", "Attack"));
         int tour = 0; //Tour du joueur 1 nomalement faire un getTour

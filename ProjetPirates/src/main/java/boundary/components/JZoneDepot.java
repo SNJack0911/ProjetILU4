@@ -30,8 +30,6 @@ public class JZoneDepot extends javax.swing.JPanel {
     
     public boolean ajouterCarte (JCarte carte){
         return true;
-
-
     }
     
     /**
