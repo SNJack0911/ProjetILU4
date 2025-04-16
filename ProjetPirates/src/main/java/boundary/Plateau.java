@@ -22,16 +22,18 @@ public class Plateau extends javax.swing.JPanel {
     private JCarte carte;
     private GestionnaireCartes gestionnaire = new GestionnaireCartes();
     
-    private List<JCarte> main1 = new ArrayList<>();
-    private List<JCarte> main2 = new ArrayList<>();
     
     /**
      * Creates new form Plateau
      */
     public Plateau() {
         initComponents();
-
-/*        zoneInteraction = zoneInteractionJ2;
+        /*depotAttP1.setName("dropZone1");
+        depotAttP2.setName("dropZone2");
+        depotPopP1.setName("dropZone3");
+        depotPopP2.setName("dropZone4");
+        ZoneInteractionCentral.setName("dropZoneCenter");
+/        zoneInteraction = zoneInteractionJ2;
         carte = jCarte1;
         jCarte1.changeCardFace();
         gestionnaire.ajouterCarte(carte);
@@ -71,15 +73,9 @@ public class Plateau extends javax.swing.JPanel {
         jPointDeVie5 = new boundary.components.JPointDeVie();
         jaugePopulariteP2 = new boundary.components.JPanelWithBackground();
         jaugePopulariteP1.setImage("Icon12.png");
-        ZoneInteractionCentral = new boundary.components.JZoneInteraction();
-        depotPopP1 = new boundary.components.JZoneInteraction();
-        depotAttP1 = new boundary.components.JZoneInteraction();
-        depotAttP2 = new boundary.components.JZoneInteraction();
-        depotPopP2 = new boundary.components.JZoneInteraction();
         jPioche1 = new boundary.components.JPioche();
         jMainJoueur2 = new boundary.components.JMainJoueur();
-        jSeparator1 = new javax.swing.JSeparator();
-        jMainJoueur1 = new boundary.components.JMainJoueur();
+        jZoneInteraction1 = new boundary.components.JZoneInteraction();
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -103,7 +99,16 @@ public class Plateau extends javax.swing.JPanel {
             .addGap(0, 134, Short.MAX_VALUE)
         );
 
-        plateauBackground.add(iconP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 120, 134));
+        
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(13, 8, 13, 8);
+        plateauBackground.add(iconP1, gridBagConstraints);
+
 
         iconP2.setBackground(new java.awt.Color(204, 204, 0));
         iconP2.setPreferredSize(new java.awt.Dimension(130, 130));
@@ -120,7 +125,16 @@ public class Plateau extends javax.swing.JPanel {
             .addGap(0, 134, Short.MAX_VALUE)
         );
 
-        plateauBackground.add(iconP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 13, 120, 134));
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(13, 8, 13, 8);
+        plateauBackground.add(iconP2, gridBagConstraints);
+
 
         infoPanelP1.setOpaque(false);
         infoPanelP1.setPreferredSize(new java.awt.Dimension(138, 148));
@@ -348,86 +362,6 @@ public class Plateau extends javax.swing.JPanel {
 
         plateauBackground.add(infoPanelP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 130, -1));
 
-        ZoneInteractionCentral.setOpaque(false);
-        ZoneInteractionCentral.setLayout(new java.awt.GridBagLayout());
-
-        depotPopP1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        depotPopP1.setMinimumSize(new java.awt.Dimension(84, 117));
-        depotPopP1.setPreferredSize(new java.awt.Dimension(84, 117));
-
-        javax.swing.GroupLayout depotPopP1Layout = new javax.swing.GroupLayout(depotPopP1);
-        depotPopP1.setLayout(depotPopP1Layout);
-        depotPopP1Layout.setHorizontalGroup(
-            depotPopP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
-        );
-        depotPopP1Layout.setVerticalGroup(
-            depotPopP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 111, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        ZoneInteractionCentral.add(depotPopP1, gridBagConstraints);
-
-        depotAttP1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        depotAttP1.setMinimumSize(new java.awt.Dimension(84, 117));
-        depotAttP1.setPreferredSize(new java.awt.Dimension(84, 117));
-
-        javax.swing.GroupLayout depotAttP1Layout = new javax.swing.GroupLayout(depotAttP1);
-        depotAttP1.setLayout(depotAttP1Layout);
-        depotAttP1Layout.setHorizontalGroup(
-            depotAttP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        depotAttP1Layout.setVerticalGroup(
-            depotAttP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        ZoneInteractionCentral.add(depotAttP1, gridBagConstraints);
-
-        depotAttP2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        depotAttP2.setMinimumSize(new java.awt.Dimension(84, 117));
-        depotAttP2.setPreferredSize(new java.awt.Dimension(84, 117));
-
-        javax.swing.GroupLayout depotAttP2Layout = new javax.swing.GroupLayout(depotAttP2);
-        depotAttP2.setLayout(depotAttP2Layout);
-        depotAttP2Layout.setHorizontalGroup(
-            depotAttP2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        depotAttP2Layout.setVerticalGroup(
-            depotAttP2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        ZoneInteractionCentral.add(depotAttP2, gridBagConstraints);
-
-        depotPopP2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        depotPopP2.setMinimumSize(new java.awt.Dimension(84, 117));
-        depotPopP2.setPreferredSize(new java.awt.Dimension(84, 117));
-
-        javax.swing.GroupLayout depotPopP2Layout = new javax.swing.GroupLayout(depotPopP2);
-        depotPopP2.setLayout(depotPopP2Layout);
-        depotPopP2Layout.setHorizontalGroup(
-            depotPopP2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        depotPopP2Layout.setVerticalGroup(
-            depotPopP2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        ZoneInteractionCentral.add(depotPopP2, gridBagConstraints);
-
-        plateauBackground.add(ZoneInteractionCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 420, 160));
 
         jPioche1.setBackground(new java.awt.Color(153, 153, 255));
         jPioche1.setPreferredSize(new java.awt.Dimension(142, 90));
@@ -448,10 +382,41 @@ public class Plateau extends javax.swing.JPanel {
             .addGap(0, 90, Short.MAX_VALUE)
         );
 
-        plateauBackground.add(jPioche1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 195, -1, -1));
-        plateauBackground.add(jMainJoueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 420, 160));
-        plateauBackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 10, 1, 273));
-        plateauBackground.add(jMainJoueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 420, 150));
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(35, 4, 35, 4);
+        plateauBackground.add(jPioche1, gridBagConstraints);
+
+        jMainJoueur1.setPreferredSize(new java.awt.Dimension(420, 160));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        plateauBackground.add(jMainJoueur1, gridBagConstraints);
+
+        jMainJoueur2.setPreferredSize(new java.awt.Dimension(420, 160));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        plateauBackground.add(jMainJoueur2, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        plateauBackground.add(jZoneInteraction1, gridBagConstraints);
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -473,62 +438,24 @@ public class Plateau extends javax.swing.JPanel {
         if(!jPioche1.isEnabled()) {return;}
 
         //get carte from noyeau
-        //String nomCarte1 = "Popularity";
         List<String> listNomCarte = new ArrayList<>(List.of("Popularity", "Attack"));
-        //Create new Card
-        //JCarte carte = createCarte(nomCarte);
-
-        /*java.awt.GridBagConstraints newGridBagConstraints;
-        newGridBagConstraints = new java.awt.GridBagConstraints();
-        newGridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);*/
 
         int tour = 0; //Tour du joueur 1 nomalement faire un getTour
+    
         if (tour == 0){
             for(String nomCarte : listNomCarte){
                 jMainJoueur1.ajouterCarte(nomCarte);
                 jMainJoueur1.repaint();
-                /*JCarte carte = createCarte(nomCarte);
-                gbc.gridx = main1.size();
-                main1.add(carte);
-                zoneInteractionJ1.add(carte, gbc);
-                zoneInteractionJ1.revalidate();
-                zoneInteractionJ1.repaint();*/
             }
         } else if (tour == 1){
             for(String nomCarte : listNomCarte){
                 jMainJoueur2.ajouterCarte(nomCarte);
                 jMainJoueur2.repaint();
-                /*gbc.gridx = main2.size();
-                main2.add(carte);
-                zoneInteractionJ2.add(carte, gbc);
-                zoneInteractionJ2.revalidate();
-                zoneInteractionJ2.repaint();*/
             }
         }
         jPioche1.setEnabled(false);
     }//GEN-LAST:event_jPioche1MouseClicked
 
-    
-    /*private JCarte createCarte(String nomCarte) {
-        
-        JCarte newCarte = new boundary.components.JCarte();
-        newCarte.setMinimumSize(new java.awt.Dimension(84, 117));
-        newCarte.setPreferredSize(new java.awt.Dimension(84, 117));
-        newCarte.setImage("Card1Front" + nomCarte + ".png");
-
-        javax.swing.GroupLayout newCarteLayout = new javax.swing.GroupLayout(newCarte);
-        newCarte.setLayout(newCarteLayout);
-        newCarteLayout.setHorizontalGroup(
-            newCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 84, Short.MAX_VALUE)
-        );
-        newCarteLayout.setVerticalGroup(
-            newCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 117, Short.MAX_VALUE)
-        );
-        newCarte.changeCardFace();
-        return newCarte;
-    }*/
             
             
     public GestionnaireCartes getGestionnaire() {
@@ -560,11 +487,6 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private boundary.components.JZoneInteraction ZoneInteractionCentral;
-    private boundary.components.JZoneInteraction depotAttP1;
-    private boundary.components.JZoneInteraction depotAttP2;
-    private boundary.components.JZoneInteraction depotPopP1;
-    private boundary.components.JZoneInteraction depotPopP2;
     private boundary.components.JPanelWithBackground iconP1;
     private boundary.components.JPanelWithBackground iconP2;
     private boundary.components.JPanelWithBackground iconP3;
@@ -583,7 +505,7 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPointDeVie jPointDeVie7;
     private boundary.components.JPointDeVie jPointDeVie8;
     private boundary.components.JPointDeVie jPointDeVie9;
-    private javax.swing.JSeparator jSeparator1;
+    private boundary.components.JZoneInteraction jZoneInteraction1;
     private boundary.components.JPanelWithBackground jaugePopulariteP1;
     private boundary.components.JPanelWithBackground jaugePopulariteP2;
     private boundary.components.JPanelWithBackground plateauBackground;

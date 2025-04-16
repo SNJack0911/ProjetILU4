@@ -4,56 +4,35 @@
  */
 package boundary.components;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
 
+import java.awt.Image;
+import noyau.CategorieCarte;
 
 /**
  *
- * @author choue
+ * @author yannf
  */
 public class JZoneDepot extends javax.swing.JPanel {
+    private Image carte;
+    private String nomPirate;
+    private CategorieCarte type;
     
-    private int origine = 0;
-    private boolean carteDedans = false;
     /**
-     * Creates new form JZoneInteraction
+     * Creates new form JZoneDepot
      */
     public JZoneDepot() {
         initComponents();
-        //setBackground(Color.PINK);
-        setBounds(500,200,150,150);
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-
-        g2.setColor(carteDedans ? Color.BLUE : Color.PINK);
-        g2.fillRect(0, 0, getWidth(), getHeight());
-
-        //g2.setColor(Color.BLACK);
-        //g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
-    }
-
-    // Méthode pour vérifier si une carte a été déposée dans la zone
-    public void verifierCarte(JCarte carte) {
-        Point centre = carte.getCentreCarte();
-        Rectangle zone = this.getBounds();
-
-        boolean dedans = zone.contains(centre);
-        if (dedans != carteDedans) {
-            carteDedans = dedans;
-            repaint();
-        }
+    public void createZoneDepot(String nomPirate, CategorieCarte type){
+        this.nomPirate = nomPirate;
+        this.type = type;
     }
     
-    public String cartecapte(JCarte carte){
-        return "carte";
+    public boolean ajouterCarte (JCarte carte){
+        return true;
+
+
     }
     
     /**
@@ -65,17 +44,21 @@ public class JZoneDepot extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 153, 153));
+
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+
+            .addGap(0, 81, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGap(0, 114, Short.MAX_VALUE)
+
         );
     }// </editor-fold>//GEN-END:initComponents
 
