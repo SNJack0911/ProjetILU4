@@ -4,7 +4,6 @@
  */
 package boundary.components;
 
-
 import java.awt.Image;
 import noyau.CategorieCarte;
 
@@ -52,13 +51,11 @@ public class JZoneDepot extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
             .addGap(0, 81, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 114, Short.MAX_VALUE)
-
         );
     }// </editor-fold>//GEN-END:initComponents
 

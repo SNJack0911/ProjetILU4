@@ -362,7 +362,6 @@ public class Plateau extends javax.swing.JPanel {
 
         plateauBackground.add(infoPanelP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 130, -1));
 
-
         jPioche1.setBackground(new java.awt.Color(153, 153, 255));
         jPioche1.setPreferredSize(new java.awt.Dimension(142, 90));
         jPioche1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -417,7 +416,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jZoneInteraction1, gridBagConstraints);
 
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -439,7 +437,6 @@ public class Plateau extends javax.swing.JPanel {
 
         //get carte from noyeau
         List<String> listNomCarte = new ArrayList<>(List.of("Popularity", "Attack"));
-
         int tour = 0; //Tour du joueur 1 nomalement faire un getTour
     
         if (tour == 0){
