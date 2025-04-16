@@ -31,14 +31,14 @@ public class Plateau extends javax.swing.JPanel {
     public Plateau() {
         initComponents();
 
-        zoneInteraction = zoneInteractionJ2;
+/*        zoneInteraction = zoneInteractionJ2;
         carte = jCarte1;
         jCarte1.changeCardFace();
         gestionnaire.ajouterCarte(carte);
         carte = jCarte2;
         gestionnaire.ajouterCarte(carte);
         gestionnaire.ajouterCarte(carte);
-        gestionnaire.ajouterZone(zoneInteractionJ2);
+        gestionnaire.ajouterZone(zoneInteractionJ2);*/
         setNbViesRestantes(1, 4);
     }
 
@@ -71,16 +71,14 @@ public class Plateau extends javax.swing.JPanel {
         jPointDeVie5 = new boundary.components.JPointDeVie();
         jaugePopulariteP2 = new boundary.components.JPanelWithBackground();
         jaugePopulariteP1.setImage("Icon12.png");
-        zoneInteractionJ2 = new boundary.components.JZoneInteraction();
         ZoneInteractionCentral = new boundary.components.JZoneInteraction();
         depotPopP1 = new boundary.components.JZoneInteraction();
         depotAttP1 = new boundary.components.JZoneInteraction();
         depotAttP2 = new boundary.components.JZoneInteraction();
         depotPopP2 = new boundary.components.JZoneInteraction();
-        zoneInteractionJ1 = new boundary.components.JZoneInteraction();
-        jCarte1 = new boundary.components.JCarte();
-        jCarte2 = new boundary.components.JCarte();
         jPioche1 = new boundary.components.JPioche();
+        jMainJoueur1 = new boundary.components.JMainJoueur();
+        jMainJoueur2 = new boundary.components.JMainJoueur();
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -377,28 +375,8 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         plateauBackground.add(infoPanelP2, gridBagConstraints);
 
-        zoneInteractionJ2.setOpaque(false);
-
-        javax.swing.GroupLayout zoneInteractionJ2Layout = new javax.swing.GroupLayout(zoneInteractionJ2);
-        zoneInteractionJ2.setLayout(zoneInteractionJ2Layout);
-        zoneInteractionJ2Layout.setHorizontalGroup(
-            zoneInteractionJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        zoneInteractionJ2Layout.setVerticalGroup(
-            zoneInteractionJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        plateauBackground.add(zoneInteractionJ2, gridBagConstraints);
-
         ZoneInteractionCentral.setOpaque(false);
+        ZoneInteractionCentral.setPreferredSize(new java.awt.Dimension(420, 160));
         ZoneInteractionCentral.setLayout(new java.awt.GridBagLayout());
 
         depotPopP1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -485,55 +463,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(ZoneInteractionCentral, gridBagConstraints);
 
-        zoneInteractionJ1.setOpaque(false);
-        zoneInteractionJ1.setLayout(new java.awt.GridBagLayout());
-
-        jCarte1.setMinimumSize(new java.awt.Dimension(84, 117));
-        jCarte1.setPreferredSize(new java.awt.Dimension(84, 117));
-        jCarte1.setImage("Card1FrontAttack.png");
-
-        javax.swing.GroupLayout jCarte1Layout = new javax.swing.GroupLayout(jCarte1);
-        jCarte1.setLayout(jCarte1Layout);
-        jCarte1Layout.setHorizontalGroup(
-            jCarte1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 84, Short.MAX_VALUE)
-        );
-        jCarte1Layout.setVerticalGroup(
-            jCarte1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 117, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        zoneInteractionJ1.add(jCarte1, gridBagConstraints);
-
-        jCarte2.setMinimumSize(new java.awt.Dimension(84, 117));
-        jCarte2.setPreferredSize(new java.awt.Dimension(84, 117));
-        jCarte2.setImage("Card1FrontPopularity.png");
-
-        javax.swing.GroupLayout jCarte2Layout = new javax.swing.GroupLayout(jCarte2);
-        jCarte2.setLayout(jCarte2Layout);
-        jCarte2Layout.setHorizontalGroup(
-            jCarte2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 84, Short.MAX_VALUE)
-        );
-        jCarte2Layout.setVerticalGroup(
-            jCarte2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 117, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        zoneInteractionJ1.add(jCarte2, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        plateauBackground.add(zoneInteractionJ1, gridBagConstraints);
-
         jPioche1.setBackground(new java.awt.Color(153, 153, 255));
         jPioche1.setPreferredSize(new java.awt.Dimension(142, 90));
         jPioche1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -546,7 +475,7 @@ public class Plateau extends javax.swing.JPanel {
         jPioche1.setLayout(jPioche1Layout);
         jPioche1Layout.setHorizontalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 143, Short.MAX_VALUE)
+            .addGap(0, 142, Short.MAX_VALUE)
         );
         jPioche1Layout.setVerticalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -562,6 +491,18 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(35, 4, 35, 4);
         plateauBackground.add(jPioche1, gridBagConstraints);
 
+        jMainJoueur1.setPreferredSize(new java.awt.Dimension(420, 160));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        plateauBackground.add(jMainJoueur1, gridBagConstraints);
+
+        jMainJoueur2.setPreferredSize(new java.awt.Dimension(420, 160));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        plateauBackground.add(jMainJoueur2, gridBagConstraints);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -575,9 +516,11 @@ public class Plateau extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPioche1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPioche1MouseClicked
-        // TODO add your handling code here:
+        if(!jPioche1.isEnabled()) {return;}
+        
+        
         //get carte from noyeau
-        String nomCarte1 = "Popularity";
+        //String nomCarte1 = "Popularity";
         List<String> listNomCarte = new ArrayList<>(List.of("Popularity", "Attack"));
         //Create new Card
         //JCarte carte = createCarte(nomCarte);
@@ -585,34 +528,36 @@ public class Plateau extends javax.swing.JPanel {
         /*java.awt.GridBagConstraints newGridBagConstraints;
         newGridBagConstraints = new java.awt.GridBagConstraints();
         newGridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);*/
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.gridy = 0;
+        
 
         int tour = 0; //Tour du joueur 1 nomalement faire un getTour
         if (tour == 0){
             for(String nomCarte : listNomCarte){
-                JCarte carte = createCarte(nomCarte);
+                jMainJoueur1.ajouterCarte(nomCarte);
+                jMainJoueur1.repaint();
+                /*JCarte carte = createCarte(nomCarte);
                 gbc.gridx = main1.size();
                 main1.add(carte);
                 zoneInteractionJ1.add(carte, gbc);
                 zoneInteractionJ1.revalidate();
-                zoneInteractionJ1.repaint();
+                zoneInteractionJ1.repaint();*/
             }
         } else if (tour == 1){
             for(String nomCarte : listNomCarte){
-                gbc.gridx = main2.size();
+                jMainJoueur2.ajouterCarte(nomCarte);
+                jMainJoueur2.repaint();
+                /*gbc.gridx = main2.size();
                 main2.add(carte);
                 zoneInteractionJ2.add(carte, gbc);
                 zoneInteractionJ2.revalidate();
-                zoneInteractionJ2.repaint();
+                zoneInteractionJ2.repaint();*/
             }
         }
         //jPioche1.setEnabled(false);
     }//GEN-LAST:event_jPioche1MouseClicked
 
     
-    private JCarte createCarte(String nomCarte) {
+    /*private JCarte createCarte(String nomCarte) {
         
         JCarte newCarte = new boundary.components.JCarte();
         newCarte.setMinimumSize(new java.awt.Dimension(84, 117));
@@ -631,20 +576,20 @@ public class Plateau extends javax.swing.JPanel {
         );
         newCarte.changeCardFace();
         return newCarte;
-    }
+    }*/
             
             
     public GestionnaireCartes getGestionnaire() {
         return gestionnaire;
     }
 
-    public void verifierZoneInteraction(Rectangle boundsCarte) {
+/*    public void verifierZoneInteraction(Rectangle boundsCarte) {
         zoneInteractionJ2.verifierCarte(carte);
         Rectangle boundsZone = zoneInteraction.getBounds();
         if (boundsZone.intersects(boundsCarte)) {
             //JOptionPane.showMessageDialog(this, "Carte déposée dans la zone !");    // debuggage
         }
-    }
+    }*/
 
     public void setNbViesRestantes(int Pirate , int n) {
         Component[] composants;
@@ -672,8 +617,8 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPanelWithBackground iconP2;
     private javax.swing.JPanel infoPanelP1;
     private javax.swing.JPanel infoPanelP2;
-    private boundary.components.JCarte jCarte1;
-    private boundary.components.JCarte jCarte2;
+    private boundary.components.JMainJoueur jMainJoueur1;
+    private boundary.components.JMainJoueur jMainJoueur2;
     private boundary.components.JPioche jPioche1;
     private boundary.components.JPointDeVie jPointDeVie;
     private boundary.components.JPointDeVie jPointDeVie0;
@@ -688,7 +633,5 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPanelWithBackground jaugePopulariteP1;
     private boundary.components.JPanelWithBackground jaugePopulariteP2;
     private boundary.components.JPanelWithBackground plateauBackground;
-    private boundary.components.JZoneInteraction zoneInteractionJ1;
-    private boundary.components.JZoneInteraction zoneInteractionJ2;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,6 +38,7 @@ public class JCarte extends javax.swing.JPanel {
     private Point origine = null;
     private boolean isSelected = false;
     private JCartePopUp popUp = null;
+    private String nom;
     
     private final List<SmokeEffect> fumées = new ArrayList<>();
     private final GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
@@ -134,7 +135,8 @@ public class JCarte extends javax.swing.JPanel {
         } catch (IOException e){
             String userDirectory = new File("").getAbsolutePath();
             System.out.print("Card not found : " + userDirectory);
-        } 
+        }
+        this.nom = cardName;
     }
     
     //Is it really necessary ??
@@ -259,6 +261,10 @@ public class JCarte extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_formMouseDragged
+
+    Object getNomCarte() {
+        return nom;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
