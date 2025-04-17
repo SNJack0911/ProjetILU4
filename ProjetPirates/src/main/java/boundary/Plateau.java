@@ -12,6 +12,7 @@ import boundary.components.JZoneInteraction;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import noyau.GestionnaireEffetFumee;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Plateau extends javax.swing.JPanel {
     private JZoneInteraction zoneInteraction = null;
     private JCarte carte;
     private GestionnaireCartes gestionnaire = new GestionnaireCartes();
-    
+    private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
     
     /**
      * Creates new form Plateau
@@ -43,7 +44,25 @@ public class Plateau extends javax.swing.JPanel {
         gestionnaire.ajouterZone(zoneInteractionJ2);*/
         setNbViesRestantes(1, 4);
     }
-
+    /* CECI SERA UTILE POUR DEPLACER LA FONCTIONNALITE DES FUMEE POUR 
+    QUE CE SOIT LE PLATEAU QUI L4AFFICHE OU LE GESTIONNAIRE PEUT IMPORTE
+    IL FAUT PAS QUE CE SOIT LA CARTE.
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (gestionnairefumee != null) {
+            // Dessine d’abord la fumée
+            gestionnairefumee.dessinerEffets((Graphics2D) g);
+        }
+    }
+    
+    public GestionnaireEffetFumee getGestionnaireEffetsFumee() {
+        return gestionnairefumee;
+    }
+    */
+    public GestionnaireCartes getGestionnaire() {
+        return gestionnaire;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -462,9 +481,7 @@ public class Plateau extends javax.swing.JPanel {
 
             
             
-    public GestionnaireCartes getGestionnaire() {
-        return gestionnaire;
-    }
+    
 
 /*    public void verifierZoneInteraction(Rectangle boundsCarte) {
         zoneInteractionJ2.verifierCarte(carte);
