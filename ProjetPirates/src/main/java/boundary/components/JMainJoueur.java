@@ -25,16 +25,8 @@ public class JMainJoueur extends javax.swing.JPanel {
     }
 
     public void ajouterCarte(String nomCarte){
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.gridy = 0;
-        gbc.gridx = mainJoueur.size();
         JCarte carte = createCarte(nomCarte);
-                
-        mainJoueur.add(carte);
-        this.add(carte, gbc);
-        this.revalidate();
-        this.repaint();
+        ajouterJCarte(carte);
     }
     
     private JCarte createCarte(String nomCarte) {
@@ -63,9 +55,21 @@ public class JMainJoueur extends javax.swing.JPanel {
     public void deleteCard(String nomCarte){
         for(JCarte carte : mainJoueur){
             if (nomCarte.equals(carte.getNomCarte())){
+                //TODO
                 return;
             }
         }
+    }
+    
+    public void ajouterJCarte(JCarte jCarte){
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.gridy = 0;
+        gbc.gridx = mainJoueur.size();
+        mainJoueur.add(jCarte);
+        this.add(jCarte, gbc);
+        this.revalidate();
+        this.repaint();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,6 +81,7 @@ public class JMainJoueur extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(153, 204, 255));
+        setOpaque(false);
         setLayout(new java.awt.GridBagLayout());
     }// </editor-fold>//GEN-END:initComponents
 

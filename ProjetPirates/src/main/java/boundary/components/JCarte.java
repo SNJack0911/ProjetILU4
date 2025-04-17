@@ -11,7 +11,9 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -158,6 +161,7 @@ public class JCarte extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setOpaque(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
@@ -188,11 +192,43 @@ public class JCarte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        //System.out.println("MousePressed");
+        //System.out.println("MousePressed");      
+        if (evt.getClickCount()>1){return;}
+        
         this.origine = evt.getPoint();
 	this.isSelected = true;
-        repaint();
-        SwingUtilities.getWindowAncestor(this).setComponentZOrder(this, 0);
+        
+        JPanel plateauPanel = (JPanel) mainOrigine.getParent();
+        JLayeredPane layer = JLayeredPane.getLayeredPaneAbove(plateauPanel);
+
+        Component[] components = layer.getComponents();
+        for (Component c : components) {
+            if (c instanceof JPanel panel && "TranparentLayer".equals(panel.getName())) {
+                // Step 1: Convert location before removing
+                Point cardLoc = SwingUtilities.convertPoint(this.getParent(), this.getLocation(), panel);
+
+                // Step 2: Remove from current parent first
+                Container oldParent = this.getParent();
+                if (oldParent != null) {
+                    oldParent.remove(this);
+                    oldParent.revalidate();
+                    oldParent.repaint();
+                }
+
+                // Step 3: Add to transparent panel
+                this.setLocation(cardLoc);
+                this.setSize(this.getPreferredSize());
+                panel.add(this);
+                panel.setComponentZOrder(this, 0);
+                panel.revalidate();
+                panel.repaint();
+            }
+        }
+
+        layer.repaint();
+        
+        
+        //SwingUtilities.getWindowAncestor(this).setComponentZOrder(this, 0);
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
@@ -203,29 +239,30 @@ public class JCarte extends javax.swing.JPanel {
         Point pointInPlateau = SwingUtilities.convertPoint(this, evt.getPoint(), plateauPanel);
 
         Component c = plateauPanel.getComponentAt(pointInPlateau);
-        Plateau p = (Plateau) plateauPanel.getParent();
+        JLayeredPane layer = (JLayeredPane.getLayeredPaneAbove(plateauPanel));
+        Plateau p = (Plateau) layer.getParent();
         
 
         if (c instanceof JZoneInteraction dropZone) {
             String pirate = p.getCurrentPirate();
             boolean res = dropZone.ajouteCarte(this, pointInPlateau, plateauPanel, pirate);
             if(res){//dispose
-                /*Container parent = this.getParent();
-                System.out.println("Parent of card: " + parent.getClass().getSimpleName());
+                Container parent = this.getParent();
+                //System.out.println("Parent of card: " + parent.getClass().getSimpleName());
                 if (parent != null) {
                     parent.remove(this);
                     parent.revalidate();
                     parent.repaint();
-                }*/
+                }
                 return;
             }  
         }
         System.out.println("Not dropped on a drop zone.");
         //Retrun Carte to Main
+        if (mainOrigine != null) {
+            mainOrigine.ajouterJCarte(this);
+        }
       
-        
-        
-        
         /*origine = null;
 	this.isSelected = false;
         repaint();
@@ -260,8 +297,14 @@ public class JCarte extends javax.swing.JPanel {
     }//GEN-LAST:event_formMouseClicked
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        if (origine != null) {
-            int thisX = this.getLocation().x;
+        if (origine != null){
+            Point mouseInScreen = evt.getLocationOnScreen();
+            JLayeredPane layeredPane = JLayeredPane.getLayeredPaneAbove(this);
+            SwingUtilities.convertPointFromScreen(mouseInScreen, layeredPane); // modifies in-place
+
+            this.setLocation(mouseInScreen.x - origine.x, mouseInScreen.y - origine.y);
+        
+            /*int thisX = this.getLocation().x;
             int thisY = this.getLocation().y;
 
             int xMoved = evt.getX() - origine.x;
@@ -271,13 +314,13 @@ public class JCarte extends javax.swing.JPanel {
             int Y = thisY + yMoved;
 
             this.setLocation(X, Y);
-            this.repaint();
+            this.repaint();*/
             // regle affichage des élements en dessous de la carte
-            for (Component comp : getParent().getComponents()) {
+            /*for (Component comp : getParent().getComponents()) {
                 if (comp instanceof JCarte && comp != this) {
                     comp.repaint(); // Force les autres cartes à se redessiner si touchées
                 }
-            }
+            }*/
         }
     }//GEN-LAST:event_formMouseDragged
 
