@@ -5,12 +5,14 @@ import java.util.List;
 public abstract class Carte {
     private String nom;
     private String description;
-    private CategorieCarte categorie;
+    private ICategorieCarte categorie;
+    private BasicCategorie zoneDepot;
 
-    protected Carte(String nom, String description, CategorieCarte categorie) {
+    protected Carte(String nom, String description, ICategorieCarte categorie, BasicCategorie zoneDepot) {
         this.nom = nom;
         this.description = description;
         this.categorie = categorie;
+        this.zoneDepot = zoneDepot;
     }
 
     public String getNom() {
@@ -22,6 +24,10 @@ public abstract class Carte {
     }
 
     public String getCategorie() {return categorie.toString();}
+    
+    public BasicCategorie getZoneDepot(){
+        return zoneDepot;
+    }
 
     public abstract List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu);
 

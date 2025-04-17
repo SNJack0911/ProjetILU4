@@ -446,12 +446,12 @@ public class Plateau extends javax.swing.JPanel {
         List<String> listNomCarte = new ArrayList<>(List.of("Popularity", "Attack"));
         int tour = 0; //Tour du joueur 1 nomalement faire un getTour
     
-        if (tour == 0){
+        if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
                 jMainJoueur1.ajouterCarte(nomCarte);
                 jMainJoueur1.repaint();
             }
-        } else if (tour == 1){
+        } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
                 jMainJoueur2.ajouterCarte(nomCarte);
                 jMainJoueur2.repaint();
@@ -490,6 +490,15 @@ public class Plateau extends javax.swing.JPanel {
         }
     }
 
+    public String getCurrentPirate(){
+        int tour = 0; //Tour du joueur 1 nomalement faire un getTour
+        if(tour%2 == 0){
+            return "Pirate1";
+        } else {
+            return "Pirate2";
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private boundary.components.JPanelWithBackground iconP1;
     private boundary.components.JPanelWithBackground iconP2;

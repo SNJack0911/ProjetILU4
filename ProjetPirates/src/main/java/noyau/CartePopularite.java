@@ -12,7 +12,7 @@ public class CartePopularite extends Carte {
 
 
     public CartePopularite(String nom, String description, int PPajoutJ, int PVajout, boolean lancerPiece) {
-        super(nom, description, CategorieCarte.ATTAQUE);
+        super(nom, description, BasicCategorie.POPULARITE, BasicCategorie.POPULARITE);
         this.PPajoutJ = PPajoutJ;
         this.PVajoutJ = PVajoutJ;
         this.lancerPiece = lancerPiece;

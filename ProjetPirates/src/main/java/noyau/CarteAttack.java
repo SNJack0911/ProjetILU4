@@ -14,8 +14,9 @@ public class CarteAttack extends Carte{
     private static Random rand = new Random();
 
 
-    public CarteAttack(String nom, String description, int PPajoutJ, int PVajoutJ,int PPajoutA, int PVajoutA, boolean affectreNuit, boolean piece) {
-        super(nom, description, CategorieCarte.ATTAQUE);
+    public CarteAttack(String nom, String description, int PPajoutJ, int PVajoutJ,int PPajoutA, int PVajoutA, 
+            boolean affectreNuit, boolean piece) {
+        super(nom, description, BasicCategorie.ATTAQUE, BasicCategorie.ATTAQUE);
         this.PPajoutJ = PPajoutJ;
         this.PVajoutJ = PVajoutJ;
         this.PPajoutA = PPajoutA;

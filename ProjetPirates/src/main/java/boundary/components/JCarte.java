@@ -203,9 +203,12 @@ public class JCarte extends javax.swing.JPanel {
         Point pointInPlateau = SwingUtilities.convertPoint(this, evt.getPoint(), plateauPanel);
 
         Component c = plateauPanel.getComponentAt(pointInPlateau);
+        Plateau p = (Plateau) plateauPanel.getParent();
+        
 
         if (c instanceof JZoneInteraction dropZone) {
-            boolean res = dropZone.ajouteCarte(this, pointInPlateau, plateauPanel);
+            String pirate = p.getCurrentPirate();
+            boolean res = dropZone.ajouteCarte(this, pointInPlateau, plateauPanel, pirate);
             if(res){//dispose
                 /*Container parent = this.getParent();
                 System.out.println("Parent of card: " + parent.getClass().getSimpleName());
@@ -219,16 +222,7 @@ public class JCarte extends javax.swing.JPanel {
         }
         System.out.println("Not dropped on a drop zone.");
         //Retrun Carte to Main
-        
-        
-        /*Container root = SwingUtilities.getWindowAncestor(this);
-        System.out.print("Root : " + root.getName() + "\n");
-        
-        Point screenPoint = evt.getLocationOnScreen();
-        SwingUtilities.convertPointFromScreen(screenPoint, root);
-        
-        Component c = root.getComponentAt(screenPoint);
-        System.out.print("Name : " + c.getName() + "\n");*/ 
+      
         
         
         

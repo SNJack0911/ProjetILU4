@@ -28,7 +28,7 @@ public class JZoneDepot extends javax.swing.JPanel {
         this.type = type;
     }
     
-    public boolean ajouterCarte (JCarte carte){
+    public boolean ajouterCarte (JCarte carte, String pirate){
         return true;
     }
     

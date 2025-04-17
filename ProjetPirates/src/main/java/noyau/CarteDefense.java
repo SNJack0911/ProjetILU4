@@ -8,7 +8,7 @@ public class CarteDefense extends  Carte{
     private boolean affecterNuit;
 
     public CarteDefense(String nom, String description, int PVajout, int PPajout, boolean affecterNuit) {
-        super(nom, description, CategorieCarte.DEFENSE);
+        super(nom, description, ExtendCategorie.DEFENSE, BasicCategorie.POPULARITE);
         this.PVajout = PVajout;
         this.PPajout = PPajout;
         this.affecterNuit = affecterNuit;

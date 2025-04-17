@@ -64,14 +64,14 @@ public class JZoneInteraction extends javax.swing.JPanel {
         }
     }
     
-    public boolean ajouteCarte (JCarte carte, Point p, JPanel panelPlateau){
+    public boolean ajouteCarte (JCarte carte, Point p, JPanel panelPlateau, String pirate){
         Point pointInZoneIntract = SwingUtilities.convertPoint(panelPlateau, p, jPanel1);
         Component[] lstComp = jPanel1.getComponents();
         for(Component c : lstComp){
             if (c instanceof JZoneDepot dep){
                 Point pointInDep = SwingUtilities.convertPoint(jPanel1, pointInZoneIntract, dep);
                 if (dep.contains(pointInDep)){
-                    return dep.ajouterCarte(carte);
+                    return dep.ajouterCarte(carte, pirate);
                 }
             }
         }
