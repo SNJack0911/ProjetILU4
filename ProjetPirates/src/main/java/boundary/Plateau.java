@@ -84,17 +84,7 @@ public class Plateau extends javax.swing.JPanel {
         panelDragCarte.setOpaque(false);
         panelDragCarte.setPreferredSize(new java.awt.Dimension(720, 480));
         //panelDragCarte.setName("TranparentLayer");
-
-        javax.swing.GroupLayout panelDragCarteLayout = new javax.swing.GroupLayout(panelDragCarte);
-        panelDragCarte.setLayout(panelDragCarteLayout);
-        panelDragCarteLayout.setHorizontalGroup(
-            panelDragCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-        panelDragCarteLayout.setVerticalGroup(
-            panelDragCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
+        panelDragCarte.setLayout(null);
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -436,8 +426,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jMainJoueur2, gridBagConstraints);
-
-        jZoneInteraction1.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;

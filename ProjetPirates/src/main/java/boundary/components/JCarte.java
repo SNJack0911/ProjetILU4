@@ -29,8 +29,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import noyau.CategorieCarte;
-import noyau.GestionnaireEffetFumee;
-
 
 /**
  *
@@ -51,13 +49,38 @@ public class JCarte extends javax.swing.JPanel {
     
     private final List<SmokeEffect> fumées = new ArrayList<>();
     private final GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
-    private Timer timerFumée;
+    private Timer timerFumee;
+    private final List<SmokeEffect> fumees = new ArrayList<>();
+    
+    public void lancerFumee() {
+        if (timerFumee != null && timerFumee.isRunning()) return;
+        timerFumee = new Timer(150, e -> {
+            if (getParent() == null) return;
+
+            JPanel plateauPanel = (JPanel) mainOrigine.getParent(); // utilise le même système que ton release
+            Point carteSurPlateau = SwingUtilities.convertPoint(this, getWidth()/2, getHeight()/2, plateauPanel);
+
+            Image img = effets.getRandomImage();
+            if (img != null) {
+                fumees.add(new SmokeEffect(img, carteSurPlateau.x, carteSurPlateau.y));
+            }
+
+            for (SmokeEffect f : fumees) {
+                f.diminuerAlpha(0.05f);
+            }
+
+            fumees.removeIf(SmokeEffect::estTerminee);
+            repaint();
+        });
+        timerFumee.start();
+    }
     
     /**
      * Creates new form JCarte
      */
     public JCarte() {
         initComponents();
+        this.setDoubleBuffered(true);
         double w = getWidth();
         double h = w*1.4;
         setSize((int)w, (int)h);
@@ -73,9 +96,9 @@ public class JCarte extends javax.swing.JPanel {
     }
     
     public void lancerFumée() {
-        if (timerFumée != null && timerFumée.isRunning()) return;
+        if (timerFumee != null && timerFumee.isRunning()) return;
 
-        timerFumée = new Timer(150, e -> {
+        timerFumee = new Timer(150, e -> {
             Image img = effets.getRandomImage();
             if (img != null) {
                 Point centre = getCentreCarte();
@@ -92,7 +115,7 @@ public class JCarte extends javax.swing.JPanel {
 
             repaint();
         });
-        timerFumée.start();
+        timerFumee.start();
     }
     
     @Override 
@@ -107,16 +130,14 @@ public class JCarte extends javax.swing.JPanel {
             g2d.drawImage(backCard, 0,0, getWidth(), getHeight(), this);
         }
         
-        g2d.dispose();
 
 	// Dessin des fumées
-        for (SmokeEffect f : fumées) {
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, f.alpha));
-            int localX = f.x - getX();  // Adapter aux coordonnées locales
-            int localY = f.y - getY();
-            g2d.drawImage(f.image, localX - 15, localY - 15, 30, 30, this);
-            g2d.dispose();
+        for (SmokeEffect smoke : fumees) {
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, smoke.alpha));
+            g2d.drawImage(smoke.image, smoke.x - getX(), smoke.y - getY(), 40, 40, this); // taille ajustable
         }
+        g2d.dispose();
+        
     }
     
     //Projet pour faire les effet de particule    
@@ -204,6 +225,8 @@ public class JCarte extends javax.swing.JPanel {
         Component[] components = layer.getComponents();
         for (Component c : components) {
             if (c instanceof JPanel panel && "TranparentLayer".equals(panel.getName())) {
+                
+                
                 // Step 1: Convert location before removing
                 Point cardLoc = SwingUtilities.convertPoint(this.getParent(), this.getLocation(), panel);
 
@@ -218,15 +241,16 @@ public class JCarte extends javax.swing.JPanel {
                 // Step 3: Add to transparent panel
                 this.setLocation(cardLoc);
                 this.setSize(this.getPreferredSize());
+                this.setOpaque(true);
                 panel.add(this);
                 panel.setComponentZOrder(this, 0);
                 panel.revalidate();
                 panel.repaint();
+                
             }
         }
 
         layer.repaint();
-        
         
         //SwingUtilities.getWindowAncestor(this).setComponentZOrder(this, 0);
     }//GEN-LAST:event_formMousePressed
@@ -298,12 +322,18 @@ public class JCarte extends javax.swing.JPanel {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         if (origine != null){
+            Container parent = SwingUtilities.getAncestorOfClass(Plateau.class, this);
+            if (parent instanceof Plateau plateau) {
+                Point global = SwingUtilities.convertPoint(this, getCentreCarte(), plateau);
+                effets.ajouterFumee(global.x, global.y); //plateau.getGestionnaireEffetsFumee().ajouterFumee(global.x, global.y);
+                }
+            lancerFumee(); 
             Point mouseInScreen = evt.getLocationOnScreen();
             JLayeredPane layeredPane = JLayeredPane.getLayeredPaneAbove(this);
             SwingUtilities.convertPointFromScreen(mouseInScreen, layeredPane); // modifies in-place
 
             this.setLocation(mouseInScreen.x - origine.x, mouseInScreen.y - origine.y);
-        
+            //this.repaint();
             /*int thisX = this.getLocation().x;
             int thisY = this.getLocation().y;
 
