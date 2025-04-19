@@ -4,7 +4,11 @@
  */
 package boundary.components;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import noyau.CategorieCarte;
 
 /**
@@ -29,7 +33,24 @@ public class JZoneDepot extends javax.swing.JPanel {
     }
     
     public boolean ajouterCarte (JCarte carte, String pirate){
+        this.carte = carte.getImage();
         return true;
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        
+        if(carte != null){
+            g2d.drawImage(carte, 0,0, getWidth(), getHeight(), this);
+        } else {
+            g2d.setColor(Color.red);
+            g2d.drawRect(0, 0, getWidth(), getHeight());
+        }
+        
+        g2d.dispose();
     }
     
     /**

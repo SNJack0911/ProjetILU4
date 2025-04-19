@@ -73,6 +73,8 @@ public class Plateau extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        panelDragCarte = new javax.swing.JPanel();
         plateauBackground = new boundary.components.JPanelWithBackground();
         iconP1 = new boundary.components.JPanelWithBackground();
         iconP2 = new boundary.components.JPanelWithBackground();
@@ -96,6 +98,12 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jMainJoueur2 = new boundary.components.JMainJoueur();
         jZoneInteraction1 = new boundary.components.JZoneInteraction();
+
+        panelDragCarte.setName("TranparentLayer"); // NOI18N
+        panelDragCarte.setOpaque(false);
+        panelDragCarte.setPreferredSize(new java.awt.Dimension(720, 480));
+        //panelDragCarte.setName("TranparentLayer");
+        panelDragCarte.setLayout(null);
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -445,15 +453,47 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jZoneInteraction1, gridBagConstraints);
 
+        jLayeredPane1.setLayer(panelDragCarte, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(plateauBackground, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelDragCarte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelDragCarte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        panelDragCarte.getAccessibleContext().setAccessibleName("TranparentLayer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -521,6 +561,7 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPanelWithBackground iconP2;
     private javax.swing.JPanel infoPanelP1;
     private javax.swing.JPanel infoPanelP2;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private boundary.components.JMainJoueur jMainJoueur1;
     private boundary.components.JMainJoueur jMainJoueur2;
     private boundary.components.JPioche jPioche1;
@@ -537,6 +578,7 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JZoneInteraction jZoneInteraction1;
     private boundary.components.JPanelWithBackground jaugePopulariteP1;
     private boundary.components.JPanelWithBackground jaugePopulariteP2;
+    private javax.swing.JPanel panelDragCarte;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
 }

@@ -95,10 +95,10 @@ public class JZoneInteraction extends javax.swing.JPanel {
         jZoneDepot4 = new boundary.components.JZoneDepot();
 
         setBackground(new java.awt.Color(255, 153, 153));
+        setOpaque(false);
 
+        jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        jZoneDepot1.setPreferredSize(new java.awt.Dimension(87, 120));
 
         javax.swing.GroupLayout jZoneDepot1Layout = new javax.swing.GroupLayout(jZoneDepot1);
         jZoneDepot1.setLayout(jZoneDepot1Layout);
@@ -118,8 +118,6 @@ public class JZoneInteraction extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
         jPanel1.add(jZoneDepot1, gridBagConstraints);
 
-        jZoneDepot2.setPreferredSize(new java.awt.Dimension(87, 120));
-
         javax.swing.GroupLayout jZoneDepot2Layout = new javax.swing.GroupLayout(jZoneDepot2);
         jZoneDepot2.setLayout(jZoneDepot2Layout);
         jZoneDepot2Layout.setHorizontalGroup(
@@ -138,8 +136,6 @@ public class JZoneInteraction extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
         jPanel1.add(jZoneDepot2, gridBagConstraints);
 
-        jZoneDepot3.setPreferredSize(new java.awt.Dimension(87, 120));
-
         javax.swing.GroupLayout jZoneDepot3Layout = new javax.swing.GroupLayout(jZoneDepot3);
         jZoneDepot3.setLayout(jZoneDepot3Layout);
         jZoneDepot3Layout.setHorizontalGroup(
@@ -157,8 +153,6 @@ public class JZoneInteraction extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
         jPanel1.add(jZoneDepot3, gridBagConstraints);
-
-        jZoneDepot4.setPreferredSize(new java.awt.Dimension(87, 120));
 
         javax.swing.GroupLayout jZoneDepot4Layout = new javax.swing.GroupLayout(jZoneDepot4);
         jZoneDepot4.setLayout(jZoneDepot4Layout);
