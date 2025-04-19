@@ -3,10 +3,10 @@ package noyau;
 import java.util.ArrayList;
 
 public class JeuDeCarte {
-    private Configuration[] config = {new Configuration(new CarteDefense("Ode à la Joie", "Le joueur Gagne 3PV",3, 0, false ), 7),
-            new Configuration(new CarteDefense("Douceur ensoleillé", "Gagne 1 PV, Gagne 1 PV de plus si le jour",1, 0, true ), 13),
-            new Configuration(new CarteAttack("Dans ta Face", "Le joueur lance un pièce, tant que face, l'adversaire -1 PV",0, 0, 0, -1, true ), 10),
-            new Configuration(new CarteAttack("Peau de Banane", "L'adversaire perds 1PP",0, 0, -1, 0, true), 16)
+    private Configuration[] config = {new Configuration(new CarteDefense("Ode à la Joie", "Le joueur Gagne 3PV",3, 0, false), 7),
+            new Configuration(new CarteDefense("Douceur ensoleillé", "Gagne 1 PV, Gagne 1 PV de plus si le jour",1, 0, true), 13),
+            new Configuration(new CarteAttack("Dans ta Face", "Le joueur lance un pièce, tant que face, l'adversaire -1 PV",0, 0, 0, -1, false, true), 10),
+            new Configuration(new CarteAttack("Peau de Banane", "L'adversaire perds 1PP",0, 0, -1, 0, false, false), 16)
     };
 
 
@@ -27,7 +27,7 @@ public class JeuDeCarte {
             Carte c  = new Carte(nom, desc, type.EFFET) {
             @Override
             public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-
+                //unique effet
             }
         })*/
 

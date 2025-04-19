@@ -4,6 +4,7 @@ import noyau.Carte;
 import noyau.Jeu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class controleurJeu {
     Jeu jeu =  new Jeu();
@@ -26,7 +27,7 @@ public class controleurJeu {
         return lstCarteString;
     }
 
-    private String controleurJouerCarte(String nomCarte){
+    private List<String> controleurJouerCarte(String nomCarte){
         return jeu.jouerCarte(nomCarte);
     }
 }

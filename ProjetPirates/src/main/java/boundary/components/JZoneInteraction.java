@@ -5,10 +5,14 @@
 package boundary.components;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import noyau.CategorieCarte;
 
 
 /**
@@ -26,6 +30,14 @@ public class JZoneInteraction extends javax.swing.JPanel {
         initComponents();
         //setBackground(Color.PINK);
         setBounds(500,200,150,150);
+        jZoneDepot1.setName("Dep1");
+        jZoneDepot1.createZoneDepot("Pirate1", CategorieCarte.POPULARITE);
+        jZoneDepot2.setName("Dep2");
+        jZoneDepot1.createZoneDepot("Pirate1", CategorieCarte.ATTAQUE);
+        jZoneDepot3.setName("Dep3");
+        jZoneDepot1.createZoneDepot("Pirate2", CategorieCarte.ATTAQUE);
+        jZoneDepot4.setName("Dep4");
+        jZoneDepot1.createZoneDepot("Pirate2", CategorieCarte.POPULARITE);
     }
 
     @Override
@@ -52,6 +64,20 @@ public class JZoneInteraction extends javax.swing.JPanel {
         }
     }
     
+    public boolean ajouteCarte (JCarte carte, Point p, JPanel panelPlateau, String pirate){
+        Point pointInZoneIntract = SwingUtilities.convertPoint(panelPlateau, p, jPanel1);
+        Component[] lstComp = jPanel1.getComponents();
+        for(Component c : lstComp){
+            if (c instanceof JZoneDepot dep){
+                Point pointInDep = SwingUtilities.convertPoint(jPanel1, pointInZoneIntract, dep);
+                if (dep.contains(pointInDep)){
+                    return dep.ajouterCarte(carte, pirate);
+                }
+            }
+        }
+        return false;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,22 +86,110 @@ public class JZoneInteraction extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jPanel1 = new javax.swing.JPanel();
+        jZoneDepot1 = new boundary.components.JZoneDepot();
+        jZoneDepot2 = new boundary.components.JZoneDepot();
+        jZoneDepot3 = new boundary.components.JZoneDepot();
+        jZoneDepot4 = new boundary.components.JZoneDepot();
 
         setBackground(new java.awt.Color(255, 153, 153));
+        setOpaque(false);
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        javax.swing.GroupLayout jZoneDepot1Layout = new javax.swing.GroupLayout(jZoneDepot1);
+        jZoneDepot1.setLayout(jZoneDepot1Layout);
+        jZoneDepot1Layout.setHorizontalGroup(
+            jZoneDepot1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 81, Short.MAX_VALUE)
+        );
+        jZoneDepot1Layout.setVerticalGroup(
+            jZoneDepot1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 114, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
+        jPanel1.add(jZoneDepot1, gridBagConstraints);
+
+        javax.swing.GroupLayout jZoneDepot2Layout = new javax.swing.GroupLayout(jZoneDepot2);
+        jZoneDepot2.setLayout(jZoneDepot2Layout);
+        jZoneDepot2Layout.setHorizontalGroup(
+            jZoneDepot2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 81, Short.MAX_VALUE)
+        );
+        jZoneDepot2Layout.setVerticalGroup(
+            jZoneDepot2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 114, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
+        jPanel1.add(jZoneDepot2, gridBagConstraints);
+
+        javax.swing.GroupLayout jZoneDepot3Layout = new javax.swing.GroupLayout(jZoneDepot3);
+        jZoneDepot3.setLayout(jZoneDepot3Layout);
+        jZoneDepot3Layout.setHorizontalGroup(
+            jZoneDepot3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 81, Short.MAX_VALUE)
+        );
+        jZoneDepot3Layout.setVerticalGroup(
+            jZoneDepot3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 114, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
+        jPanel1.add(jZoneDepot3, gridBagConstraints);
+
+        javax.swing.GroupLayout jZoneDepot4Layout = new javax.swing.GroupLayout(jZoneDepot4);
+        jZoneDepot4.setLayout(jZoneDepot4Layout);
+        jZoneDepot4Layout.setHorizontalGroup(
+            jZoneDepot4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 81, Short.MAX_VALUE)
+        );
+        jZoneDepot4Layout.setVerticalGroup(
+            jZoneDepot4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 114, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
+        jPanel1.add(jZoneDepot4, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private boundary.components.JZoneDepot jZoneDepot1;
+    private boundary.components.JZoneDepot jZoneDepot2;
+    private boundary.components.JZoneDepot jZoneDepot3;
+    private boundary.components.JZoneDepot jZoneDepot4;
     // End of variables declaration//GEN-END:variables
 }
