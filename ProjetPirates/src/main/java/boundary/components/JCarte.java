@@ -26,8 +26,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import noyau.CategorieCarte;
+//import noyau.CategorieCarte;
+import noyau.BasicCategorie;
 import noyau.GestionnaireEffetFumee;
+import noyau.ICategorieCarte;
 
 
 /**
@@ -44,8 +46,9 @@ public class JCarte extends javax.swing.JPanel {
     private JMainJoueur mainOrigine; 
     
     private String nom;
-    private CategorieCarte type;
+    private ICategorieCarte type;
     private String description;
+    private BasicCategorie zoneDepot;
     
     private final List<SmokeEffect> fumees = new ArrayList<>();
     private final GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
@@ -63,10 +66,11 @@ public class JCarte extends javax.swing.JPanel {
         setSize((int)w, (int)h);
     }
 
-    public void ajouterAttribut(String nom, CategorieCarte type, String description, JMainJoueur mainOrigine){
+    public void ajouterAttribut(String nom, ICategorieCarte type, String description, BasicCategorie zoneDepot, JMainJoueur mainOrigine){
         this.nom = nom;
         this.type = type;
         this.description = description;
+        this.zoneDepot = zoneDepot;
         this.mainOrigine = mainOrigine;
         setImage("Card1Front" + type.toString() + ".png");
 
@@ -308,9 +312,11 @@ public class JCarte extends javax.swing.JPanel {
         return frontCard;
     }
     
-    public CategorieCarte getType(){
+    public ICategorieCarte getType(){
         return type;
     }
+
+    public BasicCategorie getCategorie(){return zoneDepot;}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

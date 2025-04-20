@@ -12,7 +12,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import noyau.CategorieCarte;
+
+import noyau.BasicCategorie;
+import noyau.ICategorieCarte;
 
 
 /**
@@ -31,13 +33,13 @@ public class JZoneInteraction extends javax.swing.JPanel {
         //setBackground(Color.PINK);
         setBounds(500,200,150,150);
         jZoneDepot1.setName("Dep1");
-        jZoneDepot1.createZoneDepot("Pirate1", CategorieCarte.POPULARITE);
+        jZoneDepot1.createZoneDepot("Pirate1", BasicCategorie.POPULARITE);
         jZoneDepot2.setName("Dep2");
-        jZoneDepot1.createZoneDepot("Pirate1", CategorieCarte.ATTAQUE);
+        jZoneDepot1.createZoneDepot("Pirate1", BasicCategorie.ATTAQUE);
         jZoneDepot3.setName("Dep3");
-        jZoneDepot1.createZoneDepot("Pirate2", CategorieCarte.ATTAQUE);
+        jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.ATTAQUE);
         jZoneDepot4.setName("Dep4");
-        jZoneDepot1.createZoneDepot("Pirate2", CategorieCarte.POPULARITE);
+        jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.POPULARITE);
     }
 
     @Override

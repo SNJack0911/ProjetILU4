@@ -3,9 +3,9 @@ package noyau;
 public class CarteStructurel {
     private String nom;
     private String description;
-    private CategorieCarte categorie;
+    private ICategorieCarte categorie;
 
-    public CarteStructurel(String nom, String description, CategorieCarte categorie) {
+    public CarteStructurel(String nom, String description, ICategorieCarte categorie) {
         this.nom = nom;
         this.description = description;
         this.categorie = categorie;
@@ -20,7 +20,7 @@ public class CarteStructurel {
         return description;
     }
 
-    public CategorieCarte getCategorie() {
+    public ICategorieCarte getCategorie() {
         return categorie;
     }
 

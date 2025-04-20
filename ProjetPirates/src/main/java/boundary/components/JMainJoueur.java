@@ -8,7 +8,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
-import noyau.CategorieCarte;
+
+import noyau.BasicCategorie;
+import noyau.ICategorieCarte;
 
 /**
  *
@@ -34,8 +36,9 @@ public class JMainJoueur extends javax.swing.JPanel {
         JCarte newCarte = new boundary.components.JCarte();
         newCarte.setMinimumSize(new java.awt.Dimension(84, 117));
         newCarte.setPreferredSize(new java.awt.Dimension(84, 117));
-        newCarte.ajouterAttribut(nomCarte, CategorieCarte.POPULARITE, "", this);//Ajout Enum
-        //newCarte.setImage("Card1Front" + nomCarte + ".png");
+        newCarte.ajouterAttribut(nomCarte, BasicCategorie.POPULARITE, "",
+                BasicCategorie.POPULARITE, this);
+        newCarte.setImage("Card1Front" + newCarte.getCategorie().toString() + ".png");
 
         javax.swing.GroupLayout newCarteLayout = new javax.swing.GroupLayout(newCarte);
         newCarte.setLayout(newCarteLayout);
