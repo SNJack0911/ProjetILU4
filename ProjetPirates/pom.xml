@@ -21,6 +21,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <exec.mainClass>boundary.FrameJeu</exec.mainClass>
+        <exec.mainClass>projetpirates.ProjetPirates</exec.mainClass>
     </properties>
 </project>
