@@ -31,6 +31,9 @@ public class Plateau extends javax.swing.JPanel {
      */
     public Plateau() {
         initComponents();
+        jLayeredPane1.setLayer(plateauBackground, 2);
+        jLayeredPane1.setLayer(panelDragCarte, 0);
+        
         /*depotAttP1.setName("dropZone1");
         depotAttP2.setName("dropZone2");
         depotPopP1.setName("dropZone3");
@@ -87,7 +90,7 @@ public class Plateau extends javax.swing.JPanel {
         jPointDeVie9 = new boundary.components.JPointDeVie();
         jPointDeVie0 = new boundary.components.JPointDeVie();
         jaugePopulariteP1 = new boundary.components.JPanelWithBackground();
-        jaugePopulariteP1.setImage("Icon12.png");
+        jaugePopulariteP1.setImage("PointPopularite0.png");
         infoPanelP2 = new javax.swing.JPanel();
         jPointDeVie = new boundary.components.JPointDeVie();
         jPointDeVie2 = new boundary.components.JPointDeVie();
@@ -95,12 +98,12 @@ public class Plateau extends javax.swing.JPanel {
         jPointDeVie4 = new boundary.components.JPointDeVie();
         jPointDeVie5 = new boundary.components.JPointDeVie();
         jaugePopulariteP2 = new boundary.components.JPanelWithBackground();
-        jaugePopulariteP1.setImage("Icon12.png");
         jPioche1 = new boundary.components.JPioche();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jMainJoueur2 = new boundary.components.JMainJoueur();
         jZoneInteraction1 = new boundary.components.JZoneInteraction();
 
+        panelDragCarte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelDragCarte.setName("TranparentLayer"); // NOI18N
         panelDragCarte.setOpaque(false);
         panelDragCarte.setPreferredSize(new java.awt.Dimension(720, 480));
@@ -373,7 +376,7 @@ public class Plateau extends javax.swing.JPanel {
 
         jaugePopulariteP2.setOpaque(false);
         jaugePopulariteP2.setPreferredSize(new java.awt.Dimension(119, 119));
-        jaugePopulariteP2.setImage("Icon12.png");
+        jaugePopulariteP2.setImage("PointPopularite1.png");
 
         javax.swing.GroupLayout jaugePopulariteP2Layout = new javax.swing.GroupLayout(jaugePopulariteP2);
         jaugePopulariteP2.setLayout(jaugePopulariteP2Layout);
