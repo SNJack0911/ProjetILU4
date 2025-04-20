@@ -4,7 +4,12 @@
 
 package projetpirates;
 
+import boundary.BoundaryJeu;
 import boundary.FrameJeu;
+import controleur.ControleurJouerCarte;
+import controleur.ControleurLancerJeu;
+import controleur.ControleurPiocherCarte;
+import noyau.Jeu;
 
 /**
  *
@@ -13,8 +18,12 @@ import boundary.FrameJeu;
 public class ProjetPirates {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        
+        Jeu jeu = new Jeu();
+        ControleurLancerJeu controleurLancerJeu = new ControleurLancerJeu(jeu);
+        ControleurPiocherCarte controleurPiocherCarte = new ControleurPiocherCarte(jeu);
+        ControleurJouerCarte controleurJouerCarte = new ControleurJouerCarte(jeu);
+
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -38,13 +47,23 @@ public class ProjetPirates {
         }
         //</editor-fold>
 
+
+
+        BoundaryJeu boundaryJeu = new BoundaryJeu(controleurLancerJeu, controleurPiocherCarte
+                , controleurJouerCarte);
+
+        FrameJeu frameJeu = new FrameJeu(boundaryJeu, false);
+
+        frameJeu.setVisible(true);
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameJeu(false).setVisible(true);
+                new FrameJeu(boundaryJeu, false).setVisible(true);
             }
-        });
-        
+        });*/
+
+
         
         
     }

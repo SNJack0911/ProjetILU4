@@ -5,6 +5,7 @@
 package boundary;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.KeyEvent;
@@ -23,12 +24,12 @@ import javax.swing.JPanel;
  * @author yannf
  */
 public class FrameJeu extends javax.swing.JFrame {
-
+    private BoundaryJeu boundaryJeu;
     /**
      * Creates new form FrameJeu
      */
-    public FrameJeu(boolean fullScreen) {
-        
+    public FrameJeu(BoundaryJeu boundaryJeu, boolean fullScreen) {
+        this.boundaryJeu = boundaryJeu;
         if (fullScreen) {
             setUndecorated(true);
         }
@@ -363,6 +364,7 @@ public class FrameJeu extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom1ActionPerformed
         switchPanel(plateauPanel);
         menuPanel.setVisible(false);
+        plateau1.setBoundaryJeu(boundaryJeu);
     }//GEN-LAST:event_jButtonCustom1ActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom2ActionPerformed
@@ -376,7 +378,7 @@ public class FrameJeu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCustom3ActionPerformed
 
     private void fullScreenCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullScreenCheckBoxActionPerformed
-        FrameJeu newFrame = new FrameJeu(fullScreenCheckBox.isSelected());
+        FrameJeu newFrame = new FrameJeu(boundaryJeu, fullScreenCheckBox.isSelected());
         this.dispose();
         fullScreenOptionEnable(newFrame, !fullScreenCheckBox.isSelected());
         newFrame.fullScreenCheckBox.setSelected(fullScreenCheckBox.isSelected());
@@ -530,7 +532,11 @@ public class FrameJeu extends javax.swing.JFrame {
             gainControl.setValue(gain);
         }
     }
-
+    
+    public Plateau getPlateau(){
+        return plateau1;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -561,7 +567,7 @@ public class FrameJeu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameJeu(false).setVisible(true);
+                new FrameJeu(null, false).setVisible(true);
             }
         });
     }
@@ -592,28 +598,6 @@ public class FrameJeu extends javax.swing.JFrame {
     private javax.swing.JLabel volumeValueLabel;
     // End of variables declaration//GEN-END:variables
 
-    /*private javax.swing.JCheckBox fullscreenCheckBox;
-    private javax.swing.JPanel jPanelParent;
-    private javax.swing.JSlider jSlider1;
-    private boundary.components.JButtonCustom leftArrowRes;
-    private boundary.components.JButtonCustom menuBoutonOp;
-    private javax.swing.JPanel menuPanel;
-    private boundary.components.JPanelWithBackground menuPanelBackground;
-    private boundary.components.JButtonCustom optionButton;
-    private javax.swing.JPanel optionPanel;
-    private boundary.components.JPanelWithBackground optionPanelBackground;
-    private boundary.components.JPanelRound optionPanelRound;
-    private boundary.Plateau2 plateau1;
-    private javax.swing.JPanel plateauPanel;
-    private boundary.components.JButtonCustom quitButton;
-    private javax.swing.JLabel resolutionLabel;
-    private javax.swing.JLabel resolutionNbLabel;
-    private boundary.components.JButtonCustom rightArrowRes;
-    private boundary.components.JButtonCustom startButton;
-    private javax.swing.JLabel titleMenu;
-    private javax.swing.JLabel titleOption;
-    private javax.swing.JLabel volumeLabel;
-    private javax.swing.JLabel volumeLabel1;*/
     private final String[] resolution ={"720x480", "1280x720", "1920x1080"};
     private int currentRes = 0;
     private Clip clip;

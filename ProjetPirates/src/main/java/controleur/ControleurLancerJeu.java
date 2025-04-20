@@ -12,5 +12,12 @@ import noyau.Jeu;
  */
 public class ControleurLancerJeu {
     private Jeu jeu;
-    
+
+    public ControleurLancerJeu(Jeu jeu) {
+        this.jeu = jeu;
+    }
+
+    public void lancerJeu() {
+
+    }
 }

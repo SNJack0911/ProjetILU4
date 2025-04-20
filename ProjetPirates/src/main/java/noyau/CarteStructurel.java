@@ -1,5 +1,7 @@
 package noyau;
 
+
+//NEVER USED
 public class CarteStructurel {
     private String nom;
     private String description;

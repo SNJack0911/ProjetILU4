@@ -6,10 +6,20 @@ package controleur;
 
 import noyau.Jeu;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author yannf
  */
 public class ControleurPiocherCarte {
     private Jeu jeu;
+
+    public ControleurPiocherCarte(Jeu jeu) {
+        this.jeu = jeu;
+    }
+
+    public ArrayList<String[]> piocherCarte() {
+        return null;
+    }
 }

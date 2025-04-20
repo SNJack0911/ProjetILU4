@@ -12,6 +12,7 @@ import boundary.components.JZoneInteraction;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import noyau.BasicCategorie;
 import noyau.GestionnaireEffetFumee;
 
 /**
@@ -19,6 +20,7 @@ import noyau.GestionnaireEffetFumee;
  * @author yannf
  */
 public class Plateau extends javax.swing.JPanel {
+    private BoundaryJeu boundaryJeu;
     private JZoneInteraction zoneInteraction = null;
     private JCarte carte;
     private GestionnaireCartes gestionnaire = new GestionnaireCartes();
@@ -507,12 +509,14 @@ public class Plateau extends javax.swing.JPanel {
     
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
-                jMainJoueur1.ajouterCarte(nomCarte);
+                jMainJoueur1.ajouterCarte(nomCarte, BasicCategorie.POPULARITE, "",
+                        BasicCategorie.POPULARITE);
                 jMainJoueur1.repaint();
             }
         } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
-                jMainJoueur2.ajouterCarte(nomCarte);
+                jMainJoueur2.ajouterCarte(nomCarte, BasicCategorie.POPULARITE, "",
+                        BasicCategorie.POPULARITE);
                 jMainJoueur2.repaint();
             }
         }
@@ -556,6 +560,21 @@ public class Plateau extends javax.swing.JPanel {
         }
     }
     
+    public void setBoundaryJeu(BoundaryJeu boundaryJeu){
+        if (this.boundaryJeu == null){
+            this.boundaryJeu = boundaryJeu;
+        }
+    }
+    
+    public BoundaryJeu getBoundaryJeu(){
+        return boundaryJeu;
+    }
+    
+    public void jouerTour(){
+        ArrayList<String> resultat = boundaryJeu.jouerCarte(carte);
+        //TODO Update les infos des joueurs
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private boundary.components.JPanelWithBackground iconP1;
     private boundary.components.JPanelWithBackground iconP2;
@@ -581,4 +600,5 @@ public class Plateau extends javax.swing.JPanel {
     private javax.swing.JPanel panelDragCarte;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
+    
 }
