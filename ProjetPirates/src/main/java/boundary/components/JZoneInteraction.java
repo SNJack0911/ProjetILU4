@@ -194,4 +194,16 @@ public class JZoneInteraction extends javax.swing.JPanel {
     private boundary.components.JZoneDepot jZoneDepot3;
     private boundary.components.JZoneDepot jZoneDepot4;
     // End of variables declaration//GEN-END:variables
+
+    public void initZoneDepot(String nomPirate1, String nomPirate2) {
+        jZoneDepot1.createZoneDepot(nomPirate1, BasicCategorie.POPULARITE);
+        jZoneDepot2.createZoneDepot(nomPirate1, BasicCategorie.ATTAQUE);
+        jZoneDepot3.createZoneDepot(nomPirate2, BasicCategorie.ATTAQUE);
+        jZoneDepot4.createZoneDepot(nomPirate2, BasicCategorie.POPULARITE);
+        
+        System.out.println(" Zone  1 : " + jZoneDepot1.toString() + "\n");
+        System.out.println(" Zone  2 : " + jZoneDepot2.toString() + "\n");
+        System.out.println(" Zone  3 : " + jZoneDepot3.toString() + "\n");
+        System.out.println(" Zone  4 : " + jZoneDepot4.toString() + "\n");
+    }
 }

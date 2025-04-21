@@ -27,19 +27,21 @@ public class JMainJoueur extends javax.swing.JPanel {
     }
 
     public void ajouterCarte(String nomCarte, ICategorieCarte type, String description, BasicCategorie categorie){
+        //System.out.println("JMainJoueur ajouterCarte , nomCarte = " + nomCarte + "\n");
         JCarte carte = createCarte(nomCarte, type, description, categorie);
         ajouterJCarte(carte);
     }
     
-    private JCarte createCarte(String nomCarte, ICategorieCarte type, String description, BasicCategorie categorie) {
+    private JCarte createCarte(String nomCarte, ICategorieCarte type, String description, BasicCategorie zoneDepot) {
         
         JCarte newCarte = new boundary.components.JCarte();
         newCarte.setMinimumSize(new java.awt.Dimension(84, 117));
         newCarte.setPreferredSize(new java.awt.Dimension(84, 117));
+        //System.out.println("JMainJoueur createCarte , nomCarte = " + nomCarte + "\n");
         newCarte.ajouterAttribut(nomCarte, type, description,
-                categorie, this);
-        newCarte.setImage("Card1Front" + newCarte.getCategorie().toString() + ".png");
-
+                zoneDepot, this);
+        //newCarte.setImage("Card1Front" + newCarte.getCategorie().toString() + ".png");
+        //System.out.println("JMainJoueur createCarte , nomCarte = " + newCarte.getNomCarte() + "\n");
         javax.swing.GroupLayout newCarteLayout = new javax.swing.GroupLayout(newCarte);
         newCarte.setLayout(newCarteLayout);
         newCarteLayout.setHorizontalGroup(

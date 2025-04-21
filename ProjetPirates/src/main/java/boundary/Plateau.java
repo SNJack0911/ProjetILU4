@@ -26,6 +26,9 @@ public class Plateau extends javax.swing.JPanel {
     private GestionnaireCartes gestionnaire = new GestionnaireCartes();
     private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
     
+    private String nomPirate1;
+    private String nomPirate2;
+    
     /**
      * Creates new form Plateau
      */
@@ -33,10 +36,10 @@ public class Plateau extends javax.swing.JPanel {
         initComponents();
         jLayeredPane1.setLayer(plateauBackground, 2);
         jLayeredPane1.setLayer(panelDragCarte, 0);
+       
         
-        
-        labelGagnant.setVisible(false);
-        labelGagnant.setEnabled(false);
+        labelGagnant.setVisible(true);
+        labelGagnant.setEnabled(true);
         /*depotAttP1.setName("dropZone1");
         depotAttP2.setName("dropZone2");
         depotPopP1.setName("dropZone3");
@@ -112,13 +115,29 @@ public class Plateau extends javax.swing.JPanel {
         panelDragCarte.setOpaque(false);
         panelDragCarte.setPreferredSize(new java.awt.Dimension(720, 480));
         //panelDragCarte.setName("TranparentLayer");
-        panelDragCarte.setLayout(null);
 
         labelGagnant.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         labelGagnant.setText("Gagnant");
-        labelGagnant.setEnabled(false);
-        panelDragCarte.add(labelGagnant);
-        labelGagnant.setBounds(250, 180, 200, 40);
+        labelGagnant.setAlignmentY(0.0F);
+        labelGagnant.setDoubleBuffered(true);
+        labelGagnant.setOpaque(true);
+
+        javax.swing.GroupLayout panelDragCarteLayout = new javax.swing.GroupLayout(panelDragCarte);
+        panelDragCarte.setLayout(panelDragCarteLayout);
+        panelDragCarteLayout.setHorizontalGroup(
+            panelDragCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDragCarteLayout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(labelGagnant, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(270, 270, 270))
+        );
+        panelDragCarteLayout.setVerticalGroup(
+            panelDragCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDragCarteLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(labelGagnant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, Short.MAX_VALUE)
+                .addGap(260, 260, 260))
+        );
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -522,12 +541,14 @@ public class Plateau extends javax.swing.JPanel {
     
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
+                //System.out.println("Nom de carte J1 = " + nomCarte + "\n");
                 jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
                         boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur1.repaint();
             }
         } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
+                //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
                 jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
                         boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur2.repaint();
@@ -576,6 +597,9 @@ public class Plateau extends javax.swing.JPanel {
     public void setBoundaryJeu(BoundaryJeu boundaryJeu){
         if (this.boundaryJeu == null){
             this.boundaryJeu = boundaryJeu;
+            this.nomPirate1 = boundaryJeu.getPirateName(0);
+            this.nomPirate2 = boundaryJeu.getPirateName(1);
+            jZoneInteraction1.initZoneDepot(nomPirate1, nomPirate2);
         }
     }
     
@@ -586,18 +610,21 @@ public class Plateau extends javax.swing.JPanel {
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         //TODO Update les infos des joueurs
-        
-        if (resultat.getLast().equals("Pas de gagnant")){
+
+        String lastElement = resultat.get(resultat.size()-1);
+        if (lastElement.equals("Pas de gagnant")){
             return;
         }else {
-            afficherGagnant(resultat.getLast());
+            afficherGagnant(lastElement);
         }
     }
     
+    //Not Working
     public void afficherGagnant(String pirateGagant){
         labelGagnant.setText(pirateGagant + "a gagné!!!!");
         labelGagnant.setVisible(true);
         labelGagnant.setEnabled(true);
+        this.repaint();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
