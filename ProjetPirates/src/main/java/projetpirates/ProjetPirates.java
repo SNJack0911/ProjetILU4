@@ -4,8 +4,7 @@
 
 package projetpirates;
 
-import boundary.BoundaryJeu;
-import boundary.FrameJeu;
+import boundary.*;
 import controleur.*;
 import noyau.Jeu;
 
@@ -17,7 +16,7 @@ public class ProjetPirates {
 
     public static void main(String[] args) {
         Jeu jeu = new Jeu();
-        ControleurNouvellePartie controleurLancerJeu = new ControleurNouvellePartie(jeu);
+        ControleurNouvellePartie controleurNouvellePartie = new ControleurNouvellePartie(jeu);
         ControleurPiocherCarte controleurPiocherCarte = new ControleurPiocherCarte(jeu);
         ControleurJouerCarte controleurJouerCarte = new ControleurJouerCarte(jeu);
         ControleurGetCarteInfo controleurGetCarteInfo = new ControleurGetCarteInfo(jeu);
@@ -45,26 +44,18 @@ public class ProjetPirates {
             java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        BoundaryGetCarteInfo boundaryGetCarteInfo = new BoundaryGetCarteInfo(controleurGetCarteInfo);
+        BoundaryGetPirateInfo boundaryGetPirateInfo =  new BoundaryGetPirateInfo(controleurGetPirateInfo);
+        BoundaryJouerCarte boundaryJouerCarte = new BoundaryJouerCarte(controleurJouerCarte);
+        BoundaryNouvellePartie boundaryNouvellePartie = new BoundaryNouvellePartie(controleurNouvellePartie);
+        BoundaryPiocherCarte boundaryPiocherCarte = new BoundaryPiocherCarte(controleurPiocherCarte);
 
 
-
-        BoundaryJeu boundaryJeu = new BoundaryJeu(controleurLancerJeu, controleurPiocherCarte
-                , controleurJouerCarte, controleurGetCarteInfo,
-                controleurGetPirateInfo);
+        BoundaryJeu boundaryJeu = new BoundaryJeu(boundaryGetCarteInfo, boundaryGetPirateInfo,
+                boundaryJouerCarte, boundaryNouvellePartie, boundaryPiocherCarte);
 
         FrameJeu frameJeu = new FrameJeu(boundaryJeu, false);
 
         frameJeu.setVisible(true);
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrameJeu(boundaryJeu, false).setVisible(true);
-            }
-        });*/
-
-
-        
-        
     }
 }

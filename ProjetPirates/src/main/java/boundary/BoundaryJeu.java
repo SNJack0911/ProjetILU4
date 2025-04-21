@@ -5,6 +5,8 @@
 package boundary;
 import boundary.components.JCarte;
 import controleur.*;
+import noyau.BasicCategorie;
+import noyau.ICategorieCarte;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,51 +16,59 @@ import java.util.List;
  * @author yannf
  */
 public class BoundaryJeu {
-    private ControleurNouvellePartie controleurLancerJeu;
-    private ControleurPiocherCarte controleurPiocherCarte;
-    private ControleurJouerCarte controleurJouerCarte;
-    private ControleurGetCarteInfo contoleurGetCarteInfo;
-    private ControleurGetPirateInfo controleurGetPirateInfo;
+    private BoundaryGetCarteInfo boundaryGetCarteInfo;
+    private BoundaryGetPirateInfo boundaryGetPirateInfo;
+    private BoundaryJouerCarte boundaryJouerCarte;
+    private BoundaryNouvellePartie boundaryNouvellePartie;
+    private BoundaryPiocherCarte boundaryPiocherCarte;
 
-    /*private FrameJeu frameJeu;
-    private Plateau plateau;*/
-
-    public BoundaryJeu(ControleurNouvellePartie controleurLancerJeu, ControleurPiocherCarte controleurPiocherCarte,
-                       ControleurJouerCarte controleurJouerCarte, ControleurGetCarteInfo contoleurGetCarteInfo,
-                       ControleurGetPirateInfo controleurGetPirateInfo) {
-        /*this.frameJeu = frameJeu;
-        this.plateau = frameJeu.getPlateau();*/ //Est-ce qu'il faut tous faire dans plateau ???
-        this.controleurLancerJeu = controleurLancerJeu;
-        this.controleurPiocherCarte = controleurPiocherCarte;
-        this.controleurJouerCarte = controleurJouerCarte;
-        this.contoleurGetCarteInfo = contoleurGetCarteInfo;
-        this.controleurGetPirateInfo = controleurGetPirateInfo;
-        //plateau.setBoundaryJeu(this);
+    public BoundaryJeu(BoundaryGetCarteInfo boundaryGetCarteInfo, BoundaryGetPirateInfo boundaryGetPirateInfo,
+                       BoundaryJouerCarte boundaryJouerCarte, BoundaryNouvellePartie boundaryNouvellePartie,
+                       BoundaryPiocherCarte boundaryPiocherCarte) {
+        this.boundaryGetCarteInfo = boundaryGetCarteInfo;
+        this.boundaryGetPirateInfo = boundaryGetPirateInfo;
+        this.boundaryJouerCarte = boundaryJouerCarte;
+        this.boundaryNouvellePartie = boundaryNouvellePartie;
+        this.boundaryPiocherCarte = boundaryPiocherCarte;
     }
 
-    public void lancerJeu() {
-        controleurLancerJeu.lancerJeu();
+    public String getDescription(String nomCarte){
+        return boundaryGetCarteInfo.getDescription(nomCarte);
     }
 
-    public ArrayList<String> piocherCarte() {
-        return controleurPiocherCarte.piocherCarte();
-        //TODO Ajouter les cartes à la main
-        //Les cartes sont de la forme nom et il faut get les attribut
-        // NON VALIDE -> Les cartes sont de la forme ["nom", ICategorieCarte type, "Description", BasicCategorie zoneDepot]
-        //plateau.ajouterCartes(1 ou 2, cartes)
+    public ICategorieCarte getTypeCarte(String nomCarte){
+        return boundaryGetCarteInfo.getTypeCarte(nomCarte);
+    }
+
+    public BasicCategorie getZoneDepot(String nomCarte){
+        return boundaryGetCarteInfo.getZoneDepot(nomCarte);
+    }
+
+    public String getPirateName(int pirateID) {
+        return boundaryGetPirateInfo.getPirateName(pirateID);
+    }
+
+    public int getPirateHp(int pirateID) {
+        return boundaryGetPirateInfo.getPirateHp(pirateID);
+    }
+
+    public int getPiratePp(int pirateID) {
+        return boundaryGetPirateInfo.getPiratePp(pirateID);
     }
 
     public List<String> jouerCarte(JCarte carte) {
-        return controleurJouerCarte.jouerCarte(carte.getNomCarte());
-        //TODO traiter les evenements
-        //Les evenements sont de la forme : ["0", "0", "1", "Pas de Gagnant"] //0 = pile et 1 = face
-        //                                  ["1", "NomPirate1"]
-        //                                  ["NomPirate2"]
-        //TODO traitement fin de tour et changement de joueur
-        //if (HasWinner){
-        //  TODO
-        //}else{
-        //  plateau.flipAllCards()
-        //}
+        return boundaryJouerCarte.jouerCarte(carte);
+    }
+
+    public void initNewGame(){
+        boundaryNouvellePartie.initNewGame();
+    }
+
+    public int getTour(){
+        return boundaryNouvellePartie.getTour();
+    }
+
+    public ArrayList<String> piocherCarte() {
+        return boundaryPiocherCarte.piocherCarte();
     }
 }

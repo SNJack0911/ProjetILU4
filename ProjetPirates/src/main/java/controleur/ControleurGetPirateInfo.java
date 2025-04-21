@@ -23,7 +23,7 @@ public class ControleurGetPirateInfo {
         return "Numero de pirates invalide choisir 1 ou 2";
     }
 
-    public int getHpPirate(int numero) {
+    public int getPirateHp(int numero) {
         if (numero == 0){
             return pirate1.getHP();
         } else if (numero == 1) {
@@ -32,7 +32,7 @@ public class ControleurGetPirateInfo {
         return -1;
     }
 
-    public int getPpPirate(int numero) {
+    public int getPiratePp(int numero) {
         if (numero == 0){
             return pirate1.getPP();
         } else if (numero == 1) {

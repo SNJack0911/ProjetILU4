@@ -14,7 +14,7 @@ public class ControleurGetCarteInfo {
         this.jeuDeCarte = jeu.getJeuDeCarte();
     }
 
-    public String getDecription(String nomCarte){
+    public String getDescription(String nomCarte){
         //TODO Traiter erreur
         return jeuDeCarte.getDescription(nomCarte);
     }

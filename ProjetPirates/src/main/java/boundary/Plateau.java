@@ -39,7 +39,7 @@ public class Plateau extends javax.swing.JPanel {
         depotPopP1.setName("dropZone3");
         depotPopP2.setName("dropZone4");
         ZoneInteractionCentral.setName("dropZoneCenter");
-/        zoneInteraction = zoneInteractionJ2;
+        zoneInteraction = zoneInteractionJ2;
         carte = jCarte1;
         jCarte1.changeCardFace();
         gestionnaire.ajouterCarte(carte);
@@ -574,7 +574,7 @@ public class Plateau extends javax.swing.JPanel {
     }
     
     public void jouerTour(){
-        List<String> resultat = boundaryJeu.jouerCarte(carte);
+        //List<String> resultat = boundaryJeu.jouerCarte(carte);
         //TODO Update les infos des joueurs
     }
     
