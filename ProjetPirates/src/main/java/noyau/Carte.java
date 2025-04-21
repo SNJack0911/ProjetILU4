@@ -23,7 +23,7 @@ public abstract class Carte {
         return description;
     }
 
-    public String getCategorie() {return categorie.toString();}
+    public ICategorieCarte getCategorie() {return categorie;}
     
     public BasicCategorie getZoneDepot(){
         return zoneDepot;

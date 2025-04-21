@@ -15,17 +15,29 @@ public class ControleurGetPirateInfo {
     }
 
     public String getNomPirate(int numero) {
-        //TODO
-        return "";
+        if (numero == 0){
+            return pirate1.getNom();
+        } else if (numero == 1) {
+            return pirate2.getNom();
+        }
+        return "Numero de pirates invalide choisir 1 ou 2";
     }
 
     public int getHpPirate(int numero) {
-        //TODO
+        if (numero == 0){
+            return pirate1.getHP();
+        } else if (numero == 1) {
+            return pirate2.getHP();
+        }
         return -1;
     }
 
     public int getPpPirate(int numero) {
-        //TODO
+        if (numero == 0){
+            return pirate1.getPP();
+        } else if (numero == 1) {
+            return pirate2.getPP();
+        }
         return -1;
     }
 }

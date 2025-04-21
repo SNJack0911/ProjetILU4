@@ -31,7 +31,6 @@ public class ControleurPiocherCarte {
 
     public ArrayList<String> piocherCarte() {
         ArrayList<Carte> cartes = jeu.jouerPioche();
-
-        return null;
+        return listeCarteToString(cartes);
     }
 }

@@ -7,6 +7,7 @@ package controleur;
 import noyau.Jeu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,8 +20,7 @@ public class ControleurJouerCarte {
         this.jeu = jeu;
     }
 
-    public ArrayList<String> jouerCarte(String nomCarte) {
-        //TODO
-        return null;
+    public List<String> jouerCarte(String nomCarte) {
+        return jeu.jouerCarte(nomCarte);
     }
 }

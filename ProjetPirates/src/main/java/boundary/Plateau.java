@@ -574,7 +574,7 @@ public class Plateau extends javax.swing.JPanel {
     }
     
     public void jouerTour(){
-        ArrayList<String> resultat = boundaryJeu.jouerCarte(carte);
+        List<String> resultat = boundaryJeu.jouerCarte(carte);
         //TODO Update les infos des joueurs
     }
     

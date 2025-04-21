@@ -7,6 +7,7 @@ import boundary.components.JCarte;
 import controleur.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -47,7 +48,7 @@ public class BoundaryJeu {
         //plateau.ajouterCartes(1 ou 2, cartes)
     }
 
-    public ArrayList<String> jouerCarte(JCarte carte) {
+    public List<String> jouerCarte(JCarte carte) {
         return controleurJouerCarte.jouerCarte(carte.getNomCarte());
         //TODO traiter les evenements
         //Les evenements sont de la forme : ["0", "0", "1", "Pas de Gagnant"] //0 = pile et 1 = face
