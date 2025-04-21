@@ -34,6 +34,9 @@ public class Plateau extends javax.swing.JPanel {
         jLayeredPane1.setLayer(plateauBackground, 2);
         jLayeredPane1.setLayer(panelDragCarte, 0);
         
+        
+        labelGagnant.setVisible(false);
+        labelGagnant.setEnabled(false);
         /*depotAttP1.setName("dropZone1");
         depotAttP2.setName("dropZone2");
         depotPopP1.setName("dropZone3");
@@ -80,6 +83,7 @@ public class Plateau extends javax.swing.JPanel {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         panelDragCarte = new javax.swing.JPanel();
+        labelGagnant = new javax.swing.JLabel();
         plateauBackground = new boundary.components.JPanelWithBackground();
         iconP1 = new boundary.components.JPanelWithBackground();
         iconP2 = new boundary.components.JPanelWithBackground();
@@ -109,6 +113,12 @@ public class Plateau extends javax.swing.JPanel {
         panelDragCarte.setPreferredSize(new java.awt.Dimension(720, 480));
         //panelDragCarte.setName("TranparentLayer");
         panelDragCarte.setLayout(null);
+
+        labelGagnant.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        labelGagnant.setText("Gagnant");
+        labelGagnant.setEnabled(false);
+        panelDragCarte.add(labelGagnant);
+        labelGagnant.setBounds(250, 180, 200, 40);
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -555,7 +565,7 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     public String getCurrentPirate(){
-        int tour = boundaryJeu.getTour(); //Tour du joueur 1 nomalement faire un getTour
+        int tour = boundaryJeu.getTour();
         if(tour%2 == 0){
             return "Pirate1";
         } else {
@@ -576,6 +586,18 @@ public class Plateau extends javax.swing.JPanel {
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         //TODO Update les infos des joueurs
+        
+        if (resultat.getLast().equals("Pas de gagnant")){
+            return;
+        }else {
+            afficherGagnant(resultat.getLast());
+        }
+    }
+    
+    public void afficherGagnant(String pirateGagant){
+        labelGagnant.setText(pirateGagant + "a gagné!!!!");
+        labelGagnant.setVisible(true);
+        labelGagnant.setEnabled(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -600,6 +622,7 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JZoneInteraction jZoneInteraction1;
     private boundary.components.JPanelWithBackground jaugePopulariteP1;
     private boundary.components.JPanelWithBackground jaugePopulariteP2;
+    private javax.swing.JLabel labelGagnant;
     private javax.swing.JPanel panelDragCarte;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
