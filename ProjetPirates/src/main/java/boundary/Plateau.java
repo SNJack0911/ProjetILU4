@@ -504,22 +504,22 @@ public class Plateau extends javax.swing.JPanel {
 
     private void jPioche1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPioche1MouseClicked
         if(!jPioche1.isEnabled()) {return;}
-        
+        int tour = boundaryJeu.getTour();
         
         //get carte from noyeau
-        List<String> listNomCarte = new ArrayList<>(List.of("Popularity", "Attack"));
-        int tour = 0; //Tour du joueur 1 nomalement faire un getTour
+        List<String> listNomCarte = boundaryJeu.piocherCarte();
+
     
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
-                jMainJoueur1.ajouterCarte(nomCarte, BasicCategorie.POPULARITE, "",
-                        BasicCategorie.POPULARITE);
+                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                        boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur1.repaint();
             }
         } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
-                jMainJoueur2.ajouterCarte(nomCarte, BasicCategorie.POPULARITE, "",
-                        BasicCategorie.POPULARITE);
+                jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                        boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur2.repaint();
             }
         }
@@ -555,7 +555,7 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     public String getCurrentPirate(){
-        int tour = 0; //Tour du joueur 1 nomalement faire un getTour
+        int tour = boundaryJeu.getTour(); //Tour du joueur 1 nomalement faire un getTour
         if(tour%2 == 0){
             return "Pirate1";
         } else {
@@ -574,7 +574,7 @@ public class Plateau extends javax.swing.JPanel {
     }
     
     public void jouerTour(){
-        //List<String> resultat = boundaryJeu.jouerCarte(carte);
+        List<String> resultat = boundaryJeu.jouerCarte(null);
         //TODO Update les infos des joueurs
     }
     

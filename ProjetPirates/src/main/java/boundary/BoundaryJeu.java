@@ -4,7 +4,6 @@
  */
 package boundary;
 import boundary.components.JCarte;
-import controleur.*;
 import noyau.BasicCategorie;
 import noyau.ICategorieCarte;
 
@@ -14,6 +13,9 @@ import java.util.List;
 /**
  *
  * @author yannf
+ */
+/*
+    Used to condense the amount of arguments given when creating a panel or a frame
  */
 public class BoundaryJeu {
     private BoundaryGetCarteInfo boundaryGetCarteInfo;

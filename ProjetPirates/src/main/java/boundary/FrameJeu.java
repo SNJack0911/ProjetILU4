@@ -364,6 +364,7 @@ public class FrameJeu extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom1ActionPerformed
         switchPanel(plateauPanel);
         menuPanel.setVisible(false);
+        //boundaryJeu.initNewGame();
         plateau1.setBoundaryJeu(boundaryJeu);
     }//GEN-LAST:event_jButtonCustom1ActionPerformed
 
