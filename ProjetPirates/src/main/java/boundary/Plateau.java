@@ -573,8 +573,8 @@ public class Plateau extends javax.swing.JPanel {
         return boundaryJeu;
     }
     
-    public void jouerTour(){
-        List<String> resultat = boundaryJeu.jouerCarte(null);
+    public void jouerTour(JCarte carte){
+        List<String> resultat = boundaryJeu.jouerCarte(carte);
         //TODO Update les infos des joueurs
     }
     

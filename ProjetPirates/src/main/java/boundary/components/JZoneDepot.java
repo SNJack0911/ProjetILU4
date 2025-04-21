@@ -19,6 +19,7 @@ public class JZoneDepot extends javax.swing.JPanel {
     private Image carte;
     private String nomPirate;
     private BasicCategorie type;
+
     
     /**
      * Creates new form JZoneDepot
@@ -33,6 +34,7 @@ public class JZoneDepot extends javax.swing.JPanel {
     }
     
     public boolean ajouterCarte (JCarte carte, String pirate){
+        if (!nomPirate.equals(pirate) && carte.getCategorie() != type){ return false;}
         this.carte = carte.getImage();
         return true;
     }

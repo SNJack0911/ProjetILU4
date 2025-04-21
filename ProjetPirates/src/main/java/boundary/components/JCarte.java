@@ -245,7 +245,7 @@ public class JCarte extends javax.swing.JPanel {
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         origine = null;
-	this.isSelected = false;
+	    this.isSelected = false;
         
         JPanel plateauPanel = (JPanel) mainOrigine.getParent();
         Point pointInPlateau = SwingUtilities.convertPoint(this, evt.getPoint(), plateauPanel);
@@ -253,13 +253,14 @@ public class JCarte extends javax.swing.JPanel {
         Component c = plateauPanel.getComponentAt(pointInPlateau);
         //System.out.println("C: " + c.getClass().getSimpleName());
         JLayeredPane layer = (JLayeredPane.getLayeredPaneAbove(plateauPanel));
-        Plateau p = (Plateau) layer.getParent();
+        Plateau plateau = (Plateau) layer.getParent();
         
 
         if (c instanceof JZoneInteraction dropZone) {
-            String pirate = p.getCurrentPirate();
+            String pirate = plateau.getCurrentPirate();
             boolean res = dropZone.ajouteCarte(this, pointInPlateau, plateauPanel, pirate);
             if(res){//dispose
+                plateau.jouerTour(this);
                 Container parent = this.getParent();
                 //System.out.println("Parent of card: " + parent.getClass().getSimpleName());
                 if (parent != null) {
@@ -277,7 +278,7 @@ public class JCarte extends javax.swing.JPanel {
             layer.repaint();
         }
         /*origine = null;
-	this.isSelected = false;
+	    this.isSelected = false;
         repaint();
         //Container root = SwingUtilities.getWindowAncestor(this);
         if (root instanceof Plateau plateau) {
