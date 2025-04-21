@@ -10,14 +10,18 @@ import noyau.Jeu;
  *
  * @author yannf
  */
-public class ControleurLancerJeu {
+//PAS NECESSAIRE
+    //TODO Transformer en creer nouvelle partie
+public class ControleurNouvellePartie {
     private Jeu jeu;
 
-    public ControleurLancerJeu(Jeu jeu) {
+    public ControleurNouvellePartie(Jeu jeu) {
         this.jeu = jeu;
     }
 
     public void lancerJeu() {
-
+        jeu.initJeu();
     }
+
+    public int getTour(){return jeu.getTour();}
 }

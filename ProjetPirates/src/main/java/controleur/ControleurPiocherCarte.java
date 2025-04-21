@@ -4,6 +4,7 @@
  */
 package controleur;
 
+import noyau.Carte;
 import noyau.Jeu;
 
 import java.util.ArrayList;
@@ -19,7 +20,18 @@ public class ControleurPiocherCarte {
         this.jeu = jeu;
     }
 
-    public ArrayList<String[]> piocherCarte() {
+    private ArrayList<String> listeCarteToString(ArrayList<Carte> lstCarte){
+        ArrayList<String> lstCarteString = new ArrayList<String>();
+        for(Carte carte : lstCarte){
+            String[] info = new String[5];
+            lstCarteString.add(carte.getNom());
+        }
+        return lstCarteString;
+    }
+
+    public ArrayList<String> piocherCarte() {
+        ArrayList<Carte> cartes = jeu.jouerPioche();
+
         return null;
     }
 }

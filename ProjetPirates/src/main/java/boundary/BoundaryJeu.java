@@ -13,20 +13,25 @@ import java.util.ArrayList;
  * @author yannf
  */
 public class BoundaryJeu {
-    private ControleurLancerJeu controleurLancerJeu;
+    private ControleurNouvellePartie controleurLancerJeu;
     private ControleurPiocherCarte controleurPiocherCarte;
     private ControleurJouerCarte controleurJouerCarte;
+    private ControleurGetCarteInfo contoleurGetCarteInfo;
+    private ControleurGetPirateInfo controleurGetPirateInfo;
 
     /*private FrameJeu frameJeu;
     private Plateau plateau;*/
 
-    public BoundaryJeu(ControleurLancerJeu controleurLancerJeu, ControleurPiocherCarte controleurPiocherCarte,
-                       ControleurJouerCarte controleurJouerCarte) {
+    public BoundaryJeu(ControleurNouvellePartie controleurLancerJeu, ControleurPiocherCarte controleurPiocherCarte,
+                       ControleurJouerCarte controleurJouerCarte, ControleurGetCarteInfo contoleurGetCarteInfo,
+                       ControleurGetPirateInfo controleurGetPirateInfo) {
         /*this.frameJeu = frameJeu;
         this.plateau = frameJeu.getPlateau();*/ //Est-ce qu'il faut tous faire dans plateau ???
         this.controleurLancerJeu = controleurLancerJeu;
         this.controleurPiocherCarte = controleurPiocherCarte;
         this.controleurJouerCarte = controleurJouerCarte;
+        this.contoleurGetCarteInfo = contoleurGetCarteInfo;
+        this.controleurGetPirateInfo = controleurGetPirateInfo;
         //plateau.setBoundaryJeu(this);
     }
 
@@ -34,10 +39,11 @@ public class BoundaryJeu {
         controleurLancerJeu.lancerJeu();
     }
 
-    public ArrayList<String[]> piocherCarte() {
+    public ArrayList<String> piocherCarte() {
         return controleurPiocherCarte.piocherCarte();
         //TODO Ajouter les cartes à la main
-        //Les cartes sont de la forme ["nom", ICategorieCarte type, "Description", BasicCategorie zoneDepot]
+        //Les cartes sont de la forme nom et il faut get les attribut
+        // NON VALIDE -> Les cartes sont de la forme ["nom", ICategorieCarte type, "Description", BasicCategorie zoneDepot]
         //plateau.ajouterCartes(1 ou 2, cartes)
     }
 

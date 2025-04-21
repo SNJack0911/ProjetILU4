@@ -8,19 +8,19 @@ import java.util.TreeMap;
 public class Jeu {
     private Pirate joueur1;
     private Pirate joueur2;
+    private JeuDeCarte jeuDeCarte;
     private Pioche pioche;
     private int tour;
     private boolean nuit=false;
     private Map<Carte, Integer> carteNonJouer = new TreeMap<Carte, Integer>();
 
-    public Jeu(){
-        initJeu();
-    }
+    public Jeu(){ initJeu();}
 
     public void initJeu() {
         joueur1 = new Pirate("J1");
         joueur2 = new Pirate("J2");
-        pioche = new Pioche(new JeuDeCarte().remplirPioche());
+        jeuDeCarte = new JeuDeCarte();
+        pioche = new Pioche(jeuDeCarte.remplirPioche());
         tour = 0;
         for(int i =0; i<4; i++){
             joueur1.addCarte(pioche.piocher());
@@ -59,7 +59,7 @@ public class Jeu {
         ArrayList<Carte> cartesLst = new ArrayList<>();
         while (joueur.getNbCarte()<5){
             if (pioche.estVide()){
-                pioche = new Pioche(new JeuDeCarte().remplirPioche());
+                pioche = new Pioche(jeuDeCarte.remplirPioche());
             }
             carte = pioche.piocher();
             joueur.addCarte(carte);
@@ -104,5 +104,23 @@ public class Jeu {
 
     public void setNuit(boolean nuit) {
         this.nuit = nuit;
+    }
+
+    public JeuDeCarte getJeuDeCarte() {
+        return jeuDeCarte;
+    }
+
+    public Pirate getPirate(int numero) {
+        if(numero == 0){
+            return joueur1;
+        } else if (numero == 1){
+            return joueur2;
+        } else{
+            return null;
+        }
+    }
+
+    public int getTour() {
+        return tour;
     }
 }

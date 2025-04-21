@@ -6,9 +6,7 @@ package projetpirates;
 
 import boundary.BoundaryJeu;
 import boundary.FrameJeu;
-import controleur.ControleurJouerCarte;
-import controleur.ControleurLancerJeu;
-import controleur.ControleurPiocherCarte;
+import controleur.*;
 import noyau.Jeu;
 
 /**
@@ -19,10 +17,11 @@ public class ProjetPirates {
 
     public static void main(String[] args) {
         Jeu jeu = new Jeu();
-        ControleurLancerJeu controleurLancerJeu = new ControleurLancerJeu(jeu);
+        ControleurNouvellePartie controleurLancerJeu = new ControleurNouvellePartie(jeu);
         ControleurPiocherCarte controleurPiocherCarte = new ControleurPiocherCarte(jeu);
         ControleurJouerCarte controleurJouerCarte = new ControleurJouerCarte(jeu);
-
+        ControleurGetCarteInfo controleurGetCarteInfo = new ControleurGetCarteInfo(jeu);
+        ControleurGetPirateInfo controleurGetPirateInfo = new ControleurGetPirateInfo(jeu);
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -50,7 +49,8 @@ public class ProjetPirates {
 
 
         BoundaryJeu boundaryJeu = new BoundaryJeu(controleurLancerJeu, controleurPiocherCarte
-                , controleurJouerCarte);
+                , controleurJouerCarte, controleurGetCarteInfo,
+                controleurGetPirateInfo);
 
         FrameJeu frameJeu = new FrameJeu(boundaryJeu, false);
 
