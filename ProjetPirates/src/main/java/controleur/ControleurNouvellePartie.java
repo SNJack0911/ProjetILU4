@@ -6,21 +6,22 @@ package controleur;
 
 import noyau.Jeu;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author yannf
  */
-public class ControleurJouerCarte {
+//PAS NECESSAIRE
+    //TODO Transformer en creer nouvelle partie
+public class ControleurNouvellePartie {
     private Jeu jeu;
 
-    public ControleurJouerCarte(Jeu jeu) {
+    public ControleurNouvellePartie(Jeu jeu) {
         this.jeu = jeu;
     }
 
-    public List<String> jouerCarte(String nomCarte) {
-        return jeu.jouerCarte(nomCarte);
+    public void lancerJeu() {
+        jeu.initJeu();
     }
+
+    public int getTour(){return jeu.getTour();}
 }

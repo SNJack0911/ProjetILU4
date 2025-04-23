@@ -57,4 +57,40 @@ public class JeuDeCarte {
         }
         return cartes;
     }
+
+    private Carte getCarte(String nom){
+        for (Configuration c : config){
+            if (c.getCarte().getNom().equals(nom)){
+                return c.getCarte();
+            }
+        }
+        return null;
+    }
+
+    public String getDescription(String nom){
+        Carte carte = getCarte(nom);
+        if (carte != null){
+            return carte.getDescription();
+        }else {
+            return "Card not found";
+        }
+    }
+
+    public ICategorieCarte getCategorie(String nom){
+        Carte carte = getCarte(nom);
+        if (carte != null){
+            return carte.getCategorie();
+        }else {
+            return null;
+        }
+    }
+
+    public BasicCategorie getZoneDepot(String nom){
+        Carte carte = getCarte(nom);
+        if (carte != null){
+            return carte.getZoneDepot();
+        }else {
+            return null;
+        }
+    }
 }

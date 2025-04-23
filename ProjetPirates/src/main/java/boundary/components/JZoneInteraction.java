@@ -12,7 +12,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import noyau.CategorieCarte;
+
+import noyau.BasicCategorie;
+import noyau.ICategorieCarte;
 
 
 /**
@@ -31,13 +33,13 @@ public class JZoneInteraction extends javax.swing.JPanel {
         //setBackground(Color.PINK);
         setBounds(500,200,150,150);
         jZoneDepot1.setName("Dep1");
-        jZoneDepot1.createZoneDepot("Pirate1", CategorieCarte.POPULARITE);
+        jZoneDepot1.createZoneDepot("Pirate1", BasicCategorie.POPULARITE);
         jZoneDepot2.setName("Dep2");
-        jZoneDepot1.createZoneDepot("Pirate1", CategorieCarte.ATTAQUE);
+        jZoneDepot1.createZoneDepot("Pirate1", BasicCategorie.ATTAQUE);
         jZoneDepot3.setName("Dep3");
-        jZoneDepot1.createZoneDepot("Pirate2", CategorieCarte.ATTAQUE);
+        jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.ATTAQUE);
         jZoneDepot4.setName("Dep4");
-        jZoneDepot1.createZoneDepot("Pirate2", CategorieCarte.POPULARITE);
+        jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.POPULARITE);
     }
 
     @Override
@@ -192,4 +194,16 @@ public class JZoneInteraction extends javax.swing.JPanel {
     private boundary.components.JZoneDepot jZoneDepot3;
     private boundary.components.JZoneDepot jZoneDepot4;
     // End of variables declaration//GEN-END:variables
+
+    public void initZoneDepot(String nomPirate1, String nomPirate2) {
+        jZoneDepot1.createZoneDepot(nomPirate1, BasicCategorie.POPULARITE);
+        jZoneDepot2.createZoneDepot(nomPirate1, BasicCategorie.ATTAQUE);
+        jZoneDepot3.createZoneDepot(nomPirate2, BasicCategorie.ATTAQUE);
+        jZoneDepot4.createZoneDepot(nomPirate2, BasicCategorie.POPULARITE);
+        
+        System.out.println(" Zone  1 : " + jZoneDepot1.toString() + "\n");
+        System.out.println(" Zone  2 : " + jZoneDepot2.toString() + "\n");
+        System.out.println(" Zone  3 : " + jZoneDepot3.toString() + "\n");
+        System.out.println(" Zone  4 : " + jZoneDepot4.toString() + "\n");
+    }
 }

@@ -8,7 +8,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
-import noyau.CategorieCarte;
+
+import noyau.BasicCategorie;
+import noyau.ICategorieCarte;
 
 /**
  *
@@ -24,19 +26,22 @@ public class JMainJoueur extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void ajouterCarte(String nomCarte){
-        JCarte carte = createCarte(nomCarte);
+    public void ajouterCarte(String nomCarte, ICategorieCarte type, String description, BasicCategorie categorie){
+        //System.out.println("JMainJoueur ajouterCarte , nomCarte = " + nomCarte + "\n");
+        JCarte carte = createCarte(nomCarte, type, description, categorie);
         ajouterJCarte(carte);
     }
     
-    private JCarte createCarte(String nomCarte) {
+    private JCarte createCarte(String nomCarte, ICategorieCarte type, String description, BasicCategorie zoneDepot) {
         
         JCarte newCarte = new boundary.components.JCarte();
         newCarte.setMinimumSize(new java.awt.Dimension(84, 117));
         newCarte.setPreferredSize(new java.awt.Dimension(84, 117));
-        newCarte.ajouterAttribut(nomCarte, CategorieCarte.POPULARITE, "", this);//Ajout Enum
-        //newCarte.setImage("Card1Front" + nomCarte + ".png");
-
+        //System.out.println("JMainJoueur createCarte , nomCarte = " + nomCarte + "\n");
+        newCarte.ajouterAttribut(nomCarte, type, description,
+                zoneDepot, this);
+        //newCarte.setImage("Card1Front" + newCarte.getCategorie().toString() + ".png");
+        //System.out.println("JMainJoueur createCarte , nomCarte = " + newCarte.getNomCarte() + "\n");
         javax.swing.GroupLayout newCarteLayout = new javax.swing.GroupLayout(newCarte);
         newCarte.setLayout(newCarteLayout);
         newCarteLayout.setHorizontalGroup(

@@ -12,28 +12,40 @@ import boundary.components.JZoneInteraction;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import noyau.BasicCategorie;
+import noyau.GestionnaireEffetFumee;
 
 /**
  *
  * @author yannf
  */
 public class Plateau extends javax.swing.JPanel {
+    private BoundaryJeu boundaryJeu;
     private JZoneInteraction zoneInteraction = null;
     private JCarte carte;
     private GestionnaireCartes gestionnaire = new GestionnaireCartes();
+    private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
     
+    private String nomPirate1;
+    private String nomPirate2;
     
     /**
      * Creates new form Plateau
      */
     public Plateau() {
         initComponents();
+        jLayeredPane1.setLayer(plateauBackground, 2);
+        jLayeredPane1.setLayer(panelDragCarte, 0);
+       
+        
+        labelGagnant.setVisible(true);
+        labelGagnant.setEnabled(true);
         /*depotAttP1.setName("dropZone1");
         depotAttP2.setName("dropZone2");
         depotPopP1.setName("dropZone3");
         depotPopP2.setName("dropZone4");
         ZoneInteractionCentral.setName("dropZoneCenter");
-/        zoneInteraction = zoneInteractionJ2;
+        zoneInteraction = zoneInteractionJ2;
         carte = jCarte1;
         jCarte1.changeCardFace();
         gestionnaire.ajouterCarte(carte);
@@ -43,7 +55,25 @@ public class Plateau extends javax.swing.JPanel {
         gestionnaire.ajouterZone(zoneInteractionJ2);*/
         setNbViesRestantes(1, 4);
     }
-
+    /* CECI SERA UTILE POUR DEPLACER LA FONCTIONNALITE DES FUMEE POUR 
+    QUE CE SOIT LE PLATEAU QUI L4AFFICHE OU LE GESTIONNAIRE PEUT IMPORTE
+    IL FAUT PAS QUE CE SOIT LA CARTE.
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (gestionnairefumee != null) {
+            // Dessine d’abord la fumée
+            gestionnairefumee.dessinerEffets((Graphics2D) g);
+        }
+    }
+    
+    public GestionnaireEffetFumee getGestionnaireEffetsFumee() {
+        return gestionnairefumee;
+    }
+    */
+    public GestionnaireCartes getGestionnaire() {
+        return gestionnaire;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +86,7 @@ public class Plateau extends javax.swing.JPanel {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         panelDragCarte = new javax.swing.JPanel();
+        labelGagnant = new javax.swing.JLabel();
         plateauBackground = new boundary.components.JPanelWithBackground();
         iconP1 = new boundary.components.JPanelWithBackground();
         iconP2 = new boundary.components.JPanelWithBackground();
@@ -66,7 +97,7 @@ public class Plateau extends javax.swing.JPanel {
         jPointDeVie9 = new boundary.components.JPointDeVie();
         jPointDeVie0 = new boundary.components.JPointDeVie();
         jaugePopulariteP1 = new boundary.components.JPanelWithBackground();
-        jaugePopulariteP1.setImage("Icon12.png");
+        jaugePopulariteP1.setImage("PointPopularite0.png");
         infoPanelP2 = new javax.swing.JPanel();
         jPointDeVie = new boundary.components.JPointDeVie();
         jPointDeVie2 = new boundary.components.JPointDeVie();
@@ -74,17 +105,39 @@ public class Plateau extends javax.swing.JPanel {
         jPointDeVie4 = new boundary.components.JPointDeVie();
         jPointDeVie5 = new boundary.components.JPointDeVie();
         jaugePopulariteP2 = new boundary.components.JPanelWithBackground();
-        jaugePopulariteP1.setImage("Icon12.png");
         jPioche1 = new boundary.components.JPioche();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jMainJoueur2 = new boundary.components.JMainJoueur();
         jZoneInteraction1 = new boundary.components.JZoneInteraction();
 
+        panelDragCarte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelDragCarte.setName("TranparentLayer"); // NOI18N
         panelDragCarte.setOpaque(false);
         panelDragCarte.setPreferredSize(new java.awt.Dimension(720, 480));
         //panelDragCarte.setName("TranparentLayer");
-        panelDragCarte.setLayout(null);
+
+        labelGagnant.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        labelGagnant.setText("Gagnant");
+        labelGagnant.setAlignmentY(0.0F);
+        labelGagnant.setDoubleBuffered(true);
+        labelGagnant.setOpaque(true);
+
+        javax.swing.GroupLayout panelDragCarteLayout = new javax.swing.GroupLayout(panelDragCarte);
+        panelDragCarte.setLayout(panelDragCarteLayout);
+        panelDragCarteLayout.setHorizontalGroup(
+            panelDragCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDragCarteLayout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(labelGagnant, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(270, 270, 270))
+        );
+        panelDragCarteLayout.setVerticalGroup(
+            panelDragCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDragCarteLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(labelGagnant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, Short.MAX_VALUE)
+                .addGap(260, 260, 260))
+        );
 
         plateauBackground.setMaximumSize(new java.awt.Dimension(1920, 1080));
         plateauBackground.setMinimumSize(new java.awt.Dimension(720, 480));
@@ -352,7 +405,7 @@ public class Plateau extends javax.swing.JPanel {
 
         jaugePopulariteP2.setOpaque(false);
         jaugePopulariteP2.setPreferredSize(new java.awt.Dimension(119, 119));
-        jaugePopulariteP2.setImage("Icon12.png");
+        jaugePopulariteP2.setImage("PointPopularite1.png");
 
         javax.swing.GroupLayout jaugePopulariteP2Layout = new javax.swing.GroupLayout(jaugePopulariteP2);
         jaugePopulariteP2.setLayout(jaugePopulariteP2Layout);
@@ -480,20 +533,24 @@ public class Plateau extends javax.swing.JPanel {
 
     private void jPioche1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPioche1MouseClicked
         if(!jPioche1.isEnabled()) {return;}
-        
+        int tour = boundaryJeu.getTour();
         
         //get carte from noyeau
-        List<String> listNomCarte = new ArrayList<>(List.of("Popularity", "Attack"));
-        int tour = 0; //Tour du joueur 1 nomalement faire un getTour
+        List<String> listNomCarte = boundaryJeu.piocherCarte();
+
     
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
-                jMainJoueur1.ajouterCarte(nomCarte);
+                //System.out.println("Nom de carte J1 = " + nomCarte + "\n");
+                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                        boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur1.repaint();
             }
         } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
-                jMainJoueur2.ajouterCarte(nomCarte);
+                //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
+                jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                        boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur2.repaint();
             }
         }
@@ -502,9 +559,7 @@ public class Plateau extends javax.swing.JPanel {
 
             
             
-    public GestionnaireCartes getGestionnaire() {
-        return gestionnaire;
-    }
+    
 
 /*    public void verifierZoneInteraction(Rectangle boundsCarte) {
         zoneInteractionJ2.verifierCarte(carte);
@@ -531,12 +586,45 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     public String getCurrentPirate(){
-        int tour = 0; //Tour du joueur 1 nomalement faire un getTour
+        int tour = boundaryJeu.getTour();
         if(tour%2 == 0){
             return "Pirate1";
         } else {
             return "Pirate2";
         }
+    }
+    
+    public void setBoundaryJeu(BoundaryJeu boundaryJeu){
+        if (this.boundaryJeu == null){
+            this.boundaryJeu = boundaryJeu;
+            this.nomPirate1 = boundaryJeu.getPirateName(0);
+            this.nomPirate2 = boundaryJeu.getPirateName(1);
+            jZoneInteraction1.initZoneDepot(nomPirate1, nomPirate2);
+        }
+    }
+    
+    public BoundaryJeu getBoundaryJeu(){
+        return boundaryJeu;
+    }
+    
+    public void jouerTour(JCarte carte){
+        List<String> resultat = boundaryJeu.jouerCarte(carte);
+        //TODO Update les infos des joueurs
+
+        String lastElement = resultat.get(resultat.size()-1);
+        if (lastElement.equals("Pas de gagnant")){
+            return;
+        }else {
+            afficherGagnant(lastElement);
+        }
+    }
+    
+    //Not Working
+    public void afficherGagnant(String pirateGagant){
+        labelGagnant.setText(pirateGagant + "a gagné!!!!");
+        labelGagnant.setVisible(true);
+        labelGagnant.setEnabled(true);
+        this.repaint();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -561,7 +649,9 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JZoneInteraction jZoneInteraction1;
     private boundary.components.JPanelWithBackground jaugePopulariteP1;
     private boundary.components.JPanelWithBackground jaugePopulariteP2;
+    private javax.swing.JLabel labelGagnant;
     private javax.swing.JPanel panelDragCarte;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
+    
 }

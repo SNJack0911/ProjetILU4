@@ -40,42 +40,72 @@ public class GestionnaireEffetFumee {
         if (images.isEmpty()) return null;
         return images.get(new Random().nextInt(images.size()));
     }
+
+private final List<SmokeEffect> fumeeList = new ArrayList<>();
+/*
+public void dessinerEffets(Graphics2D g2) {
+    for (SmokeEffect f : fumeeList) {
+        f.dessiner(g2);
+    }
+
+    // Nettoyage des fumées terminées
+    fumeeList.removeIf(SmokeEffect::estTerminee);
+}
+*/
+public void ajouterFumee(int x, int y) {
+    Image img = getRandomImage();
+    if (img != null) {
+        SmokeEffect f = new SmokeEffect(img, x - 40, y - 40); // Décalage pour centrer sous la carte
+        f.setSize(100); // ou 80, selon le rendu
+        fumeeList.add(f);
+    }
+}
+
+
 }
 /*
 public class GestionnaireEffetFumee {
+    private final List<Image> images = new ArrayList<>();
+    private final List<SmokeEffect> fumees = new ArrayList<>();
 
-    private List<SmokeEffect> effets = new ArrayList<>();
-    private Timer timer;
-    private final Image[] images;
-
-    public GestionnaireEffetFumee(JPanel panel) {
-        // Charge les images
-        images = new Image[10];
-        for (int i = 0; i < images.length; i++) {
-            try {
-                images[i] = ImageIO.read(new File("src/main/ressources/blackSmoke" + String.format("%02d", i) + ".png"));
-            } catch (IOException e) {
-                System.err.println("Erreur chargement image fumée : " + i);
+    public GestionnaireEffetFumee() {
+        try {
+            for (int i = 0; i <= 3; i++) {
+                Image img = ImageIO.read(new File("src/main/ressources/blackSmoke" + String.format("%02d", i) + ".png"));
+                images.add(img);
             }
+        } catch (IOException e) {
+            System.err.println("Erreur chargement fumée : " + e.getMessage());
         }
-
-        // Lance le timer pour nettoyer les smokes
-        timer = new Timer(100, e -> {
-            effets.removeIf(SmokeEffect::isExpired);
-            panel.repaint(); // Pour que le plateau se redessine avec ou sans smokes
-        });
-        timer.start();
     }
 
     public void ajouterFumee(int x, int y) {
-        int index = new Random().nextInt(images.length);
-        effets.add(new SmokeEffect(images[index], x, y));
-    }
-
-    public void dessinerEffets(Graphics2D g) {
-        for (SmokeEffect effet : effets) {
-            g.drawImage(effet.image, effet.x, effet.y, null);
+        Image img = getRandomImage();
+        if (img != null) {
+            SmokeEffect f = new SmokeEffect(img, x - 40, y - 40);
+            f.setSize(100); // Plus gros effet
+            fumees.add(f);
         }
     }
+
+    public void dessinerEffets(Graphics2D g2) {
+        Iterator<SmokeEffect> it = fumees.iterator();
+        while (it.hasNext()) {
+            SmokeEffect f = it.next();
+            f.diminuerAlpha(0.05f);
+            if (f.estTerminee()) {
+                it.remove();
+            } else {
+                f.dessiner(g2);
+            }
+        }
+    }
+
+    public Image getRandomImage() {
+        if (images.isEmpty()) return null;
+        return images.get(new Random().nextInt(images.size()));
+    }
 }
+
+
 */

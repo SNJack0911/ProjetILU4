@@ -4,7 +4,10 @@
  */
 package controleur;
 
+import noyau.Carte;
 import noyau.Jeu;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -12,4 +15,22 @@ import noyau.Jeu;
  */
 public class ControleurPiocherCarte {
     private Jeu jeu;
+
+    public ControleurPiocherCarte(Jeu jeu) {
+        this.jeu = jeu;
+    }
+
+    private ArrayList<String> listeCarteToString(ArrayList<Carte> lstCarte){
+        ArrayList<String> lstCarteString = new ArrayList<String>();
+        for(Carte carte : lstCarte){
+            String[] info = new String[5];
+            lstCarteString.add(carte.getNom());
+        }
+        return lstCarteString;
+    }
+
+    public ArrayList<String> piocherCarte() {
+        ArrayList<Carte> cartes = jeu.jouerPioche();
+        return listeCarteToString(cartes);
+    }
 }

@@ -9,7 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import noyau.CategorieCarte;
+import noyau.BasicCategorie;
 
 /**
  *
@@ -18,7 +18,8 @@ import noyau.CategorieCarte;
 public class JZoneDepot extends javax.swing.JPanel {
     private Image carte;
     private String nomPirate;
-    private CategorieCarte type;
+    private BasicCategorie type;
+
     
     /**
      * Creates new form JZoneDepot
@@ -27,12 +28,13 @@ public class JZoneDepot extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void createZoneDepot(String nomPirate, CategorieCarte type){
+    public void createZoneDepot(String nomPirate, BasicCategorie type){
         this.nomPirate = nomPirate;
         this.type = type;
     }
     
     public boolean ajouterCarte (JCarte carte, String pirate){
+        if (!nomPirate.equals(pirate) && carte.getCategorie() != type){ return false;}
         this.carte = carte.getImage();
         return true;
     }
@@ -51,6 +53,11 @@ public class JZoneDepot extends javax.swing.JPanel {
         }
         
         g2d.dispose();
+    }
+    
+    @Override
+    public String toString(){
+        return nomPirate + ", " + type.toString();
     }
     
     /**

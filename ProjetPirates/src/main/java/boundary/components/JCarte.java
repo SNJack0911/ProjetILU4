@@ -6,29 +6,26 @@ package boundary.components;
 
 import boundary.Plateau;
 import boundary.components.JCartePopUp;
-import java.awt.AlphaComposite;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.RenderingHints;
+
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import noyau.CategorieCarte;
+//import noyau.CategorieCarte;
+import noyau.BasicCategorie;
+import noyau.GestionnaireEffetFumee;
+import noyau.ICategorieCarte;
+
 
 /**
  *
@@ -44,100 +41,87 @@ public class JCarte extends javax.swing.JPanel {
     private JMainJoueur mainOrigine; 
     
     private String nom;
-    private CategorieCarte type;
+    private ICategorieCarte type;
     private String description;
+    private BasicCategorie zoneDepot;
     
-    private final List<SmokeEffect> fumées = new ArrayList<>();
+    private final List<SmokeEffect> fumees = new ArrayList<>();
     private final GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
     private Timer timerFumee;
-    private final List<SmokeEffect> fumees = new ArrayList<>();
-    
-    public void lancerFumee() {
-        if (timerFumee != null && timerFumee.isRunning()) return;
-        timerFumee = new Timer(150, e -> {
-            if (getParent() == null) return;
+    private final Random rand = new Random();
 
-            JPanel plateauPanel = (JPanel) mainOrigine.getParent(); // utilise le même système que ton release
-            Point carteSurPlateau = SwingUtilities.convertPoint(this, getWidth()/2, getHeight()/2, plateauPanel);
-
-            Image img = effets.getRandomImage();
-            if (img != null) {
-                fumees.add(new SmokeEffect(img, carteSurPlateau.x, carteSurPlateau.y));
-            }
-
-            for (SmokeEffect f : fumees) {
-                f.diminuerAlpha(0.05f);
-            }
-
-            fumees.removeIf(SmokeEffect::estTerminee);
-            repaint();
-        });
-        timerFumee.start();
-    }
     
     /**
      * Creates new form JCarte
      */
     public JCarte() {
         initComponents();
-        this.setDoubleBuffered(true);
         double w = getWidth();
         double h = w*1.4;
         setSize((int)w, (int)h);
     }
 
-    public void ajouterAttribut(String nom, CategorieCarte type, String description, JMainJoueur mainOrigine){
+    public void ajouterAttribut(String nom, ICategorieCarte type, String description, BasicCategorie zoneDepot, JMainJoueur mainOrigine){
         this.nom = nom;
         this.type = type;
         this.description = description;
+        this.zoneDepot = zoneDepot;
         this.mainOrigine = mainOrigine;
         setImage("Card1Front" + type.toString() + ".png");
 
     }
     
-    public void lancerFumée() {
-        if (timerFumee != null && timerFumee.isRunning()) return;
+    public void lancerFumee() {
+    if (timerFumee != null && timerFumee.isRunning()) return;
 
-        timerFumee = new Timer(150, e -> {
-            Image img = effets.getRandomImage();
-            if (img != null) {
-                Point centre = getCentreCarte();
-                fumées.add(new SmokeEffect(img, centre.x, centre.y));
-            }
+    timerFumee = new Timer(150, e -> {
+        if (getParent() == null) return;
 
-            // Diminue la transparence
-            for (SmokeEffect f : fumées) {
-                f.diminuerAlpha(0.05f);
-            }
+        JPanel plateauPanel = (JPanel) mainOrigine.getParent(); // utilise le même système que ton release
+        Point carteSurPlateau = SwingUtilities.convertPoint(this, getWidth()/2, getHeight()/2, plateauPanel);
 
-            // Nettoie les fumées finies
-            fumées.removeIf(SmokeEffect::estTerminee);
+        Image img = effets.getRandomImage();
+        if (img != null) {
+            fumees.add(new SmokeEffect(img, carteSurPlateau.x, carteSurPlateau.y));
+        }
 
-            repaint();
-        });
-        timerFumee.start();
-    }
+        for (SmokeEffect f : fumees) {
+            f.diminuerAlpha(0.05f);
+        }
+
+        fumees.removeIf(SmokeEffect::estTerminee);
+        repaint();
+    });
+    timerFumee.start();
+}
+
+
     
     @Override 
     protected void paintComponent(Graphics g){
+        if (nom!=null){
+            jLabel1.setText(nom);
+            jTextArea1.setText(description);
+        }
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        
+       
         if(isFront && frontCard != null){
             g2d.drawImage(frontCard, 0,0, getWidth(), getHeight(), this);
         }else if (backCard != null){
             g2d.drawImage(backCard, 0,0, getWidth(), getHeight(), this);
         }
         
-
-	// Dessin des fumées
+        Graphics2D g2 = (Graphics2D) g.create();
         for (SmokeEffect smoke : fumees) {
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, smoke.alpha));
-            g2d.drawImage(smoke.image, smoke.x - getX(), smoke.y - getY(), 40, 40, this); // taille ajustable
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, smoke.alpha));
+            g2.drawImage(smoke.image, smoke.x - getX(), smoke.y - getY(), 40, 40, this); // taille ajustable
         }
-        g2d.dispose();
+
+        g2.dispose();
         
+        g2d.dispose();
     }
     
     //Projet pour faire les effet de particule    
@@ -175,12 +159,15 @@ public class JCarte extends javax.swing.JPanel {
             String userDirectory = new File("").getAbsolutePath();
             System.out.print("Card not found : " + userDirectory);
         }
-        this.nom = cardName;
+        //this.nom = cardName;
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setOpaque(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -200,77 +187,111 @@ public class JCarte extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText("Titre");
+        jLabel1.setDoubleBuffered(true);
+        jLabel1.setOpaque(true);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Description");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 135, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        //System.out.println("MousePressed");      
+        //System.out.println("MousePressed");
+        /*this.origine = evt.getPoint();
+	    this.isSelected = true;
+        JPanel plateauPanel = (JPanel) mainOrigine.getParent();
+        plateauPanel.setComponentZOrder(this, 0);
+
+        repaint();*/
+        
         if (evt.getClickCount()>1){return;}
         
         this.origine = evt.getPoint();
-	this.isSelected = true;
+	    this.isSelected = true;
         
         JPanel plateauPanel = (JPanel) mainOrigine.getParent();
         JLayeredPane layer = JLayeredPane.getLayeredPaneAbove(plateauPanel);
+        JPanel dragPanel = (JPanel) layer.getComponentsInLayer(0)[0];
+        // Step 1: Convert location before removing
+        Point cardLoc = SwingUtilities.convertPoint(this.getParent(), this.getLocation(), dragPanel);
 
-        Component[] components = layer.getComponents();
+
+        mainOrigine.remove(this);
+        dragPanel.add(this);
+        this.setBounds(cardLoc.x, cardLoc.y, this.getWidth(), this.getHeight());
+        layer.setLayer(this, JLayeredPane.DRAG_LAYER);
+
+        /*
+        // Step 2: Remove from current parent first
+        Container oldParent = this.getParent();
+        if (oldParent != null) {
+            oldParent.remove(this);
+            //oldParent.revalidate();
+            //oldParent.repaint();
+        }
+        // Step 3: Add to transparent panel
+        this.setLocation(cardLoc);
+        //this.setSize(this.getPreferredSize());
+        this.setOpaque(true);
+        panel.add(this);
+        panel.setComponentZOrder(this, 0);
+        //panel.revalidate();
+        //panel.repaint();
+        /*
         for (Component c : components) {
             if (c instanceof JPanel panel && "TranparentLayer".equals(panel.getName())) {
-                
-                
-                // Step 1: Convert location before removing
-                Point cardLoc = SwingUtilities.convertPoint(this.getParent(), this.getLocation(), panel);
-
-                // Step 2: Remove from current parent first
-                Container oldParent = this.getParent();
-                if (oldParent != null) {
-                    oldParent.remove(this);
-                    oldParent.revalidate();
-                    oldParent.repaint();
-                }
-
-                // Step 3: Add to transparent panel
-                this.setLocation(cardLoc);
-                this.setSize(this.getPreferredSize());
-                this.setOpaque(true);
-                panel.add(this);
-                panel.setComponentZOrder(this, 0);
-                panel.revalidate();
-                panel.repaint();
-                
             }
-        }
-
-        layer.repaint();
-        
+        }/
+        layer.revalidate();
+        layer.repaint();*/
         //SwingUtilities.getWindowAncestor(this).setComponentZOrder(this, 0);
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         origine = null;
-	this.isSelected = false;
+	    this.isSelected = false;
         
         JPanel plateauPanel = (JPanel) mainOrigine.getParent();
         Point pointInPlateau = SwingUtilities.convertPoint(this, evt.getPoint(), plateauPanel);
 
         Component c = plateauPanel.getComponentAt(pointInPlateau);
+        //System.out.println("C: " + c.getClass().getSimpleName());
         JLayeredPane layer = (JLayeredPane.getLayeredPaneAbove(plateauPanel));
-        Plateau p = (Plateau) layer.getParent();
+        Plateau plateau = (Plateau) layer.getParent();
         
 
         if (c instanceof JZoneInteraction dropZone) {
-            String pirate = p.getCurrentPirate();
+            String pirate = plateau.getCurrentPirate();
             boolean res = dropZone.ajouteCarte(this, pointInPlateau, plateauPanel, pirate);
             if(res){//dispose
+                plateau.jouerTour(this);
                 Container parent = this.getParent();
                 //System.out.println("Parent of card: " + parent.getClass().getSimpleName());
                 if (parent != null) {
@@ -282,13 +303,13 @@ public class JCarte extends javax.swing.JPanel {
             }  
         }
         System.out.println("Not dropped on a drop zone.");
-        //Retrun Carte to Main
+        //Return Carte to Main
         if (mainOrigine != null) {
             mainOrigine.ajouterJCarte(this);
+            layer.repaint();
         }
-      
         /*origine = null;
-	this.isSelected = false;
+	    this.isSelected = false;
         repaint();
         //Container root = SwingUtilities.getWindowAncestor(this);
         if (root instanceof Plateau plateau) {
@@ -321,36 +342,29 @@ public class JCarte extends javax.swing.JPanel {
     }//GEN-LAST:event_formMouseClicked
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        if (origine != null){
+        if (origine != null) {
+            	    // Ajoute une fumée sur le plateau
             Container parent = SwingUtilities.getAncestorOfClass(Plateau.class, this);
             if (parent instanceof Plateau plateau) {
                 Point global = SwingUtilities.convertPoint(this, getCentreCarte(), plateau);
                 effets.ajouterFumee(global.x, global.y); //plateau.getGestionnaireEffetsFumee().ajouterFumee(global.x, global.y);
                 }
-            lancerFumee(); 
-            Point mouseInScreen = evt.getLocationOnScreen();
-            JLayeredPane layeredPane = JLayeredPane.getLayeredPaneAbove(this);
-            SwingUtilities.convertPointFromScreen(mouseInScreen, layeredPane); // modifies in-place
-
-            this.setLocation(mouseInScreen.x - origine.x, mouseInScreen.y - origine.y);
-            //this.repaint();
-            /*int thisX = this.getLocation().x;
-            int thisY = this.getLocation().y;
-
+            lancerFumee();
+            // Move card
             int xMoved = evt.getX() - origine.x;
             int yMoved = evt.getY() - origine.y;
+            this.setLocation(this.getX() + xMoved, this.getY() + yMoved);
 
-            int X = thisX + xMoved;
-            int Y = thisY + yMoved;
-
-            this.setLocation(X, Y);
-            this.repaint();*/
-            // regle affichage des élements en dessous de la carte
-            /*for (Component comp : getParent().getComponents()) {
-                if (comp instanceof JCarte && comp != this) {
-                    comp.repaint(); // Force les autres cartes à se redessiner si touchées
+            // Repaint only nearby overlapping cards
+            Rectangle bounds = this.getBounds();
+            for (Component comp : getParent().getComponents()) {
+                if (comp instanceof JCarte && comp != this && comp.getBounds().intersects(bounds)) {
+                    comp.repaint();
                 }
-            }*/
+            }
+
+            // Minimal repaint
+            this.repaint();
         }
     }//GEN-LAST:event_formMouseDragged
 
@@ -362,10 +376,14 @@ public class JCarte extends javax.swing.JPanel {
         return frontCard;
     }
     
-    public CategorieCarte getType(){
+    public ICategorieCarte getType(){
         return type;
     }
 
+    public BasicCategorie getCategorie(){return zoneDepot;}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
