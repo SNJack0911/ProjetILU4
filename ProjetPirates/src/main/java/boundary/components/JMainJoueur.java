@@ -76,6 +76,11 @@ public class JMainJoueur extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();
     }
+    
+    public List<JCarte> getMainJoueur() {
+        return mainJoueur;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
