@@ -1,24 +1,18 @@
-package tests.noyau;
+package noyau;
 
-import noyau.*;
+import org.junit.jupiter.api.Test;
 import utils.CartesCSV;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
-public class TestCartes {
+import static org.junit.jupiter.api.Assertions.*;
 
-    public static void main(String[] args) {
-        testAttackEffet();
-        testPopEffet();
-        testDefenseEffet();
-        testCsvLoad();
-        System.out.println("Tous les tests terminés.");
-    }
+class CarteTest {
 
-    // Test CarteAttack
-    static void testAttackEffet() {
+    @Test
+    void testAttackEffet() {
         CarteAttack carte = new CarteAttack("Attaque Test", "Desc", 3, 6, -2, -4, false, false);
 
         Jeu jeu = new Jeu();
@@ -28,16 +22,16 @@ public class TestCartes {
 
         carte.appliquerEffet(joueur, adversaire, jeu);
 
-        assert joueur.getHP() == 6 : "HP joueur incorrect";
-        assert joueur.getPP() == 3 : "PP joueur incorrect";
-        assert adversaire.getPP() == -2 : "PP adversaire incorrect";
-        assert adversaire.getHP() == -4 : "HP adversaire incorrect";
+        assertEquals(5, joueur.getHP(), "HP joueur incorrect");
+        assertEquals(3, joueur.getPP(), "PP joueur incorrect");
+        assertEquals(0, adversaire.getPP(), "PP adversaire incorrect");
+        assertEquals(1, adversaire.getHP(), "HP adversaire incorrect");
 
         System.out.println("✔ attackEffet");
     }
 
-    // Test CartePopularite
-    static void testPopEffet() {
+    @Test
+    void testPopEffet() {
         CartePopularite carte = new CartePopularite("Fan Club", "desc", 1, 5, true);
 
         Jeu jeu = new Jeu();
@@ -45,45 +39,44 @@ public class TestCartes {
         Pirate joueur = new Pirate("Tom");
         Pirate adversaire = new Pirate("Jerry");
 
+        //Jouer Carte
         List<String> result = carte.appliquerEffet(joueur, adversaire, jeu);
 
-        assert joueur.getHP() >= 5 : "HP joueur incorrect";
-        assert joueur.getPP() >= 0 : "PP joueur devrait être >= 0";
-        assert !result.isEmpty() : "Il devrait y avoir des tirages";
+        assertEquals(5, joueur.getHP(), "HP joueur incorrect");
+        assertEquals(0, joueur.getPP(), "PP joueur incorrect");
+        assertFalse(result.isEmpty(), "Il devrait y avoir des tirages");
 
         System.out.println("✔ popEffet");
     }
 
-    // Test for CarteDefense
-    static void testDefenseEffet() {
-        CarteDefense carte = new CarteDefense("Bouclier", "def", 5, 2, true);
+    @Test
+    void testDefenseEffet() {
+        CarteDefense carte = new CarteDefense("Bouclier", "def", 1, 2, true);
 
         Jeu jeu = new Jeu();
         jeu.setNuit(false);
         Pirate joueur = new Pirate("Tom");
         Pirate adversaire = new Pirate("Jerry");
-
+        joueur.addHP(-2);
         carte.appliquerEffet(joueur, adversaire, jeu);
 
-        assert joueur.getHP() == 10 : "HP doublé car pas la nuit";
-        assert joueur.getPP() == 2 : "PP joueur incorrect";
-
+        assertEquals(5, joueur.getHP(), "HP doublé car pas la nuit");
+        assertEquals(2, joueur.getPP(), "PP joueur incorrect");
         System.out.println("✔ defenseEffet");
     }
 
-    // Test CSV
-    static void testCsvLoad() {
+    @Test
+    void testCsvLoad() {
         InputStream is = CartesCSV.class.getClassLoader().getResourceAsStream("cartes.csv"); // On charge le fichier CSV
         try{
             if (is == null) throw new FileNotFoundException("Fichier non trouvé !");
-                List<Carte> cartes = CartesCSV.lireCartes(is);
-            Carte c = cartes.get(0);
-            assert c.getNom().equals("Coup de Sabre") : "Nom incorrect";
+            List<Carte> cartes = CartesCSV.lireCartes(is);
+            Carte c = cartes.getFirst();
+            assertEquals("Coup de Sabre", c.getNom(), "Nom incorrect");
 
             System.out.println("✔ csvLoad");
         } catch (FileNotFoundException e) {
             System.err.println("Erreur de chargement du fichier : " + e.getMessage());
-            return;
         }
     }
 }

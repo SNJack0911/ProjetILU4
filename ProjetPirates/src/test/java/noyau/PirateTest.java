@@ -1,0 +1,92 @@
+package noyau;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class PirateTest {
+
+    @Test
+    void testInit(){
+        Pirate p = new Pirate("Pierre");
+        assertEquals(5, p.getHP());
+        assertEquals(0, p.getPP());
+        assertEquals("Pierre", p.getNom());
+        System.out.println("Init test passed");
+    }
+
+    @Test
+    void testHp(){
+        Pirate p = new Pirate("HpTester");
+        p.applyStats("HP", -3);//2
+        assertEquals(2, p.getHP(), "Incorrect HP value, minus 3");
+
+        p.applyStats("HP", 10); //5
+        assertEquals(5, p.getHP(), "Incorrect HP value, plus more than 5");
+
+        p.applyStats("HP", -10); //0
+        assertEquals(0, p.getHP(), "Incorrect HP value, minus more than 5");
+
+        System.out.println("testHP passed");
+    }
+
+    @Test
+    void testPP(){
+        Pirate p = new Pirate("PPTester");
+        p.applyStats("PP", 4);
+        assertEquals(4, p.getPP(), "Incorrect PP value, plus 4");
+
+        p.applyStats("PP", 10);
+        assertEquals(5, p.getPP(), "Incorrect PP value, plus more than 5");
+
+        p.applyStats("PP", -10);
+        assertEquals(0, p.getPP(), "Incorrect PP value, minus more than 5");
+    }
+
+    @Test
+    void testAddCarteMain(){
+        Pirate p = new Pirate("CardTester1");
+        Carte card = new CarteAttack("C1", "Carte Attaque", 1, 0, 0, -1, false, false);
+        p.addCarte(card);
+
+        assertEquals(1, p.getMain().size(), "Card not added properly to the Pirate's hand");
+        System.out.println("testAddCarte passed");
+    }
+
+    @Test
+    void testGetCarteMain(){
+        Pirate p = new Pirate("CardTester2");
+        Carte card = new CartePopularite("Popular", "Boost", 2, 1, false);
+        p.addCarte(card);
+        Carte found = p.getCarteMain("Popular");
+        assertNotNull(found,"No return carte main");
+        assertEquals(card, found, "Got an unexpected carte from getCarteMain()");
+        System.out.println("testGetCarteMain passed");
+    }
+
+    @Test
+    void testGetNbCarte(){
+        Pirate p = new Pirate("CardTester3");
+        p.addCarte(new CarteAttack("A", "Attack", 1, 1, 0, -1, false, false));
+        p.addCarte(new CarteDefense("D", "Defense", 2, 0, false));
+        assertEquals(2, p.getNbCarte(), "Incorrect NbCarte value");
+        System.out.println("testGetNbCarte passed");
+    }
+
+    @Test
+    void testSupprimerCarteMain(){
+        Pirate p = new Pirate("CardTester4");
+        Carte card = new CarteDefense("Defense", "Blockage", 2, 0, false);
+        p.addCarte(card);
+        assertEquals(1, p.getNbCarte(), "Card not added properly to the Pirate's hand");
+        p.supprimerCarteMain(card);
+        assertEquals(0, p.getNbCarte(), "Card not deleted properly from the Pirate's hand");
+
+        try{
+            p.supprimerCarteMain(card);
+        }catch(IllegalArgumentException e){
+            System.out.println("Expected exception caught: " + e.getMessage().trim());
+        }
+        System.out.println("testSupprimerCarteMain passed");
+    }
+}
