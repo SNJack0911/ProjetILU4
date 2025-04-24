@@ -52,7 +52,7 @@ public class JZoneDepot extends javax.swing.JPanel {
         
         if(carte != null){
             g2d.drawImage(carte, 0,0, getWidth(), getHeight(), this);
-        } else {
+        } else if (type!= null){
             
             //TODO ADD titre
             String title = type.toString() + "\n" + nomPirate;
@@ -62,10 +62,10 @@ public class JZoneDepot extends javax.swing.JPanel {
             int textWidth = fm.stringWidth(title);
             int textHeight = fm.getHeight();
             
-            
+        }    
             g2d.setColor(Color.red);
             g2d.drawRect(0, 0, getWidth(), getHeight());
-        }
+        
         
         g2d.dispose();
     }

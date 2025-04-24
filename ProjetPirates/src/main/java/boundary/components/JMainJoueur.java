@@ -18,6 +18,7 @@ import noyau.ICategorieCarte;
  */
 public class JMainJoueur extends javax.swing.JPanel {
     private List<JCarte> mainJoueur = new ArrayList<>();
+    private int idPirate;
     
     /**
      * Creates new form JMainJoueur
@@ -79,6 +80,18 @@ public class JMainJoueur extends javax.swing.JPanel {
     
     public List<JCarte> getMainJoueur() {
         return mainJoueur;
+    }
+    
+    public void setIdPirate (int idPirate){
+        this.idPirate = idPirate;
+    }
+    
+    @Override
+    public void setEnabled(boolean value){
+        super.setEnabled(value);
+        for(JCarte carte : mainJoueur){
+            carte.setEnabled(value);
+        }
     }
     
     /**

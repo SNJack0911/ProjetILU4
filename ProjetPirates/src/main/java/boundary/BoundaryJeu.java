@@ -58,6 +58,10 @@ public class BoundaryJeu {
         return boundaryGetPirateInfo.getPiratePp(pirateID);
     }
 
+    public ArrayList<String> getPirateMain(int pirateID) {
+        return boundaryGetPirateInfo.getPirateMain(pirateID);
+    }
+
     public List<String> jouerCarte(JCarte carte) {
         return boundaryJouerCarte.jouerCarte(carte);
     }

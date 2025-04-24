@@ -20,7 +20,7 @@ public class ControleurPiocherCarte {
         this.jeu = jeu;
     }
 
-    private ArrayList<String> listeCarteToString(ArrayList<Carte> lstCarte){
+    public static ArrayList<String> listeCarteToString(ArrayList<Carte> lstCarte){
         ArrayList<String> lstCarteString = new ArrayList<String>();
         for(Carte carte : lstCarte){
             String[] info = new String[5];

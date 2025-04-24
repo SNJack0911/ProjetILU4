@@ -2,6 +2,8 @@ package boundary;
 
 import controleur.ControleurGetPirateInfo;
 
+import java.util.ArrayList;
+
 public class BoundaryGetPirateInfo {
     private ControleurGetPirateInfo controleurGetPirateInfo;
 
@@ -22,6 +24,10 @@ public class BoundaryGetPirateInfo {
     public int getPiratePp(int pirateID) {
         //TODO traiter ID faux
         return controleurGetPirateInfo.getPiratePp(pirateID);
+    }
+
+    public ArrayList<String> getPirateMain(int pirateID) {
+        return controleurGetPirateInfo.getPirateMain(pirateID);
     }
 
 }

@@ -5,6 +5,7 @@
 package boundary;
 
 import boundary.components.JCarte;
+import boundary.components.JMainJoueur;
 import boundary.components.JZoneInteraction;
 import java.util.List;
 import noyau.GestionnaireCartes;
@@ -57,7 +58,7 @@ public class Plateau extends javax.swing.JPanel {
 
         iconP1.setBackground(new java.awt.Color(255, 255, 204));
         iconP1.setPreferredSize(new java.awt.Dimension(130, 130));
-        iconP1.setImage("IconJ1.png");
+        iconP1.setImage("IconP1.png");
 
         javax.swing.GroupLayout iconP1Layout = new javax.swing.GroupLayout(iconP1);
         iconP1.setLayout(iconP1Layout);
@@ -74,7 +75,7 @@ public class Plateau extends javax.swing.JPanel {
 
         iconP2.setBackground(new java.awt.Color(255, 255, 204));
         iconP2.setPreferredSize(new java.awt.Dimension(130, 130));
-        iconP2.setImage("IconJ2.png");
+        iconP2.setImage("IconP2.png");
 
         javax.swing.GroupLayout iconP2Layout = new javax.swing.GroupLayout(iconP2);
         iconP2.setLayout(iconP2Layout);
@@ -88,11 +89,7 @@ public class Plateau extends javax.swing.JPanel {
         );
 
         plateauBackground.add(iconP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        jMainJoueur2.setPreferredSize(new java.awt.Dimension(420, 160));
         plateauBackground.add(jMainJoueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, -1));
-
-        jMainJoueur1.setPreferredSize(new java.awt.Dimension(420, 160));
         plateauBackground.add(jMainJoueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
         plateauBackground.add(jInfoJoueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, -1, -1));
         plateauBackground.add(jInfoJoueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, -1, -1));
@@ -141,16 +138,16 @@ public class Plateau extends javax.swing.JPanel {
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J1 = " + nomCarte + "\n");
-                jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
                         boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
-                jMainJoueur2.repaint();
+                jMainJoueur1.repaint();
             }
         } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
-                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
                         boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
-                jMainJoueur1.repaint();
+                jMainJoueur2.repaint();
             }
         }
         jPioche1.setEnabled(false);
@@ -174,6 +171,12 @@ public class Plateau extends javax.swing.JPanel {
             jZoneInteraction1.initZoneDepot(nomPirate1, nomPirate2);
             //Init info
             updateInfoPirate();
+
+            //Init Main Joueur
+            initMainJoueur(jMainJoueur1, 0);
+            initMainJoueur(jMainJoueur2, 1);
+            retournerCartesMain(jMainJoueur2.getMainJoueur());
+            jMainJoueur2.setEnabled(false);
         }
     }
     
@@ -195,6 +198,9 @@ public class Plateau extends javax.swing.JPanel {
             System.out.println("Gagnant : " + lastElement);
         }
         jPioche1.setEnabled(true);
+        jMainJoueur1.setEnabled(!jMainJoueur1.isEnabled());
+        jMainJoueur2.setEnabled(!jMainJoueur2.isEnabled());
+        retournerCartes();
     }
     
     public void retournerCartes() {
@@ -205,6 +211,14 @@ public class Plateau extends javax.swing.JPanel {
     private void retournerCartesMain(List<JCarte> main){
         for (JCarte jCarte : main) {
             jCarte.changeCardFace();
+        }
+    }
+
+    private void initMainJoueur(JMainJoueur jMainJoueur, int idPirate){
+        jMainJoueur.setIdPirate(idPirate);
+        for (String nomCarte : boundaryJeu.getPirateMain(idPirate)) {
+            jMainJoueur.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                    boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
         }
     }
 

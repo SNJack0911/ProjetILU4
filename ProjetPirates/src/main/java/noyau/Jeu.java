@@ -34,10 +34,10 @@ public class Jeu {
     }
 
     //not == but >=
-    private String getGagnant(){
-        if (joueur1.getPP() >= 5 || joueur2.getHP() >= 0){
+    protected String getGagnant(){
+        if (joueur1.getPP() >= 5 || joueur2.getHP() <= 0){
             return joueur1.getNom();
-        } else if (joueur2.getPP() >= 5 || joueur1.getHP() >= 0){
+        } else if (joueur2.getPP() >= 5 || joueur1.getHP() <= 0){
             return joueur2.getNom();
         }
         return "Pas de gagnant";
