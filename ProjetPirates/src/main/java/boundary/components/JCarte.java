@@ -5,6 +5,7 @@
 package boundary.components;
 
 import boundary.Plateau;
+import boundary.PlateauOld;
 import boundary.components.JCartePopUp;
 
 import java.awt.*;
@@ -99,27 +100,21 @@ public class JCarte extends javax.swing.JPanel {
     
     @Override 
     protected void paintComponent(Graphics g){
-        if (nom!=null){
-            jLabel1.setText(nom);
-            jTextArea1.setText(description);
-        }
-        super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
        
         if(isFront && frontCard != null){
             g2d.drawImage(frontCard, 0,0, getWidth(), getHeight(), this);
+            super.paintComponent(g);
         }else if (backCard != null){
             g2d.drawImage(backCard, 0,0, getWidth(), getHeight(), this);
         }
-        
-        Graphics2D g2 = (Graphics2D) g.create();
+       
         for (SmokeEffect smoke : fumees) {
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, smoke.alpha));
-            g2.drawImage(smoke.image, smoke.x - getX(), smoke.y - getY(), 40, 40, this); // taille ajustable
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, smoke.alpha));
+            g2d.drawImage(smoke.image, smoke.x - getX(), smoke.y - getY(), 40, 40, this); // taille ajustable
         }
 
-        g2.dispose();
         
         g2d.dispose();
     }
@@ -166,9 +161,6 @@ public class JCarte extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextArea1 = new javax.swing.JTextArea();
-
         setOpaque(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -187,50 +179,27 @@ public class JCarte extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Titre");
-        jLabel1.setDoubleBuffered(true);
-        jLabel1.setOpaque(true);
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Description");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+            .addGap(0, 136, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+            .addGap(0, 190, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         //System.out.println("MousePressed");
-        /*this.origine = evt.getPoint();
-	    this.isSelected = true;
-        JPanel plateauPanel = (JPanel) mainOrigine.getParent();
+        this.origine = evt.getPoint();
+	this.isSelected = true;
+        Plateau plateauPanel = (Plateau) mainOrigine.getParent().getParent();
         plateauPanel.setComponentZOrder(this, 0);
 
-        repaint();*/
-        
+        repaint();
+        /*
         if (evt.getClickCount()>1){return;}
         
         this.origine = evt.getPoint();
@@ -276,15 +245,39 @@ public class JCarte extends javax.swing.JPanel {
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         origine = null;
-	    this.isSelected = false;
+	this.isSelected = false;
         
         JPanel plateauPanel = (JPanel) mainOrigine.getParent();
+        Plateau plateau = (Plateau) plateauPanel.getParent();
         Point pointInPlateau = SwingUtilities.convertPoint(this, evt.getPoint(), plateauPanel);
 
         Component c = plateauPanel.getComponentAt(pointInPlateau);
         //System.out.println("C: " + c.getClass().getSimpleName());
+        
+        if (c instanceof JZoneInteraction zoneInteraction){
+            Rectangle boundsZone = zoneInteraction.getBounds();
+            if (boundsZone.intersects(getBounds())) {
+                String pirate = plateau.getCurrentPirate();
+                boolean res = zoneInteraction.ajouteCarte(this, pointInPlateau, plateauPanel, pirate);
+                if(res){//dispose
+                    plateau.jouerTour(this);
+                    plateau.remove(this);
+                    plateau.revalidate();
+                    plateau.repaint();
+                    
+                    return;
+                }
+            }
+        }
+        System.out.println("Not dropped on a drop zone.");
+        //Return Carte to Main
+        if (mainOrigine != null) {
+            mainOrigine.ajouterJCarte(this);
+            plateauPanel.repaint();
+        }
+        /*Rectangle boundsZone = zoneInteraction.getBounds();
         JLayeredPane layer = (JLayeredPane.getLayeredPaneAbove(plateauPanel));
-        Plateau plateau = (Plateau) layer.getParent();
+        PlateauOld plateau = (PlateauOld) layer.getParent();
         
 
         if (c instanceof JZoneInteraction dropZone) {
@@ -312,7 +305,7 @@ public class JCarte extends javax.swing.JPanel {
 	    this.isSelected = false;
         repaint();
         //Container root = SwingUtilities.getWindowAncestor(this);
-        if (root instanceof Plateau plateau) {
+        if (root instanceof PlateauOld plateau) {
             plateau.getGestionnaire().verifierToutesZones(this); // C’est bien la méthode du gestionnaire
         }*/
         //détecte pas getGestionnaire ?
@@ -344,8 +337,8 @@ public class JCarte extends javax.swing.JPanel {
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         if (origine != null) {
             	    // Ajoute une fumée sur le plateau
-            Container parent = SwingUtilities.getAncestorOfClass(Plateau.class, this);
-            if (parent instanceof Plateau plateau) {
+            Container parent = SwingUtilities.getAncestorOfClass(PlateauOld.class, this);
+            if (parent instanceof PlateauOld plateau) {
                 Point global = SwingUtilities.convertPoint(this, getCentreCarte(), plateau);
                 effets.ajouterFumee(global.x, global.y); //plateau.getGestionnaireEffetsFumee().ajouterFumee(global.x, global.y);
                 }
@@ -383,7 +376,5 @@ public class JCarte extends javax.swing.JPanel {
     public BasicCategorie getCategorie(){return zoneDepot;}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

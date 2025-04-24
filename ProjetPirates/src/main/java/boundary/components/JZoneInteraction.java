@@ -32,14 +32,14 @@ public class JZoneInteraction extends javax.swing.JPanel {
         initComponents();
         //setBackground(Color.PINK);
         setBounds(500,200,150,150);
-        jZoneDepot1.setName("Dep1");
+        /*jZoneDepot1.setName("Dep1");
         jZoneDepot1.createZoneDepot("Pirate1", BasicCategorie.POPULARITE);
         jZoneDepot2.setName("Dep2");
         jZoneDepot1.createZoneDepot("Pirate1", BasicCategorie.ATTAQUE);
         jZoneDepot3.setName("Dep3");
         jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.ATTAQUE);
         jZoneDepot4.setName("Dep4");
-        jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.POPULARITE);
+        jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.POPULARITE);*/
     }
 
     @Override
@@ -47,9 +47,9 @@ public class JZoneInteraction extends javax.swing.JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.setColor(carteDedans ? Color.BLUE : Color.PINK);
+        /*g2.setColor(carteDedans ? Color.BLUE : Color.PINK);
         g2.fillRect(0, 0, getWidth(), getHeight());
-
+        */
         //g2.setColor(Color.BLACK);
         //g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
     }
@@ -196,14 +196,15 @@ public class JZoneInteraction extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void initZoneDepot(String nomPirate1, String nomPirate2) {
+        System.out.println("P1 : " + nomPirate1 + " P2 : " + nomPirate2);
         jZoneDepot1.createZoneDepot(nomPirate1, BasicCategorie.POPULARITE);
         jZoneDepot2.createZoneDepot(nomPirate1, BasicCategorie.ATTAQUE);
         jZoneDepot3.createZoneDepot(nomPirate2, BasicCategorie.ATTAQUE);
         jZoneDepot4.createZoneDepot(nomPirate2, BasicCategorie.POPULARITE);
         
-        System.out.println(" Zone  1 : " + jZoneDepot1.toString() + "\n");
+        /*System.out.println(" Zone  1 : " + jZoneDepot1.toString() + "\n");
         System.out.println(" Zone  2 : " + jZoneDepot2.toString() + "\n");
         System.out.println(" Zone  3 : " + jZoneDepot3.toString() + "\n");
-        System.out.println(" Zone  4 : " + jZoneDepot4.toString() + "\n");
+        System.out.println(" Zone  4 : " + jZoneDepot4.toString() + "\n");*/
     }
 }

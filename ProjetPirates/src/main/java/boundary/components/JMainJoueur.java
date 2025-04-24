@@ -92,6 +92,7 @@ public class JMainJoueur extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(153, 204, 255));
         setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(420, 160));
         setLayout(new java.awt.GridBagLayout());
     }// </editor-fold>//GEN-END:initComponents
 

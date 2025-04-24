@@ -4,6 +4,9 @@
  */
 package boundary.components;
 
+import boundary.BoundaryJeu;
+import boundary.Plateau;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import noyau.Carte;
@@ -13,8 +16,10 @@ import noyau.Pirate;
  *
  * @author vince
  */
+//TODO fix link boundary & noyau
 public class JInfoJoueur extends javax.swing.JPanel {
-    
+    private String nom;
+    int idPirate;
     private Pirate pirate;
     private JMainJoueur jMainJoueur;
 
@@ -26,22 +31,19 @@ public class JInfoJoueur extends javax.swing.JPanel {
         setOpaque(false);
     }
     
-    public void setPirate(Pirate pirate, JMainJoueur jMainJoueur) {
+    /*public void setPirate(Pirate pirate, JMainJoueur jMainJoueur) {
         this.pirate = pirate;
         this.jMainJoueur = jMainJoueur;
-    }
+    }*/
     
     public void finTour() {
-        setHP(pirate.getHP());
-        setPP(pirate.getPP());
-    }
-    
-    public void retournerCartes() {
-        List<JCarte> mainJoueur = jMainJoueur.getMainJoueur();
-        
-        for (JCarte jCarte : mainJoueur) {
-            jCarte.changeCardFace();
-        }
+        //Component c = getParent();
+        //System.out.println("C: " + c.getClass().getSimpleName());
+        Plateau p = (Plateau) getParent().getParent();
+        BoundaryJeu boundaryJeu = p.getBoundaryJeu(); 
+        setHP(boundaryJeu.getPirateHp(idPirate));
+        setPP(boundaryJeu.getPiratePp(idPirate));
+        repaint();
     }
     
     private void setHP(int value) {

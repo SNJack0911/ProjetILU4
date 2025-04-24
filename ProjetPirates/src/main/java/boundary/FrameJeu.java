@@ -364,8 +364,19 @@ public class FrameJeu extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom1ActionPerformed
         switchPanel(plateauPanel);
         menuPanel.setVisible(false);
+        /*System.out.println("Size plateauPanel : " + plateauPanel.getSize().toString());
+        System.out.println("Size plateau1 : " + plateau1.getSize().toString());*/
         //boundaryJeu.initNewGame();
+        
+        plateauPanel.setSize(getWidth(), getHeight());
+        plateau1.setSize(getWidth(), getHeight());
+        /*System.out.println("Size plateauPanel : " + plateauPanel.getSize().toString());
+        System.out.println("Size plateau1 : " + plateau1.getSize().toString());*/
+        
+        
+
         plateau1.setBoundaryJeu(boundaryJeu);
+        
     }//GEN-LAST:event_jButtonCustom1ActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom2ActionPerformed
@@ -534,10 +545,13 @@ public class FrameJeu extends javax.swing.JFrame {
         }
     }
     
+    public PlateauOld getPlateauOld(){
+        return null;
+    }
+    
     public Plateau getPlateau(){
         return plateau1;
     }
-    
     /**
      * @param args the command line arguments
      */

@@ -5,6 +5,8 @@
 package boundary.components;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -34,7 +36,10 @@ public class JZoneDepot extends javax.swing.JPanel {
     }
     
     public boolean ajouterCarte (JCarte carte, String pirate){
-        if (!nomPirate.equals(pirate) && carte.getCategorie() != type){ return false;}
+        if (!nomPirate.equals(pirate) || carte.getCategorie() != type){ 
+            System.out.println("NomPirate : " + nomPirate +" \t pirate : " + pirate);
+            return false;
+        }
         this.carte = carte.getImage();
         return true;
     }
@@ -48,6 +53,16 @@ public class JZoneDepot extends javax.swing.JPanel {
         if(carte != null){
             g2d.drawImage(carte, 0,0, getWidth(), getHeight(), this);
         } else {
+            
+            //TODO ADD titre
+            String title = type.toString() + "\n" + nomPirate;
+            Font titleFont = new Font("Segeo UI", Font.PLAIN, 10);
+            g2d.setFont(titleFont);
+            FontMetrics fm = g2d.getFontMetrics();
+            int textWidth = fm.stringWidth(title);
+            int textHeight = fm.getHeight();
+            
+            
             g2d.setColor(Color.red);
             g2d.drawRect(0, 0, getWidth(), getHeight());
         }
