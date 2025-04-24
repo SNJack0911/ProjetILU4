@@ -193,6 +193,8 @@ public class JCarte extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         //System.out.println("MousePressed");
+        if (!isFront) return;
+        
         this.origine = evt.getPoint();
 	this.isSelected = true;
         Plateau plateauPanel = (Plateau) mainOrigine.getParent().getParent();
@@ -244,6 +246,8 @@ public class JCarte extends javax.swing.JPanel {
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+        if (!isFront) return;
+        
         origine = null;
 	this.isSelected = false;
         
@@ -313,6 +317,8 @@ public class JCarte extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         //System.out.println("MouseClicked");
+        if (!isFront) return;
+        
         if (evt.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(evt) && isFront && frontCard != null) {
             //System.out.println("DoubleClick + is front : " + isFront);
                     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
@@ -335,6 +341,8 @@ public class JCarte extends javax.swing.JPanel {
     }//GEN-LAST:event_formMouseClicked
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        if (!isFront) return;
+        
         if (origine != null) {
             	    // Ajoute une fumée sur le plateau
             Container parent = SwingUtilities.getAncestorOfClass(PlateauOld.class, this);

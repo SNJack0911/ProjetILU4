@@ -28,6 +28,8 @@ public class JZoneDepot extends javax.swing.JPanel {
      */
     public JZoneDepot() {
         initComponents();
+        setOpaque(false);
+        setDoubleBuffered(true);
     }
 
     public void createZoneDepot(String nomPirate, BasicCategorie type){
@@ -52,21 +54,31 @@ public class JZoneDepot extends javax.swing.JPanel {
         
         if(carte != null){
             g2d.drawImage(carte, 0,0, getWidth(), getHeight(), this);
-        } else if (type!= null){
+        } else{
+            Color shadowColor = new Color(0, 0, 0, 100);
+            g2d.setColor(shadowColor);
+            int w = getWidth();
+            int h = getHeight();
+            g2d.fillRoundRect(0, 0, w, h, w/12, h/12);
+
+
+            if (type!= null){
             
-            //TODO ADD titre
-            String title = type.toString() + "\n" + nomPirate;
-            Font titleFont = new Font("Segeo UI", Font.PLAIN, 10);
-            g2d.setFont(titleFont);
-            FontMetrics fm = g2d.getFontMetrics();
-            int textWidth = fm.stringWidth(title);
-            int textHeight = fm.getHeight();
-            
+                //TODO ADD titre
+                g2d.setColor(Color.WHITE);
+                String title = type.toString() + " - " + nomPirate; // "\n" doesn't create line break in drawString
+
+                Font titleFont = new Font("Segoe UI", Font.PLAIN, 12); // "Segeo UI" corrected to "Segoe UI"
+                g2d.setFont(titleFont);
+                FontMetrics fm = g2d.getFontMetrics();
+                int textWidth = fm.stringWidth(title);
+                int x = (getWidth() - textWidth) / 2;
+                int y = (getHeight() / 4); // arbitrary Y position for title
+                g2d.drawString(title, x, y);
+            }
         }    
-            g2d.setColor(Color.red);
-            g2d.drawRect(0, 0, getWidth(), getHeight());
         
-        
+
         g2d.dispose();
     }
     
