@@ -46,7 +46,7 @@ public class TestPirate {
 
     public static void testAddCarte() {
         Pirate p = new Pirate("P2");
-        Carte card = new CarteAttack("C1", "Carte Attaque", 1, 0, 0, -1, false, false);
+        Carte card = new CarteAttack("C1", 0, "Carte Attaque", 1, 0, 0, -1, false, false);
         p.addCarte(card);
         assert p.getMain().size() == 1 : "Expected size = 1, Got: " + p.getMain().size();
         System.out.println("testAddCarte passed");
@@ -54,7 +54,7 @@ public class TestPirate {
 
     public static void testGetCarteMain() {
         Pirate p = new Pirate("P3");
-        Carte card = new CartePopularite("Popular", "Boost", 2, 1, false);
+        Carte card = new CartePopularite("Popular", 0, "Boost", 2, 1, false);
         p.addCarte(card);
         Carte found = p.getCarteMain("Popular");
         assert found != null : "Expected card not found";
@@ -64,7 +64,7 @@ public class TestPirate {
 
     public static void testSupprimerCarteMain() {
         Pirate p = new Pirate("P4");
-        Carte card = new CarteDefense("Defense", "Blockage", 2, 0, false);
+        Carte card = new CarteDefense("Defense",0,  "Blockage", 2, 0, false);
         p.addCarte(card);
         assert p.getMain().size() == 1 : "Expected size = 1, Got: " + p.getMain().size();
         p.supprimerCarteMain(card);
@@ -79,8 +79,8 @@ public class TestPirate {
 
     public static void testGetNbCarte() {
         Pirate p = new Pirate("CountTester");
-        p.addCarte(new CarteAttack("A", "Attack", 1, 1, 0, -1, false, false));
-        p.addCarte(new CarteDefense("D", "Defense", 2, 0, false));
+        p.addCarte(new CarteAttack("A", 0, "Attack", 1, 1, 0, -1, false, false));
+        p.addCarte(new CarteDefense("D", 0, "Defense", 2, 0, false));
         assert p.getNbCarte() == 2 : "Expected count = 2, Got: " + p.getNbCarte();
         System.out.println("testGetNbCarte passed");
     }

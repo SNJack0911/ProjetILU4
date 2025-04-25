@@ -46,7 +46,7 @@ class PirateTest {
     @Test
     void testAddCarteMain(){
         Pirate p = new Pirate("CardTester1");
-        Carte card = new CarteAttack("C1", "Carte Attaque", 1, 0, 0, -1, false, false);
+        Carte card = new CarteAttack("C1", 0,"Carte Attaque", 1, 0, 0, -1, false, false);
         p.addCarte(card);
 
         assertEquals(1, p.getMain().size(), "Card not added properly to the Pirate's hand");
@@ -56,7 +56,7 @@ class PirateTest {
     @Test
     void testGetCarteMain(){
         Pirate p = new Pirate("CardTester2");
-        Carte card = new CartePopularite("Popular", "Boost", 2, 1, false);
+        Carte card = new CartePopularite("Popular", 0, "Boost", 2, 1, false);
         p.addCarte(card);
         Carte found = p.getCarteMain("Popular");
         assertNotNull(found,"No return carte main");
@@ -67,8 +67,8 @@ class PirateTest {
     @Test
     void testGetNbCarte(){
         Pirate p = new Pirate("CardTester3");
-        p.addCarte(new CarteAttack("A", "Attack", 1, 1, 0, -1, false, false));
-        p.addCarte(new CarteDefense("D", "Defense", 2, 0, false));
+        p.addCarte(new CarteAttack("A", 0, "Attack", 1, 1, 0, -1, false, false));
+        p.addCarte(new CarteDefense("D", 0, "Defense", 2, 0, false));
         assertEquals(2, p.getNbCarte(), "Incorrect NbCarte value");
         System.out.println("testGetNbCarte passed");
     }
@@ -76,7 +76,7 @@ class PirateTest {
     @Test
     void testSupprimerCarteMain(){
         Pirate p = new Pirate("CardTester4");
-        Carte card = new CarteDefense("Defense", "Blockage", 2, 0, false);
+        Carte card = new CarteDefense("Defense", 0, "Blockage", 2, 0, false);
         p.addCarte(card);
         assertEquals(1, p.getNbCarte(), "Card not added properly to the Pirate's hand");
         p.supprimerCarteMain(card);

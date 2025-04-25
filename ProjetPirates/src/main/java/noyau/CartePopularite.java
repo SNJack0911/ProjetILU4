@@ -11,8 +11,8 @@ public class CartePopularite extends Carte {
     private static final Random rand = new Random();
 
 
-    public CartePopularite(String nom, String description, int PPajoutJ, int PVajout, boolean lancerPiece) {
-        super(nom, description, BasicCategorie.POPULARITE, BasicCategorie.POPULARITE);
+    public CartePopularite(String nom, int carteID, String description, int PPajoutJ, int PVajout, boolean lancerPiece) {
+        super(nom, carteID, description, BasicCategorie.POPULARITE, BasicCategorie.POPULARITE);
         this.PPajoutJ = PPajoutJ;
         this.PVajoutJ = PVajoutJ;
         this.lancerPiece = lancerPiece;

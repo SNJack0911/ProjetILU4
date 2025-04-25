@@ -77,4 +77,8 @@ public class BoundaryJeu {
     public ArrayList<String> piocherCarte() {
         return boundaryPiocherCarte.piocherCarte();
     }
+
+    public int getCarteId(String nomCarte) {
+        return boundaryGetCarteInfo.getCarteId(nomCarte);
+    }
 }

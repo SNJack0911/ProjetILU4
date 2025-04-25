@@ -27,19 +27,19 @@ public class JMainJoueur extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void ajouterCarte(String nomCarte, ICategorieCarte type, String description, BasicCategorie categorie){
+    public void ajouterCarte(String nomCarte, int carteID, ICategorieCarte type, String description, BasicCategorie categorie){
         //System.out.println("JMainJoueur ajouterCarte , nomCarte = " + nomCarte + "\n");
-        JCarte carte = createCarte(nomCarte, type, description, categorie);
+        JCarte carte = createCarte(nomCarte, carteID, type, description, categorie);
         ajouterJCarte(carte);
     }
     
-    private JCarte createCarte(String nomCarte, ICategorieCarte type, String description, BasicCategorie zoneDepot) {
+    private JCarte createCarte(String nomCarte, int carteID, ICategorieCarte type, String description, BasicCategorie zoneDepot) {
         
         JCarte newCarte = new boundary.components.JCarte();
         newCarte.setMinimumSize(new java.awt.Dimension(84, 117));
         newCarte.setPreferredSize(new java.awt.Dimension(84, 117));
         //System.out.println("JMainJoueur createCarte , nomCarte = " + nomCarte + "\n");
-        newCarte.ajouterAttribut(nomCarte, type, description,
+        newCarte.ajouterAttribut(nomCarte, carteID, type, description,
                 zoneDepot, this);
         //newCarte.setImage("Card1Front" + newCarte.getCategorie().toString() + ".png");
         //System.out.println("JMainJoueur createCarte , nomCarte = " + newCarte.getNomCarte() + "\n");

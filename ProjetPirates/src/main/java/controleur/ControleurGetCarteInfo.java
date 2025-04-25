@@ -28,4 +28,8 @@ public class ControleurGetCarteInfo {
         //TODO Traiter erreur
         return jeuDeCarte.getZoneDepot(nomCarte);
     }
+
+    public int getCarteID(String nomCarte) {
+        return jeuDeCarte.getCarteID(nomCarte);
+    }
 }

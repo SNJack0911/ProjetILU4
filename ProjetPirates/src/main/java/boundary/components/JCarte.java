@@ -42,6 +42,7 @@ public class JCarte extends javax.swing.JPanel {
     private JMainJoueur mainOrigine; 
     
     private String nom;
+    private int carteID;
     private ICategorieCarte type;
     private String description;
     private BasicCategorie zoneDepot;
@@ -62,14 +63,15 @@ public class JCarte extends javax.swing.JPanel {
         setSize((int)w, (int)h);
     }
 
-    public void ajouterAttribut(String nom, ICategorieCarte type, String description, BasicCategorie zoneDepot, JMainJoueur mainOrigine){
+    public void ajouterAttribut(String nom, int carteID, ICategorieCarte type, String description, BasicCategorie zoneDepot, JMainJoueur mainOrigine){
+        this.carteID = 0;
         this.nom = nom;
         this.type = type;
         this.description = description;
         this.zoneDepot = zoneDepot;
         this.mainOrigine = mainOrigine;
-        setImage("Card1Front" + type.toString() + ".png");
-
+        
+        setImage(carteID);
     }
     
     public void lancerFumee() {
@@ -146,10 +148,10 @@ public class JCarte extends javax.swing.JPanel {
         isFront = !isFront;
     }
     
-    public void setImage(String cardName) {
+    public void setImage(int carteID) {
         try {
             backCard = ImageIO.read(new File("src/main/ressources/" + "Card1Back.png"));
-            frontCard = ImageIO.read(new File("src/main/ressources/" + cardName));
+            frontCard = ImageIO.read(new File("src/main/ressources/Carte/Card1Front" + carteID + ".png"));
         } catch (IOException e){
             String userDirectory = new File("").getAbsolutePath();
             System.out.print("Card not found : " + userDirectory);

@@ -138,16 +138,18 @@ public class Plateau extends javax.swing.JPanel {
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J1 = " + nomCarte + "\n");
-                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
-                        boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
+                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),
+                        boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte),
+                        boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur1.repaint();
             }
             jMainJoueur1.setEnabled(true);
         } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
-                jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
-                        boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
+                jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),
+                        boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte), 
+                        boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur2.repaint();
             }
             jMainJoueur2.setEnabled(true);
@@ -225,7 +227,7 @@ public class Plateau extends javax.swing.JPanel {
     private void initMainJoueur(JMainJoueur jMainJoueur, int idPirate){
         jMainJoueur.setIdPirate(idPirate);
         for (String nomCarte : boundaryJeu.getPirateMain(idPirate)) {
-            jMainJoueur.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+            jMainJoueur.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte), boundaryJeu.getTypeCarte(nomCarte),
                     boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
         }
     }

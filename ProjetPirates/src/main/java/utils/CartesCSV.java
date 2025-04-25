@@ -32,19 +32,19 @@ public class CartesCSV {
 
                 switch (type.toLowerCase()) {
                     case "attaque":
-                        carte = new CarteAttack(nom, description, ppJoueur, pvJoueur, ppAdversaire, pvAdversaire, affecteNuit, piece);
+                        carte = new CarteAttack(nom, 0, description, ppJoueur, pvJoueur, ppAdversaire, pvAdversaire, affecteNuit, piece);
                         break;
                     case "defense":
-                        carte = new CarteDefense(nom, description, ppJoueur, pvJoueur, affecteNuit);
+                        carte = new CarteDefense(nom, 0, description, ppJoueur, pvJoueur, affecteNuit);
                         break;
                     case "effet":
-                        // carte = new CarteEffet(nom, description, ppJoueur, pvJoueur, affecteNuit);
+                        // carte = new CarteEffet(nom, 0, description, ppJoueur, pvJoueur, affecteNuit);
                         break;
                     case "popularité":
-                        carte = new CartePopularite(nom, description, ppJoueur, pvJoueur, piece);
+                        carte = new CartePopularite(nom, 0, description, ppJoueur, pvJoueur, piece);
                         break;
                     case "popularité + effet":
-                        carte = new CartePopularite(nom, description, ppJoueur, pvJoueur, affecteNuit);
+                        carte = new CartePopularite(nom, 0, description, ppJoueur, pvJoueur, affecteNuit);
                         // carte = new CarteEffet(nom, description, ppJoueur, pvJoueur, affecteNuit);
                         break;
                     default:

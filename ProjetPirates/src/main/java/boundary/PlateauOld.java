@@ -542,14 +542,14 @@ public class PlateauOld extends javax.swing.JPanel {
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J1 = " + nomCarte + "\n");
-                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                jMainJoueur1.ajouterCarte(nomCarte, 1, boundaryJeu.getTypeCarte(nomCarte),
                         boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur1.repaint();
             }
         } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
-                jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getTypeCarte(nomCarte),
+                jMainJoueur2.ajouterCarte(nomCarte, 1, boundaryJeu.getTypeCarte(nomCarte),
                         boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur2.repaint();
             }

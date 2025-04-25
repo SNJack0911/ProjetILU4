@@ -19,7 +19,7 @@ public class TestCartes {
 
     // Test CarteAttack
     static void testAttackEffet() {
-        CarteAttack carte = new CarteAttack("Attaque Test", "Desc", 3, 6, -2, -4, false, false);
+        CarteAttack carte = new CarteAttack("Attaque Test", 0, "Desc", 3, 6, -2, -4, false, false);
 
         Jeu jeu = new Jeu();
         jeu.setNuit(false);
@@ -38,7 +38,7 @@ public class TestCartes {
 
     // Test CartePopularite
     static void testPopEffet() {
-        CartePopularite carte = new CartePopularite("Fan Club", "desc", 1, 5, true);
+        CartePopularite carte = new CartePopularite("Fan Club", 0, "desc", 1, 5, true);
 
         Jeu jeu = new Jeu();
         jeu.setNuit(true);
@@ -56,7 +56,7 @@ public class TestCartes {
 
     // Test for CarteDefense
     static void testDefenseEffet() {
-        CarteDefense carte = new CarteDefense("Bouclier", "def", 5, 2, true);
+        CarteDefense carte = new CarteDefense("Bouclier", 0, "def", 5, 2, true);
 
         Jeu jeu = new Jeu();
         jeu.setNuit(false);

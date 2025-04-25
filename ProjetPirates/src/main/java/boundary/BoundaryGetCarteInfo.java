@@ -22,4 +22,8 @@ public class BoundaryGetCarteInfo {
     public BasicCategorie getZoneDepot(String nomCarte){
         return controleurGetCarteInfo.getZoneDepotCarte(nomCarte);
     }
+
+    public int getCarteId(String nomCarte) {
+        return controleurGetCarteInfo.getCarteID(nomCarte);
+    }
 }

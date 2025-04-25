@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class CarteEffet extends Carte implements ICarte {
 
-    protected CarteEffet(String nom, String description, ICategorieCarte categorie, BasicCategorie zoneDepot) {
-        super(nom, description, categorie, zoneDepot);
+    protected CarteEffet(String nom, int carteID, String description, ICategorieCarte categorie, BasicCategorie zoneDepot) {
+        super(nom, carteID, description, categorie, zoneDepot);
     }
 
     @Override
