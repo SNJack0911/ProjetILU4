@@ -43,52 +43,18 @@ public class Plateau extends javax.swing.JPanel {
     private void initComponents() {
 
         plateauBackground = new boundary.components.JPanelWithBackground();
-        iconP1 = new boundary.components.JPanelWithBackground();
-        iconP2 = new boundary.components.JPanelWithBackground();
         jMainJoueur2 = new boundary.components.JMainJoueur();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jInfoJoueur1 = new boundary.components.JInfoJoueur();
         jInfoJoueur2 = new boundary.components.JInfoJoueur();
         jPioche1 = new boundary.components.JPioche();
         jZoneInteraction1 = new boundary.components.JZoneInteraction();
+        jPirateIcon2 = new boundary.components.JPirateIcon();
+        jPirateIcon1 = new boundary.components.JPirateIcon();
 
         plateauBackground.setBackground(new java.awt.Color(255, 204, 204));
         plateauBackground.setImage("Plateau.png");
         plateauBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        iconP1.setBackground(new java.awt.Color(255, 255, 204));
-        iconP1.setPreferredSize(new java.awt.Dimension(130, 130));
-        iconP1.setImage("IconP1.png");
-
-        javax.swing.GroupLayout iconP1Layout = new javax.swing.GroupLayout(iconP1);
-        iconP1.setLayout(iconP1Layout);
-        iconP1Layout.setHorizontalGroup(
-            iconP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
-        );
-        iconP1Layout.setVerticalGroup(
-            iconP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
-        );
-
-        plateauBackground.add(iconP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, -1, -1));
-
-        iconP2.setBackground(new java.awt.Color(255, 255, 204));
-        iconP2.setPreferredSize(new java.awt.Dimension(130, 130));
-        iconP2.setImage("IconP2.png");
-
-        javax.swing.GroupLayout iconP2Layout = new javax.swing.GroupLayout(iconP2);
-        iconP2.setLayout(iconP2Layout);
-        iconP2Layout.setHorizontalGroup(
-            iconP2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
-        );
-        iconP2Layout.setVerticalGroup(
-            iconP2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
-        );
-
-        plateauBackground.add(iconP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         plateauBackground.add(jMainJoueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, -1));
         plateauBackground.add(jMainJoueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
         plateauBackground.add(jInfoJoueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, -1, -1));
@@ -114,6 +80,40 @@ public class Plateau extends javax.swing.JPanel {
 
         plateauBackground.add(jPioche1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
         plateauBackground.add(jZoneInteraction1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+
+        jPirateIcon2.setBackground(new java.awt.Color(255, 255, 204));
+        jPirateIcon2.setMinimumSize(new java.awt.Dimension(130, 130));
+        jPirateIcon2.setImage("IconP2.png");
+
+        javax.swing.GroupLayout jPirateIcon2Layout = new javax.swing.GroupLayout(jPirateIcon2);
+        jPirateIcon2.setLayout(jPirateIcon2Layout);
+        jPirateIcon2Layout.setHorizontalGroup(
+            jPirateIcon2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+        jPirateIcon2Layout.setVerticalGroup(
+            jPirateIcon2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+
+        plateauBackground.add(jPirateIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPirateIcon1.setBackground(new java.awt.Color(255, 255, 204));
+        jPirateIcon1.setPreferredSize(new java.awt.Dimension(130, 130));
+        jPirateIcon1.setImage("IconP1.png");
+
+        javax.swing.GroupLayout jPirateIcon1Layout = new javax.swing.GroupLayout(jPirateIcon1);
+        jPirateIcon1.setLayout(jPirateIcon1Layout);
+        jPirateIcon1Layout.setHorizontalGroup(
+            jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+        jPirateIcon1Layout.setVerticalGroup(
+            jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+
+        plateauBackground.add(jPirateIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -173,6 +173,8 @@ public class Plateau extends javax.swing.JPanel {
             this.nomPirate1 = boundaryJeu.getPirateName(0);
             this.nomPirate2 = boundaryJeu.getPirateName(1);
             jZoneInteraction1.initZoneDepot(nomPirate1, nomPirate2);
+            jPirateIcon1.setNomPirate(nomPirate1);
+            jPirateIcon2.setNomPirate(nomPirate2);
             
             initPlateau();
         }
@@ -233,13 +235,13 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private boundary.components.JPanelWithBackground iconP1;
-    private boundary.components.JPanelWithBackground iconP2;
     private boundary.components.JInfoJoueur jInfoJoueur1;
     private boundary.components.JInfoJoueur jInfoJoueur2;
     private boundary.components.JMainJoueur jMainJoueur1;
     private boundary.components.JMainJoueur jMainJoueur2;
     private boundary.components.JPioche jPioche1;
+    private boundary.components.JPirateIcon jPirateIcon1;
+    private boundary.components.JPirateIcon jPirateIcon2;
     private boundary.components.JZoneInteraction jZoneInteraction1;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables

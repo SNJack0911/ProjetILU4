@@ -73,7 +73,7 @@ public class FrameJeu extends javax.swing.JFrame {
         plateau1 = new boundary.Plateau();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Argonautes");
+        setTitle("Argonautes : New Horizons");
         setIconImage(
             getIcon("Icon23.png")
         );

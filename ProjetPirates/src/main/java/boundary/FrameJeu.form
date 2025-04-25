@@ -3,7 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Argonautes"/>
+    <Property name="title" type="java.lang.String" value="Argonautes : New Horizons"/>
     <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="&#xd;&#xa;getIcon(&quot;Icon23.png&quot;)&#xd;&#xa;" type="code"/>
     </Property>
