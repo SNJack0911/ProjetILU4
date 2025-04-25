@@ -193,7 +193,7 @@ public class JCarte extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         //System.out.println("MousePressed");
-        if (!isFront) return;
+        if (!isFront || !isEnabled()) return;
         
         this.origine = evt.getPoint();
 	this.isSelected = true;
@@ -246,7 +246,7 @@ public class JCarte extends javax.swing.JPanel {
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-        if (!isFront) return;
+        if (!isFront || !isEnabled()) return;
         
         origine = null;
 	this.isSelected = false;
@@ -341,7 +341,7 @@ public class JCarte extends javax.swing.JPanel {
     }//GEN-LAST:event_formMouseClicked
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        if (!isFront) return;
+        if (!isFront || !isEnabled()) return;
         
         if (origine != null) {
             	    // Ajoute une fumée sur le plateau

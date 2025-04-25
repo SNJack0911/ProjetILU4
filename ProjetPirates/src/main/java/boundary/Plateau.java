@@ -142,6 +142,7 @@ public class Plateau extends javax.swing.JPanel {
                         boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur1.repaint();
             }
+            jMainJoueur1.setEnabled(true);
         } else if (tour%2 == 1){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
@@ -149,6 +150,7 @@ public class Plateau extends javax.swing.JPanel {
                         boundaryJeu.getDescription(nomCarte), boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur2.repaint();
             }
+            jMainJoueur2.setEnabled(true);
         }
         jPioche1.setEnabled(false);
     }//GEN-LAST:event_jPioche1MouseClicked
@@ -169,15 +171,21 @@ public class Plateau extends javax.swing.JPanel {
             this.nomPirate1 = boundaryJeu.getPirateName(0);
             this.nomPirate2 = boundaryJeu.getPirateName(1);
             jZoneInteraction1.initZoneDepot(nomPirate1, nomPirate2);
-            //Init info
-            updateInfoPirate();
-
-            //Init Main Joueur
-            initMainJoueur(jMainJoueur1, 0);
-            initMainJoueur(jMainJoueur2, 1);
-            retournerCartesMain(jMainJoueur2.getMainJoueur());
-            jMainJoueur2.setEnabled(false);
+            
+            initPlateau();
         }
+    }
+    
+    private void initPlateau (){
+        //Init info
+        updateInfoPirate();
+
+        //Init Main Joueur
+        initMainJoueur(jMainJoueur1, 0);
+        initMainJoueur(jMainJoueur2, 1);
+        retournerCartesMain(jMainJoueur2.getMainJoueur());
+        jMainJoueur2.setEnabled(false);
+        jMainJoueur1.setEnabled(false);
     }
     
     public BoundaryJeu getBoundaryJeu(){

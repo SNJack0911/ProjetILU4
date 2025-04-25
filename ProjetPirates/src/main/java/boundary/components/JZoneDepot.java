@@ -67,14 +67,24 @@ public class JZoneDepot extends javax.swing.JPanel {
                 //TODO ADD titre
                 g2d.setColor(Color.WHITE);
                 String title = type.toString() + " - " + nomPirate; // "\n" doesn't create line break in drawString
-
-                Font titleFont = new Font("Segoe UI", Font.PLAIN, 12); // "Segeo UI" corrected to "Segoe UI"
+                String typeString = this.type.toString();
+                int fontSize = 14;
+                
+                Font titleFont = new Font("Segoe UI", Font.PLAIN, fontSize);
                 g2d.setFont(titleFont);
                 FontMetrics fm = g2d.getFontMetrics();
-                int textWidth = fm.stringWidth(title);
-                int x = (getWidth() - textWidth) / 2;
-                int y = (getHeight() / 4); // arbitrary Y position for title
-                g2d.drawString(title, x, y);
+                //int textWidth = fm.stringWidth(title);
+                int typeWidth = fm.stringWidth(typeString);
+                int nameWidth = fm.stringWidth(nomPirate);
+                //int x = (getWidth() - textWidth) / 2;
+                int x1 = (getWidth() - typeWidth)/2;
+                int x2 = (getWidth() - nameWidth)/2;
+                
+                //int y = (getHeight() / 4); // arbitrary Y position for title
+                int y1 = (getHeight() - fontSize*2 - 6)/2;
+                int y2 = y1 + fontSize + 6;
+                g2d.drawString(typeString, x1, y1);
+                g2d.drawString(nomPirate, x2, y2);
             }
         }    
         
