@@ -48,16 +48,15 @@ public class FrameJeu extends javax.swing.JFrame {
         jPanelParent = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
         menuPanelBackground = new boundary.components.JPanelWithBackground();
-        titleMenu = new javax.swing.JLabel();
         startButton = new boundary.components.JButtonCustom();
         startButton.setImage("B");
         optionButton = new boundary.components.JButtonCustom();
         optionButton.setImage("B");
         quitButton = new boundary.components.JButtonCustom();
         quitButton.setImage("B");
+        titleBackground = new boundary.components.JPanelWithBackground();
         optionPanel = new javax.swing.JPanel();
         optionPanelBackground = new boundary.components.JPanelWithBackground();
-        titleOption = new javax.swing.JLabel();
         optionPanelRound = new boundary.components.JPanelRound();
         resolutionLabel = new javax.swing.JLabel();
         fullScreenLabel = new javax.swing.JLabel();
@@ -69,6 +68,7 @@ public class FrameJeu extends javax.swing.JFrame {
         resolutionNbLabel = new javax.swing.JLabel();
         volumeValueLabel = new javax.swing.JLabel();
         menuBoutonOp = new boundary.components.JButtonCustom();
+        titleBackground1 = new boundary.components.JPanelWithBackground();
         plateauPanel = new javax.swing.JPanel();
         plateau1 = new boundary.Plateau();
 
@@ -94,10 +94,6 @@ public class FrameJeu extends javax.swing.JFrame {
         });
 
         menuPanelBackground.setImage("pirates_background(4).png");
-
-        titleMenu.setFont(new java.awt.Font("Windlass", 0, 48)); // NOI18N
-        titleMenu.setForeground(new java.awt.Color(255, 255, 255));
-        titleMenu.setText("ArgoNautes");
 
         startButton.setBackground(new java.awt.Color(0, 51, 102));
         startButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,36 +125,46 @@ public class FrameJeu extends javax.swing.JFrame {
             }
         });
 
+        titleBackground.setOpaque(false);
+        titleBackground.setPreferredSize(new java.awt.Dimension(325, 56));
+        titleBackground.setImage("Title2.png");
+
+        javax.swing.GroupLayout titleBackgroundLayout = new javax.swing.GroupLayout(titleBackground);
+        titleBackground.setLayout(titleBackgroundLayout);
+        titleBackgroundLayout.setHorizontalGroup(
+            titleBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 351, Short.MAX_VALUE)
+        );
+        titleBackgroundLayout.setVerticalGroup(
+            titleBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 56, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout menuPanelBackgroundLayout = new javax.swing.GroupLayout(menuPanelBackground);
         menuPanelBackground.setLayout(menuPanelBackgroundLayout);
         menuPanelBackgroundLayout.setHorizontalGroup(
             menuPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanelBackgroundLayout.createSequentialGroup()
-                .addGap(368, 368, 368)
-                .addGroup(menuPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelBackgroundLayout.createSequentialGroup()
-                        .addComponent(titleMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelBackgroundLayout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addGroup(menuPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(optionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelBackgroundLayout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addGroup(menuPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(optionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titleBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
         );
         menuPanelBackgroundLayout.setVerticalGroup(
             menuPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelBackgroundLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(titleMenu)
-                .addGap(42, 42, 42)
+                .addGap(23, 23, 23)
+                .addComponent(titleBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(optionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
@@ -182,10 +188,6 @@ public class FrameJeu extends javax.swing.JFrame {
         });
 
         optionPanelBackground.setImage("pirates_background(4).png");
-
-        titleOption.setFont(new java.awt.Font("Windlass", 0, 48)); // NOI18N
-        titleOption.setForeground(new java.awt.Color(255, 255, 255));
-        titleOption.setText("ArgoNautes");
 
         optionPanelRound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -254,32 +256,44 @@ public class FrameJeu extends javax.swing.JFrame {
             }
         });
 
+        titleBackground1.setOpaque(false);
+        titleBackground1.setPreferredSize(new java.awt.Dimension(325, 56));
+        titleBackground1.setImage("Title2.png");
+
+        javax.swing.GroupLayout titleBackground1Layout = new javax.swing.GroupLayout(titleBackground1);
+        titleBackground1.setLayout(titleBackground1Layout);
+        titleBackground1Layout.setHorizontalGroup(
+            titleBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 351, Short.MAX_VALUE)
+        );
+        titleBackground1Layout.setVerticalGroup(
+            titleBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 56, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout optionPanelBackgroundLayout = new javax.swing.GroupLayout(optionPanelBackground);
         optionPanelBackground.setLayout(optionPanelBackgroundLayout);
         optionPanelBackgroundLayout.setHorizontalGroup(
             optionPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelBackgroundLayout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(optionPanelRound, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+                .addGap(98, 98, 98))
             .addGroup(optionPanelBackgroundLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(optionPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(optionPanelBackgroundLayout.createSequentialGroup()
-                        .addComponent(menuBoutonOp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(optionPanelBackgroundLayout.createSequentialGroup()
-                        .addComponent(titleOption, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(375, 375, 375))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelBackgroundLayout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(optionPanelRound, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(98, 98, 98))
+                    .addComponent(titleBackground1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menuBoutonOp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionPanelBackgroundLayout.setVerticalGroup(
             optionPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionPanelBackgroundLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(titleOption)
+                .addGap(10, 10, 10)
+                .addComponent(titleBackground1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(optionPanelRound, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addComponent(optionPanelRound, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(menuBoutonOp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
@@ -606,8 +620,8 @@ public class FrameJeu extends javax.swing.JFrame {
     private javax.swing.JLabel resolutionNbLabel;
     private boundary.components.JButtonCustom rightArrowRes;
     private boundary.components.JButtonCustom startButton;
-    private javax.swing.JLabel titleMenu;
-    private javax.swing.JLabel titleOption;
+    private boundary.components.JPanelWithBackground titleBackground;
+    private boundary.components.JPanelWithBackground titleBackground1;
     private javax.swing.JLabel volumeLabel;
     private javax.swing.JSlider volumeSlider;
     private javax.swing.JLabel volumeValueLabel;
