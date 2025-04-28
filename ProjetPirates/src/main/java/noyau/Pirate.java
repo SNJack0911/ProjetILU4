@@ -39,7 +39,7 @@ public class Pirate {
        PP < 0 = enlever des PP
     */
     public void addPP(int value) {
-        int newPP = PP += value;
+        int newPP = PP + value;
         if (newPP > 5) {
             this.PP = 5;
         } else if (newPP < 0) {
@@ -78,6 +78,7 @@ public class Pirate {
     
     public void addCarte(Carte carte) {
         hands.add(carte);
+        System.out.println("Carte ajouter dans la main du joueur : " + carte.getNom() + "\n");
     }
 
     @Override

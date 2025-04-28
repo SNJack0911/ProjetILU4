@@ -23,7 +23,7 @@ public class ControleurPiocherCarte {
     public static ArrayList<String> listeCarteToString(ArrayList<Carte> lstCarte){
         ArrayList<String> lstCarteString = new ArrayList<String>();
         for(Carte carte : lstCarte){
-            String[] info = new String[5];
+            //String[] info = new String[5];
             lstCarteString.add(carte.getNom());
         }
         return lstCarteString;

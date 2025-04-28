@@ -15,6 +15,8 @@ import noyau.Jeu;
 public class ProjetPirates {
 
     public static void main(String[] args) {
+        boolean IHM = false;
+
         Jeu jeu = new Jeu();
         ControleurNouvellePartie controleurNouvellePartie = new ControleurNouvellePartie(jeu);
         ControleurPiocherCarte controleurPiocherCarte = new ControleurPiocherCarte(jeu);
@@ -46,7 +48,7 @@ public class ProjetPirates {
         //</editor-fold>
         BoundaryGetCarteInfo boundaryGetCarteInfo = new BoundaryGetCarteInfo(controleurGetCarteInfo);
         BoundaryGetPirateInfo boundaryGetPirateInfo =  new BoundaryGetPirateInfo(controleurGetPirateInfo);
-        BoundaryJouerCarte boundaryJouerCarte = new BoundaryJouerCarte(controleurJouerCarte);
+        BoundaryJouerCarte boundaryJouerCarte = new BoundaryJouerCarte(controleurJouerCarte, controleurGetCarteInfo);
         BoundaryNouvellePartie boundaryNouvellePartie = new BoundaryNouvellePartie(controleurNouvellePartie);
         BoundaryPiocherCarte boundaryPiocherCarte = new BoundaryPiocherCarte(controleurPiocherCarte);
 
@@ -54,8 +56,12 @@ public class ProjetPirates {
         BoundaryJeu boundaryJeu = new BoundaryJeu(boundaryGetCarteInfo, boundaryGetPirateInfo,
                 boundaryJouerCarte, boundaryNouvellePartie, boundaryPiocherCarte);
 
-        FrameJeu frameJeu = new FrameJeu(boundaryJeu, false);
+        if(IHM){
+            FrameJeu frameJeu = new FrameJeu(boundaryJeu, false);
+            frameJeu.setVisible(true);
+        } else {
+            boundaryJeu.JouerPartie();
+        }
 
-        frameJeu.setVisible(true);
     }
 }

@@ -9,6 +9,7 @@ import noyau.ICategorieCarte;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -23,6 +24,7 @@ public class BoundaryJeu {
     private BoundaryJouerCarte boundaryJouerCarte;
     private BoundaryNouvellePartie boundaryNouvellePartie;
     private BoundaryPiocherCarte boundaryPiocherCarte;
+    private Scanner scanner = new Scanner(System.in);
 
     public BoundaryJeu(BoundaryGetCarteInfo boundaryGetCarteInfo, BoundaryGetPirateInfo boundaryGetPirateInfo,
                        BoundaryJouerCarte boundaryJouerCarte, BoundaryNouvellePartie boundaryNouvellePartie,
@@ -63,7 +65,7 @@ public class BoundaryJeu {
     }
 
     public List<String> jouerCarte(JCarte carte) {
-        return boundaryJouerCarte.jouerCarte(carte);
+        return boundaryJouerCarte.jouerCarte(carte.getNomCarte());
     }
 
     public void initNewGame(){
@@ -81,4 +83,40 @@ public class BoundaryJeu {
     public int getCarteId(String nomCarte) {
         return boundaryGetCarteInfo.getCarteId(nomCarte);
     }
+
+    public void JouerPartie(){
+        initNewGame();
+        List<String> res;
+        do{
+            int tour = getTour();
+            System.out.println("Adversaire : ");
+            boundaryGetPirateInfo.printPirateInfo((tour+1)%2, true);
+            System.out.println("---------------------------------------");
+            ArrayList<String> cartesPiocher = piocherCarte();
+            for(String carte : cartesPiocher){
+                boundaryGetCarteInfo.printCarteInfo(carte);
+            }
+            System.out.println("---------------------------------------");
+            System.out.println("Joueur : ");
+            boundaryGetPirateInfo.printPirateInfo(tour%2, false);
+            ArrayList<String> main = getPirateMain(tour%2);
+            int carte = -1;
+            String nomCarte = "";
+            String choix = "";
+            do {
+                do {
+                    System.out.println("Choisissez le chiffre d'une carte de votre main : ");
+                    carte = scanner.nextInt() - 1;
+                } while (carte >= main.size());
+                nomCarte = main.get(carte);
+                boundaryGetCarteInfo.printCarteInfo(nomCarte);
+                System.out.println("Appliquer l'effet ? (O/N)");
+                choix = scanner.next();
+            } while (!choix.equals("O"));
+            res = boundaryJouerCarte.jouerCarte(main.get(carte));
+        }while((res.getLast()).equals("Pas de gagnant"));
+
+    }
+
+
 }

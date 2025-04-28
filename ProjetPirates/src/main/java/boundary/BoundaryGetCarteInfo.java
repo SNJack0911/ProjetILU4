@@ -26,4 +26,11 @@ public class BoundaryGetCarteInfo {
     public int getCarteId(String nomCarte) {
         return controleurGetCarteInfo.getCarteID(nomCarte);
     }
+
+    public void printCarteInfo(String nomCarte){
+        System.out.println("Carte : " + nomCarte);
+        System.out.println("Description : " + getDescription(nomCarte));
+        System.out.println("Type : " + getTypeCarte(nomCarte));
+        System.out.println("Zone de depot : " + getZoneDepot(nomCarte));
+    }
 }

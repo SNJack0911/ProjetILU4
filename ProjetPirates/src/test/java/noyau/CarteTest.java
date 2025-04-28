@@ -71,6 +71,7 @@ class CarteTest {
         try{
             if (is == null) throw new FileNotFoundException("Fichier non trouvé !");
             List<Carte> cartes = CartesCSV.lireCartes(is);
+            if (cartes == null) System.err.println("Erreur de lecture du fichier CSV");
             Carte c = cartes.getFirst();
             assertEquals("Coup de Sabre", c.getNom(), "Nom incorrect");
 

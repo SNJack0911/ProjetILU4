@@ -151,10 +151,15 @@ public class JCarte extends javax.swing.JPanel {
     public void setImage(int carteID) {
         try {
             backCard = ImageIO.read(new File("src/main/ressources/" + "Card1Back.png"));
-            frontCard = ImageIO.read(new File("src/main/ressources/Carte/Card1Front" + carteID + ".png"));
+            if (carteID == -1){
+                frontCard = ImageIO.read(new File("src/main/ressources/Carte/Card1Front" + type.toString() + ".png"));
+            }else{
+                frontCard = ImageIO.read(new File("src/main/ressources/Carte/Card1Front" + carteID + ".png"));
+            }
         } catch (IOException e){
             String userDirectory = new File("").getAbsolutePath();
-            System.out.print("Card not found : " + userDirectory);
+            System.out.println("Card not found : " + userDirectory + "src/main/ressources/Carte/Card1Front" + type.toString() + ".png");
+            System.out.println("Card ID : " + carteID + "\tIHM : " + type.toString());
         }
         //this.nom = cardName;
     }
@@ -384,6 +389,10 @@ public class JCarte extends javax.swing.JPanel {
     }
 
     public BasicCategorie getCategorie(){return zoneDepot;}
+
+    public String getDescription() {
+        return description;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
