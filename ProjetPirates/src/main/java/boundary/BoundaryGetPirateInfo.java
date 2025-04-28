@@ -30,4 +30,16 @@ public class BoundaryGetPirateInfo {
         return controleurGetPirateInfo.getPirateMain(pirateID);
     }
 
+    public void printPirateInfo(int pirateID, boolean isAdversaire){
+        System.out.println("Pirate : " + getPirateName(pirateID));
+        System.out.println("HP : " + getPirateHp(pirateID));
+        System.out.println("PP : " + getPiratePp(pirateID));
+        if (!isAdversaire) {
+            System.out.println("Main : ");
+            ArrayList<String> main = getPirateMain(pirateID);
+            for (int i = 0; i < main.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + main.get(i));
+            }
+        }
+    }
 }

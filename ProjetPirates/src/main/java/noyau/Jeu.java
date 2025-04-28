@@ -12,7 +12,7 @@ public class Jeu {
     private Pioche pioche;
     private int tour;
     private boolean nuit=false;
-    private Map<Carte, Integer> carteNonJouer = new TreeMap<Carte, Integer>();
+    //private Map<Carte, Integer> carteNonJouer = new TreeMap<Carte, Integer>();
 
     public Jeu(){ initJeu();}
 
@@ -33,7 +33,6 @@ public class Jeu {
                joueur1.getHP() == 0 || joueur2.getHP() == 0;
     }
 
-    //not == but >=
     protected String getGagnant(){
         if (joueur1.getPP() >= 5 || joueur2.getHP() <= 0){
             return joueur1.getNom();
@@ -76,12 +75,22 @@ public class Jeu {
             /*mainPirate = joueur1.getMain();
             carte = getCarteMain(nomCarte, mainPirate);*/
             carte = joueur1.getCarteMain(nomCarte);
+            if (carte == null){
+                resutatTour = new ArrayList<>();
+                resutatTour.add("Carte not found  in main of player 1 : " + nomCarte);
+                return  resutatTour;
+            }
             resutatTour = carte.appliquerEffet(joueur1, joueur2, this);
             joueur1.supprimerCarteMain(carte);
         } else {
             /*mainPirate = joueur2.getMain();
             carte = getCarteMain(nomCarte, mainPirate);*/
             carte = joueur2.getCarteMain(nomCarte);
+            if (carte == null){
+                resutatTour = new ArrayList<>();
+                resutatTour.add("Carte not found  in main of player 2 : " + nomCarte);
+                return  resutatTour;
+            }
             resutatTour = carte.appliquerEffet(joueur2, joueur1, this);
             joueur2.supprimerCarteMain(carte);
         }
