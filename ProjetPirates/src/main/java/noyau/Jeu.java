@@ -60,7 +60,13 @@ public class Jeu {
             if (pioche.estVide()){
                 pioche = new Pioche(jeuDeCarte.remplirPioche());
             }
-            carte = pioche.piocher();
+            try {
+                carte = pioche.piocher();
+            } catch (IllegalStateException e) {
+                System.err.println("Erreur piocher carte : " + e.getMessage());
+                return cartesLst;
+            }
+            System.out.println("Joueur " + joueur.getNom() + " ajoute la carte " + carte.getNom());
             joueur.addCarte(carte);
             cartesLst.add(carte);
         }

@@ -17,7 +17,7 @@ public class Pioche {
 
     public boolean estVide(){return nbCartes <= 0;};
 
-    public Carte piocher(){
+    public Carte piocher() throws IllegalStateException{
         if (estVide()) {
             throw new IllegalStateException("Impossible de piocher dans une pioche vide !");
         }

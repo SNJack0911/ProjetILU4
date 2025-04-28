@@ -3,12 +3,12 @@ package noyau;
 import java.util.ArrayList;
 
 public class JeuDeCarte {
-    private Configuration[] config = {new Configuration(new CartePopularite("Plus1Pop", -1, "Le joueur Gagne 1PP", 1, 0, false), 20),
-            new Configuration(new CartePopularite("Moins1Pop", -1, "Le joueur Perd 1PP", -1, 0, false), 20),
-            new Configuration(new CartePopularite("Plus1P", -1, "Le joueur gagne 1PP", 0, 1, false), 20),
-            new Configuration(new CarteAttack("Plus1PV", -1, "Le joueur Gagne 1 PV", 0, 1, 0, 0, false, false), 20),
-            new Configuration(new CarteAttack("Moins1PVA", -1, "L'adversaire perd 1 PV", 0, 0, 0, -1, false, false), 20),
-            new Configuration(new CarteAttack("Moins1PPA", -1, "Le joueur Gagne 1 PV", 0, 0, -1, 0, false, false), 20),
+    private Configuration[] config = {new Configuration(new CartePopularite("Plus1Pop", -1, "Le joueur Gagne 1PP", 1, 0, false), 10),
+            new Configuration(new CartePopularite("Moins1Pop", -1, "Le joueur Perd 1PP", -1, 0, false), 10),
+            new Configuration(new CartePopularite("Plus1PV pop", -1, "Le joueur gagne 1PV", 0, 1, false), 10),
+            new Configuration(new CarteAttack("Plus1PV att", -1, "Le joueur Gagne 1 PV Attaque", 0, 1, 0, 0, false, false), 10),
+            new Configuration(new CarteAttack("Moins1PVA", -1, "L'adversaire perd 1 PV", 0, 0, 0, -1, false, false), 10),
+            new Configuration(new CarteAttack("Moins1PPA", -1, "L'adversaire perd 1 PP", 0, 0, -1, 0, false, false), 10),
     };
 
    

@@ -92,7 +92,11 @@ public class BoundaryJeu {
             System.out.println("Adversaire : ");
             boundaryGetPirateInfo.printPirateInfo((tour+1)%2, true);
             System.out.println("---------------------------------------");
-            piocherCarte();
+            ArrayList<String> cartesPiocher = piocherCarte();
+            for(String carte : cartesPiocher){
+                boundaryGetCarteInfo.printCarteInfo(carte);
+            }
+            System.out.println("---------------------------------------");
             System.out.println("Joueur : ");
             boundaryGetPirateInfo.printPirateInfo(tour%2, false);
             ArrayList<String> main = getPirateMain(tour%2);
