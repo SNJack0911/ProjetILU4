@@ -210,8 +210,8 @@ public class Plateau extends javax.swing.JPanel {
             System.out.println("Gagnant : " + lastElement);
         }
         jPioche1.setEnabled(true);
-        jMainJoueur1.setEnabled(!jMainJoueur1.isEnabled());
-        jMainJoueur2.setEnabled(!jMainJoueur2.isEnabled());
+        jMainJoueur1.setEnabled(false);
+        jMainJoueur2.setEnabled(false);
         retournerCartes();
     }
     
