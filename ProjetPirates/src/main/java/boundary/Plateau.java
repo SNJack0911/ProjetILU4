@@ -41,25 +41,26 @@ public class Plateau extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         plateauBackground = new boundary.components.JPanelWithBackground();
-        jMainJoueur2 = new boundary.components.JMainJoueur();
-        jMainJoueur1 = new boundary.components.JMainJoueur();
-        jInfoJoueur1 = new boundary.components.JInfoJoueur();
-        jInfoJoueur2 = new boundary.components.JInfoJoueur();
         jPioche1 = new boundary.components.JPioche();
         jZoneInteraction1 = new boundary.components.JZoneInteraction();
         jPirateIcon2 = new boundary.components.JPirateIcon();
+        jMainJoueur2 = new boundary.components.JMainJoueur();
+        jInfoJoueur2 = new boundary.components.JInfoJoueur();
+        jInfoJoueur1 = new boundary.components.JInfoJoueur();
+        jMainJoueur1 = new boundary.components.JMainJoueur();
         jPirateIcon1 = new boundary.components.JPirateIcon();
 
-        plateauBackground.setBackground(new java.awt.Color(255, 204, 204));
-        plateauBackground.setImage("Plateau.png");
-        plateauBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        plateauBackground.add(jMainJoueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, -1));
-        plateauBackground.add(jMainJoueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
-        plateauBackground.add(jInfoJoueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, -1, -1));
-        plateauBackground.add(jInfoJoueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, -1, -1));
+        setMinimumSize(new java.awt.Dimension(720, 480));
 
+        plateauBackground.setBackground(new java.awt.Color(255, 204, 204));
+        plateauBackground.setPreferredSize(new java.awt.Dimension(720, 480));
+        plateauBackground.setImage("Plateau.png");
+        plateauBackground.setLayout(new java.awt.GridBagLayout());
+
+        jPioche1.setMinimumSize(new java.awt.Dimension(142, 90));
         jPioche1.setPreferredSize(new java.awt.Dimension(142, 90));
         jPioche1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -71,34 +72,98 @@ public class Plateau extends javax.swing.JPanel {
         jPioche1.setLayout(jPioche1Layout);
         jPioche1Layout.setHorizontalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 148, Short.MAX_VALUE)
         );
         jPioche1Layout.setVerticalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        plateauBackground.add(jPioche1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
-        plateauBackground.add(jZoneInteraction1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.58;
+        gridBagConstraints.insets = new java.awt.Insets(40, 20, 40, 0);
+        plateauBackground.add(jPioche1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        plateauBackground.add(jZoneInteraction1, gridBagConstraints);
 
         jPirateIcon2.setBackground(new java.awt.Color(255, 255, 204));
         jPirateIcon2.setMinimumSize(new java.awt.Dimension(130, 130));
+        jPirateIcon2.setPreferredSize(new java.awt.Dimension(130, 130));
         jPirateIcon2.setImage("IconP2.png");
 
         javax.swing.GroupLayout jPirateIcon2Layout = new javax.swing.GroupLayout(jPirateIcon2);
         jPirateIcon2.setLayout(jPirateIcon2Layout);
         jPirateIcon2Layout.setHorizontalGroup(
             jPirateIcon2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 138, Short.MAX_VALUE)
         );
         jPirateIcon2Layout.setVerticalGroup(
             jPirateIcon2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        plateauBackground.add(jPirateIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        plateauBackground.add(jPirateIcon2, gridBagConstraints);
+
+        jMainJoueur2.setMinimumSize(new java.awt.Dimension(420, 160));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        plateauBackground.add(jMainJoueur2, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        plateauBackground.add(jInfoJoueur2, gridBagConstraints);
+
+        jInfoJoueur1.setMinimumSize(new java.awt.Dimension(138, 148));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        plateauBackground.add(jInfoJoueur1, gridBagConstraints);
+
+        jMainJoueur1.setMinimumSize(new java.awt.Dimension(420, 160));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        plateauBackground.add(jMainJoueur1, gridBagConstraints);
 
         jPirateIcon1.setBackground(new java.awt.Color(255, 255, 204));
+        jPirateIcon1.setMinimumSize(new java.awt.Dimension(130, 130));
         jPirateIcon1.setPreferredSize(new java.awt.Dimension(130, 130));
         jPirateIcon1.setImage("IconP1.png");
 
@@ -110,10 +175,18 @@ public class Plateau extends javax.swing.JPanel {
         );
         jPirateIcon1Layout.setVerticalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
 
-        plateauBackground.add(jPirateIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        plateauBackground.add(jPirateIcon1, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
