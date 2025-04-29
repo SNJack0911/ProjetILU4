@@ -89,15 +89,20 @@ public class BoundaryJeu {
         List<String> res;
         do{
             int tour = getTour();
-            System.out.println("Adversaire : ");
+            System.out.println("**********************");
+            System.out.println("***  Adversaire :  ***");
+            System.out.println("**********************");
             boundaryGetPirateInfo.printPirateInfo((tour+1)%2, true);
             System.out.println("---------------------------------------");
             ArrayList<String> cartesPiocher = piocherCarte();
+            System.out.println("Carte(s) piochée(s) en début de tour : \n");
             for(String carte : cartesPiocher){
                 boundaryGetCarteInfo.printCarteInfo(carte);
             }
             System.out.println("---------------------------------------");
-            System.out.println("Joueur : ");
+            System.out.println("**********************");
+            System.out.println("***  Joueur :      ***");
+            System.out.println("**********************");
             boundaryGetPirateInfo.printPirateInfo(tour%2, false);
             ArrayList<String> main = getPirateMain(tour%2);
             int carte = -1;

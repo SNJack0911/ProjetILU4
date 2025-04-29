@@ -78,7 +78,7 @@ public class Pirate {
     
     public void addCarte(Carte carte) {
         hands.add(carte);
-        System.out.println("Carte ajouter dans la main du joueur : " + carte.getNom() + "\n");
+        //System.out.println("Carte ajouter dans la main du joueur : " + carte.getNom() + "\n");
     }
 
     @Override
@@ -102,7 +102,7 @@ public class Pirate {
             }
         }
         
-        System.out.println("Carte non trouvée dans la main du joueur\n");
+        //System.out.println("Carte non trouvée dans la main du joueur\n");
         return null;
     }
     

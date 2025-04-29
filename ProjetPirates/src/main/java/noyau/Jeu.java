@@ -66,7 +66,7 @@ public class Jeu {
                 System.err.println("Erreur piocher carte : " + e.getMessage());
                 return cartesLst;
             }
-            System.out.println("Joueur " + joueur.getNom() + " ajoute la carte " + carte.getNom());
+            //System.out.println("Joueur " + joueur.getNom() + " ajoute la carte " + carte.getNom());
             joueur.addCarte(carte);
             cartesLst.add(carte);
         }
