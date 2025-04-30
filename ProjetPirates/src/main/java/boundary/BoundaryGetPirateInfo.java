@@ -12,22 +12,37 @@ public class BoundaryGetPirateInfo {
     }
 
     public String getPirateName(int pirateID) {
-        //TODO traiter ID faux
-        return controleurGetPirateInfo.getNomPirate(pirateID);
+        String nomPirate = controleurGetPirateInfo.getNomPirate(pirateID);
+        if (nomPirate.equals("Numero de pirates invalide choisir 0 ou 1")) {
+            System.out.println("Erreur : " + nomPirate);
+            return "";
+        }
+        return nomPirate;
     }
 
     public int getPirateHp(int pirateID) {
-        //TODO traiter ID faux
-        return controleurGetPirateInfo.getPirateHp(pirateID);
+        int hp = controleurGetPirateInfo.getPirateHp(pirateID);
+        if (hp < 0) {
+            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+        }
+        return hp;
     }
 
     public int getPiratePp(int pirateID) {
-        //TODO traiter ID faux
-        return controleurGetPirateInfo.getPiratePp(pirateID);
+        int pp = controleurGetPirateInfo.getPiratePp(pirateID);
+        if (pp < 0) {
+            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+        }
+        return pp;
     }
 
     public ArrayList<String> getPirateMain(int pirateID) {
-        return controleurGetPirateInfo.getPirateMain(pirateID);
+        ArrayList<String> main = controleurGetPirateInfo.getPirateMain(pirateID);
+        if (main == null) {
+            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+            return new ArrayList<>();
+        }
+        return main;
     }
 
     public void printPirateInfo(int pirateID, boolean isAdversaire){

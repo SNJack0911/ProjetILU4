@@ -15,6 +15,11 @@ public class BoundaryNouvellePartie {
     }
 
     public int getTour(){
-        return controleurNouvellePartie.getTour();
+        int tour = controleurNouvellePartie.getTour();
+        if (tour < 0) {
+            System.out.println("Erreur : Tour inexistant");
+            return 0;
+        }
+        return tour;
     }
 }

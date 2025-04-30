@@ -12,10 +12,10 @@ public class BoundaryPiocherCarte {
     }
 
     public ArrayList<String> piocherCarte() {
-        return controleurPiocherCarte.piocherCarte();
-        //TODO Ajouter les cartes à la main
-        //Les cartes sont de la forme nom et il faut get les attribut
-        // NON VALIDE -> Les cartes sont de la forme ["nom", ICategorieCarte type, "Description", BasicCategorie zoneDepot]
-        //plateau.ajouterCartes(1 ou 2, cartes)
+        ArrayList<String> p = controleurPiocherCarte.piocherCarte();
+        if (p == null || p.isEmpty()){
+            System.out.println("Aucune carte n'a été piochée.");
+        }
+        return p;
     }
 }
