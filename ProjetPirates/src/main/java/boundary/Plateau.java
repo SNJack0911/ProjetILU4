@@ -4,6 +4,7 @@
  */
 package boundary;
 
+import boundary.components.AnimationManagerPiece;
 import boundary.components.JCarte;
 import boundary.components.JMainJoueur;
 import boundary.components.JZoneInteraction;
@@ -21,6 +22,7 @@ public class Plateau extends javax.swing.JPanel {
     private JCarte carte;
     private GestionnaireCartes gestionnaire = new GestionnaireCartes();
     private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
+    private AnimationManagerPiece animationpiece = new AnimationManagerPiece();
     
     private String nomPirate1;
     private String nomPirate2;
@@ -55,7 +57,6 @@ public class Plateau extends javax.swing.JPanel {
 
         setMinimumSize(new java.awt.Dimension(720, 480));
 
-        plateauBackground.setBackground(new java.awt.Color(255, 204, 204));
         plateauBackground.setPreferredSize(new java.awt.Dimension(720, 480));
         plateauBackground.setImage("Plateau.png");
         plateauBackground.setLayout(new java.awt.GridBagLayout());
@@ -159,7 +160,7 @@ public class Plateau extends javax.swing.JPanel {
         );
         jPirateIcon1Layout.setVerticalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -260,7 +261,7 @@ public class Plateau extends javax.swing.JPanel {
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
-        
+        animationpiece.traiterAnimationLancerPiece(resultat);
         String lastElement = resultat.get(resultat.size()-1);
         if (!lastElement.equals("Pas de gagnant")){
             //afficherGagnant(lastElement);
