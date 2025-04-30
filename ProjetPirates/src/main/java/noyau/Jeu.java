@@ -137,4 +137,9 @@ public class Jeu {
     public int getTour() {
         return tour;
     }
+
+    public boolean estJeuTermine() {
+        return isJeuTermine();
+    }
+
 }
