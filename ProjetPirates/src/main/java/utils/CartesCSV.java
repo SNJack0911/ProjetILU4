@@ -38,13 +38,13 @@ public class CartesCSV {
                         carte = new CarteDefense(nom, 0, description, ppJoueur, pvJoueur, affecteNuit);
                         break;
                     case "effet":
-                        // carte = new CarteEffet(nom, 0, description, ppJoueur, pvJoueur, affecteNuit);
+                        carte = new CartePopularite(nom,0, description, ppJoueur, pvJoueur, piece);
                         break;
                     case "popularité":
                         carte = new CartePopularite(nom, 0, description, ppJoueur, pvJoueur, piece);
                         break;
                     case "popularité + effet":
-                        carte = new CartePopularite(nom, 0, description, ppJoueur, pvJoueur, affecteNuit);
+                        carte = new CartePopularite(nom, 0, description, ppJoueur, pvJoueur, piece);
                         // carte = new CarteEffet(nom, description, ppJoueur, pvJoueur, affecteNuit);
                         break;
                     default:

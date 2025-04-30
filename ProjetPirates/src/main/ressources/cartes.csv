@@ -1,5 +1,5 @@
 Nom,Description,Type,PV_Joueur,PP_Joueur,PV_Adversaire,PP_Adversaire,AffecteNuit,LancerPiece
-Touché d'encre,Choisissez une carte à faire défausser à l'adversaire. (L'adversaire doit ensuite piocher une nouvelle carte),Effet,,,,,,
+"Touché d'encre","Choisissez une carte à faire défausser à l'adversaire. (L'adversaire doit ensuite piocher une nouvelle carte)",Effet,,,,,,
 "Sourd d'oreille","Les effets diminuant les PV/PP sont inefficaces pendant ce tour (pour tous les joueurs)",Effet,,,,,,
 "Effet Amplificateur","Les effets augmentant les PV/PP sont doublés pendant les 3 prochains tours (on peut le faire pendant une période nuit)",Effet,,,,1,,
 "Dénie","Annule la carte adverse précédente (sur le terrain)",Effet,,,,,,
