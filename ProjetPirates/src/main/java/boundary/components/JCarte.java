@@ -30,7 +30,7 @@ import noyau.ICategorieCarte;
 
 /**
  *
- * @author choue
+ * @author leo
  */
 public class JCarte extends javax.swing.JPanel {
     private Image frontCard;
@@ -265,7 +265,7 @@ public class JCarte extends javax.swing.JPanel {
         Component c = plateauPanel.getComponentAt(pointInPlateau);
         //System.out.println("C: " + c.getClass().getSimpleName());
         
-        if (c instanceof JZoneInteraction zoneInteraction){
+        if (c instanceof JZoneInteractionCreux zoneInteraction){
             Rectangle boundsZone = zoneInteraction.getBounds();
             if (boundsZone.intersects(getBounds())) {
                 String pirate = plateau.getCurrentPirate();

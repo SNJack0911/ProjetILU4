@@ -14,7 +14,7 @@ import noyau.Pirate;
 
 /**
  *
- * @author vince
+ * @author leo, retouche vincent
  */
 //TODO fix link boundary & noyau
 public class JInfoJoueur extends javax.swing.JPanel {

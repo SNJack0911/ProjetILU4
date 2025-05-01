@@ -1,25 +1,30 @@
 package noyau;
 
 import boundary.components.JCarte;
-import boundary.components.JZoneInteraction;
+import boundary.components.JZoneInteractionCreux;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestionnaireCartes {
+/**
+ * Désué, servait pour l'ihm au tout début, remplacé par d'autres versions 
+ * @author leo
+ */
+
+public class GestionnaireCartesCreux {
 
     private final List<JCarte> cartes = new ArrayList<>();
-    private final List<JZoneInteraction> zones = new ArrayList<>();
+    private final List<JZoneInteractionCreux> zones = new ArrayList<>();
 
     public void ajouterCarte(JCarte carte) {
         cartes.add(carte);
     }
 
-    public void ajouterZone(JZoneInteraction zone) {
+    public void ajouterZone(JZoneInteractionCreux zone) {
         zones.add(zone);
     }
 
     public void verifierToutesZones(JCarte carte) {
-        for (JZoneInteraction zone : zones) {
+        for (JZoneInteractionCreux zone : zones) {
             zone.verifierCarte(carte); // délégué à la zone
         }
     }
@@ -28,7 +33,7 @@ public class GestionnaireCartes {
         return cartes;
     }
 
-    public List<JZoneInteraction> getZones() {
+    public List<JZoneInteractionCreux> getZones() {
         return zones;
     }
 

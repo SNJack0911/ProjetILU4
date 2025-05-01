@@ -4,25 +4,25 @@
  */
 package boundary;
 
-import boundary.components.AnimationManagerPiece;
+//import boundary.components.AnimationManagerPiece;
 import boundary.components.JCarte;
 import boundary.components.JMainJoueur;
-import boundary.components.JZoneInteraction;
+import boundary.components.JZoneInteractionCreux;
 import java.util.List;
-import noyau.GestionnaireCartes;
+import noyau.GestionnaireCartesCreux;
 import noyau.GestionnaireEffetFumee;
 
 /**
  *
- * @author yannf
+ * @author leo et yannf
  */
 public class Plateau extends javax.swing.JPanel {
     private BoundaryJeu boundaryJeu;
-    private JZoneInteraction zoneInteraction = null;
-    private JCarte carte;
-    private GestionnaireCartes gestionnaire = new GestionnaireCartes();
-    private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
-    private AnimationManagerPiece animationpiece = new AnimationManagerPiece();
+    //private JZoneInteraction zoneInteraction = null;
+    //private JCarte carte;
+    //private GestionnaireCartes gestionnaire = new GestionnaireCartes();
+    //private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
+    //private AnimationManagerPiece animationpiece = new AnimationManagerPiece();
     
     private String nomPirate1;
     private String nomPirate2;
@@ -47,7 +47,7 @@ public class Plateau extends javax.swing.JPanel {
 
         plateauBackground = new boundary.components.JPanelWithBackground();
         jPioche1 = new boundary.components.JPioche();
-        jZoneInteraction1 = new boundary.components.JZoneInteraction();
+        jZoneInteraction1 = new boundary.components.JZoneInteractionCreux();
         jPirateIcon2 = new boundary.components.JPirateIcon();
         jMainJoueur2 = new boundary.components.JMainJoueur();
         jInfoJoueur2 = new boundary.components.JInfoJoueur();
@@ -281,7 +281,7 @@ public class Plateau extends javax.swing.JPanel {
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
-        animationpiece.traiterAnimationLancerPiece(resultat);
+        //animationpiece.traiterAnimationLancerPiece(resultat);
         String lastElement = resultat.get(resultat.size()-1);
         if (!lastElement.equals("Pas de gagnant")){
             //afficherGagnant(lastElement);
@@ -291,7 +291,7 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
         retournerCartes();
-        jLancerPiece1.setEtat("P");
+        jLancerPiece1.setEtat("F");
     }
     
     public void retournerCartes() {
@@ -322,7 +322,7 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPioche jPioche1;
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;
-    private boundary.components.JZoneInteraction jZoneInteraction1;
+    private boundary.components.JZoneInteractionCreux jZoneInteraction1;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
 }

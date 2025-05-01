@@ -18,7 +18,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author choue
+ * @author leo
  */
 
 public class GestionnaireEffetFumee {

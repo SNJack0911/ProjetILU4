@@ -15,17 +15,17 @@ import java.util.List;
 import javax.swing.JPanel;
 
 
-public class AnimationManagerPiece {
+public class AnimationManagerPieceCreux {
 
     private JPanel panelAnimation;
     private JLabel labelAnimation;
 
-    public AnimationManagerPiece() {
+    public AnimationManagerPieceCreux() {
         panelAnimation = new JPanel();
         panelAnimation.setPreferredSize(new Dimension(300, 300));
         panelAnimation.setBackground(Color.WHITE);
         labelAnimation = new JLabel();
-        labelAnimation.setOpaque(false);
+
         panelAnimation.add(labelAnimation);
     }
 

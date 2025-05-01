@@ -10,10 +10,16 @@ import java.awt.event.ActionEvent;
 import java.util.Objects;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
+   import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.util.Objects;
+
 
 /**
  *
- * @author yannf
+ * @author leo et yannf
  */
 public class JLancerPiece extends javax.swing.JPanel {
     private ImageIcon iconPile;
@@ -48,11 +54,11 @@ public class JLancerPiece extends javax.swing.JPanel {
         repaint();
 
         // Wait and then show result using a Swing Timer
-        Timer t1 = new Timer(1300, (ActionEvent e) -> {
+        Timer t1 = new Timer(2500, (ActionEvent e) -> {
             currentImage = etat.equals("P") ? iconPile.getImage() : iconFace.getImage();
             repaint();
             // Reset after another delay
-            Timer t2 = new Timer(3500, (ActionEvent e2) -> {
+            Timer t2 = new Timer(3400, (ActionEvent e2) -> {
                 etat = "0";
                 currentImage = null;
                 repaint();
@@ -67,15 +73,7 @@ public class JLancerPiece extends javax.swing.JPanel {
     private void initImage(){
         lancer = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Lancer.gif")));
         iconPile = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Noir.gif")));
-        iconFace = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Jaune.gif")));
-    }
-    
-    private void pause(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        iconFace = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Jaune2.gif")));
     }
         
     /**

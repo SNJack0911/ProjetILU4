@@ -4,10 +4,10 @@
  */
 package boundary;
 
-import noyau.GestionnaireCartes;
+import noyau.GestionnaireCartesCreux;
 import boundary.components.JCarte;
 import boundary.components.JPointDeVie;
-import boundary.components.JZoneInteraction;
+import boundary.components.JZoneInteractionCreux;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,13 +17,13 @@ import noyau.GestionnaireEffetFumee;
 
 /**
  *
- * @author yannf
+ * @author leo et yannf
  */
 public class PlateauOld extends javax.swing.JPanel {
     private BoundaryJeu boundaryJeu;
-    private JZoneInteraction zoneInteraction = null;
+    private JZoneInteractionCreux zoneInteraction = null;
     private JCarte carte;
-    private GestionnaireCartes gestionnaire = new GestionnaireCartes();
+    private GestionnaireCartesCreux gestionnaire = new GestionnaireCartesCreux();
     private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
     
     private String nomPirate1;
@@ -71,7 +71,7 @@ public class PlateauOld extends javax.swing.JPanel {
         return gestionnairefumee;
     }
     */
-    public GestionnaireCartes getGestionnaire() {
+    public GestionnaireCartesCreux getGestionnaire() {
         return gestionnaire;
     }
     /**
@@ -108,7 +108,7 @@ public class PlateauOld extends javax.swing.JPanel {
         jPioche1 = new boundary.components.JPioche();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jMainJoueur2 = new boundary.components.JMainJoueur();
-        jZoneInteraction1 = new boundary.components.JZoneInteraction();
+        jZoneInteraction1 = new boundary.components.JZoneInteractionCreux();
 
         panelDragCarte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelDragCarte.setName("TranparentLayer"); // NOI18N
@@ -657,7 +657,7 @@ public class PlateauOld extends javax.swing.JPanel {
     private boundary.components.JPointDeVie jPointDeVie7;
     private boundary.components.JPointDeVie jPointDeVie8;
     private boundary.components.JPointDeVie jPointDeVie9;
-    private boundary.components.JZoneInteraction jZoneInteraction1;
+    private boundary.components.JZoneInteractionCreux jZoneInteraction1;
     private boundary.components.JPanelWithBackground jaugePopulariteP1;
     private boundary.components.JPanelWithBackground jaugePopulariteP2;
     private javax.swing.JLabel labelGagnant;

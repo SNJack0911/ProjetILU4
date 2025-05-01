@@ -1,8 +1,12 @@
-
 package noyau;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ *
+ * @author ???, retouche par choue, par fanny
+ */
 
 public class JeuNOUVELLE_PROPOSITION {
     private Pirate joueur1;

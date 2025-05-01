@@ -1,11 +1,11 @@
 package boundary.components;
 
-import java.awt.AlphaComposite;
-import java.awt.Composite;
-import java.awt.Graphics2D;
 import java.awt.Image;
 
-import java.awt.*;
+/**
+ *
+ * @author leo et yannf
+ */
 
 public class SmokeEffect {
     public Image image;

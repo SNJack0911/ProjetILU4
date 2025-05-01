@@ -15,7 +15,7 @@ import noyau.BasicCategorie;
 
 /**
  *
- * @author yannf
+ * @author yannf 
  */
 public class JZoneDepot extends javax.swing.JPanel {
     private Image carte;

@@ -19,9 +19,8 @@ import java.awt.event.*;
 
 /**
  *
- * @author choue
+ * @author leo
  */
-
 
 public class JCartePopUp extends JWindow {
 

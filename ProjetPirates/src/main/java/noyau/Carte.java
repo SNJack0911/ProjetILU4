@@ -1,5 +1,9 @@
 package noyau;
 
+/**
+ * 
+ * @auhor ??? et leo a l'origine
+ */
 import java.util.List;
 
 public abstract class Carte {

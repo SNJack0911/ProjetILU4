@@ -18,17 +18,17 @@ import noyau.ICategorieCarte;
 
 
 /**
- *
- * @author choue
+ * Désué; remplacé par JZoneDepot.
+ * @author leo
  */
-public class JZoneInteraction extends javax.swing.JPanel {
+public class JZoneInteractionCreux extends javax.swing.JPanel {
     
     private int origine = 0;
     private boolean carteDedans = false;
     /**
      * Creates new form JZoneInteraction
      */
-    public JZoneInteraction() {
+    public JZoneInteractionCreux() {
         initComponents();
         //setBackground(Color.PINK);
         setBounds(500,200,150,150);
