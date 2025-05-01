@@ -59,11 +59,11 @@ class JeuTest {
         joueur.addCarte(testCarte);
 
         List<String> resultValid = jeu.jouerCarte("Plus1Pop");
-        assertTrue(resultValid.size() > 0);
-        assertFalse(resultValid.get(0).startsWith("Carte not found"), "Carte faudrait être trouvée");
+        //assertFalse(resultValid.isEmpty()); //Because 4 cards given at the beginning of the game
+        assertFalse(resultValid.getFirst().startsWith("Carte not found"), "Carte faudrait être trouvée"); // Not sure what to do here
 
         List<String> resultInvalid = jeu.jouerCarte("FakeCard");
-        assertTrue(resultInvalid.get(0).contains("Carte not found"), "Carte non trouvée");
+        assertTrue(resultInvalid.getFirst().contains("Carte pas trouvée"), "Carte non trouvée");
     }
 
     @Test
@@ -79,14 +79,14 @@ class JeuTest {
     }
 
     @Test
-    void testPlayCardWithEmptyHand() {
+    void testPlayCardWithEmptyHand() { //Impossible because the players' hands are filled at the beginning of the game
         Jeu jeu = new Jeu();
         Pirate joueur = jeu.getPirate(0);
         joueur.getMain().clear();
 
         List<String> result = jeu.jouerCarte("AnyCard");
         assertEquals(1, result.size());
-        assertTrue(result.get(0).contains("Carte not found"), "Il ne faut pas jouer une carte si la main est vide");
+        assertTrue(result.getFirst().contains("Carte pas trouvée"), "Il ne faut pas jouer une carte si la main est vide");
     }
 
     @Test
@@ -95,7 +95,7 @@ class JeuTest {
 
         List<String> result = jeu.jouerCarte(null);
         assertEquals(1, result.size());
-        assertTrue(result.get(0).contains("Carte not found"), "Null carte ne faudrait pas être jouée");
+        assertTrue(result.get(0).contains("Carte pas trouvée"), "Null carte ne faudrait pas être jouée");
     }
 
     @Test

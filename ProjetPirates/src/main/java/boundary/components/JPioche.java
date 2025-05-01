@@ -44,8 +44,8 @@ public class JPioche extends javax.swing.JPanel {
     
     private void setImage(){
         try{
-                defaultIcon = ImageIO.read(new File("src/main/ressources/PiocheNormal.png"));
-                hoverIcon = ImageIO.read(new File("src/main/ressources/PiocheHover.png"));
+                defaultIcon = ImageIO.read(new File("src/main/resources/PiocheNormal.png"));
+                hoverIcon = ImageIO.read(new File("src/main/resources/PiocheHover.png"));
             } catch (IOException e){
                 String userDirectory = new File("").getAbsolutePath();
                 System.out.print("Pioche not found : " + userDirectory);

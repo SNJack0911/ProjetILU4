@@ -28,7 +28,7 @@ public class GestionnaireEffetFumee {
     public GestionnaireEffetFumee() {
         try {
             for (int i = 0; i <=3 ; i++) {
-                Image img = ImageIO.read(new File("src/main/ressources/blackSmoke" + String.format("%02d", i) + ".png"));
+                Image img = ImageIO.read(new File("src/main/resources/blackSmoke" + String.format("%02d", i) + ".png"));
                 images.add(img);
             }
         } catch (IOException | IllegalArgumentException e) {
@@ -71,7 +71,7 @@ public class GestionnaireEffetFumee {
         public GestionnaireEffetFumee() {
             try {
                 for (int i = 0; i <= 3; i++) {
-                    Image img = ImageIO.read(new File("src/main/ressources/blackSmoke" + String.format("%02d", i) + ".png"));
+                    Image img = ImageIO.read(new File("src/main/resources/blackSmoke" + String.format("%02d", i) + ".png"));
                     images.add(img);
                 }
             } catch (IOException e) {

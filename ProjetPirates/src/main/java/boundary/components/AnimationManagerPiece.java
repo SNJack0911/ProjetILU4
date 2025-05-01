@@ -45,19 +45,19 @@ public class AnimationManagerPiece {
     public void traiterAnimationLancerPiece(List<String> evenements) {
         for (String evenement : evenements) {
             if (evenement.equals("0")) {
-                afficherAnimation("/ressources/Animation-Lancer.gif");
+                afficherAnimation("/resources/Animation-Lancer.gif");
                 pause(1500);
-                afficherAnimation("/ressources/Animation-Noir.gif");
+                afficherAnimation("/resources/Animation-Noir.gif");
                 pause(1500);
                 break; // pile = fin effet
             } else if (evenement.equals("1")) {
-                afficherAnimation("/ressources/Animation-Lancer.gif");
+                afficherAnimation("/resources/Animation-Lancer.gif");
                 pause(1500);
-                afficherAnimation("/ressources/Animation-Jaune.gif");
+                afficherAnimation("/resources/Animation-Jaune.gif");
                 pause(1500);
             } else {
                 // stop si on croise autre chose (comme nom de pirate, message final, etc.)
-                break;
+                //break;
             }
         }
     }

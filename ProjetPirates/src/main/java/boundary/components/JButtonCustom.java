@@ -63,16 +63,16 @@ public class JButtonCustom extends JButton{
         initComp();
         if (type.equals("B")){
             try{
-                defaultIcon = ImageIO.read(new File("src/main/ressources/ButtonNormalG.png"));
-                pressedIcon = ImageIO.read(new File("src/main/ressources/ButtonPressedG.png"));
+                defaultIcon = ImageIO.read(new File("src/main/resources/ButtonNormalG.png"));
+                pressedIcon = ImageIO.read(new File("src/main/resources/ButtonPressedG.png"));
             } catch (IOException e){
                 String userDirectory = new File("").getAbsolutePath();
                 System.out.print("Background not found : " + userDirectory);
             }
         } else if (type.equals("R") || type.equals("L")){
             try{
-                defaultIcon = ImageIO.read(new File("src/main/ressources/Button" + type + "ArrowNormalG.png"));
-                pressedIcon = ImageIO.read(new File("src/main/ressources/Button" + type + "ArrowPressedG.png"));
+                defaultIcon = ImageIO.read(new File("src/main/resources/Button" + type + "ArrowNormalG.png"));
+                pressedIcon = ImageIO.read(new File("src/main/resources/Button" + type + "ArrowPressedG.png"));
             } catch (IOException e){
                 String userDirectory = new File("").getAbsolutePath();
                 System.out.print("Background not found : " + userDirectory);

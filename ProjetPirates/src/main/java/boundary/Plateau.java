@@ -54,6 +54,7 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1 = new boundary.components.JInfoJoueur();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jPirateIcon1 = new boundary.components.JPirateIcon();
+        jLancerPiece1 = new boundary.components.JLancerPiece();
 
         setMinimumSize(new java.awt.Dimension(720, 480));
 
@@ -173,6 +174,25 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         plateauBackground.add(jPirateIcon1, gridBagConstraints);
 
+        jLancerPiece1.setBackground(new java.awt.Color(255, 153, 153));
+        jLancerPiece1.setPreferredSize(new java.awt.Dimension(150, 150));
+
+        javax.swing.GroupLayout jLancerPiece1Layout = new javax.swing.GroupLayout(jLancerPiece1);
+        jLancerPiece1.setLayout(jLancerPiece1Layout);
+        jLancerPiece1Layout.setHorizontalGroup(
+            jLancerPiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jLancerPiece1Layout.setVerticalGroup(
+            jLancerPiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        plateauBackground.add(jLancerPiece1, gridBagConstraints);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,6 +291,7 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
         retournerCartes();
+        jLancerPiece1.setEtat("P");
     }
     
     public void retournerCartes() {
@@ -295,6 +316,7 @@ public class Plateau extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private boundary.components.JInfoJoueur jInfoJoueur1;
     private boundary.components.JInfoJoueur jInfoJoueur2;
+    private boundary.components.JLancerPiece jLancerPiece1;
     private boundary.components.JMainJoueur jMainJoueur1;
     private boundary.components.JMainJoueur jMainJoueur2;
     private boundary.components.JPioche jPioche1;

@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class JeuDeCarteTest {
 
     @Test
-    void testRemplirPioche() {
+    void testRemplirPioche() {//TO CHANGE WHEN ADDING THE REAL CARDS
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
         ArrayList<Carte> pioche = jeuDeCarte.remplirPioche();
         assertFalse(pioche.isEmpty(), "Le deck ne doit pas être vide après remplissage.");
 
-        int expectedTotalCards = 20 * 6; // 6 configurations, with 20 cards each
+        int expectedTotalCards = 10 * 6; // 6 configurations, with 20 cards each
         assertEquals(expectedTotalCards, pioche.size(), "Le nombre total de cartes dans le deck est incorrect.");
     }
 

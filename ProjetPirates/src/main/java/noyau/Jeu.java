@@ -82,7 +82,7 @@ public class Jeu {
             carte = joueur1.getCarteMain(nomCarte);
             if (carte == null){
                 resutatTour = new ArrayList<>();
-                resutatTour.add("Carte not trouvée");
+                resutatTour.add("Carte pas trouvée");
                 return  resutatTour;
             }
             resutatTour = carte.appliquerEffet(joueur1, joueur2, this);
