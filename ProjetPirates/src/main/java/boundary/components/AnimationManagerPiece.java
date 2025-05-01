@@ -25,6 +25,7 @@ public class AnimationManagerPiece {
         panelAnimation.setPreferredSize(new Dimension(300, 300));
         panelAnimation.setBackground(Color.WHITE);
         labelAnimation = new JLabel();
+        labelAnimation.setOpaque(false);
         panelAnimation.add(labelAnimation);
     }
 
@@ -42,22 +43,25 @@ public class AnimationManagerPiece {
      * Gère uniquement les animations liées au jet de pièce pour la carte "Dans ta face"
      * La liste contient des strings : "0" (pile), "1" (face), autres valeurs ignorées ici
      */
+    private void afficherLancerEtResultat(String animationResultat, int delayLancer, int delayResultat) {
+        afficherAnimation("/resources/Animation-Lancer.gif");
+        pause(delayLancer);
+        afficherAnimation(animationResultat);
+        pause(delayResultat);
+    }
+
     public void traiterAnimationLancerPiece(List<String> evenements) {
         for (String evenement : evenements) {
-            if (evenement.equals("0")) {
-                afficherAnimation("/resources/Animation-Lancer.gif");
-                pause(1500);
-                afficherAnimation("/resources/Animation-Noir.gif");
-                pause(1500);
-                break; // pile = fin effet
-            } else if (evenement.equals("1")) {
-                afficherAnimation("/resources/Animation-Lancer.gif");
-                pause(1500);
-                afficherAnimation("/resources/Animation-Jaune.gif");
-                pause(1500);
-            } else {
-                // stop si on croise autre chose (comme nom de pirate, message final, etc.)
+            switch (evenement) {
+                case "0" -> {
+                    afficherLancerEtResultat("/resources/Animation-Noir.gif", 2500, 1500);
+                    break;
+                }
+                case "1" -> afficherLancerEtResultat("/resources/Animation-Jaune.gif", 2500, 1500);
+                default -> {
+                    // stop si on croise autre chose (comme nom de pirate, message final, etc.)
                 //break;
+                }
             }
         }
     }

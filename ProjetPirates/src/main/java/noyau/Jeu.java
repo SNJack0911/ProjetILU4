@@ -2,8 +2,6 @@ package noyau;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class Jeu {
     private Pirate joueur1;
@@ -143,3 +141,4 @@ public class Jeu {
     }
 
 }
+
