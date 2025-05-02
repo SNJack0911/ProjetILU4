@@ -73,7 +73,7 @@ public class JLancerPiece extends javax.swing.JPanel {
     private void initImage(){
         lancer = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Lancer.gif")));
         iconPile = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Noir.gif")));
-        iconFace = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Jaune2.gif")));
+        iconFace = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Jaune.gif")));
     }
         
     /**

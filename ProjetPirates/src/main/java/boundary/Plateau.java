@@ -259,6 +259,10 @@ public class Plateau extends javax.swing.JPanel {
     }
     
     private void initPlateau (){
+        //Init Pirate
+        jInfoJoueur1.initJoueur(nomPirate1, 0, jMainJoueur1, boundaryJeu);
+        jInfoJoueur2.initJoueur(nomPirate2, 1, jMainJoueur2, boundaryJeu);
+
         //Init info
         updateInfoPirate();
 
@@ -291,7 +295,7 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
         retournerCartes();
-        jLancerPiece1.setEtat("F");
+        jLancerPiece1.setEtat("P");
     }
     
     public void retournerCartes() {

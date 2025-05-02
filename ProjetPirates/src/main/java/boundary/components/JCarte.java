@@ -30,7 +30,7 @@ import noyau.ICategorieCarte;
 
 /**
  *
- * @author leo
+ * @author leo et yannf
  */
 public class JCarte extends javax.swing.JPanel {
     private Image frontCard;
