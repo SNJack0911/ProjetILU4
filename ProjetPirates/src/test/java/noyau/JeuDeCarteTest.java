@@ -11,7 +11,7 @@ public class JeuDeCarteTest {
     @Test
     void testRemplirPioche() {//TO CHANGE WHEN ADDING THE REAL CARDS
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        ArrayList<Carte> pioche = jeuDeCarte.remplirPioche();
+        ArrayList<Carte> pioche = jeuDeCarte.remplirPiocheTest();
         assertFalse(pioche.isEmpty(), "Le deck ne doit pas être vide après remplissage.");
 
         int expectedTotalCards = 10 * 6; // 6 configurations, with 20 cards each
@@ -21,8 +21,8 @@ public class JeuDeCarteTest {
     @Test
     void testGetDescription_ValidCard() {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        String description = jeuDeCarte.getDescription("Plus1Pop");
-        assertEquals("Le joueur Gagne 1PP", description, "La description de la carte doit correspondre à celle attendue.");
+        String description = jeuDeCarte.getDescription("Coup bas");
+        assertEquals("L'adversaire perds 1PV", description, "La description de la carte doit correspondre à celle attendue.");
     }
 
     @Test
@@ -49,7 +49,7 @@ public class JeuDeCarteTest {
     @Test
     void testGetCategorie_ValidCard() {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        ICategorieCarte categorie = jeuDeCarte.getCategorie("Plus1Pop");
+        ICategorieCarte categorie = jeuDeCarte.getCategorie("Coup bas");
         assertNotNull(categorie, "La catégorie ne doit pas être nulle pour une carte valide.");
     }
 
@@ -63,7 +63,7 @@ public class JeuDeCarteTest {
     @Test
     void testGetZoneDepot_ValidCard() {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        BasicCategorie zoneDepot = jeuDeCarte.getZoneDepot("Plus1Pop");
+        BasicCategorie zoneDepot = jeuDeCarte.getZoneDepot("Coup bas");
         assertNotNull(zoneDepot, "La zone depot ne doit pas être nulle pour une carte valide.");
     }
 
