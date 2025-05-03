@@ -274,6 +274,16 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1.setEnabled(false);
     }
     
+    private void evenementJeu(List<String> evenements){
+        for(String e : evenements){
+            if(e.equals("0")){
+                jLancerPiece1.setEtat("P");
+            }else if (e.equals("1")){
+                jLancerPiece1.setEtat("F");
+            }
+        }
+    }
+    
     public BoundaryJeu getBoundaryJeu(){
         return boundaryJeu;
     }
@@ -282,20 +292,24 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1.finTour();
         jInfoJoueur2.finTour();
     }
+    
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
         //animationpiece.traiterAnimationLancerPiece(resultat);
+        evenementJeu(resultat);
         String lastElement = resultat.get(resultat.size()-1);
         if (!lastElement.equals("Pas de gagnant")){
-            //afficherGagnant(lastElement);
+            //TODO Here POP UP victoire
             System.out.println("Gagnant : " + lastElement);
         }
+        //TODO Here POP up changement de joueur
+        
         jPioche1.setEnabled(true);
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
         retournerCartes();
-        jLancerPiece1.setEtat("P");
+        //jLancerPiece1.setEtat("P");
     }
     
     public void retournerCartes() {
