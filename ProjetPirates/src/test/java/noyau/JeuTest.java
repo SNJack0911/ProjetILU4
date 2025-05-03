@@ -51,22 +51,6 @@ class JeuTest {
     }
 
     @Test
-    void testJouerCarte_ValidAndInvalid() {
-        Jeu jeu = new Jeu();
-        Pirate joueur = jeu.getPirate(0);
-
-        Carte testCarte = new CartePopularite("Plus1Pop", -1, "Test", 1, 0, false);
-        joueur.addCarte(testCarte);
-
-        List<String> resultValid = jeu.jouerCarte("Plus1Pop");
-        assertTrue(resultValid.size() > 0);
-        assertFalse(resultValid.get(0).startsWith("Carte not found"), "Carte faudrait être trouvée");
-
-        List<String> resultInvalid = jeu.jouerCarte("FakeCard");
-        assertTrue(resultInvalid.get(0).contains("Carte not found"), "Carte non trouvée");
-    }
-
-    @Test
     void testTourIncrements() {
         Jeu jeu = new Jeu();
         Pirate joueur = jeu.getPirate(0);
@@ -79,15 +63,22 @@ class JeuTest {
     }
 
     @Test
-    void testPlayCardWithEmptyHand() {
+    void testJouerCarte_Deterministic() {
         Jeu jeu = new Jeu();
         Pirate joueur = jeu.getPirate(0);
         joueur.getMain().clear();
 
-        List<String> result = jeu.jouerCarte("AnyCard");
-        assertEquals(1, result.size());
-        assertTrue(result.get(0).contains("Carte not found"), "Il ne faut pas jouer une carte si la main est vide");
+        Carte testCarte = new CartePopularite("UNIQUE_TEST_CARD", -1, "Test", 1, 0, false);
+        joueur.addCarte(testCarte);
+
+        List<String> resultValid = jeu.jouerCarte("UNIQUE_TEST_CARD");
+        assertFalse(resultValid.get(0).contains("Carte not found"), "Carte devrait être trouvée et jouée");
+        assertEquals(0, joueur.getNbCarte(), "Carte devrait être supprimée après avoir été jouée");
+
+        List<String> resultInvalid = jeu.jouerCarte("Inexistante");
+        assertTrue(resultInvalid.get(0).contains("Carte not found"), "Carte invalide ne devrait pas être jouée");
     }
+
 
     @Test
     void testPlayNullCardName() {

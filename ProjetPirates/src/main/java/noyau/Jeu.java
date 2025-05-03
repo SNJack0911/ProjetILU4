@@ -141,6 +141,6 @@ public class Jeu {
 
     public boolean estJeuTermine() {
         return isJeuTermine();
-    }
+    }//Fonction pour les tests
 
 }
