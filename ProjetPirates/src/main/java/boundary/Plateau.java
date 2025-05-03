@@ -4,13 +4,10 @@
  */
 package boundary;
 
-//import boundary.components.AnimationManagerPiece;
 import boundary.components.JCarte;
 import boundary.components.JMainJoueur;
-import boundary.components.JZoneInteractionCreux;
 import java.util.List;
-import noyau.GestionnaireCartesCreux;
-import noyau.GestionnaireEffetFumee;
+//import noyau.GestionnaireEffetFumee;
 
 /**
  *
@@ -22,7 +19,6 @@ public class Plateau extends javax.swing.JPanel {
     //private JCarte carte;
     //private GestionnaireCartes gestionnaire = new GestionnaireCartes();
     //private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
-    //private AnimationManagerPiece animationpiece = new AnimationManagerPiece();
     
     private String nomPirate1;
     private String nomPirate2;
@@ -47,7 +43,7 @@ public class Plateau extends javax.swing.JPanel {
 
         plateauBackground = new boundary.components.JPanelWithBackground();
         jPioche1 = new boundary.components.JPioche();
-        jZoneInteraction1 = new boundary.components.JZoneInteractionCreux();
+        jZoneInteraction1 = new boundary.components.JZoneInteraction();
         jPirateIcon2 = new boundary.components.JPirateIcon();
         jMainJoueur2 = new boundary.components.JMainJoueur();
         jInfoJoueur2 = new boundary.components.JInfoJoueur();
@@ -211,14 +207,27 @@ public class Plateau extends javax.swing.JPanel {
         
         //get carte from noyeau
         List<String> listNomCarte = boundaryJeu.piocherCarte();
-
-    
+        
+        JMainJoueur mainJoueur = (tour % 2 == 0) ? jMainJoueur1 : jMainJoueur2;
+        
+        for (String nomCarte : listNomCarte) {
+            mainJoueur.ajouterCarte(
+                nomCarte,
+                boundaryJeu.getCarteId(nomCarte),
+                boundaryJeu.getTypeCarte(nomCarte),
+                boundaryJeu.getDescription(nomCarte),
+                boundaryJeu.getZoneDepot(nomCarte)                  
+                );
+            mainJoueur.repaint();
+        }
+        
+        mainJoueur.setEnabled(true);
+        jPioche1.setEnabled(false);
+/*
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J1 = " + nomCarte + "\n");
-                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),
-                        boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte),
-                        boundaryJeu.getZoneDepot(nomCarte));
+                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte),boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur1.repaint();
             }
             jMainJoueur1.setEnabled(true);
@@ -226,13 +235,14 @@ public class Plateau extends javax.swing.JPanel {
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
                 jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),
-                        boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte), 
-                        boundaryJeu.getZoneDepot(nomCarte));
+                boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte), 
+                boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur2.repaint();
             }
             jMainJoueur2.setEnabled(true);
         }
         jPioche1.setEnabled(false);
+*/
     }//GEN-LAST:event_jPioche1MouseClicked
 
     
@@ -309,7 +319,7 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
         retournerCartes();
-        //jLancerPiece1.setEtat("P");
+        jLancerPiece1.setEtat("P");
     }
     
     public void retournerCartes() {
@@ -340,7 +350,7 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPioche jPioche1;
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;
-    private boundary.components.JZoneInteractionCreux jZoneInteraction1;
+    private boundary.components.JZoneInteraction jZoneInteraction1;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
 }

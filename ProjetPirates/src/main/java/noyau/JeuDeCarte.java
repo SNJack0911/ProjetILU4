@@ -13,17 +13,10 @@ public class JeuDeCarte {
 
    
 
-
-
-
-
-
     /* new Configuration(new CarteDefense("Ode à la Joie", 1, "Le joueur Gagne 3PV",3, 0, false), 7),
             new Configuration(new CarteDefense("Douceur ensoleillé", 2, "Gagne 1 PV, Gagne 1 PV de plus si le jour",1, 0, true), 13),
             new Configuration(new CarteAttack("Dans ta Face", 4, "Le joueur lance un pièce, tant que face, l'adversaire -1 PV",0, 0, 0, -1, false, true), 10),
             new Configuration(new CarteAttack("Peau de Banane", 8, "L'adversaire perds 1PP",0, 0, -1, 0, false, false), 16)
-
-
 
 
         {new Configuration(new CarteAttack("1", "d", null), 0),

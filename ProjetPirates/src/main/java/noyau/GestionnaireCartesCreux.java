@@ -1,7 +1,7 @@
 package noyau;
 
 import boundary.components.JCarte;
-import boundary.components.JZoneInteractionCreux;
+import boundary.components.JZoneInteraction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +13,18 @@ import java.util.List;
 public class GestionnaireCartesCreux {
 
     private final List<JCarte> cartes = new ArrayList<>();
-    private final List<JZoneInteractionCreux> zones = new ArrayList<>();
+    private final List<JZoneInteraction> zones = new ArrayList<>();
 
     public void ajouterCarte(JCarte carte) {
         cartes.add(carte);
     }
 
-    public void ajouterZone(JZoneInteractionCreux zone) {
+    public void ajouterZone(JZoneInteraction zone) {
         zones.add(zone);
     }
 
     public void verifierToutesZones(JCarte carte) {
-        for (JZoneInteractionCreux zone : zones) {
+        for (JZoneInteraction zone : zones) {
             zone.verifierCarte(carte); // délégué à la zone
         }
     }
@@ -33,7 +33,7 @@ public class GestionnaireCartesCreux {
         return cartes;
     }
 
-    public List<JZoneInteractionCreux> getZones() {
+    public List<JZoneInteraction> getZones() {
         return zones;
     }
 

@@ -1,7 +1,7 @@
 package noyau;
 
 import boundary.components.JCarte;
-import boundary.components.JZoneInteractionCreux;
+import boundary.components.JZoneInteraction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -28,7 +28,7 @@ class GestionnaireCartesTest {
 
     @Test
     void testAjouterZone() {
-        JZoneInteractionCreux zone = new JZoneInteractionCreux() {
+        JZoneInteraction zone = new JZoneInteraction() {
             @Override
             public void verifierCarte(JCarte carte) {
                 // Implementation pour le test
@@ -36,7 +36,7 @@ class GestionnaireCartesTest {
         };
         gestionnaire.ajouterZone(zone);
 
-        List<JZoneInteractionCreux> zones = gestionnaire.getZones();
+        List<JZoneInteraction> zones = gestionnaire.getZones();
         assertEquals(1, zones.size());
         assertTrue(zones.contains(zone));
     }
@@ -45,7 +45,7 @@ class GestionnaireCartesTest {
     void testVerifierToutesZones() {
         JCarte carte = new JCarte();
 
-        class TestZone extends JZoneInteractionCreux {
+        class TestZone extends JZoneInteraction {
             int verificationCount = 0;
 
             @Override

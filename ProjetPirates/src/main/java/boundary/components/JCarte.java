@@ -265,7 +265,7 @@ public class JCarte extends javax.swing.JPanel {
         Component c = plateauPanel.getComponentAt(pointInPlateau);
         //System.out.println("C: " + c.getClass().getSimpleName());
         
-        if (c instanceof JZoneInteractionCreux zoneInteraction){
+        if (c instanceof JZoneInteraction zoneInteraction){
             Rectangle boundsZone = zoneInteraction.getBounds();
             if (boundsZone.intersects(getBounds())) {
                 String pirate = plateau.getCurrentPirate();
