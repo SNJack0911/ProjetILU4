@@ -9,7 +9,7 @@ Nom,Description,Type,PV_Joueur,PP_Joueur,PV_Adversaire,PP_Adversaire,AffecteNuit
 "Carte piège Yugi","Masque la prochaine carte jouée à l’adversaire. Vous pouvez jouer une nouvelle carte pour ce tour. Elle sera jouée dans 3 tours",Effet,,,,,,
 "Héros de shonen / ou Outsider prolifique","Le joueur perd un point de popularité mais peut jouer deux autres cartes ce tour",Popularité + Effet,,,,-1,,
 "La chance sourit aux audacieux","Le joueur lance une pièce, tant que face; il gagne +1 PP",Popularité,,0,,,0,1
-"Le malade imaginaire (faut avoir la ref :) )","Le joueur gagne 2PP mais perd 1PV",Popularité,-1,2,,,,
+"Le malade imaginaire","Le joueur gagne 2PP mais perd 1PV",Popularité,-1,2,,,,
 "Peau de Banane","L'adversaire perd 1PP",Attaque,,,,-1,,
 "Le tout pour le tout","L'adversaire perd 3PV; s'il survit; il gagne 3PP",Attaque,,,,-3,3,
 "Coup bas","L'adversaire perd 1PV",Attaque,,,,-1,,

@@ -57,7 +57,7 @@ public class JMainJoueur extends javax.swing.JPanel {
         return newCarte;
     }
     
-    
+                    // ça sert ????? Aucune ref dans la main du joueur. visiblement pas
     public void deleteCard(String nomCarte){
         for(JCarte carte : mainJoueur){
             if (nomCarte.equals(carte.getNomCarte())){

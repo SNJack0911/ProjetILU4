@@ -4,7 +4,6 @@
  */
 package boundary.components;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import noyau.BasicCategorie;
-import noyau.ICategorieCarte;
 
 
 /**
@@ -23,7 +21,6 @@ import noyau.ICategorieCarte;
  */
 public class JZoneInteraction extends javax.swing.JPanel {
     
-    private int origine = 0;
     private boolean carteDedans = false;
     /**
      * Creates new form JZoneInteraction

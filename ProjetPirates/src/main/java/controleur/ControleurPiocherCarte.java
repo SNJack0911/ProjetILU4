@@ -14,14 +14,14 @@ import java.util.ArrayList;
  * @author yannf
  */
 public class ControleurPiocherCarte {
-    private Jeu jeu;
+    private Jeu jeu;// mettre Final
 
     public ControleurPiocherCarte(Jeu jeu) {
         this.jeu = jeu;
     }
 
     public static ArrayList<String> listeCarteToString(ArrayList<Carte> lstCarte){
-        ArrayList<String> lstCarteString = new ArrayList<String>();
+        ArrayList<String> lstCarteString = new ArrayList<String>(); // ??
         for(Carte carte : lstCarte){
             //String[] info = new String[5];
             lstCarteString.add(carte.getNom());

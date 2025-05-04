@@ -5,12 +5,6 @@
 package boundary.components;
 
 import boundary.BoundaryJeu;
-import boundary.Plateau;
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.List;
-import noyau.Carte;
-import noyau.Pirate;
 
 /**
  *

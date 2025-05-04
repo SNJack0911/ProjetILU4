@@ -6,11 +6,8 @@ package boundary.components;
 
 import boundary.Plateau;
 import boundary.PlateauOld;
-import boundary.components.JCartePopUp;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,11 +15,9 @@ import java.util.List;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-//import noyau.CategorieCarte;
 import noyau.BasicCategorie;
 import noyau.GestionnaireEffetFumee;
 import noyau.ICategorieCarte;
@@ -37,7 +32,7 @@ public class JCarte extends javax.swing.JPanel {
     private Image backCard;
     private boolean isFront = false;
     private Point origine = null;
-    private boolean isSelected = false;
+    //private boolean isSelected = false;
     private JCartePopUp popUp = null;
     private JMainJoueur mainOrigine; 
     
@@ -203,7 +198,7 @@ public class JCarte extends javax.swing.JPanel {
         if (!isFront || !isEnabled()) return;
         
         this.origine = evt.getPoint();
-	this.isSelected = true;
+	//this.isSelected = true;
         Plateau plateauPanel = (Plateau) mainOrigine.getParent().getParent();
         plateauPanel.setComponentZOrder(this, 0);
 
@@ -256,7 +251,7 @@ public class JCarte extends javax.swing.JPanel {
         if (!isFront || !isEnabled()) return;
         
         origine = null;
-	this.isSelected = false;
+	//this.isSelected = false;
         
         JPanel plateauPanel = (JPanel) mainOrigine.getParent();
         Plateau plateau = (Plateau) plateauPanel.getParent();
@@ -326,7 +321,7 @@ public class JCarte extends javax.swing.JPanel {
         //System.out.println("MouseClicked");
         if (!isFront) return;
         
-        if (evt.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(evt) && isFront && frontCard != null) {
+        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2 && isFront && frontCard != null) {
             //System.out.println("DoubleClick + is front : " + isFront);
                     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 

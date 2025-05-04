@@ -6,7 +6,6 @@ package controleur;
 
 import noyau.Jeu;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +13,7 @@ import java.util.List;
  * @author yannf
  */
 public class ControleurJouerCarte {
-    private Jeu jeu;
+    private Jeu jeu; //Mettre final ?
 
     public ControleurJouerCarte(Jeu jeu) {
         this.jeu = jeu;

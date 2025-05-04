@@ -51,7 +51,6 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jPirateIcon1 = new boundary.components.JPirateIcon();
         jLancerPiece1 = new boundary.components.JLancerPiece();
-        labelGagnant = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(720, 480));
 
@@ -71,7 +70,7 @@ public class Plateau extends javax.swing.JPanel {
         jPioche1.setLayout(jPioche1Layout);
         jPioche1Layout.setHorizontalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGap(0, 208, Short.MAX_VALUE)
         );
         jPioche1Layout.setVerticalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +153,7 @@ public class Plateau extends javax.swing.JPanel {
         jPirateIcon1.setLayout(jPirateIcon1Layout);
         jPirateIcon1Layout.setHorizontalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 190, Short.MAX_VALUE)
         );
         jPirateIcon1Layout.setVerticalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,13 +188,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         plateauBackground.add(jLancerPiece1, gridBagConstraints);
-
-        labelGagnant.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        labelGagnant.setText("Gagnant");
-        labelGagnant.setAlignmentY(0.0F);
-        labelGagnant.setDoubleBuffered(true);
-        labelGagnant.setOpaque(true);
-        plateauBackground.add(labelGagnant, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -310,6 +302,7 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1.finTour();
         jInfoJoueur2.finTour();
     }
+    /*
     //Not Working (c'était dans plateauOld
     public void afficherGagnant(String pirateGagant){
         labelGagnant.setText(pirateGagant + "a gagné!!!!");
@@ -317,7 +310,7 @@ public class Plateau extends javax.swing.JPanel {
         labelGagnant.setEnabled(true);
         this.repaint();
     }
-    
+    */
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
@@ -366,7 +359,6 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;
     private boundary.components.JZoneInteraction jZoneInteraction1;
-    private javax.swing.JLabel labelGagnant;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
 }
