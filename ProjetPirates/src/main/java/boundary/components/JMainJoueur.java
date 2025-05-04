@@ -14,7 +14,7 @@ import noyau.ICategorieCarte;
 
 /**
  *
- * @author yannf
+ * @author yannf et leo
  */
 public class JMainJoueur extends javax.swing.JPanel {
     private List<JCarte> mainJoueur = new ArrayList<>();

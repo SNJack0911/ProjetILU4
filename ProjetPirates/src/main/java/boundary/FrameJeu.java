@@ -495,7 +495,7 @@ public class FrameJeu extends javax.swing.JFrame {
         int nb_musics = 4;
         ArrayList<String> playlist = new ArrayList<>();
         for (int i = 1; i <= nb_musics; i++) {
-            playlist.add("src/main/ressources/Song" + i + ".wav");
+            playlist.add("src/main/resources/Song" + i + ".wav");
         }
         Collections.shuffle(playlist);
         
@@ -524,10 +524,10 @@ public class FrameJeu extends javax.swing.JFrame {
         try{
             /*ImageIcon icon = new ImageIcon(getClass().getResource(fileName));
             res = icon.getImage();*/
-            res  = ImageIO.read(new File("src/main/ressources/" + filename));
+            res  = ImageIO.read(new File("src/main/resources/" + filename));
         }catch(IOException e){
             String userDirectory = new File("").getAbsolutePath();
-            System.out.print("Icon not found : " + userDirectory + "src/main/ressources/" + filename);
+            System.out.print("Icon not found : " + userDirectory + "src/main/resources/" + filename);
         }
         return res;
     }

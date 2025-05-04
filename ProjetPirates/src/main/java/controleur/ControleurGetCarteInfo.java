@@ -15,17 +15,14 @@ public class ControleurGetCarteInfo {
     }
 
     public String getDescription(String nomCarte){
-        //TODO Traiter erreur
         return jeuDeCarte.getDescription(nomCarte);
     }
 
     public ICategorieCarte getTypeCarte(String nomCarte){
-        //TODO Traiter erreur
         return jeuDeCarte.getCategorie(nomCarte);
     }
 
     public BasicCategorie getZoneDepotCarte(String nomCarte){
-        //TODO Traiter erreur
         return jeuDeCarte.getZoneDepot(nomCarte);
     }
 

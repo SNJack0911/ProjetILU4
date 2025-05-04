@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GestionnaireCartesTest {
 
-    private GestionnaireCartes gestionnaire;
+    private GestionnaireCartesCreux gestionnaire;
 
     @BeforeEach
     void setUp() {
-        gestionnaire = new GestionnaireCartes();
+        gestionnaire = new GestionnaireCartesCreux();
     }
 
     @Test

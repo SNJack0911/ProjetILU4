@@ -23,7 +23,7 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
 
 ### Le fichier main contient les packages :  
 <ul>
-  <li> Le package noyau contient les objets sur lesquels est basé le jeu. Il contient les objets fondamentaux et les ressources pour l'IHM. </li>
+  <li> Le package noyau contient les objets sur lesquels est basé le jeu. Il contient les objets fondamentaux et les resources pour l'IHM. </li>
   <li> Le package controleur permet de faire le lien entre le noyau et le boundary. Il garantit que le noyau reçoit des éléments du bon type et valide. </li>
   <li> Le package boundary contient l'IHM (et l'affiche console). Il permet de récupérer les entrées utilisateur. </li>
 </ul>

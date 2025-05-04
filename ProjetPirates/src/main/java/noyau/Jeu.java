@@ -2,8 +2,6 @@ package noyau;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class Jeu {
     private Pirate joueur1;
@@ -66,7 +64,6 @@ public class Jeu {
                 System.err.println("Erreur piocher carte : " + e.getMessage());
                 return cartesLst;
             }
-            //System.out.println("Joueur " + joueur.getNom() + " ajoute la carte " + carte.getNom());
             joueur.addCarte(carte);
             cartesLst.add(carte);
         }
@@ -83,7 +80,7 @@ public class Jeu {
             carte = joueur1.getCarteMain(nomCarte);
             if (carte == null){
                 resutatTour = new ArrayList<>();
-                resutatTour.add("Carte not found  in main of player 1 : " + nomCarte);
+                resutatTour.add("Carte pas trouvée");
                 return  resutatTour;
             }
             resutatTour = carte.appliquerEffet(joueur1, joueur2, this);
@@ -94,7 +91,7 @@ public class Jeu {
             carte = joueur2.getCarteMain(nomCarte);
             if (carte == null){
                 resutatTour = new ArrayList<>();
-                resutatTour.add("Carte not found  in main of player 2 : " + nomCarte);
+                resutatTour.add("Carte pas trouvée");
                 return  resutatTour;
             }
             resutatTour = carte.appliquerEffet(joueur2, joueur1, this);
@@ -144,3 +141,4 @@ public class Jeu {
     }//Fonction pour les tests
 
 }
+

@@ -18,8 +18,8 @@ import noyau.ICategorieCarte;
 
 
 /**
- *
- * @author choue
+ * Désué; remplacé par JZoneDepot.
+ * @author leo
  */
 public class JZoneInteraction extends javax.swing.JPanel {
     
@@ -67,11 +67,11 @@ public class JZoneInteraction extends javax.swing.JPanel {
     }
     
     public boolean ajouteCarte (JCarte carte, Point p, JPanel panelPlateau, String pirate){
-        Point pointInZoneIntract = SwingUtilities.convertPoint(panelPlateau, p, jPanel1);
-        Component[] lstComp = jPanel1.getComponents();
+        Point pointInZoneIntract = SwingUtilities.convertPoint(panelPlateau, p, ZoneAction);
+        Component[] lstComp = ZoneAction.getComponents();
         for(Component c : lstComp){
             if (c instanceof JZoneDepot dep){
-                Point pointInDep = SwingUtilities.convertPoint(jPanel1, pointInZoneIntract, dep);
+                Point pointInDep = SwingUtilities.convertPoint(ZoneAction, pointInZoneIntract, dep);
                 if (dep.contains(pointInDep)){
                     return dep.ajouterCarte(carte, pirate);
                 }
@@ -90,7 +90,7 @@ public class JZoneInteraction extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        ZoneAction = new javax.swing.JPanel();
         jZoneDepot1 = new boundary.components.JZoneDepot();
         jZoneDepot2 = new boundary.components.JZoneDepot();
         jZoneDepot3 = new boundary.components.JZoneDepot();
@@ -99,8 +99,8 @@ public class JZoneInteraction extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 153, 153));
         setOpaque(false);
 
-        jPanel1.setOpaque(false);
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        ZoneAction.setOpaque(false);
+        ZoneAction.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout jZoneDepot1Layout = new javax.swing.GroupLayout(jZoneDepot1);
         jZoneDepot1.setLayout(jZoneDepot1Layout);
@@ -118,7 +118,7 @@ public class JZoneInteraction extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
-        jPanel1.add(jZoneDepot1, gridBagConstraints);
+        ZoneAction.add(jZoneDepot1, gridBagConstraints);
 
         javax.swing.GroupLayout jZoneDepot2Layout = new javax.swing.GroupLayout(jZoneDepot2);
         jZoneDepot2.setLayout(jZoneDepot2Layout);
@@ -136,7 +136,7 @@ public class JZoneInteraction extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
-        jPanel1.add(jZoneDepot2, gridBagConstraints);
+        ZoneAction.add(jZoneDepot2, gridBagConstraints);
 
         javax.swing.GroupLayout jZoneDepot3Layout = new javax.swing.GroupLayout(jZoneDepot3);
         jZoneDepot3.setLayout(jZoneDepot3Layout);
@@ -154,7 +154,7 @@ public class JZoneInteraction extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
-        jPanel1.add(jZoneDepot3, gridBagConstraints);
+        ZoneAction.add(jZoneDepot3, gridBagConstraints);
 
         javax.swing.GroupLayout jZoneDepot4Layout = new javax.swing.GroupLayout(jZoneDepot4);
         jZoneDepot4.setLayout(jZoneDepot4Layout);
@@ -172,23 +172,23 @@ public class JZoneInteraction extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 9, 20, 9);
-        jPanel1.add(jZoneDepot4, gridBagConstraints);
+        ZoneAction.add(jZoneDepot4, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ZoneAction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ZoneAction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel ZoneAction;
     private boundary.components.JZoneDepot jZoneDepot1;
     private boundary.components.JZoneDepot jZoneDepot2;
     private boundary.components.JZoneDepot jZoneDepot3;

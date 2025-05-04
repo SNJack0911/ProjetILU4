@@ -30,7 +30,7 @@ import noyau.ICategorieCarte;
 
 /**
  *
- * @author choue
+ * @author leo et yannf
  */
 public class JCarte extends javax.swing.JPanel {
     private Image frontCard;
@@ -150,15 +150,15 @@ public class JCarte extends javax.swing.JPanel {
     
     public void setImage(int carteID) {
         try {
-            backCard = ImageIO.read(new File("src/main/ressources/" + "Card1Back.png"));
+            backCard = ImageIO.read(new File("src/main/resources/" + "Card1Back.png"));
             if (carteID == -1){
-                frontCard = ImageIO.read(new File("src/main/ressources/Carte/Card1Front" + type.toString() + ".png"));
+                frontCard = ImageIO.read(new File("src/main/resources/Carte/Card1Front" + type.toString() + ".png"));
             }else{
-                frontCard = ImageIO.read(new File("src/main/ressources/Carte/Card1Front" + carteID + ".png"));
+                frontCard = ImageIO.read(new File("src/main/resources/Carte/Card1Front" + carteID + ".png"));
             }
         } catch (IOException e){
             String userDirectory = new File("").getAbsolutePath();
-            System.out.println("Card not found : " + userDirectory + "src/main/ressources/Carte/Card1Front" + type.toString() + ".png");
+            System.out.println("Card not found : " + userDirectory + "src/main/resources/Carte/Card1Front" + type.toString() + ".png");
             System.out.println("Card ID : " + carteID + "\tIHM : " + type.toString());
         }
         //this.nom = cardName;

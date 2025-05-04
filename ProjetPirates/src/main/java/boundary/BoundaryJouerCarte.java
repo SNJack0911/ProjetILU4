@@ -28,21 +28,17 @@ public class BoundaryJouerCarte {
                 System.out.println("Résultat jet de piece est face");
             } else if (s.equals("Pas de gagnant")) {
                 System.out.println("Pas de gagnant à la fin du tour, le tour passe au joueur suivant");
+            } else if (s.equals("Carte not trouvée")) {
+                System.out.println("Erreur la carte joué n'existe pas dans la main du joueur");
             } else {
                 System.out.println("le gagnant du jeu est : " + s);
             }
             System.out.println("---------------------------------------");
         }
         return  res;
-        //TODO traiter les evenements
         //Les evenements sont de la forme : ["0", "0", "1", "Pas de Gagnant"] //0 = pile et 1 = face
         //                                  ["1", "NomPirate1"]
         //                                  ["NomPirate2"]
-        //TODO traitement fin de tour et changement de joueur
-        //if (HasWinner){
-        //  TODO
-        //}else{
-        //  plateau.flipAllCards()
-        //}
+
     }
 }

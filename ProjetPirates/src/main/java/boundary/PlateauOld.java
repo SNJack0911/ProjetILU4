@@ -4,7 +4,7 @@
  */
 package boundary;
 
-import noyau.GestionnaireCartes;
+import noyau.GestionnaireCartesCreux;
 import boundary.components.JCarte;
 import boundary.components.JPointDeVie;
 import boundary.components.JZoneInteraction;
@@ -17,13 +17,13 @@ import noyau.GestionnaireEffetFumee;
 
 /**
  *
- * @author yannf
+ * @author leo et yannf
  */
 public class PlateauOld extends javax.swing.JPanel {
     private BoundaryJeu boundaryJeu;
     private JZoneInteraction zoneInteraction = null;
     private JCarte carte;
-    private GestionnaireCartes gestionnaire = new GestionnaireCartes();
+    private GestionnaireCartesCreux gestionnaire = new GestionnaireCartesCreux();
     private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
     
     private String nomPirate1;
@@ -71,7 +71,7 @@ public class PlateauOld extends javax.swing.JPanel {
         return gestionnairefumee;
     }
     */
-    public GestionnaireCartes getGestionnaire() {
+    public GestionnaireCartesCreux getGestionnaire() {
         return gestionnaire;
     }
     /**

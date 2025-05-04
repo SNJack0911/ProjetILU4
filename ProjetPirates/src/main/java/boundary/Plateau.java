@@ -6,21 +6,19 @@ package boundary;
 
 import boundary.components.JCarte;
 import boundary.components.JMainJoueur;
-import boundary.components.JZoneInteraction;
 import java.util.List;
-import noyau.GestionnaireCartes;
-import noyau.GestionnaireEffetFumee;
+//import noyau.GestionnaireEffetFumee;
 
 /**
  *
- * @author yannf
+ * @author leo et yannf
  */
 public class Plateau extends javax.swing.JPanel {
     private BoundaryJeu boundaryJeu;
-    private JZoneInteraction zoneInteraction = null;
-    private JCarte carte;
-    private GestionnaireCartes gestionnaire = new GestionnaireCartes();
-    private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
+    //private JZoneInteraction zoneInteraction = null;
+    //private JCarte carte;
+    //private GestionnaireCartes gestionnaire = new GestionnaireCartes();
+    //private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
     
     private String nomPirate1;
     private String nomPirate2;
@@ -52,10 +50,10 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1 = new boundary.components.JInfoJoueur();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jPirateIcon1 = new boundary.components.JPirateIcon();
+        jLancerPiece1 = new boundary.components.JLancerPiece();
 
         setMinimumSize(new java.awt.Dimension(720, 480));
 
-        plateauBackground.setBackground(new java.awt.Color(255, 204, 204));
         plateauBackground.setPreferredSize(new java.awt.Dimension(720, 480));
         plateauBackground.setImage("Plateau.png");
         plateauBackground.setLayout(new java.awt.GridBagLayout());
@@ -105,22 +103,14 @@ public class Plateau extends javax.swing.JPanel {
         jPirateIcon2.setLayout(jPirateIcon2Layout);
         jPirateIcon2Layout.setHorizontalGroup(
             jPirateIcon2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 138, Short.MAX_VALUE)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
         jPirateIcon2Layout.setVerticalGroup(
             jPirateIcon2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        plateauBackground.add(jPirateIcon2, gridBagConstraints);
+        plateauBackground.add(jPirateIcon2, new java.awt.GridBagConstraints());
 
         jMainJoueur2.setMinimumSize(new java.awt.Dimension(420, 160));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -131,15 +121,7 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jMainJoueur2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-        plateauBackground.add(jInfoJoueur2, gridBagConstraints);
+        plateauBackground.add(jInfoJoueur2, new java.awt.GridBagConstraints());
 
         jInfoJoueur1.setMinimumSize(new java.awt.Dimension(138, 148));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -188,6 +170,25 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         plateauBackground.add(jPirateIcon1, gridBagConstraints);
 
+        jLancerPiece1.setBackground(new java.awt.Color(255, 153, 153));
+        jLancerPiece1.setPreferredSize(new java.awt.Dimension(150, 150));
+
+        javax.swing.GroupLayout jLancerPiece1Layout = new javax.swing.GroupLayout(jLancerPiece1);
+        jLancerPiece1.setLayout(jLancerPiece1Layout);
+        jLancerPiece1Layout.setHorizontalGroup(
+            jLancerPiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jLancerPiece1Layout.setVerticalGroup(
+            jLancerPiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        plateauBackground.add(jLancerPiece1, gridBagConstraints);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,14 +207,27 @@ public class Plateau extends javax.swing.JPanel {
         
         //get carte from noyeau
         List<String> listNomCarte = boundaryJeu.piocherCarte();
-
-    
+        
+        JMainJoueur mainJoueur = (tour % 2 == 0) ? jMainJoueur1 : jMainJoueur2;
+        
+        for (String nomCarte : listNomCarte) {
+            mainJoueur.ajouterCarte(
+                nomCarte,
+                boundaryJeu.getCarteId(nomCarte),
+                boundaryJeu.getTypeCarte(nomCarte),
+                boundaryJeu.getDescription(nomCarte),
+                boundaryJeu.getZoneDepot(nomCarte)                  
+                );
+            mainJoueur.repaint();
+        }
+        
+        mainJoueur.setEnabled(true);
+        jPioche1.setEnabled(false);
+/*
         if (tour%2 == 0){
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J1 = " + nomCarte + "\n");
-                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),
-                        boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte),
-                        boundaryJeu.getZoneDepot(nomCarte));
+                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte),boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur1.repaint();
             }
             jMainJoueur1.setEnabled(true);
@@ -221,13 +235,14 @@ public class Plateau extends javax.swing.JPanel {
             for(String nomCarte : listNomCarte){
                 //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
                 jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),
-                        boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte), 
-                        boundaryJeu.getZoneDepot(nomCarte));
+                boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte), 
+                boundaryJeu.getZoneDepot(nomCarte));
                 jMainJoueur2.repaint();
             }
             jMainJoueur2.setEnabled(true);
         }
         jPioche1.setEnabled(false);
+*/
     }//GEN-LAST:event_jPioche1MouseClicked
 
     
@@ -254,6 +269,10 @@ public class Plateau extends javax.swing.JPanel {
     }
     
     private void initPlateau (){
+        //Init Pirate
+        jInfoJoueur1.initJoueur(nomPirate1, 0, jMainJoueur1, boundaryJeu);
+        jInfoJoueur2.initJoueur(nomPirate2, 1, jMainJoueur2, boundaryJeu);
+
         //Init info
         updateInfoPirate();
 
@@ -265,6 +284,16 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1.setEnabled(false);
     }
     
+    private void evenementJeu(List<String> evenements){
+        for(String e : evenements){
+            if(e.equals("0")){
+                jLancerPiece1.setEtat("P");
+            }else if (e.equals("1")){
+                jLancerPiece1.setEtat("F");
+            }
+        }
+    }
+    
     public BoundaryJeu getBoundaryJeu(){
         return boundaryJeu;
     }
@@ -273,19 +302,24 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1.finTour();
         jInfoJoueur2.finTour();
     }
+    
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
-        
+        //animationpiece.traiterAnimationLancerPiece(resultat);
+        evenementJeu(resultat);
         String lastElement = resultat.get(resultat.size()-1);
         if (!lastElement.equals("Pas de gagnant")){
-            //afficherGagnant(lastElement);
+            //TODO Here POP UP victoire
             System.out.println("Gagnant : " + lastElement);
         }
+        //TODO Here POP up changement de joueur
+        
         jPioche1.setEnabled(true);
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
         retournerCartes();
+        jLancerPiece1.setEtat("P");
     }
     
     public void retournerCartes() {
@@ -310,6 +344,7 @@ public class Plateau extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private boundary.components.JInfoJoueur jInfoJoueur1;
     private boundary.components.JInfoJoueur jInfoJoueur2;
+    private boundary.components.JLancerPiece jLancerPiece1;
     private boundary.components.JMainJoueur jMainJoueur1;
     private boundary.components.JMainJoueur jMainJoueur2;
     private boundary.components.JPioche jPioche1;

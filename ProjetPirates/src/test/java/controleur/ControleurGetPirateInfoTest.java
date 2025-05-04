@@ -27,8 +27,8 @@ class ControleurGetPirateInfoTest {
 
     @Test
     void testGetNomPirate_InvalidInput() {
-        assertEquals("Numero de pirates invalide choisir 1 ou 2", controleur.getNomPirate(2));
-        assertEquals("Numero de pirates invalide choisir 1 ou 2", controleur.getNomPirate(-1));
+        assertEquals("Numero de pirates invalide choisir 0 ou 1", controleur.getNomPirate(2));
+        assertEquals("Numero de pirates invalide choisir 0 ou 1", controleur.getNomPirate(-1));
     }
 
     @Test

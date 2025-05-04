@@ -41,7 +41,7 @@ public class JPanelWithBackground extends JPanel {
 
     public void setImage(String fileName){
        try{
-            backgroundImage = ImageIO.read(new File("src/main/ressources/" + fileName));
+            backgroundImage = ImageIO.read(new File("src/main/resources/" + fileName));
         } catch (IOException e){
             String userDirectory = new File("").getAbsolutePath();
             System.out.print("Background not found : " + userDirectory);

@@ -12,7 +12,7 @@ import java.awt.RenderingHints;
 
 /**
  *
- * @author choue
+ * @author leo
  */
 public class JPointDeVie extends javax.swing.JPanel {
     private boolean plein = true; 

@@ -5,7 +5,12 @@ import boundary.components.JZoneInteraction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestionnaireCartes {
+/**
+ * Désué, servait pour l'ihm au tout début, remplacé par d'autres versions 
+ * @author leo
+ */
+
+public class GestionnaireCartesCreux {
 
     private final List<JCarte> cartes = new ArrayList<>();
     private final List<JZoneInteraction> zones = new ArrayList<>();
