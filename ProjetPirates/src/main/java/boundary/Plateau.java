@@ -7,7 +7,6 @@ package boundary;
 import boundary.components.JCarte;
 import boundary.components.JMainJoueur;
 import java.util.List;
-//import noyau.GestionnaireEffetFumee;
 
 /**
  *
@@ -21,8 +20,9 @@ public class Plateau extends javax.swing.JPanel {
     //private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
     
     private String nomPirate1;
-    private String nomPirate2;
-    
+    private String nomPirate2; 
+            
+
     /**
      * Creates new form Plateau
      */
@@ -51,6 +51,7 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jPirateIcon1 = new boundary.components.JPirateIcon();
         jLancerPiece1 = new boundary.components.JLancerPiece();
+        labelGagnant = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(720, 480));
 
@@ -74,7 +75,7 @@ public class Plateau extends javax.swing.JPanel {
         );
         jPioche1Layout.setVerticalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 102, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -157,7 +158,7 @@ public class Plateau extends javax.swing.JPanel {
         );
         jPirateIcon1Layout.setVerticalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGap(0, 181, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -189,15 +190,22 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         plateauBackground.add(jLancerPiece1, gridBagConstraints);
 
+        labelGagnant.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        labelGagnant.setText("Gagnant");
+        labelGagnant.setAlignmentY(0.0F);
+        labelGagnant.setDoubleBuffered(true);
+        labelGagnant.setOpaque(true);
+        plateauBackground.add(labelGagnant, new java.awt.GridBagConstraints());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -302,11 +310,18 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1.finTour();
         jInfoJoueur2.finTour();
     }
+    //Not Working (c'était dans plateauOld
+    public void afficherGagnant(String pirateGagant){
+        labelGagnant.setText(pirateGagant + "a gagné!!!!");
+        labelGagnant.setVisible(true);
+        labelGagnant.setEnabled(true);
+        this.repaint();
+    }
     
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
-        //animationpiece.traiterAnimationLancerPiece(resultat);
+
         evenementJeu(resultat);
         String lastElement = resultat.get(resultat.size()-1);
         if (!lastElement.equals("Pas de gagnant")){
@@ -319,7 +334,7 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
         retournerCartes();
-        jLancerPiece1.setEtat("P");
+        //jLancerPiece1.setEtat("P");
     }
     
     public void retournerCartes() {
@@ -351,6 +366,7 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;
     private boundary.components.JZoneInteraction jZoneInteraction1;
+    private javax.swing.JLabel labelGagnant;
     private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
 }

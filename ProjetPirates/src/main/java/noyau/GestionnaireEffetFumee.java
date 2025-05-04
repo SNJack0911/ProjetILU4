@@ -41,26 +41,16 @@ public class GestionnaireEffetFumee {
         return images.get(new Random().nextInt(images.size()));
     }
 
-private final List<SmokeEffect> fumeeList = new ArrayList<>();
-/*
-public void dessinerEffets(Graphics2D g2) {
-    for (SmokeEffect f : fumeeList) {
-        f.dessiner(g2);
-    }
+    private final List<SmokeEffect> fumeeList = new ArrayList<>();
 
-    // Nettoyage des fumées terminées
-    fumeeList.removeIf(SmokeEffect::estTerminee);
-}
-*/
-public void ajouterFumee(int x, int y) {
-    Image img = getRandomImage();
-    if (img != null) {
-        SmokeEffect f = new SmokeEffect(img, x - 40, y - 40); // Décalage pour centrer sous la carte
-        f.setSize(100); // ou 80, selon le rendu
-        fumeeList.add(f);
+    public void ajouterFumee(int x, int y) {
+        Image img = getRandomImage();
+        if (img != null) {
+            SmokeEffect f = new SmokeEffect(img, x - 40, y - 40); // Décalage pour centrer sur la carte
+            f.setSize(200); // ou 80, selon le rendu
+            fumeeList.add(f);
+        }
     }
-}
-
 
 }
 /*

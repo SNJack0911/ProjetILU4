@@ -1,0 +1,262 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 255852544 bytes for G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3600), pid=29940, tid=11832
+#
+# JRE version:  (21.0.1+12) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (21.0.1+12-LTS-29, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: projetpirates.ProjetPirates
+
+Host: AMD Ryzen 7 7735HS with Radeon Graphics        , 16 cores, 15G,  Windows 11 , 64 bit Build 26100 (10.0.26100.3775)
+Time: Sun May  4 13:15:58 2025 Paris, Madrid (heure duild 26100 (10.0.26100.3775) elapsed time: 1.190520 seconds (0d 0h 0m 1s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000026dc42d2f80):  JavaThread "Unknown thread" [_thread_in_vm, id=11832, stack(0x000000d671100000,0x000000d671200000) (1024K)]
+
+Stack: [0x000000d671100000,0x000000d671200000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6c9029]
+V  [jvm.dll+0x854b81]
+V  [jvm.dll+0x856e5e]
+V  [jvm.dll+0x857543]
+V  [jvm.dll+0x280c06]
+V  [jvm.dll+0x6c5715]
+V  [jvm.dll+0x6ba10a]
+V  [jvm.dll+0x3557ea]
+V  [jvm.dll+0x35d436]
+V  [jvm.dll+0x3ae1be]
+V  [jvm.dll+0x3ae468]
+V  [jvm.dll+0x3291fc]
+V  [jvm.dll+0x329d8b]
+V  [jvm.dll+0x81d179]
+V  [jvm.dll+0x3bb4f1]
+V  [jvm.dll+0x805ae8]
+V  [jvm.dll+0x44effe]
+V  [jvm.dll+0x450901]
+C  [jli.dll+0x52a3]
+C  [ucrtbase.dll+0x37b0]
+C  [KERNEL32.DLL+0x2e8d7]
+C  [ntdll.dll+0xb14fc]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffe240f9b88, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x0000026dc5d002d0 WorkerThread "GC Thread#0"                     [id=30244, stack(0x000000d671200000,0x000000d671300000) (1024K)]
+  0x0000026dc5d106b0 ConcurrentGCThread "G1 Main Marker"            [id=30936, stack(0x000000d671300000,0x000000d671400000) (1024K)]
+  0x0000026dc5d151f0 WorkerThread "G1 Conc#0"                       [id=30420, stack(0x000000d671400000,0x000000d671500000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffe2386c2c7]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ffe2416a6f8] Heap_lock - owner thread: 0x0000026dc42d2f80
+
+Heap address: 0x000000070c000000, size: 3904 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 16 size 48 Howl #buckets 8 coarsen threshold 3686 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 4096
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x000000070c000000, 0x0000000800000000)
+  region size 2048K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffe23c51be9]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.009 Loaded shared library C:\Program Files\Java\jdk-21\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff6000b0000 - 0x00007ff6000c0000 	C:\Program Files\Java\jdk-21\bin\java.exe
+0x00007ffeae880000 - 0x00007ffeaeae0000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffeacbd0000 - 0x00007ffeacc97000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffeac0d0000 - 0x00007ffeac49a000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffeabbe0000 - 0x00007ffeabd2b000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffe8de10000 - 0x00007ffe8de29000 	C:\Program Files\Java\jdk-21\bin\jli.dll
+0x00007ffea3520000 - 0x00007ffea353b000 	C:\Program Files\Java\jdk-21\bin\VCRUNTIME140.dll
+0x00007ffead040000 - 0x00007ffead0f2000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffeae790000 - 0x00007ffeae839000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffeac8c0000 - 0x00007ffeac966000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffeacca0000 - 0x00007ffeacdb6000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffeacdd0000 - 0x00007ffeacf9c000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffeabb20000 - 0x00007ffeabb47000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffe8d7d0000 - 0x00007ffe8da67000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.3624_none_3e086962e3345f24\COMCTL32.dll
+0x00007ffead200000 - 0x00007ffead22a000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffeac4a0000 - 0x00007ffeac5d1000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffeabea0000 - 0x00007ffeabf43000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffea3c70000 - 0x00007ffea3c7b000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffeadae0000 - 0x00007ffeadb0f000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffea37f0000 - 0x00007ffea37fc000 	C:\Program Files\Java\jdk-21\bin\vcruntime140_1.dll
+0x00007ffe8e9b0000 - 0x00007ffe8ea3e000 	C:\Program Files\Java\jdk-21\bin\msvcp140.dll
+0x00007ffe23530000 - 0x00007ffe24245000 	C:\Program Files\Java\jdk-21\bin\server\jvm.dll
+0x00007ffeae530000 - 0x00007ffeae5a4000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffeaa6d0000 - 0x00007ffeaa72e000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffe9e670000 - 0x00007ffe9e6a6000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffeaa6b0000 - 0x00007ffeaa6c4000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffeaa990000 - 0x00007ffeaa9aa000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffea22a0000 - 0x00007ffea22aa000 	C:\Program Files\Java\jdk-21\bin\jimage.dll
+0x00007ffea8c30000 - 0x00007ffea8e71000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffead230000 - 0x00007ffead5b2000 	C:\WINDOWS\System32\combase.dll
+0x00007ffeac6f0000 - 0x00007ffeac7c6000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffe9a1f0000 - 0x00007ffe9a229000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffeac5e0000 - 0x00007ffeac679000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffea22b0000 - 0x00007ffea22cf000 	C:\Program Files\Java\jdk-21\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.3624_none_3e086962e3345f24;C:\Program Files\Java\jdk-21\bin\server
+
+VM Arguments:
+java_command: projetpirates.ProjetPirates
+java_class_path (initial): C:\Users\choue\Documents\NetBeansProjects\ProjetILU4-main\ProjetILU4-main\ProjetPirates\ProjetPirates\target\classes;C:\Users\choue\.m2\repository\org\netbeans\external\AbsoluteLayout\RELEASE250\AbsoluteLayout-RELEASE250.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 13                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 2097152                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 255852544                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4093640704                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 2097152                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 7602480                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122027880                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122027880                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 4093640704                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-21
+PATH=c:\Users\choue\AppData\Local\Programs\cursor\resources\app\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\choue\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\choue\AppData\Local\Programs\Python\Python312\;C:\Users\choue\AppData\Local\Programs\Python\Launcher\;C:\Users\choue\AppData\Local\Microsoft\WindowsApps;C:\Users\choue\.dotnet\tools;c:\Users\choue\AppData\Local\Programs\cursor\resources\app\bin;c:\Users\choue\AppData\Local\Programs\cursor\resources\app\bin;C:\Program Files\Git\cmd;C:\Users\choue\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\choue\AppData\Local\Programs\Python\Python312\;C:\Users\choue\AppData\Local\Programs\Python\Launcher\;C:\Users\choue\AppData\Local\Microsoft\WindowsApps;C:\Users\choue\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\choue\.dotnet\tools;C:\Users\choue\AppData\Local\Programs\cursor\resources\app\bin;C:\Users\choue\AppData\Local\GitHubDesktop\bin
+USERNAME=choue
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD
+TMP=C:\Users\choue\AppData\Local\Temp
+TEMP=C:\Users\choue\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 26100 (10.0.26100.3775)
+OS uptime: 11 days 13:39 hours
+Hyper-V role detected
+
+CPU: total 16 (initial active 16) (16 cores per cpu, 2 threads per core) family 25 model 68 stepping 1 microcode 0xa404102, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4a, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, hv, rdtscp, rdpid, fsrm, f16c, cet_ss
+Processor Information for processor 0
+  Max Mhz: 3201, Current Mhz: 2502, Mhz Limit: 3201
+Processor Information for processor 1
+  Max Mhz: 3201, Current Mhz: 2502, Mhz Limit: 3201
+Processor Information for processor 2
+  Max Mhz: 3201, Current Mhz: 2502, Mhz Limit: 3201
+Processor Information for processor 3
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+Processor Information for processor 4
+  Max Mhz: 3201, Current Mhz: 2502, Mhz Limit: 3201
+Processor Information for processor 5
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+Processor Information for processor 6
+  Max Mhz: 3201, Current Mhz: 2502, Mhz Limit: 3201
+Processor Information for processor 7
+  Max Mhz: 3201, Current Mhz: 2502, Mhz Limit: 3201
+Processor Information for processor 8
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+Processor Information for processor 9
+  Max Mhz: 3201, Current Mhz: 2502, Mhz Limit: 3201
+Processor Information for processor 10
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+Processor Information for processor 11
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+Processor Information for processor 12
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+Processor Information for processor 13
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+Processor Information for processor 14
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+Processor Information for processor 15
+  Max Mhz: 3201, Current Mhz: 1978, Mhz Limit: 3201
+
+Memory: 4k page, system-wide physical 15611M (5611M free)
+TotalPageFile size 62715M (AvailPageFile size 41M)
+current process WorkingSet (physical memory assigned to process): 12M, peak: 12M
+current process commit charge ("private bytes"): 71M, peak: 314M
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (21.0.1+12-LTS-29) for windows-amd64 JRE (21.0.1+12-LTS-29), built on 2023-10-05T13:27:09Z by "mach5one" with MS VC++ 17.1 (VS2022)
+
+END.

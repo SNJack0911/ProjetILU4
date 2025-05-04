@@ -6,14 +6,10 @@ package boundary.components;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.util.Objects;
+
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
-   import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 
