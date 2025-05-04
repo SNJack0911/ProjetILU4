@@ -49,15 +49,15 @@ public class ControleurIntegrationTest {
     void testGetCarteInfo() {
         ControleurGetCarteInfo controleurGetCarteInfo = new ControleurGetCarteInfo(jeu);
 
-        String description = controleurGetCarteInfo.getDescription("Plus1Pop");
+        String description = controleurGetCarteInfo.getDescription("Coup bas");
         assertNotNull(description);
         assertFalse(description.isEmpty(), "La description de la carte ne devrait pas être vide");
 
-        ICategorieCarte categorie = controleurGetCarteInfo.getTypeCarte("Plus1Pop");
-        assertNotNull(categorie, "Type de carte devrait être récupéré pour Plus1Pop");
+        ICategorieCarte categorie = controleurGetCarteInfo.getTypeCarte("Coup bas");
+        assertNotNull(categorie, "Type de carte devrait être récupéré pour Coup bas");
 
-        BasicCategorie zone = controleurGetCarteInfo.getZoneDepotCarte("Plus1Pop");
-        assertNotNull(zone, "Zone de dépôt devrait être récupérée pour Plus1Pop");
+        BasicCategorie zone = controleurGetCarteInfo.getZoneDepotCarte("Coup bas");
+        assertNotNull(zone, "Zone de dépôt devrait être récupérée pour Coup bas");
     }
 
 

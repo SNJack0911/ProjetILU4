@@ -76,7 +76,7 @@ class JeuTest {
         assertEquals(0, joueur.getNbCarte(), "Carte devrait être supprimée après avoir été jouée");
 
         List<String> resultInvalid = jeu.jouerCarte("Inexistante");
-        assertTrue(resultInvalid.get(0).contains("Carte not found"), "Carte invalide ne devrait pas être jouée");
+        assertTrue(resultInvalid.get(0).contains("Carte pas trouvée"), "Carte invalide ne devrait pas être jouée");
     }
 
 
@@ -86,7 +86,7 @@ class JeuTest {
 
         List<String> result = jeu.jouerCarte(null);
         assertEquals(1, result.size());
-        assertTrue(result.get(0).contains("Carte not found"), "Null carte ne faudrait pas être jouée");
+        assertTrue(result.get(0).contains("Carte pas trouvée"), "Null carte ne faudrait pas être jouée");
     }
 
     @Test
