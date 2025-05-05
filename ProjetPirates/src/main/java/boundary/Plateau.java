@@ -51,7 +51,9 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1 = new boundary.components.JInfoJoueur();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jPirateIcon1 = new boundary.components.JPirateIcon();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonCustom1 = new boundary.components.JButtonCustom();
         jLancerPiece1 = new boundary.components.JLancerPiece();
 
         setMinimumSize(new java.awt.Dimension(720, 480));
@@ -76,7 +78,7 @@ public class Plateau extends javax.swing.JPanel {
         );
         jPioche1Layout.setVerticalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 87, Short.MAX_VALUE)
+            .addGap(0, 80, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -186,7 +188,7 @@ public class Plateau extends javax.swing.JPanel {
         );
         jPirateIcon1Layout.setVerticalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 133, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -199,18 +201,20 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         plateauBackground.add(jPirateIcon1, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel2.setMinimumSize(new java.awt.Dimension(130, 160));
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.CardLayout());
 
-        plateauBackground.add(jPanel1, new java.awt.GridBagConstraints());
+        jPanel3.setBackground(new java.awt.Color(204, 204, 0));
+        jPanel3.setMinimumSize(new java.awt.Dimension(130, 160));
+        jPanel3.setOpaque(false);
+        jPanel3.setPreferredSize(new java.awt.Dimension(130, 160));
+        jPanel3.setLayout(new java.awt.CardLayout(20, 60));
+
+        jButtonCustom1.setText("jButtonCustom1");
+        jPanel3.add(jButtonCustom1, "card4");
+
+        jPanel2.add(jPanel3, "card3");
 
         jLancerPiece1.setBackground(new java.awt.Color(255, 153, 153));
         jLancerPiece1.setMinimumSize(new java.awt.Dimension(130, 160));
@@ -227,6 +231,8 @@ public class Plateau extends javax.swing.JPanel {
             .addGap(0, 160, Short.MAX_VALUE)
         );
 
+        jPanel2.add(jLancerPiece1, "card3");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -234,8 +240,8 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.18;
         gridBagConstraints.weighty = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
-        plateauBackground.add(jLancerPiece1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 2, 0);
+        plateauBackground.add(jPanel2, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -398,12 +404,14 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private boundary.components.JButtonCustom jButtonCustom1;
     private boundary.components.JInfoJoueur jInfoJoueur1;
     private boundary.components.JInfoJoueur jInfoJoueur2;
     private boundary.components.JLancerPiece jLancerPiece1;
     private boundary.components.JMainJoueur jMainJoueur1;
     private boundary.components.JMainJoueur jMainJoueur2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private boundary.components.JPioche jPioche1;
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;
