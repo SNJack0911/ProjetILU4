@@ -17,10 +17,6 @@ public class JeuNOUVELLE_PROPOSITION {
     private boolean nuit = false;
 
     public JeuNOUVELLE_PROPOSITION() {
-        initJeu();
-    }
-
-    public void initJeu() {
         joueur1 = new Pirate("J1");
         joueur2 = new Pirate("J2");
         jeuDeCarte = new JeuDeCarte();
@@ -31,6 +27,7 @@ public class JeuNOUVELLE_PROPOSITION {
             joueur2.addCarte(pioche.piocher());
         }
     }
+
 
     public Pirate getJoueurActuel() {
         return (tour % 2 == 0) ? joueur1 : joueur2;
@@ -103,8 +100,8 @@ public class JeuNOUVELLE_PROPOSITION {
         return nuit;
     }
 
-    public void setNuit(boolean nuit) {
-        this.nuit = nuit;
+    public void setNuit() {
+        nuit = tour%4==2 || tour %4 == 3;
     }
 
     public JeuDeCarte getJeuDeCarte() {

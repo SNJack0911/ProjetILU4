@@ -114,8 +114,8 @@ public class Jeu {
         return nuit;
     }
 
-    public void setNuit(boolean nuit) {
-        this.nuit = nuit;
+    public void setNuit() {
+        nuit = tour%4==2 || tour %4 == 3;
     }
 
     public JeuDeCarte getJeuDeCarte() {

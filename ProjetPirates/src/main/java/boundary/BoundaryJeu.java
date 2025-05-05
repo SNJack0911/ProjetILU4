@@ -4,6 +4,8 @@
  */
 package boundary;
 import boundary.components.JCarte;
+import controleur.ControleurGetCarteInfo;
+import controleur.ControleurGetPirateInfo;
 import noyau.BasicCategorie;
 import noyau.ICategorieCarte;
 
@@ -13,57 +15,116 @@ import java.util.Scanner;
 
 /**
  *
- * @author yannf
+ * @author yannf et fanny
  */
 /*
     Used to condense the amount of arguments given when creating a panel or a frame
  */
 public class BoundaryJeu {
-    private BoundaryGetCarteInfo boundaryGetCarteInfo;
-    private BoundaryGetPirateInfo boundaryGetPirateInfo;
     private BoundaryJouerCarte boundaryJouerCarte;
     private BoundaryNouvellePartie boundaryNouvellePartie;
     private BoundaryPiocherCarte boundaryPiocherCarte;
+    private ControleurGetCarteInfo controleurGetCarteInfo;
+    private ControleurGetPirateInfo controleurGetPirateInfo;
+
     private Scanner scanner = new Scanner(System.in);
 
-    public BoundaryJeu(BoundaryGetCarteInfo boundaryGetCarteInfo, BoundaryGetPirateInfo boundaryGetPirateInfo,
-                       BoundaryJouerCarte boundaryJouerCarte, BoundaryNouvellePartie boundaryNouvellePartie,
-                       BoundaryPiocherCarte boundaryPiocherCarte) {
-        this.boundaryGetCarteInfo = boundaryGetCarteInfo;
-        this.boundaryGetPirateInfo = boundaryGetPirateInfo;
+    public BoundaryJeu(BoundaryJouerCarte boundaryJouerCarte, BoundaryNouvellePartie boundaryNouvellePartie,
+                       BoundaryPiocherCarte boundaryPiocherCarte, ControleurGetCarteInfo controleurGetCarteInfo, ControleurGetPirateInfo controleurGetPirateInfo) {
         this.boundaryJouerCarte = boundaryJouerCarte;
         this.boundaryNouvellePartie = boundaryNouvellePartie;
         this.boundaryPiocherCarte = boundaryPiocherCarte;
+        this.controleurGetCarteInfo = controleurGetCarteInfo;
+        this.controleurGetPirateInfo = controleurGetPirateInfo;
     }
 
     public String getDescription(String nomCarte){
-        return boundaryGetCarteInfo.getDescription(nomCarte);
+        String description = controleurGetCarteInfo.getDescription(nomCarte);
+        if (description.equals("Card not found")) {
+            System.out.println("Erreur : nom carte invalide.");
+        }
+        return controleurGetCarteInfo.getDescription(nomCarte);
     }
 
     public ICategorieCarte getTypeCarte(String nomCarte){
-        return boundaryGetCarteInfo.getTypeCarte(nomCarte);
+        ICategorieCarte typeCarte = controleurGetCarteInfo.getTypeCarte(nomCarte);
+        if (typeCarte == null) {
+            System.out.println("Erreur : nom carte invalide.");
+        }
+        return typeCarte;
     }
 
     public BasicCategorie getZoneDepot(String nomCarte){
-        return boundaryGetCarteInfo.getZoneDepot(nomCarte);
+        BasicCategorie zoneDepot = controleurGetCarteInfo.getZoneDepotCarte(nomCarte);
+        if (zoneDepot == null) {
+            System.out.println("Erreur : nom carte invalide.");
+        }
+        return zoneDepot;
+    }
+    
+    public int getCarteId(String nomCarte) {
+        int id = controleurGetCarteInfo.getCarteID(nomCarte);
+        if (id < 0 || id > 23) {
+            System.out.println("Erreur : Carte n'as pas d'image associée ou nom carte invalide.");
+            return -1;
+        }
+        return id;
     }
 
+    public void printCarteInfo(String nomCarte){
+        System.out.println("Carte : " + nomCarte);
+        System.out.println("Description : " + getDescription(nomCarte));
+        System.out.println("Type : " + getTypeCarte(nomCarte));
+        System.out.println("Zone de depot : " + getZoneDepot(nomCarte));
+    }
+    
     public String getPirateName(int pirateID) {
-        return boundaryGetPirateInfo.getPirateName(pirateID);
+        String nomPirate = controleurGetPirateInfo.getNomPirate(pirateID);
+        if (nomPirate.equals("Numero de pirates invalide choisir 0 ou 1")) {
+            System.out.println("Erreur : " + nomPirate);
+            return "";
+        }
+        return nomPirate;
     }
 
     public int getPirateHp(int pirateID) {
-        return boundaryGetPirateInfo.getPirateHp(pirateID);
+        int hp = controleurGetPirateInfo.getPirateHp(pirateID);
+        if (hp < 0) {
+            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+        }
+        return hp;
     }
 
     public int getPiratePp(int pirateID) {
-        return boundaryGetPirateInfo.getPiratePp(pirateID);
+        int pp = controleurGetPirateInfo.getPiratePp(pirateID);
+        if (pp < 0) {
+            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+        }
+        return pp;
     }
 
     public ArrayList<String> getPirateMain(int pirateID) {
-        return boundaryGetPirateInfo.getPirateMain(pirateID);
+        ArrayList<String> main = controleurGetPirateInfo.getPirateMain(pirateID);
+        if (main == null) {
+            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+            return new ArrayList<>();
+        }
+        return main;
     }
-
+    
+     public void printPirateInfo(int pirateID, boolean isAdversaire){
+        System.out.println("Pirate : " + getPirateName(pirateID));
+        System.out.println("HP : " + getPirateHp(pirateID));
+        System.out.println("PP : " + getPiratePp(pirateID));
+        if (!isAdversaire) {
+            System.out.println("Main : ");
+            ArrayList<String> main = getPirateMain(pirateID);
+            for (int i = 0; i < main.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + main.get(i));
+            }
+        }
+    }
+    
     public List<String> jouerCarte(JCarte carte) {
         return boundaryJouerCarte.jouerCarte(carte.getNomCarte());
     }
@@ -80,9 +141,7 @@ public class BoundaryJeu {
         return boundaryPiocherCarte.piocherCarte();
     }
 
-    public int getCarteId(String nomCarte) {
-        return boundaryGetCarteInfo.getCarteId(nomCarte);
-    }
+    
 
     public void JouerPartie(){
         initNewGame();
@@ -92,18 +151,18 @@ public class BoundaryJeu {
             System.out.println("**********************");
             System.out.println("***  Adversaire :  ***");
             System.out.println("**********************");
-            boundaryGetPirateInfo.printPirateInfo((tour+1)%2, true);
+            printPirateInfo((tour+1)%2, true);
             System.out.println("---------------------------------------");
             ArrayList<String> cartesPiocher = piocherCarte();
             System.out.println("Carte(s) piochée(s) en début de tour : \n");
             for(String carte : cartesPiocher){
-                boundaryGetCarteInfo.printCarteInfo(carte);
+                printCarteInfo(carte);
             }
             System.out.println("---------------------------------------");
             System.out.println("**********************");
             System.out.println("***  Joueur :      ***");
             System.out.println("**********************");
-            boundaryGetPirateInfo.printPirateInfo(tour%2, false);
+            printPirateInfo(tour%2, false);
             ArrayList<String> main = getPirateMain(tour%2);
             int carte = -1;
             String nomCarte = "";
@@ -114,7 +173,7 @@ public class BoundaryJeu {
                     carte = scanner.nextInt() - 1;
                 } while (carte >= main.size());
                 nomCarte = main.get(carte);
-                boundaryGetCarteInfo.printCarteInfo(nomCarte);
+                printCarteInfo(nomCarte);
                 System.out.println("Appliquer l'effet ? (O/N)");
                 choix = scanner.next();
             } while (!choix.equals("O"));

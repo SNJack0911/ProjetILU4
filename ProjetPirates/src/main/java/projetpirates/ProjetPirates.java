@@ -46,15 +46,12 @@ public class ProjetPirates {
             java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        BoundaryGetCarteInfo boundaryGetCarteInfo = new BoundaryGetCarteInfo(controleurGetCarteInfo);
-        BoundaryGetPirateInfo boundaryGetPirateInfo =  new BoundaryGetPirateInfo(controleurGetPirateInfo);
         BoundaryJouerCarte boundaryJouerCarte = new BoundaryJouerCarte(controleurJouerCarte, controleurGetCarteInfo);
         BoundaryNouvellePartie boundaryNouvellePartie = new BoundaryNouvellePartie(controleurNouvellePartie);
         BoundaryPiocherCarte boundaryPiocherCarte = new BoundaryPiocherCarte(controleurPiocherCarte);
 
 
-        BoundaryJeu boundaryJeu = new BoundaryJeu(boundaryGetCarteInfo, boundaryGetPirateInfo,
-                boundaryJouerCarte, boundaryNouvellePartie, boundaryPiocherCarte);
+        BoundaryJeu boundaryJeu = new BoundaryJeu(boundaryJouerCarte, boundaryNouvellePartie, boundaryPiocherCarte, controleurGetCarteInfo, controleurGetPirateInfo);
 
         if(IHM){
             FrameJeu frameJeu = new FrameJeu(boundaryJeu, false);
