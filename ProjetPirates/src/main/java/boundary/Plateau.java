@@ -7,6 +7,8 @@ package boundary;
 import boundary.components.JCarte;
 import boundary.components.JMainJoueur;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -22,12 +24,14 @@ public class Plateau extends javax.swing.JPanel {
     private String nomPirate1;
     private String nomPirate2; 
             
+    JFrame parentFrame;
 
     /**
      * Creates new form Plateau
      */
-    public Plateau() {
+    public Plateau(JFrame frame) {
         initComponents();
+        this.parentFrame = frame;
         plateauBackground.setImage("PlateauJour.png");
         //TODO Set Boundary
     }
@@ -365,6 +369,10 @@ public class Plateau extends javax.swing.JPanel {
         this.repaint();
     }
     */
+    private void victory (){
+        PopUp victoire = new PopUp(parentFrame);
+        victoire.setVisible(true);
+    }
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
@@ -372,7 +380,7 @@ public class Plateau extends javax.swing.JPanel {
         evenementJeu(resultat);
         String lastElement = resultat.get(resultat.size()-1);
         if (!lastElement.equals("Pas de gagnant")){
-            //TODO Here POP UP victoire
+            victory();
             System.out.println("Gagnant : " + lastElement);
         }
         //TODO Here POP up changement de joueur
@@ -388,7 +396,6 @@ public class Plateau extends javax.swing.JPanel {
         retournerCartesMain(jMainJoueur2.getMainJoueur());
         retournerCartesMain(jMainJoueur1.getMainJoueur());
     }
-    
     private void retournerCartesMain(List<JCarte> main){
         for (JCarte jCarte : main) {
             jCarte.changeCardFace();

@@ -73,7 +73,7 @@ public class FrameJeu extends javax.swing.JFrame {
         volumeValueLabel = new javax.swing.JLabel();
         menuBoutonOp = new boundary.components.JButtonCustom();
         plateauPanel = new javax.swing.JPanel();
-        plateau1 = new boundary.Plateau();
+        plateau1 = new boundary.Plateau(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Argonautes : New Horizons");
@@ -437,7 +437,6 @@ public class FrameJeu extends javax.swing.JFrame {
         
 
         plateau1.setBoundaryJeu(boundaryJeu);
-        
     }//GEN-LAST:event_jButtonCustom1ActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom2ActionPerformed
@@ -604,10 +603,6 @@ public class FrameJeu extends javax.swing.JFrame {
             float gain = (range * volume) + gainControl.getMinimum();
             gainControl.setValue(gain);
         }
-    }
-    
-    public PlateauOld getPlateauOld(){
-        return null;
     }
     
     public Plateau getPlateau(){

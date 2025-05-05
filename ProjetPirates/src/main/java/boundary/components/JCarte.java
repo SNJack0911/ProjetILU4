@@ -5,7 +5,6 @@
 package boundary.components;
 
 import boundary.Plateau;
-import boundary.PlateauOld;
 
 import java.awt.*;
 import java.io.File;
@@ -347,8 +346,8 @@ public class JCarte extends javax.swing.JPanel {
         
         if (origine != null) {
             	    // Ajoute une fumée sur le plateau
-            Container parent = SwingUtilities.getAncestorOfClass(PlateauOld.class, this);
-            if (parent instanceof PlateauOld plateau) {
+            Container parent = SwingUtilities.getAncestorOfClass(Plateau.class, this);
+            if (parent instanceof Plateau plateau) {
                 Point global = SwingUtilities.convertPoint(this, getCentreCarte(), plateau);
                 effets.ajouterFumee(global.x, global.y); //plateau.getGestionnaireEffetsFumee().ajouterFumee(global.x, global.y);
                 }
