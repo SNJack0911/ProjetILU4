@@ -10,12 +10,13 @@ import javax.swing.JFrame;
  *
  * @author Amaterasu
  */
-public class PopUp extends javax.swing.JDialog {
+public class PopUpVictory extends javax.swing.JDialog {
 
     /**
      * Creates new form PopUp
+     * @param parent
      */
-    public PopUp(JFrame parent) {
+    public PopUpVictory(JFrame parent) {
         super(parent, true);
         setContentPane(new VictoryScreen());  // Use custom panel here
         setSize(300, 300);
