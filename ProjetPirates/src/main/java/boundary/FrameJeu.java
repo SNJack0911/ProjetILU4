@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author yannf
+ * @author yannf et vincent
  */
 public class FrameJeu extends javax.swing.JFrame {
     private BoundaryJeu boundaryJeu;

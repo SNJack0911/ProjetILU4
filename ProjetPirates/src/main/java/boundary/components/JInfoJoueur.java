@@ -81,12 +81,12 @@ public class JInfoJoueur extends javax.swing.JPanel {
         jPointDeVie5 = new boundary.components.JPointDeVie();
         jaugePopularite = new boundary.components.JPanelWithBackground();
 
-        setMinimumSize(new java.awt.Dimension(130, 148));
-        setPreferredSize(new java.awt.Dimension(130, 148));
+        setMinimumSize(new java.awt.Dimension(130, 130));
+        setPreferredSize(new java.awt.Dimension(130, 130));
 
-        jPanel1.setMinimumSize(new java.awt.Dimension(130, 148));
+        jPanel1.setMinimumSize(new java.awt.Dimension(130, 130));
         jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(130, 148));
+        jPanel1.setPreferredSize(new java.awt.Dimension(130, 130));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPointDeVie.setMinimumSize(new java.awt.Dimension(20, 20));
