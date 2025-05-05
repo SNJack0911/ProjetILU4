@@ -1,5 +1,10 @@
 package noyau;
 
+/**
+ *
+ * @author ???
+ */
+
 public enum ExtendCategorie implements ICategorieCarte {
     EFFET("Effet"), DEFENSE("Defense");
 

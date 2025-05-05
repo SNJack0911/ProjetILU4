@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ *
+ * @author ???
+ */
+
 public class CartePopularite extends Carte {
     private int PPajoutJ;
     private int PVajoutJ;

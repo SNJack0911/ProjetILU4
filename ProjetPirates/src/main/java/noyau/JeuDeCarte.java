@@ -2,6 +2,11 @@ package noyau;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author ???
+ */
+
 public class JeuDeCarte {
     private Configuration[] config = {new Configuration(new CarteDefense("Ode à la Joie", 1, "Le joueur Gagne 3PV",3, 0, false), 7),
             new Configuration(new CarteDefense("Douceur ensoleillé", 2, "Le Joueur Gagne 1 PV, Gagne 1 PV de plus si le jour",1, 0, true), 10),

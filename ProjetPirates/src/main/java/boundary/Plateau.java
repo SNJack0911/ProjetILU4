@@ -28,6 +28,7 @@ public class Plateau extends javax.swing.JPanel {
      */
     public Plateau() {
         initComponents();
+        plateauBackground.setImage("PlateauJour.png");
         //TODO Set Boundary
     }
 
@@ -55,7 +56,6 @@ public class Plateau extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(720, 480));
 
         plateauBackground.setPreferredSize(new java.awt.Dimension(720, 480));
-        plateauBackground.setImage("Plateau.png");
         plateauBackground.setLayout(new java.awt.GridBagLayout());
 
         jPioche1.setMinimumSize(new java.awt.Dimension(142, 90));
@@ -70,11 +70,11 @@ public class Plateau extends javax.swing.JPanel {
         jPioche1.setLayout(jPioche1Layout);
         jPioche1Layout.setHorizontalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGap(0, 148, Short.MAX_VALUE)
         );
         jPioche1Layout.setVerticalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 102, Short.MAX_VALUE)
+            .addGap(0, 90, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -153,11 +153,11 @@ public class Plateau extends javax.swing.JPanel {
         jPirateIcon1.setLayout(jPirateIcon1Layout);
         jPirateIcon1Layout.setHorizontalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
         jPirateIcon1Layout.setVerticalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 181, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -193,11 +193,11 @@ public class Plateau extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
+            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -359,6 +359,6 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;
     private boundary.components.JZoneInteraction jZoneInteraction1;
-    private boundary.components.JPanelWithBackground plateauBackground;
+    public boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
 }

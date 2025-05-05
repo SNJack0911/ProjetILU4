@@ -2,6 +2,11 @@ package noyau;
 
 import java.util.*;
 
+/**
+ *
+ * @author ???
+ */
+
 public class CarteDefense extends  Carte{
     private int PVajout;
     private int PPajout;

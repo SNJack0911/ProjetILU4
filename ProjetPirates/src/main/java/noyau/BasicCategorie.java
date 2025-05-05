@@ -1,5 +1,10 @@
 package noyau;
 
+/**
+ *
+ * @author ???
+ */
+
 public enum BasicCategorie implements ICategorieCarte {
     POPULARITE("Popularite"), ATTAQUE("Attaque");
 

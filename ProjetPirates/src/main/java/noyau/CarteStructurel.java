@@ -1,5 +1,9 @@
 package noyau;
 
+/**
+ *
+ * @author ???
+ */
 
 //NEVER USED
 public class CarteStructurel {
