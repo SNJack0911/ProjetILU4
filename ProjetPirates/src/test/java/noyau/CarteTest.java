@@ -9,6 +9,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+* Stefan
+* */
+
 class CarteTest {
 
     @Test
@@ -67,6 +71,10 @@ class CarteTest {
 
     @Test
     void testCsvLoad() {
+        /*
+        * Pas necessaire de tester l'utilisation de csv pour le chargement de donnees.
+        * Les cartes existes deja dans la classe JeuDeCarte -=> duplication de code
+        * */
         InputStream is = CartesCSV.class.getClassLoader().getResourceAsStream("cartes.csv"); // On charge le fichier CSV
         try{
             if (is == null) throw new FileNotFoundException("Fichier non trouvé !");

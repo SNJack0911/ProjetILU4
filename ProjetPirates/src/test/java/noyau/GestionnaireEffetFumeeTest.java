@@ -9,6 +9,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+ * Stefan
+ * */
+
 class GestionnaireEffetFumeeTest {
 
     private GestionnaireEffetFumee gestionnaire;
