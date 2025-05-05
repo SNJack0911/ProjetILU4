@@ -73,6 +73,7 @@ public class JInfoJoueur extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel1 = new javax.swing.JPanel();
         jPointDeVie = new boundary.components.JPointDeVie();
         jPointDeVie2 = new boundary.components.JPointDeVie();
         jPointDeVie3 = new boundary.components.JPointDeVie();
@@ -80,8 +81,13 @@ public class JInfoJoueur extends javax.swing.JPanel {
         jPointDeVie5 = new boundary.components.JPointDeVie();
         jaugePopularite = new boundary.components.JPanelWithBackground();
 
-        setPreferredSize(new java.awt.Dimension(138, 148));
-        setLayout(new java.awt.GridBagLayout());
+        setMinimumSize(new java.awt.Dimension(130, 148));
+        setPreferredSize(new java.awt.Dimension(130, 148));
+
+        jPanel1.setMinimumSize(new java.awt.Dimension(130, 148));
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(130, 148));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPointDeVie.setMinimumSize(new java.awt.Dimension(20, 20));
 
@@ -93,12 +99,18 @@ public class JInfoJoueur extends javax.swing.JPanel {
         );
         jPointDeVieLayout.setVerticalGroup(
             jPointDeVieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 28, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        add(jPointDeVie, gridBagConstraints);
+        jPanel1.add(jPointDeVie, gridBagConstraints);
 
         jPointDeVie2.setMinimumSize(new java.awt.Dimension(20, 20));
 
@@ -110,12 +122,18 @@ public class JInfoJoueur extends javax.swing.JPanel {
         );
         jPointDeVie2Layout.setVerticalGroup(
             jPointDeVie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 28, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        add(jPointDeVie2, gridBagConstraints);
+        jPanel1.add(jPointDeVie2, gridBagConstraints);
 
         jPointDeVie3.setMinimumSize(new java.awt.Dimension(20, 20));
 
@@ -127,12 +145,18 @@ public class JInfoJoueur extends javax.swing.JPanel {
         );
         jPointDeVie3Layout.setVerticalGroup(
             jPointDeVie3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 28, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        add(jPointDeVie3, gridBagConstraints);
+        jPanel1.add(jPointDeVie3, gridBagConstraints);
 
         jPointDeVie4.setMinimumSize(new java.awt.Dimension(20, 20));
 
@@ -144,12 +168,18 @@ public class JInfoJoueur extends javax.swing.JPanel {
         );
         jPointDeVie4Layout.setVerticalGroup(
             jPointDeVie4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 28, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        add(jPointDeVie4, gridBagConstraints);
+        jPanel1.add(jPointDeVie4, gridBagConstraints);
 
         jPointDeVie5.setMinimumSize(new java.awt.Dimension(20, 20));
 
@@ -161,12 +191,18 @@ public class JInfoJoueur extends javax.swing.JPanel {
         );
         jPointDeVie5Layout.setVerticalGroup(
             jPointDeVie5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 28, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        add(jPointDeVie5, gridBagConstraints);
+        jPanel1.add(jPointDeVie5, gridBagConstraints);
 
         jaugePopularite.setOpaque(false);
         jaugePopularite.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -175,23 +211,38 @@ public class JInfoJoueur extends javax.swing.JPanel {
         jaugePopularite.setLayout(jaugePopulariteLayout);
         jaugePopulariteLayout.setHorizontalGroup(
             jaugePopulariteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 119, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jaugePopulariteLayout.setVerticalGroup(
             jaugePopulariteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 119, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 0, 0, 0);
-        add(jaugePopularite, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 4.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 8, 0, 8);
+        jPanel1.add(jaugePopularite, gridBagConstraints);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private boundary.components.JPointDeVie jPointDeVie;
     private boundary.components.JPointDeVie jPointDeVie2;
     private boundary.components.JPointDeVie jPointDeVie3;

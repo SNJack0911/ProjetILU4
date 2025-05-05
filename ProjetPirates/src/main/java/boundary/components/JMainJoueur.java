@@ -73,9 +73,9 @@ public class JMainJoueur extends javax.swing.JPanel {
         gbc.gridy = 0;
         gbc.gridx = mainJoueur.size();
         mainJoueur.add(jCarte);
-        this.add(jCarte, gbc);
-        this.revalidate();
-        this.repaint();
+        jPanel1.add(jCarte, gbc);
+        jPanel1.revalidate();
+        jPanel1.repaint();
     }
     
     public List<JCarte> getMainJoueur() {
@@ -103,13 +103,29 @@ public class JMainJoueur extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+
         setBackground(new java.awt.Color(153, 204, 255));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(420, 160));
-        setLayout(new java.awt.GridBagLayout());
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
