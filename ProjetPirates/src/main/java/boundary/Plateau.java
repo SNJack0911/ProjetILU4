@@ -58,8 +58,8 @@ public class Plateau extends javax.swing.JPanel {
         plateauBackground.setImage("Plateau.png");
         plateauBackground.setLayout(new java.awt.GridBagLayout());
 
-        jPioche1.setMinimumSize(new java.awt.Dimension(142, 90));
-        jPioche1.setPreferredSize(new java.awt.Dimension(142, 90));
+        jPioche1.setMinimumSize(new java.awt.Dimension(130, 90));
+        jPioche1.setPreferredSize(new java.awt.Dimension(130, 90));
         jPioche1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPioche1MouseClicked(evt);
@@ -70,15 +70,11 @@ public class Plateau extends javax.swing.JPanel {
         jPioche1.setLayout(jPioche1Layout);
         jPioche1Layout.setHorizontalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< Updated upstream
-            .addGap(0, 208, Short.MAX_VALUE)
-=======
-            .addGap(0, 144, Short.MAX_VALUE)
->>>>>>> Stashed changes
+            .addGap(0, 130, Short.MAX_VALUE)
         );
         jPioche1Layout.setVerticalGroup(
             jPioche1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 102, Short.MAX_VALUE)
+            .addGap(0, 90, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -86,15 +82,18 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.58;
+        gridBagConstraints.weightx = 0.18;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(30, 0, 30, 0);
+        gridBagConstraints.insets = new java.awt.Insets(45, 0, 45, 0);
         plateauBackground.add(jPioche1, gridBagConstraints);
+
+        jZoneInteraction1.setMinimumSize(new java.awt.Dimension(420, 160));
+        jZoneInteraction1.setPreferredSize(new java.awt.Dimension(460, 160));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 2.625;
+        gridBagConstraints.weightx = 0.64;
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jZoneInteraction1, gridBagConstraints);
 
@@ -107,7 +106,7 @@ public class Plateau extends javax.swing.JPanel {
         jPirateIcon2.setLayout(jPirateIcon2Layout);
         jPirateIcon2Layout.setHorizontalGroup(
             jPirateIcon2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
         jPirateIcon2Layout.setVerticalGroup(
             jPirateIcon2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,33 +118,35 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.18;
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jPirateIcon2, gridBagConstraints);
 
-        jMainJoueur2.setMinimumSize(new java.awt.Dimension(420, 160));
+        jMainJoueur2.setMinimumSize(new java.awt.Dimension(460, 160));
+        jMainJoueur2.setPreferredSize(new java.awt.Dimension(460, 160));
+        jMainJoueur2.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.64;
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jMainJoueur2, gridBagConstraints);
 
-        jInfoJoueur2.setMinimumSize(new java.awt.Dimension(130, 148));
-        jInfoJoueur2.setPreferredSize(new java.awt.Dimension(130, 148));
+        jInfoJoueur2.setMinimumSize(new java.awt.Dimension(130, 130));
+        jInfoJoueur2.setPreferredSize(new java.awt.Dimension(130, 130));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.18;
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jInfoJoueur2, gridBagConstraints);
 
-        jInfoJoueur1.setMinimumSize(new java.awt.Dimension(130, 148));
-        jInfoJoueur1.setPreferredSize(new java.awt.Dimension(130, 148));
+        jInfoJoueur1.setMinimumSize(new java.awt.Dimension(130, 130));
+        jInfoJoueur1.setPreferredSize(new java.awt.Dimension(130, 130));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -155,7 +156,9 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jInfoJoueur1, gridBagConstraints);
 
-        jMainJoueur1.setMinimumSize(new java.awt.Dimension(420, 160));
+        jMainJoueur1.setMinimumSize(new java.awt.Dimension(460, 160));
+        jMainJoueur1.setPreferredSize(new java.awt.Dimension(460, 160));
+        jMainJoueur1.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -174,15 +177,11 @@ public class Plateau extends javax.swing.JPanel {
         jPirateIcon1.setLayout(jPirateIcon1Layout);
         jPirateIcon1Layout.setHorizontalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< Updated upstream
-            .addGap(0, 190, Short.MAX_VALUE)
-=======
-            .addGap(0, 151, Short.MAX_VALUE)
->>>>>>> Stashed changes
+            .addGap(0, 130, Short.MAX_VALUE)
         );
         jPirateIcon1Layout.setVerticalGroup(
             jPirateIcon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 181, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -195,8 +194,8 @@ public class Plateau extends javax.swing.JPanel {
         plateauBackground.add(jPirateIcon1, gridBagConstraints);
 
         jLancerPiece1.setBackground(new java.awt.Color(255, 153, 153));
-        jLancerPiece1.setMinimumSize(new java.awt.Dimension(150, 150));
-        jLancerPiece1.setPreferredSize(new java.awt.Dimension(150, 150));
+        jLancerPiece1.setMinimumSize(new java.awt.Dimension(130, 150));
+        jLancerPiece1.setPreferredSize(new java.awt.Dimension(130, 150));
 
         javax.swing.GroupLayout jLancerPiece1Layout = new javax.swing.GroupLayout(jLancerPiece1);
         jLancerPiece1.setLayout(jLancerPiece1Layout);
@@ -214,7 +213,7 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.18;
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jLancerPiece1, gridBagConstraints);
 
@@ -222,11 +221,11 @@ public class Plateau extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
+            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+            .addComponent(plateauBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
