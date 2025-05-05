@@ -44,18 +44,14 @@ public class Plateau extends javax.swing.JPanel {
 
         plateauBackground = new boundary.components.JPanelWithBackground();
         jPioche1 = new boundary.components.JPioche();
+        jZoneInteraction1 = new boundary.components.JZoneInteraction();
         jPirateIcon2 = new boundary.components.JPirateIcon();
         jMainJoueur2 = new boundary.components.JMainJoueur();
         jInfoJoueur2 = new boundary.components.JInfoJoueur();
         jInfoJoueur1 = new boundary.components.JInfoJoueur();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jPirateIcon1 = new boundary.components.JPirateIcon();
-        FinTourOuPiece = new javax.swing.JPanel();
-        jButtonFinDeTour = new boundary.components.JButtonCustom();
         jLancerPiece1 = new boundary.components.JLancerPiece();
-        ZoneInteractionOuGagner = new javax.swing.JPanel();
-        jZoneInteraction1 = new boundary.components.JZoneInteraction();
-        jPanelWithBackground1 = new boundary.components.JPanelWithBackground();
 
         setMinimumSize(new java.awt.Dimension(720, 480));
 
@@ -90,6 +86,13 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.58;
         gridBagConstraints.insets = new java.awt.Insets(40, 20, 40, 0);
         plateauBackground.add(jPioche1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        plateauBackground.add(jZoneInteraction1, gridBagConstraints);
 
         jPirateIcon2.setBackground(new java.awt.Color(255, 255, 204));
         jPirateIcon2.setMinimumSize(new java.awt.Dimension(130, 130));
@@ -167,8 +170,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         plateauBackground.add(jPirateIcon1, gridBagConstraints);
 
-        jButtonFinDeTour.setText("Fin de Tour");
-
         jLancerPiece1.setBackground(new java.awt.Color(255, 153, 153));
         jLancerPiece1.setPreferredSize(new java.awt.Dimension(150, 150));
 
@@ -176,69 +177,17 @@ public class Plateau extends javax.swing.JPanel {
         jLancerPiece1.setLayout(jLancerPiece1Layout);
         jLancerPiece1Layout.setHorizontalGroup(
             jLancerPiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jLancerPiece1Layout.setVerticalGroup(
             jLancerPiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout FinTourOuPieceLayout = new javax.swing.GroupLayout(FinTourOuPiece);
-        FinTourOuPiece.setLayout(FinTourOuPieceLayout);
-        FinTourOuPieceLayout.setHorizontalGroup(
-            FinTourOuPieceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FinTourOuPieceLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jButtonFinDeTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
-            .addGroup(FinTourOuPieceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(FinTourOuPieceLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLancerPiece1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        FinTourOuPieceLayout.setVerticalGroup(
-            FinTourOuPieceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FinTourOuPieceLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jButtonFinDeTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
-            .addGroup(FinTourOuPieceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(FinTourOuPieceLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLancerPiece1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        plateauBackground.add(FinTourOuPiece, gridBagConstraints);
-
-        ZoneInteractionOuGagner.setLayout(new java.awt.CardLayout());
-        ZoneInteractionOuGagner.add(jZoneInteraction1, "card2");
-
-        jPanelWithBackground1.setBackground(new java.awt.Color(255, 204, 204));
-
-        javax.swing.GroupLayout jPanelWithBackground1Layout = new javax.swing.GroupLayout(jPanelWithBackground1);
-        jPanelWithBackground1.setLayout(jPanelWithBackground1Layout);
-        jPanelWithBackground1Layout.setHorizontalGroup(
-            jPanelWithBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-        );
-        jPanelWithBackground1Layout.setVerticalGroup(
-            jPanelWithBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-
-        ZoneInteractionOuGagner.add(jPanelWithBackground1, "card3");
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        plateauBackground.add(ZoneInteractionOuGagner, gridBagConstraints);
+        plateauBackground.add(jLancerPiece1, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -401,15 +350,11 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel FinTourOuPiece;
-    private javax.swing.JPanel ZoneInteractionOuGagner;
-    private boundary.components.JButtonCustom jButtonFinDeTour;
     private boundary.components.JInfoJoueur jInfoJoueur1;
     private boundary.components.JInfoJoueur jInfoJoueur2;
     private boundary.components.JLancerPiece jLancerPiece1;
     private boundary.components.JMainJoueur jMainJoueur1;
     private boundary.components.JMainJoueur jMainJoueur2;
-    private boundary.components.JPanelWithBackground jPanelWithBackground1;
     private boundary.components.JPioche jPioche1;
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;
