@@ -4,13 +4,13 @@
  */
 package boundary;
 
+import boundary.components.PopUpVictory;
 import boundary.components.JCarte;
 import boundary.components.JMainJoueur;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -330,8 +330,6 @@ public class Plateau extends javax.swing.JPanel {
     jButtonFinDeTour.setEnabled(false);
     }//GEN-LAST:event_jButtonFinDeTourMouseClicked
 
-
-    
     public String getCurrentPirate(){
         int tour = boundaryJeu.getTour();
         if(tour%2 == 0){
@@ -356,8 +354,8 @@ public class Plateau extends javax.swing.JPanel {
     
     private void initPlateau (){
         //Init Pirate
-        jInfoJoueur1.initJoueur(nomPirate1, 0, jMainJoueur1, boundaryJeu);
-        jInfoJoueur2.initJoueur(nomPirate2, 1, jMainJoueur2, boundaryJeu);
+        jInfoJoueur1.initJoueur(nomPirate1, 0, jMainJoueur1, boundaryJeu);  // utile ?
+        jInfoJoueur2.initJoueur(nomPirate2, 1, jMainJoueur2, boundaryJeu);  // utile ?
 
         //Init info
         updateInfoPirate();
@@ -389,6 +387,7 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur2.finTour();
     }
 
+    //never used?
     private void victory (){
         PopUpVictory victoire = new PopUpVictory(parentFrame);
         victoire.setVisible(true);
@@ -423,7 +422,7 @@ public class Plateau extends javax.swing.JPanel {
         }       
     }
  */   
-        public void jouerTour(JCarte carte){
+    public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
 

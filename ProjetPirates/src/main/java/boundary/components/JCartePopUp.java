@@ -5,14 +5,11 @@ package boundary.components;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

@@ -19,9 +19,5 @@ public class ControleurNouvellePartie {
         this.jeu = jeu;
     }
 
-    public void lancerJeu() {
-        jeu.initJeu();
-    }
-
     public int getTour(){return jeu.getTour();}
 }

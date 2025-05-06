@@ -11,7 +11,6 @@ public class BoundaryNouvellePartie {
 
     public void initNewGame(){
         System.out.println("Lancement d'une nouvelle partie");
-        controleurNouvellePartie.lancerJeu();
     }
 
     public int getTour(){
