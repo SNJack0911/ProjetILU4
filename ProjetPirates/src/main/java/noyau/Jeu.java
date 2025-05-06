@@ -83,7 +83,17 @@ public class Jeu {
         }
 
         Pirate adversaire = getAdversaireActuel();
-        List<String> resultatTour = carte.appliquerEffet(joueur, adversaire, this); 
+        carte.appliquerEffet(joueur, adversaire, this);
+
+
+        List<String> resultatTour = new ArrayList<>();
+        if (carte instanceof CartePiecePopularite cartePiece) {
+            resultatTour = cartePiece.getCoinFlipResult();
+        } else if (carte instanceof CartePieceAttaque cartePiece) {
+            resultatTour = cartePiece.getCoinFlipResult();
+        }
+
+
         joueur.supprimerCarteMain(carte);
 
         incrementerTour();

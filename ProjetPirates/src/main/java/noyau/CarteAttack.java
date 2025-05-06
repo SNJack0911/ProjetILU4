@@ -31,7 +31,7 @@ public class CarteAttack extends Carte{
     }
 
     @Override
-    public List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
+    public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
         List<String> listeFace = new ArrayList<String>();
         if(affectreNuit&&jeu.isNuit()){
             PVajoutA+=PVajoutA;
@@ -52,6 +52,6 @@ public class CarteAttack extends Carte{
         joueur.applyStats("PP", PPajoutJ);
         adversaire.applyStats("PP", PPajoutA);
         adversaire.applyStats("HP", PVajoutA*compteur);
-        return listeFace;
+        //return listeFace;
     }
 }

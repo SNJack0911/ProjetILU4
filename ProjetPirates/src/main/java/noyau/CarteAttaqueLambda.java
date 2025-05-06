@@ -11,7 +11,7 @@ public class CarteAttaqueLambda extends CarteLambda{
     }
 
     @Override
-    public List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
+    public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
         int newHPJ = joueur.getHP();
         int newHPA = adversaire.getHP();
 
@@ -19,7 +19,6 @@ public class CarteAttaqueLambda extends CarteLambda{
         if (effet2 != null) newHPA = effet2.newValue(adversaire, jeu);
 
         appliquerEffetJoueur(joueur, adversaire, jeu, newHPJ, newHPA);
-        return new ArrayList<>();
     }
 
     @Override

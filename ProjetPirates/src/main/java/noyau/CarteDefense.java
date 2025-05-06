@@ -20,7 +20,7 @@ public class CarteDefense extends  Carte{
     }
 
     @Override
-    public List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
+    public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
         //List<String> listeFace = new ArrayList<String>();
         if(affecterNuit && !jeu.isNuit()){
             PVajout += PVajout;
@@ -30,6 +30,6 @@ public class CarteDefense extends  Carte{
         //Voir pour ajouter effet
 
         //Effet e = new Effet(joueur,  new Map<String, Integer>());
-        return new ArrayList<String>();
+        //return new ArrayList<String>();
     }
 }

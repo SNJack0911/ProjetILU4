@@ -24,7 +24,7 @@ public class CartePopularite extends Carte {
     }
 
     @Override
-    public List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
+    public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
         List<String> listeFace = new ArrayList<String>();
         int compteur = 1;
         if(lancerPiece){
@@ -38,6 +38,6 @@ public class CartePopularite extends Carte {
         }
         joueur.applyStats("HP", PVajoutJ);
         joueur.applyStats("PP", PPajoutJ*compteur);
-        return listeFace;
+        //return listeFace;
     }
 }

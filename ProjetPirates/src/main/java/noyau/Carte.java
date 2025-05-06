@@ -39,7 +39,7 @@ public abstract class Carte {
         return carteID;
     }
 
-    public abstract List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu);
+    public abstract void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu);
 
     //private List<Effet> effets;
     /*
