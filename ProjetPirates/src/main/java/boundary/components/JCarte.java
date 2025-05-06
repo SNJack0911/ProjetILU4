@@ -231,7 +231,7 @@ public class JCarte extends javax.swing.JPanel {
                 }
             }
         }
-        System.out.println("Not dropped on a drop zone.");
+        //System.out.println("Not dropped on a drop zone.");
         //Return Carte to Main
         if (mainOrigine != null) {
             mainOrigine.ajouterJCarte(this);

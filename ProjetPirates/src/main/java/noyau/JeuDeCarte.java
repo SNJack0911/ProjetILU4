@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 
 public class JeuDeCarte {
-    private Configuration[] config = {new Configuration(new CarteDefense("Ode à la Joie", 1, "Le joueur Gagne 3PV",3, 0, false), 7),
+    private Configuration[] configOld = {new Configuration(new CarteDefense("Ode à la Joie", 1, "Le joueur Gagne 3PV",3, 0, false), 7),
             new Configuration(new CarteDefense("Douceur ensoleillé", 2, "Le Joueur Gagne 1 PV, Gagne 1 PV de plus si le jour",1, 0, true), 10),
             new Configuration(new CarteDefense("Hymne à Flute", 3, "Le joueur Gagne 1PV",1, 0, false), 12),
             new Configuration(new CarteAttack("Dans ta Face", 4, "Le joueur lance un pièce, tant que face, l'adversaire -1 PV",0, 0, 0, -1, false, true), 2),
@@ -24,7 +24,7 @@ public class JeuDeCarte {
             //new Configuration(new CarteEffet())
     };
 
-    private Configuration[] newConfig = {
+    private Configuration[] config = {
             new Configuration(new CarteDefenseLambda("Ode à la Joie", 1, "Le joueur Gagne 3PV", (p, j) -> p.getHP()+3),7),
             new Configuration(new CarteDefenseLambda("Douceur ensoleillé", 2, "Le Joueur Gagne 1 PV, Gagne 1 PV de plus si le jour",  (p, j) -> p.getHP()+1), 10),
             new Configuration(new CarteDefenseLambda("Hymne à Flute", 3, "Le joueur Gagne 1PV", (p, j) -> p.getHP()+1), 12),

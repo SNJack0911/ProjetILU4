@@ -69,6 +69,7 @@ public class Jeu {
     public Pirate getAdversaireActuel() {
         return (tour % 2 == 0) ? joueur2 : joueur1;
     }
+
     public void incrementerTour() {
         tour++;
     }
@@ -101,13 +102,6 @@ public class Jeu {
         return resultatTour;
     }
 
-    //Same Function in Pirate
-    /*public Carte getCarteMain(String nomCarte, ArrayList<Carte> mainPirate){
-        for (Carte carte : mainPirate) {
-            if (carte.getNom().equals(nomCarte)) {return carte;}
-        }
-        return null;
-    }*/
     public boolean isNuit() {
         return nuit;
     }
