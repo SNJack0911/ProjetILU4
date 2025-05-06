@@ -44,6 +44,7 @@ public class JCarte extends javax.swing.JPanel {
     private final GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
     private Timer timerFumee;
 
+    private int indexOrigineMain = -1;
     
     /**
      * Creates new form JCarte
@@ -90,8 +91,6 @@ public class JCarte extends javax.swing.JPanel {
     timerFumee.start();
 }
 
-
-    
     @Override 
     protected void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
@@ -192,51 +191,76 @@ public class JCarte extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         //System.out.println("MousePressed");
+        if (mainOrigine != null) {
+            indexOrigineMain = mainOrigine.getMainJoueur().indexOf(this);
+        }
         if (!isFront || !isEnabled()) return;
-        
+
         this.origine = evt.getPoint();
-	//this.isSelected = true;
         Plateau plateauPanel = (Plateau) mainOrigine.getParent().getParent();
         plateauPanel.setComponentZOrder(this, 0);
-
-        repaint();
-        
+        repaint();   
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         if (!isFront || !isEnabled()) return;
-        
+
         origine = null;
-	//this.isSelected = false;
-        
         JPanel plateauPanel = (JPanel) mainOrigine.getParent();
         Plateau plateau = (Plateau) plateauPanel.getParent();
         Point pointInPlateau = SwingUtilities.convertPoint(this, evt.getPoint(), plateauPanel);
 
         Component c = plateauPanel.getComponentAt(pointInPlateau);
-        //System.out.println("C: " + c.getClass().getSimpleName());
-        
-        if (c instanceof JZoneInteraction zoneInteraction){
+
+        if (c instanceof JZoneInteraction zoneInteraction) {
             Rectangle boundsZone = zoneInteraction.getBounds();
             if (boundsZone.intersects(getBounds())) {
                 String pirate = plateau.getCurrentPirate();
                 boolean res = zoneInteraction.ajouteCarte(this, pointInPlateau, plateauPanel, pirate);
-                if(res){//dispose
+                if (res) {
                     plateau.jouerTour(this);
                     plateau.remove(this);
                     plateau.revalidate();
                     plateau.repaint();
-                    
                     return;
                 }
             }
         }
-        //System.out.println("Not dropped on a drop zone.");
-        //Return Carte to Main
+
+        // Renvoyer dans la main si non joué
         if (mainOrigine != null) {
-            mainOrigine.ajouterJCarte(this);
-            plateauPanel.repaint();
+        Point dropPoint = SwingUtilities.convertPoint(this, evt.getPoint(), mainOrigine);
+        Component comp = mainOrigine.getComponentAt(dropPoint);
+
+        mainOrigine.getMainJoueur().remove(this);
+
+        if (comp instanceof JCarte other && other != this) {
+            int index = mainOrigine.getMainJoueur().indexOf(other);
+            int newIndex = Math.min(index + 1, mainOrigine.getMainJoueur().size());
+            mainOrigine.getMainJoueur().add(newIndex, this);
+        } else {
+            int fallbackIndex = (indexOrigineMain >= 0 && indexOrigineMain <= mainOrigine.getMainJoueur().size()) ? indexOrigineMain : mainOrigine.getMainJoueur().size();
+            mainOrigine.getMainJoueur().add(fallbackIndex, this);
         }
+
+        mainOrigine.removeAll();
+        for (int i = 0; i < mainOrigine.getMainJoueur().size(); i++) {
+            JCarte jc = mainOrigine.getMainJoueur().get(i);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.gridy = 0;
+            gbc.gridx = i;
+            mainOrigine.add(jc, gbc);
+        }
+        mainOrigine.revalidate();
+        mainOrigine.repaint();
+    }
+
+        System.out.println("Not dropped on a drop zone.");
+        if (mainOrigine != null && !mainOrigine.getMainJoueur().contains(this)) {
+            mainOrigine.ajouterJCarte(this);
+        }
+        plateauPanel.repaint();
         
     }//GEN-LAST:event_formMouseReleased
 
