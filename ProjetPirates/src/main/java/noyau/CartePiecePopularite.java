@@ -1,8 +1,6 @@
 package noyau;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class CartePiecePopularite extends CartePopulariteLambda{
     private CoinFlip coinFlip = new CoinFlip();

@@ -11,7 +11,7 @@ import projetpirates.ProjetPirates;
 
 /**
  *
- * @author Amaterasu
+ * @author Amaterasu/hai
  */
 public class VictoryScreen extends JPanel {
 

@@ -10,9 +10,9 @@ import java.util.Random;
  */
 
 public class CartePopularite extends Carte {
-    private int PPajoutJ;
-    private int PVajoutJ;
-    private boolean lancerPiece;
+    private int PPajoutJ;   //final ?
+    private int PVajoutJ;   //final ?
+    private boolean lancerPiece; //final ?
     private static final Random rand = new Random();
 
 
@@ -25,7 +25,7 @@ public class CartePopularite extends Carte {
 
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        List<String> listeFace = new ArrayList<String>();
+        List<String> listeFace = new ArrayList<>();
         int compteur = 1;
         if(lancerPiece){
             int face;
