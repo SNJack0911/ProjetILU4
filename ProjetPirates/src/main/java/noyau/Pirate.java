@@ -67,6 +67,21 @@ public class Pirate {
         };
     }
     
+    public void setStats(String stat, int value) {
+        switch (stat) {
+            case "HP" -> {
+                this.HP = value>5?5: Math.max(value, 0);
+            }
+            case "PP" -> {
+                this.PP = value>5?5: Math.max(value, 0);
+            }
+            
+            default -> {
+                throw new IllegalArgumentException("Stat non reconnue\n");
+            }
+        }
+    }
+    
     public void supprimerCarteMain(Carte carte) {
         if (hands.contains(carte)) {
             hands.remove(carte);

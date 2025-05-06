@@ -32,6 +32,13 @@ public class JeuDeCarte {
             new Configuration(new CarteAttack("Moins1PPA", -1, "L'adversaire perd 1 PP", 0, 0, -1, 0, false, false), 10),
     };
 
+    private Configuration[] newConfig = {
+            new Configuration(new CarteDefenseLambda("Ode à la Joie", 1, "Le joueur Gagne 3PV", (p, j) -> p.getHP()+3),7),
+            new Configuration(new CarteDefenseLambda("Douceur ensoleillé", 2, "Le Joueur Gagne 1 PV, Gagne 1 PV de plus si le jour",  (p, j) -> p.getHP()+1), 10),
+            new Configuration(new CarteDefenseLambda("Hymne à Flute", 3, "Le joueur Gagne 1PV", (p, j) -> p.getHP()+1), 12),
+            new Configuration(new CartePieceAttaque("Dans ta Face", 4, "Le joueur lance un pièce, tant que face, l'adversaire -1 PV",null, (p, j) -> p.getHP()-1), 2),
+            new Configuration(new CarteNuitAttaque("Fureur de la nuit", 5, "Inflige -1 PV à l'adversaire, Inflige -1 PV de plus si la nuit", null, (p, j) -> p.getHP()-1), 10)
+    };
    
 
 
