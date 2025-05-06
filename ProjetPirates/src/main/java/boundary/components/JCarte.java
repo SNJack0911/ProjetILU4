@@ -7,6 +7,7 @@ package boundary.components;
 import boundary.Plateau;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -204,14 +205,27 @@ public class JCarte extends javax.swing.JPanel {
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         if (!isFront || !isEnabled()) return;
-
         origine = null;
+        
         JPanel plateauPanel = (JPanel) mainOrigine.getParent();
         Plateau plateau = (Plateau) plateauPanel.getParent();
         Point pointInPlateau = SwingUtilities.convertPoint(this, evt.getPoint(), plateauPanel);
-
         Component c = plateauPanel.getComponentAt(pointInPlateau);
 
+        if (handleZoneInteraction(c, pointInPlateau, plateauPanel, plateau)) return;
+        // Renvoyer dans la main si non joué
+        if (mainOrigine != null) handleMainDrop(evt);
+        
+ 
+        System.out.println("Not dropped on a drop zone.");
+        if (mainOrigine != null && !mainOrigine.getMainJoueur().contains(this)) {
+            mainOrigine.ajouterJCarte(this);
+        }
+        plateauPanel.repaint();
+        
+    }//GEN-LAST:event_formMouseReleased
+
+    private boolean handleZoneInteraction(Component c, Point pointInPlateau, JPanel plateauPanel, Plateau plateau) {
         if (c instanceof JZoneInteraction zoneInteraction) {
             Rectangle boundsZone = zoneInteraction.getBounds();
             if (boundsZone.intersects(getBounds())) {
@@ -222,48 +236,45 @@ public class JCarte extends javax.swing.JPanel {
                     plateau.remove(this);
                     plateau.revalidate();
                     plateau.repaint();
-                    return;
+                    return true;
                 }
             }
         }
+        return false;
+    }
 
-        // Renvoyer dans la main si non joué
-        if (mainOrigine != null) {
-        Point dropPoint = SwingUtilities.convertPoint(this, evt.getPoint(), mainOrigine);
-        Component comp = mainOrigine.getComponentAt(dropPoint);
+private void handleMainDrop(MouseEvent evt) {
+    Point dropPoint = SwingUtilities.convertPoint(this, evt.getPoint(), mainOrigine);
+    Component comp = mainOrigine.getComponentAt(dropPoint);
 
-        mainOrigine.getMainJoueur().remove(this);
+    mainOrigine.getMainJoueur().remove(this);
 
-        if (comp instanceof JCarte other && other != this) {
-            int index = mainOrigine.getMainJoueur().indexOf(other);
+    if (comp instanceof JCarte other && other != this) {
+        int index = mainOrigine.getMainJoueur().indexOf(other);
+        if (index != -1) {
             int newIndex = Math.min(index + 1, mainOrigine.getMainJoueur().size());
             mainOrigine.getMainJoueur().add(newIndex, this);
         } else {
-            int fallbackIndex = (indexOrigineMain >= 0 && indexOrigineMain <= mainOrigine.getMainJoueur().size()) ? indexOrigineMain : mainOrigine.getMainJoueur().size();
-            mainOrigine.getMainJoueur().add(fallbackIndex, this);
+            mainOrigine.getMainJoueur().add(this);
         }
-
-        mainOrigine.removeAll();
-        for (int i = 0; i < mainOrigine.getMainJoueur().size(); i++) {
-            JCarte jc = mainOrigine.getMainJoueur().get(i);
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.insets = new Insets(10, 10, 10, 10);
-            gbc.gridy = 0;
-            gbc.gridx = i;
-            mainOrigine.add(jc, gbc);
-        }
-        mainOrigine.revalidate();
-        mainOrigine.repaint();
+    } else {
+        int fallbackIndex = (indexOrigineMain >= 0 && indexOrigineMain <= mainOrigine.getMainJoueur().size()) ? indexOrigineMain : mainOrigine.getMainJoueur().size();
+        mainOrigine.getMainJoueur().add(fallbackIndex, this);
     }
 
-        System.out.println("Not dropped on a drop zone.");
-        if (mainOrigine != null && !mainOrigine.getMainJoueur().contains(this)) {
-            mainOrigine.ajouterJCarte(this);
-        }
-        plateauPanel.repaint();
-        
-    }//GEN-LAST:event_formMouseReleased
-
+    mainOrigine.removeAll();
+    for (int i = 0; i < mainOrigine.getMainJoueur().size(); i++) {
+        JCarte jc = mainOrigine.getMainJoueur().get(i);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.gridy = 0;
+        gbc.gridx = i;
+        mainOrigine.add(jc, gbc);
+    }
+    mainOrigine.revalidate();
+    mainOrigine.repaint();
+}
+    
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         //System.out.println("MouseClicked");
         if (!isFront) return;
