@@ -2,10 +2,16 @@ package noyau;
 
 import java.util.*;
 
+/**
+ *
+ * @author ..., yannf
+ */
+
+
 public class Pirate {
     private int HP;
     private int PP;
-    private String nom;
+    private final String nom;
     private final ArrayList<Carte> hands = new ArrayList<>() ;
     public Pirate(String nom) {
         this.HP = 5;
@@ -67,6 +73,21 @@ public class Pirate {
         };
     }
     
+    public void setStats(String stat, int value) {
+        int newStat = value>5?5: Math.max(value, 0);
+        switch (stat) {
+            case "HP" -> {
+                this.HP = newStat;
+            }
+            case "PP" -> {
+                this.PP = newStat;
+            }
+            default -> {
+                throw new IllegalArgumentException("Stat non reconnue\n");
+            }
+        }
+    }
+    
     public void supprimerCarteMain(Carte carte) {
         if (hands.contains(carte)) {
             hands.remove(carte);
@@ -109,5 +130,12 @@ public class Pirate {
     public int getNbCarte() {
         return hands.size();
     }
-   
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Pirate pirate) {
+            return nom.equals(pirate.getNom());
+        }
+        return false;
+    }
 }

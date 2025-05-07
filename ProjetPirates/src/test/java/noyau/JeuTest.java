@@ -7,6 +7,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+ * Stefan
+ * */
+
 class JeuTest {
 
     @Test
@@ -110,7 +114,7 @@ class JeuTest {
         Jeu jeu = new Jeu();
         Pirate joueur1 = jeu.getPirate(0);
         joueur1.addHP(-5);
-        assertTrue(jeu.estJeuTermine(), "Le jeu devrait être terminé si un joueur a 0 HP");
+        assertTrue(jeu.isJeuTermine(), "Le jeu devrait être terminé si un joueur a 0 HP");
     }
 
     @Test
@@ -118,7 +122,7 @@ class JeuTest {
         Jeu jeu = new Jeu();
         Pirate joueur1 = jeu.getPirate(0);
         joueur1.addPP(6);
-        assertTrue(jeu.estJeuTermine(), "Le jeu devrait être terminé si un joueur a 5 PP");
+        assertTrue(jeu.isJeuTermine(), "Le jeu devrait être terminé si un joueur a 5 PP");
     }
 
     @Test

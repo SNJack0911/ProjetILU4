@@ -4,9 +4,14 @@
  */
 package boundary;
 
+import boundary.components.PopUpVictory;
 import boundary.components.JCarte;
 import boundary.components.JMainJoueur;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -22,12 +27,15 @@ public class Plateau extends javax.swing.JPanel {
     private String nomPirate1;
     private String nomPirate2; 
             
+    JFrame parentFrame;
 
     /**
      * Creates new form Plateau
+     * @param frame
      */
-    public Plateau() {
+    public Plateau(JFrame frame) {
         initComponents();
+        this.parentFrame = frame;
         plateauBackground.setImage("PlateauJour.png");
         //TODO Set Boundary
     }
@@ -53,7 +61,7 @@ public class Plateau extends javax.swing.JPanel {
         jPirateIcon1 = new boundary.components.JPirateIcon();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButtonCustom1 = new boundary.components.JButtonCustom();
+        jButtonFinDeTour = new boundary.components.JButtonCustom();
         jLancerPiece1 = new boundary.components.JLancerPiece();
 
         setMinimumSize(new java.awt.Dimension(720, 480));
@@ -127,6 +135,7 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         plateauBackground.add(jPirateIcon2, gridBagConstraints);
 
+        jMainJoueur2.setBackground(new java.awt.Color(255, 204, 204));
         jMainJoueur2.setMinimumSize(new java.awt.Dimension(460, 160));
         jMainJoueur2.setPreferredSize(new java.awt.Dimension(460, 160));
         jMainJoueur2.setLayout(new java.awt.GridBagLayout());
@@ -138,9 +147,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weightx = 0.64;
         gridBagConstraints.weighty = 1.0;
         plateauBackground.add(jMainJoueur2, gridBagConstraints);
-
-        jInfoJoueur2.setMinimumSize(new java.awt.Dimension(130, 130));
-        jInfoJoueur2.setPreferredSize(new java.awt.Dimension(130, 130));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -150,9 +156,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.27;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         plateauBackground.add(jInfoJoueur2, gridBagConstraints);
-
-        jInfoJoueur1.setMinimumSize(new java.awt.Dimension(130, 130));
-        jInfoJoueur1.setPreferredSize(new java.awt.Dimension(130, 130));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -163,6 +166,7 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         plateauBackground.add(jInfoJoueur1, gridBagConstraints);
 
+        jMainJoueur1.setBackground(new java.awt.Color(255, 153, 153));
         jMainJoueur1.setMinimumSize(new java.awt.Dimension(460, 160));
         jMainJoueur1.setPreferredSize(new java.awt.Dimension(460, 160));
         jMainJoueur1.setLayout(new java.awt.GridBagLayout());
@@ -211,8 +215,14 @@ public class Plateau extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(130, 160));
         jPanel3.setLayout(new java.awt.CardLayout(20, 60));
 
-        jButtonCustom1.setText("jButtonCustom1");
-        jPanel3.add(jButtonCustom1, "card4");
+        jButtonFinDeTour.setText("Fin de Tour");
+        jButtonFinDeTour.setEnabled(false);
+        jButtonFinDeTour.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonFinDeTourMouseClicked(evt);
+            }
+        });
+        jPanel3.add(jButtonFinDeTour, "card4");
 
         jPanel2.add(jPanel3, "card3");
 
@@ -277,29 +287,51 @@ public class Plateau extends javax.swing.JPanel {
         
         mainJoueur.setEnabled(true);
         jPioche1.setEnabled(false);
-/*
-        if (tour%2 == 0){
-            for(String nomCarte : listNomCarte){
-                //System.out.println("Nom de carte J1 = " + nomCarte + "\n");
-                jMainJoueur1.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte),boundaryJeu.getZoneDepot(nomCarte));
-                jMainJoueur1.repaint();
-            }
-            jMainJoueur1.setEnabled(true);
-        } else if (tour%2 == 1){
-            for(String nomCarte : listNomCarte){
-                //System.out.println("Nom de carte J2 = " + nomCarte + "\n");
-                jMainJoueur2.ajouterCarte(nomCarte, boundaryJeu.getCarteId(nomCarte),
-                boundaryJeu.getTypeCarte(nomCarte), boundaryJeu.getDescription(nomCarte), 
-                boundaryJeu.getZoneDepot(nomCarte));
-                jMainJoueur2.repaint();
-            }
-            jMainJoueur2.setEnabled(true);
-        }
-        jPioche1.setEnabled(false);
-*/
     }//GEN-LAST:event_jPioche1MouseClicked
 
+    private void jButtonFinDeTourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFinDeTourMouseClicked
+    int tour = boundaryJeu.getTour();
+    int joueurActuel = tour % 2;
+    int joueurSuivant = (tour + 1) % 2;
+
+    // je sais pas j'ai tout teste sauf la solution 
+    // Désactiver joueur actuel et retourner ses cartes
+    if (joueurActuel == 0) {
+        jMainJoueur1.setEnabled(false);
+        retournerCartesMain(jMainJoueur1.getMainJoueur());
+    } else {
+        jMainJoueur2.setEnabled(false);
+        retournerCartesMain(jMainJoueur2.getMainJoueur());
+    }
+
+    // mettre un wait ????? pour que l'option laisse du temps au carte d'être retourné ?
     
+    // Afficher popup 
+    JOptionPane optionPane = new JOptionPane(
+        "Tour terminé. Cliquez pour continuer.",
+        JOptionPane.INFORMATION_MESSAGE,
+        JOptionPane.DEFAULT_OPTION,
+        null,
+        new Object[]{"Commencer le tour suivant"},
+        "Commencer le tour suivant"
+    );
+    JDialog dialog = optionPane.createDialog(SwingUtilities.getWindowAncestor(this), "Changement de tour");
+    dialog.setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
+    dialog.setVisible(true);
+
+    // Activer joueur suivant et retourner ses cartes
+    if (joueurSuivant == 0) {
+        retournerCartesMain(jMainJoueur1.getMainJoueur());
+        jMainJoueur1.setEnabled(true);
+    } else {
+        retournerCartesMain(jMainJoueur2.getMainJoueur());
+        jMainJoueur2.setEnabled(true);
+    }
+
+    jPioche1.setEnabled(true);
+    jButtonFinDeTour.setEnabled(false);
+    }//GEN-LAST:event_jButtonFinDeTourMouseClicked
+
     public String getCurrentPirate(){
         int tour = boundaryJeu.getTour();
         if(tour%2 == 0){
@@ -324,8 +356,8 @@ public class Plateau extends javax.swing.JPanel {
     
     private void initPlateau (){
         //Init Pirate
-        jInfoJoueur1.initJoueur(nomPirate1, 0, jMainJoueur1, boundaryJeu);
-        jInfoJoueur2.initJoueur(nomPirate2, 1, jMainJoueur2, boundaryJeu);
+        jInfoJoueur1.initJoueur(nomPirate1, 0, jMainJoueur1, boundaryJeu);  // utile ?
+        jInfoJoueur2.initJoueur(nomPirate2, 1, jMainJoueur2, boundaryJeu);  // utile ?
 
         //Init info
         updateInfoPirate();
@@ -356,15 +388,42 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1.finTour();
         jInfoJoueur2.finTour();
     }
-    /*
-    //Not Working (c'était dans plateauOld
-    public void afficherGagnant(String pirateGagant){
-        labelGagnant.setText(pirateGagant + "a gagné!!!!");
-        labelGagnant.setVisible(true);
-        labelGagnant.setEnabled(true);
-        this.repaint();
+
+    //never used?
+    private void victory (){
+        PopUpVictory victoire = new PopUpVictory(parentFrame);
+        victoire.setVisible(true);
     }
-    */
+/* Integre dans click    
+    private void changementTour () {
+        int tour = boundaryJeu.getTour();
+
+        if(tour % 2 == 0){
+            retournerCartesMain(jMainJoueur1.getMainJoueur());
+        } else {
+            retournerCartesMain(jMainJoueur2.getMainJoueur());
+        }
+        JOptionPane optionPane = new JOptionPane(
+                "Tour terminé. Cliquez pour continuer.",
+                JOptionPane.INFORMATION_MESSAGE,
+                JOptionPane.DEFAULT_OPTION,
+                null,
+                new Object[]{"Commencer le tour suivant"},
+                "Commencer le tour suivant"
+        );
+        
+        JDialog dialog = optionPane.createDialog(SwingUtilities.getWindowAncestor(this), "Changement de tour");
+        dialog.setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
+        dialog.setVisible(true);
+        
+        if(tour%2 == 0){
+            retournerCartesMain(jMainJoueur2.getMainJoueur());
+        }
+        else {
+            retournerCartesMain(jMainJoueur1.getMainJoueur());
+        }       
+    }
+ */   
     public void jouerTour(JCarte carte){
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
@@ -374,21 +433,20 @@ public class Plateau extends javax.swing.JPanel {
         if (!lastElement.equals("Pas de gagnant")){
             //TODO Here POP UP victoire
             System.out.println("Gagnant : " + lastElement);
-        }
-        //TODO Here POP up changement de joueur
+        }        
         
-        jPioche1.setEnabled(true);
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
-        retournerCartes();
         //jLancerPiece1.setEtat("P");
+        //changementTour();
+        jButtonFinDeTour.setEnabled(true);
+        jPioche1.setEnabled(false);
     }
     
     public void retournerCartes() {
         retournerCartesMain(jMainJoueur2.getMainJoueur());
         retournerCartesMain(jMainJoueur1.getMainJoueur());
     }
-    
     private void retournerCartesMain(List<JCarte> main){
         for (JCarte jCarte : main) {
             jCarte.changeCardFace();
@@ -404,7 +462,7 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private boundary.components.JButtonCustom jButtonCustom1;
+    private boundary.components.JButtonCustom jButtonFinDeTour;
     private boundary.components.JInfoJoueur jInfoJoueur1;
     private boundary.components.JInfoJoueur jInfoJoueur2;
     private boundary.components.JLancerPiece jLancerPiece1;

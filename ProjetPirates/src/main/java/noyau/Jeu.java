@@ -3,18 +3,21 @@ package noyau;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author yannf
+ */
+
 public class Jeu {
-    private Pirate joueur1;
-    private Pirate joueur2;
-    private JeuDeCarte jeuDeCarte;
+    private final Pirate joueur1;
+    private final Pirate joueur2;
+    private final JeuDeCarte jeuDeCarte;
     private Pioche pioche;
     private int tour;
     private boolean nuit=false;
-    //private Map<Carte, Integer> carteNonJouer = new TreeMap<Carte, Integer>();
+    private final ArrayList<EffetEtatJeu> effetsJeu = new ArrayList<>();
 
-    public Jeu(){ initJeu();}
-
-    public void initJeu() {
+    public Jeu(){
         joueur1 = new Pirate("J1");
         joueur2 = new Pirate("J2");
         jeuDeCarte = new JeuDeCarte();
@@ -26,7 +29,7 @@ public class Jeu {
         }
     }
 
-    private boolean isJeuTermine(){
+    protected boolean isJeuTermine(){
         return joueur1.getPP() == 5 || joueur2.getPP() == 5 ||
                joueur1.getHP() == 0 || joueur2.getHP() == 0;
     }
@@ -40,17 +43,11 @@ public class Jeu {
         return "Pas de gagnant";
     }
 
-    public ArrayList<Carte> jouerPioche(){
-        ArrayList<Carte> cartesLst;
-        if(tour %2 == 0){
-            cartesLst = piocherInf5(joueur1);
-        }else {
-            cartesLst = piocherInf5(joueur2);
-        }
-        return cartesLst;
+    public ArrayList<Carte> jouerPioche() {
+        return piocherInf5(getJoueurActuel());
     }
 
-    //Renvoyer un joueur si les cartes ne sont pas ajouter à la main du joueur
+    //Renvoyer un joueur si les cartes ne sont pas ajouté à la main du joueur
     private ArrayList<Carte> piocherInf5(Pirate joueur){
         Carte carte;
         ArrayList<Carte> cartesLst = new ArrayList<>();
@@ -70,45 +67,59 @@ public class Jeu {
         return cartesLst;
     }
 
-    //Update String return
-    public List<String> jouerCarte(String nomCarte){
-        List<String> resutatTour;
-        Carte carte;
-        if(tour %2 == 0){
-            /*mainPirate = joueur1.getMain();
-            carte = getCarteMain(nomCarte, mainPirate);*/
-            carte = joueur1.getCarteMain(nomCarte);
-            if (carte == null){
-                resutatTour = new ArrayList<>();
-                resutatTour.add("Carte pas trouvée");
-                return  resutatTour;
-            }
-            resutatTour = carte.appliquerEffet(joueur1, joueur2, this);
-            joueur1.supprimerCarteMain(carte);
-        } else {
-            /*mainPirate = joueur2.getMain();
-            carte = getCarteMain(nomCarte, mainPirate);*/
-            carte = joueur2.getCarteMain(nomCarte);
-            if (carte == null){
-                resutatTour = new ArrayList<>();
-                resutatTour.add("Carte pas trouvée");
-                return  resutatTour;
-            }
-            resutatTour = carte.appliquerEffet(joueur2, joueur1, this);
-            joueur2.supprimerCarteMain(carte);
-        }
-        tour++;
-        resutatTour.add(getGagnant());
-        return resutatTour;
+    public Pirate getJoueurActuel() {
+        return (tour % 2 == 0) ? joueur1 : joueur2;
     }
 
-    //Same Function in Pirate
-    /*public Carte getCarteMain(String nomCarte, ArrayList<Carte> mainPirate){
-        for (Carte carte : mainPirate) {
-            if (carte.getNom().equals(nomCarte)) {return carte;}
+    public Pirate getAdversaireActuel() {
+        return (tour % 2 == 0) ? joueur2 : joueur1;
+    }
+
+    public void incrementerTour() {
+        tour++;
+    }
+    
+    //Update String return
+    public List<String> jouerCarte(String nomCarte) {
+        Pirate joueur = getJoueurActuel();
+        Pirate adversaire = getAdversaireActuel();
+        Carte carte = joueur.getCarteMain(nomCarte);
+
+        for(EffetEtatJeu effet : effetsJeu){
+            effet.debutTour(joueur, adversaire);
         }
-        return null;
-    }*/
+
+        if (carte == null) {
+            return List.of("Carte pas trouvée");
+        }
+        carte.appliquerEffet(joueur, adversaire, this);
+
+        for(EffetEtatJeu effet : effetsJeu){
+            effet.finTour(joueur, adversaire);
+            if (!effet.hasTourRestant()) supprimerEffetJeu(effet);
+        }
+
+
+        List<String> resultatTour = genResultat(carte);
+
+        joueur.supprimerCarteMain(carte);
+
+        incrementerTour();
+        resultatTour.add(getGagnant());
+        return resultatTour;
+    }
+
+    private List<String> genResultat(Carte carte) {
+        List<String> resultatTour = new ArrayList<>();
+        if (carte instanceof CartePiecePopularite cartePiece) {
+            resultatTour = cartePiece.getCoinFlipResult();
+        } else if (carte instanceof CartePieceAttaque cartePiece) {
+            resultatTour = cartePiece.getCoinFlipResult();
+        } else if (carte instanceof CarteEffet carteEffet) {
+            resultatTour.add(carteEffet.getNom());
+        }
+        return resultatTour;
+    }
 
     public boolean isNuit() {
         return nuit;
@@ -123,22 +134,24 @@ public class Jeu {
     }
 
     public Pirate getPirate(int numero) {
-        if(numero == 0){
-            return joueur1;
-        } else if (numero == 1){
-            return joueur2;
-        } else{
-            return null;
-        }
+        return switch (numero) {
+            case 0 -> joueur1;
+            case 1 -> joueur2;
+            default -> null;
+        };
     }
 
     public int getTour() {
         return tour;
     }
 
-    public boolean estJeuTermine() {
-        return isJeuTermine();
-    }//Fonction pour les tests
+    public void ajouterEffetJeu(EffetEtatJeu effet){
+        effetsJeu.add(effet);
+    }
+
+    public void supprimerEffetJeu(EffetEtatJeu effet){
+        effetsJeu.remove(effet);
+    }
 
 }
 

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ???
+ * @author yannf
  */
 
 public class JeuDeCarte {
-    private Configuration[] config = {new Configuration(new CarteDefense("Ode à la Joie", 1, "Le joueur Gagne 3PV",3, 0, false), 7),
+    private Configuration[] configOld = {new Configuration(new CarteDefense("Ode à la Joie", 1, "Le joueur Gagne 3PV",3, 0, false), 7),
             new Configuration(new CarteDefense("Douceur ensoleillé", 2, "Le Joueur Gagne 1 PV, Gagne 1 PV de plus si le jour",1, 0, true), 10),
             new Configuration(new CarteDefense("Hymne à Flute", 3, "Le joueur Gagne 1PV",1, 0, false), 12),
             new Configuration(new CarteAttack("Dans ta Face", 4, "Le joueur lance un pièce, tant que face, l'adversaire -1 PV",0, 0, 0, -1, false, true), 2),
@@ -19,9 +19,29 @@ public class JeuDeCarte {
             //new Configuration(new CarteAttack("Tout pour tout", 11, "L'adversaire perds 3PV, si il survi, il gagne 3PP", 0, 0, 0, -3, false, false ), 4),
             new Configuration(new CartePopularite("Le malade imaginaire", 9, "Le joueur Gagne 2PP mais perd 1PV", 2, -1, false), 9),
             new Configuration(new CartePopularite("La chance du joueur", 10, "Le joueur lance un pièce, tant que face, il gagne +1 PP", 1, 0, true), 3),
-            new Configuration(new CartePopularite("Invité au banquet", 12, "Le joueur Gagne 2 PP", 2, 0, false), 10),
+            new Configuration(new CartePopularite("Invité au banquet", 12, "Le joueur Gagne 2 PP", 2, 0, false), 8),
             new Configuration(new CartePopularite("Tournée de rhum", 23, "Le joueur Gagne 1PP", 1, 0, false), 16),
             //new Configuration(new CarteEffet())
+    };
+
+    private Configuration[] config = {
+            new Configuration(new CarteDefenseLambda("Ode à la Joie", 1, "Le joueur Gagne 3PV", (p, j) -> p.getHP()+3),7),
+            new Configuration(new CarteDefenseLambda("Douceur ensoleillé", 2, "Le Joueur Gagne 1 PV, Gagne 1 PV de plus si le jour",  (p, j) -> p.getHP()+1), 10),
+            new Configuration(new CarteDefenseLambda("Hymne à Flute", 3, "Le joueur Gagne 1PV", (p, j) -> p.getHP()+1), 12),
+            new Configuration(new CartePieceAttaque("Dans ta Face", 4, "Le joueur lance un pièce, tant que face, l'adversaire -1 PV",null, (p, j) -> p.getHP()-1), 2),
+            new Configuration(new CarteNuitAttaque("Fureur de la nuit", 5, "Inflige -1 PV à l'adversaire, Inflige -1 PV de plus si la nuit", null, (p, j) -> p.getHP()-1), 10),
+            new Configuration(new CarteAttaqueLambda("Kamikaze", 6, "Inflige 2 PV à l'adversaire. Inflige 1 PV à soi-même",
+                    (pirate, jeu) -> pirate.getHP()-1, ((pirate, jeu) -> pirate.getHP()-2)), 9),
+            new Configuration(new CarteAttaqueLambda("Coup bas", 7, "L'adversaire perds 1PV", null, (p, j) -> p.getHP()-1), 12),
+            new Configuration(new CartePopulariteLambda("Le malade imaginaire", 9, "Le joueur Gagne 2PP mais perd 1PV", BasicCategorie.POPULARITE,
+                    (pirate, jeu) -> pirate.getPP()+2, (pirate, jeu) -> pirate.getHP()-1), 9),
+            new Configuration(new CartePiecePopularite("La chance du joueur", 10, "Le joueur lance un pièce, tant que face, il gagne +1 PP", BasicCategorie.POPULARITE,
+                    ((pirate, jeu) -> pirate.getPP()+1), null), 3),
+            new Configuration(new CartePiecePopularite("Invité au banquet", 12, "Le joueur Gagne 2 PP", BasicCategorie.POPULARITE,
+                    ((pirate, jeu) -> pirate.getPP()+2), null), 6),
+            new Configuration(new CartePopulariteLambda("Tournée de rhum", 23, "Le joueur Gagne 1PP", BasicCategorie.POPULARITE,
+                    ((pirate, jeu) -> pirate.getPP()+2), null), 12)
+
     };
 
     private Configuration[] testCards = {new Configuration(new CartePopularite("Plus1Pop", -1, "Le joueur Gagne 1PP", 1, 0, false), 10),
@@ -31,36 +51,6 @@ public class JeuDeCarte {
             new Configuration(new CarteAttack("Moins1PVA", -1, "L'adversaire perd 1 PV", 0, 0, 0, -1, false, false), 10),
             new Configuration(new CarteAttack("Moins1PPA", -1, "L'adversaire perd 1 PP", 0, 0, -1, 0, false, false), 10),
     };
-
-   
-
-
-
-
-
-
-    /* new Configuration(new CarteDefense("Ode à la Joie", 1, "Le joueur Gagne 3PV",3, 0, false), 7),
-            new Configuration(new CarteDefense("Douceur ensoleillé", 2, "Gagne 1 PV, Gagne 1 PV de plus si le jour",1, 0, true), 13),
-            new Configuration(new CarteAttack("Dans ta Face", 4, "Le joueur lance un pièce, tant que face, l'adversaire -1 PV",0, 0, 0, -1, false, true), 10),
-            new Configuration(new CarteAttack("Peau de Banane", 8, "L'adversaire perds 1PP",0, 0, -1, 0, false, false), 16)
-
-
-        {new Configuration(new CarteAttack("1", "d", null), 0),
-            new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
-            new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
-            new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
-            new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
-            new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
-            new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
-            new Configuration(new CarteAttack("1", "d", null), 0),new Configuration(new CarteAttack("1", "d", null), 0),
-            new Configuration(new CarteAttack("1", "d", null), 0),};
-
-            Carte c  = new Carte(nom, desc, type.EFFET) {
-            @Override
-            public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-                //unique effet
-            }
-        })*/
 
     private static class Configuration{
         Carte carte;

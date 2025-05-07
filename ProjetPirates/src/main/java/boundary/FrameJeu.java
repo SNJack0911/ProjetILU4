@@ -5,7 +5,6 @@
 package boundary;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.KeyEvent;
@@ -17,6 +16,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 
 /**
@@ -27,6 +28,8 @@ public class FrameJeu extends javax.swing.JFrame {
     private BoundaryJeu boundaryJeu;
     /**
      * Creates new form FrameJeu
+     * @param boundaryJeu
+     * @param fullScreen
      */
     public FrameJeu(BoundaryJeu boundaryJeu, boolean fullScreen) {
         this.boundaryJeu = boundaryJeu;
@@ -73,7 +76,7 @@ public class FrameJeu extends javax.swing.JFrame {
         volumeValueLabel = new javax.swing.JLabel();
         menuBoutonOp = new boundary.components.JButtonCustom();
         plateauPanel = new javax.swing.JPanel();
-        plateau1 = new boundary.Plateau();
+        plateau1 = new boundary.Plateau(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Argonautes : New Horizons");
@@ -434,10 +437,7 @@ public class FrameJeu extends javax.swing.JFrame {
         /*System.out.println("Size plateauPanel : " + plateauPanel.getSize().toString());
         System.out.println("Size plateau1 : " + plateau1.getSize().toString());*/
         
-        
-
         plateau1.setBoundaryJeu(boundaryJeu);
-        
     }//GEN-LAST:event_jButtonCustom1ActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom2ActionPerformed
@@ -466,7 +466,6 @@ public class FrameJeu extends javax.swing.JFrame {
     
     
     private void plateauPanelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plateauPanelKeyPressed
-
         //System.out.println(getFocusOwner());
         Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && plateauPanel.equals(focused)){
@@ -575,8 +574,8 @@ public class FrameJeu extends javax.swing.JFrame {
                 }
             });
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+            e.printStackTrace(); //Throwable printStackTrace() should be remove
         }
     }
     
@@ -606,10 +605,6 @@ public class FrameJeu extends javax.swing.JFrame {
         }
     }
     
-    public PlateauOld getPlateauOld(){
-        return null;
-    }
-    
     public Plateau getPlateau(){
         return plateau1;
     }
@@ -629,22 +624,16 @@ public class FrameJeu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrameJeu(null, false).setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FrameJeu(null, false).setVisible(true);
         });
     }
 

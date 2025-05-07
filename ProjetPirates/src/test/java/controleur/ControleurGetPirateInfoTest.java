@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+ * Stefan
+ * */
+
 class ControleurGetPirateInfoTest {
 
     private ControleurGetPirateInfo controleur;

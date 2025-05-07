@@ -2,7 +2,7 @@ package noyau;
 
 /**
  * 
- * @auhor ??? et leo a l'origine
+ * @auhor yannf et leo a l'origine
  */
 import java.util.List;
 
@@ -39,7 +39,7 @@ public abstract class Carte {
         return carteID;
     }
 
-    public abstract List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu);
+    public abstract void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu);
 
     //private List<Effet> effets;
     /*

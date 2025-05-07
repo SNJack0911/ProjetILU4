@@ -1,23 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package noyau;
-
-import java.util.List;
 
 /**
  *
- * @author hai
+ * @author yannf
  */
-public class CarteEffet extends Carte implements ICarte {
 
-    protected CarteEffet(String nom, int carteID, String description, ICategorieCarte categorie, BasicCategorie zoneDepot) {
-        super(nom, carteID, description, categorie, zoneDepot);
+public abstract class CarteEffet extends Carte{
+
+
+    protected CarteEffet(String nom, int CarteID, String description, BasicCategorie zoneDepot) {
+        super(nom, CarteID, description, ExtendCategorie.EFFET, zoneDepot);
     }
 
-    @Override
-    public List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        return List.of();
-    }
 }

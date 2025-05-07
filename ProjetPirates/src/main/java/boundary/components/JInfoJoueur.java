@@ -12,10 +12,10 @@ import boundary.BoundaryJeu;
  */
 //TODO fix link boundary & noyau
 public class JInfoJoueur extends javax.swing.JPanel {
-    private String nom;
+    private String nom;         // utile ?
     int idPirate;
     //private Pirate pirate;
-    private JMainJoueur jMainJoueur;
+    private JMainJoueur jMainJoueur;    // utile ?
     private BoundaryJeu boundaryJeu;
 
     /**
@@ -31,9 +31,9 @@ public class JInfoJoueur extends javax.swing.JPanel {
         this.jMainJoueur = jMainJoueur;
     }*/
     public void initJoueur(String nom, int idPirate, JMainJoueur mainJoueur, BoundaryJeu boundaryJeu){
-        this.nom = nom;
+        this.nom = nom;         // utile ?
         this.idPirate = idPirate;
-        this.jMainJoueur = mainJoueur;
+        this.jMainJoueur = mainJoueur;      // utile ?
         this.boundaryJeu = boundaryJeu;
     }
     

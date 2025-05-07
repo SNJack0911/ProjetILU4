@@ -6,13 +6,13 @@ import java.util.Random;
 
 /**
  *
- * @author ???
+ * @author yannf
  */
 
 public class CartePopularite extends Carte {
-    private int PPajoutJ;
-    private int PVajoutJ;
-    private boolean lancerPiece;
+    private int PPajoutJ;   //final ?
+    private int PVajoutJ;   //final ?
+    private boolean lancerPiece; //final ?
     private static final Random rand = new Random();
 
 
@@ -24,8 +24,8 @@ public class CartePopularite extends Carte {
     }
 
     @Override
-    public List<String> appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        List<String> listeFace = new ArrayList<String>();
+    public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
+        List<String> listeFace = new ArrayList<>();
         int compteur = 1;
         if(lancerPiece){
             int face;
@@ -38,6 +38,6 @@ public class CartePopularite extends Carte {
         }
         joueur.applyStats("HP", PVajoutJ);
         joueur.applyStats("PP", PPajoutJ*compteur);
-        return listeFace;
+        //return listeFace;
     }
 }

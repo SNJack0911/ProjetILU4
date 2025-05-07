@@ -5,6 +5,7 @@
 package boundary.components;
 
 import java.awt.GridBagConstraints;
+import static java.awt.GridBagConstraints.BOTH;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,9 @@ public class JMainJoueur extends javax.swing.JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridy = 0;
         gbc.gridx = mainJoueur.size();
+        gbc.fill = BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
         mainJoueur.add(jCarte);
         jPanel1.add(jCarte, gbc);
         jPanel1.revalidate();
@@ -102,26 +106,26 @@ public class JMainJoueur extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 0));
+        setAlignmentX(0.0F);
+        setAlignmentY(0.0F);
+        setMinimumSize(new java.awt.Dimension(0, 0));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(420, 160));
+        setPreferredSize(new java.awt.Dimension(0, 0));
+        setLayout(new java.awt.GridBagLayout());
 
+        jPanel1.setBackground(new java.awt.Color(102, 255, 0));
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
