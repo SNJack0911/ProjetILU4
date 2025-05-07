@@ -2,7 +2,7 @@ package noyau;
 
 /**
  * 
- * @auhor ??? et leo a l'origine
+ * @auhor yannf et leo a l'origine
  */
 import java.util.List;
 

@@ -3,6 +3,11 @@ package noyau;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author yannf
+ */
+
 public abstract class CarteLambda extends Carte {
     IEffet effet1;
     IEffet effet2;

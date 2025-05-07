@@ -2,7 +2,7 @@ package noyau;
 
 /**
  *
- * @author ???
+ * @author yannf
  */
 
 public enum ExtendCategorie implements ICategorieCarte {

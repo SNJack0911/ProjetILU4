@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ???
+ * @author yannf
  */
 
 public class JeuDeCarte {

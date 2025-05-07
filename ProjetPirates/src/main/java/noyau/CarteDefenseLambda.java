@@ -1,5 +1,10 @@
 package noyau;
 
+/**
+ *
+ * @author yannf
+ */
+
 public class CarteDefenseLambda extends CartePopulariteLambda {
 
     public CarteDefenseLambda(String nom, int carteID, String description, IEffet effetHPJ) {

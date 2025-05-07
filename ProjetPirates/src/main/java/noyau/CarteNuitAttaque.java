@@ -1,5 +1,10 @@
 package noyau;
 
+/**
+ *
+ * @author yannf
+ */
+
 public class CarteNuitAttaque extends CarteAttaqueLambda {
 
     public CarteNuitAttaque (String nom, int carteID, String description,

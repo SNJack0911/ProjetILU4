@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  *
- * @author ???
+ * @author yannf
  */
 
 public class CartePopularite extends Carte {

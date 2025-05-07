@@ -1,7 +1,9 @@
 package noyau;
 
-import java.util.ArrayList;
-import java.util.List;
+/**
+ *
+ * @author yannf
+ */
 
 public class CartePopulariteLambda extends CarteLambda {
 

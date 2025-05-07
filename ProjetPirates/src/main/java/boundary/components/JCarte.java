@@ -217,7 +217,7 @@ public class JCarte extends javax.swing.JPanel {
         if (mainOrigine != null) handleMainDrop(evt);
         
  
-        System.out.println("Not dropped on a drop zone.");
+        //System.out.println("Not dropped on a drop zone.");
         if (mainOrigine != null && !mainOrigine.getMainJoueur().contains(this)) {
             mainOrigine.ajouterJCarte(this);
         }

@@ -3,6 +3,11 @@ package noyau;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author yannf
+ */
+
 public class Jeu {
     private final Pirate joueur1;
     private final Pirate joueur2;
@@ -10,7 +15,7 @@ public class Jeu {
     private Pioche pioche;
     private int tour;
     private boolean nuit=false;
-    //private Map<Carte, Integer> carteNonJouer = new TreeMap<Carte, Integer>();
+    private final ArrayList<EffetEtatJeu> effetsJeu = new ArrayList<>();
 
     public Jeu(){
         joueur1 = new Pirate("J1");
@@ -24,7 +29,7 @@ public class Jeu {
         }
     }
 
-    private boolean isJeuTermine(){
+    protected boolean isJeuTermine(){
         return joueur1.getPP() == 5 || joueur2.getPP() == 5 ||
                joueur1.getHP() == 0 || joueur2.getHP() == 0;
     }
@@ -42,7 +47,7 @@ public class Jeu {
         return piocherInf5(getJoueurActuel());
     }
 
-    //Renvoyer un joueur si les cartes ne sont pas ajouter à la main du joueur
+    //Renvoyer un joueur si les cartes ne sont pas ajouté à la main du joueur
     private ArrayList<Carte> piocherInf5(Pirate joueur){
         Carte carte;
         ArrayList<Carte> cartesLst = new ArrayList<>();
@@ -77,28 +82,42 @@ public class Jeu {
     //Update String return
     public List<String> jouerCarte(String nomCarte) {
         Pirate joueur = getJoueurActuel();
+        Pirate adversaire = getAdversaireActuel();
         Carte carte = joueur.getCarteMain(nomCarte);
+
+        for(EffetEtatJeu effet : effetsJeu){
+            effet.debutTour(joueur, adversaire);
+        }
 
         if (carte == null) {
             return List.of("Carte pas trouvée");
         }
-
-        Pirate adversaire = getAdversaireActuel();
         carte.appliquerEffet(joueur, adversaire, this);
 
-
-        List<String> resultatTour = new ArrayList<>();
-        if (carte instanceof CartePiecePopularite cartePiece) {
-            resultatTour = cartePiece.getCoinFlipResult();
-        } else if (carte instanceof CartePieceAttaque cartePiece) {
-            resultatTour = cartePiece.getCoinFlipResult();
+        for(EffetEtatJeu effet : effetsJeu){
+            effet.finTour(joueur, adversaire);
+            if (!effet.hasTourRestant()) supprimerEffetJeu(effet);
         }
 
+
+        List<String> resultatTour = genResultat(carte);
 
         joueur.supprimerCarteMain(carte);
 
         incrementerTour();
         resultatTour.add(getGagnant());
+        return resultatTour;
+    }
+
+    private List<String> genResultat(Carte carte) {
+        List<String> resultatTour = new ArrayList<>();
+        if (carte instanceof CartePiecePopularite cartePiece) {
+            resultatTour = cartePiece.getCoinFlipResult();
+        } else if (carte instanceof CartePieceAttaque cartePiece) {
+            resultatTour = cartePiece.getCoinFlipResult();
+        } else if (carte instanceof CarteEffet carteEffet) {
+            resultatTour.add(carteEffet.getNom());
+        }
         return resultatTour;
     }
 
@@ -126,9 +145,13 @@ public class Jeu {
         return tour;
     }
 
-    public boolean estJeuTermine() {
-        return isJeuTermine();
-    }//Fonction pour les tests
+    public void ajouterEffetJeu(EffetEtatJeu effet){
+        effetsJeu.add(effet);
+    }
+
+    public void supprimerEffetJeu(EffetEtatJeu effet){
+        effetsJeu.remove(effet);
+    }
 
 }
 

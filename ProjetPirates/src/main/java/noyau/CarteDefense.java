@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  *
- * @author ???
+ * @author yannf
  */
 
 public class CarteDefense extends  Carte{

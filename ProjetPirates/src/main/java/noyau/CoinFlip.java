@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ *
+ * @author yannf
+ */
+
 public class CoinFlip {
     private static final Random rand = new Random();
     List<String> listeFace = new ArrayList<>();

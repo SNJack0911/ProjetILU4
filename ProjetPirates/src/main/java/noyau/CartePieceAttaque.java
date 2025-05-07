@@ -2,6 +2,12 @@ package noyau;
 
 import java.util.List;
 
+
+/**
+ *
+ * @author yannf
+ */
+
 public class CartePieceAttaque extends CarteAttaqueLambda {
     private CoinFlip coinFlip = new CoinFlip();
 
@@ -9,6 +15,7 @@ public class CartePieceAttaque extends CarteAttaqueLambda {
         super(nom, carteID, description, effetHPJ, effetHPA);
     }
 
+    //TODO using super
     @Override
     protected void appliquerEffetJoueur(Pirate joueur, Pirate adversaire, Jeu jeu, int newHPJ, int newHPA) {
         int compteur = coinFlip.flipCoins();

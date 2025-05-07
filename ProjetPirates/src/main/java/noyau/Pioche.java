@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 
+/**
+ *
+ * @author yannf
+ */
+
 public class Pioche {
     private int nbCartes;
     private ArrayList<Carte> cartes;
