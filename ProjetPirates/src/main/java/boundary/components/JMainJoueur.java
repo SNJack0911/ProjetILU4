@@ -4,6 +4,7 @@
  */
 package boundary.components;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import static java.awt.GridBagConstraints.BOTH;
 import java.awt.Insets;
@@ -37,8 +38,7 @@ public class JMainJoueur extends javax.swing.JPanel {
     private JCarte createCarte(String nomCarte, int carteID, ICategorieCarte type, String description, BasicCategorie zoneDepot) {
         
         JCarte newCarte = new boundary.components.JCarte();
-        newCarte.setMinimumSize(new java.awt.Dimension(84, 117));
-        newCarte.setPreferredSize(new java.awt.Dimension(84, 117));
+
         //System.out.println("JMainJoueur createCarte , nomCarte = " + nomCarte + "\n");
         newCarte.ajouterAttribut(nomCarte, carteID, type, description,
                 zoneDepot, this);
@@ -57,6 +57,26 @@ public class JMainJoueur extends javax.swing.JPanel {
         newCarte.changeCardFace();
         return newCarte;
     }
+    private void redimensionnerCarte(JCarte carte) {
+        // Taille de base (720 x 480)
+        int baseWidth = 84;
+        int baseHeight = 117;
+        
+        // Largeur de la main
+        int largeurMain = this.getWidth();
+        
+        double scale = 1.0;
+        // Agrandissement des cartes
+        if (largeurMain > 420) {
+            scale = 1.5;
+        }
+        
+        int width = (int) (baseWidth * scale);
+        int height = (int) (baseHeight * scale);
+
+        carte.setMinimumSize(new java.awt.Dimension(width, height));
+        carte.setPreferredSize(new java.awt.Dimension(width, height));
+    }
     
                     // ça sert ????? Aucune ref dans la main du joueur. visiblement pas
     public void deleteCard(String nomCarte){
@@ -74,9 +94,15 @@ public class JMainJoueur extends javax.swing.JPanel {
         gbc.gridy = 0;
         gbc.gridx = mainJoueur.size();
         gbc.fill = BOTH;
-        gbc.weightx = 1;
+        gbc.weightx = 0.72;
         gbc.weighty = 1;
+        
         mainJoueur.add(jCarte);
+      
+        for (JCarte carte : mainJoueur) {
+            redimensionnerCarte(carte);
+        }
+        
         jPanel1.add(jCarte, gbc);
         jPanel1.revalidate();
         jPanel1.repaint();
@@ -97,6 +123,7 @@ public class JMainJoueur extends javax.swing.JPanel {
             carte.setEnabled(value);
         }
     }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
