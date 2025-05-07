@@ -104,7 +104,6 @@ public class Jeu {
 
         joueur.supprimerCarteMain(carte);
 
-        incrementerTour();
         resultatTour.add(getGagnant());
         return resultatTour;
     }
@@ -125,9 +124,16 @@ public class Jeu {
         return nuit;
     }
 
-    public void setNuit() {
-        nuit = tour%4==2 || tour %4 == 3;
+    public void setNuit(Boolean isNuit) {
+        if (isNuit != null)
+        {
+            nuit = isNuit;
+        }
+        else {
+            nuit = tour%4==2 || tour %4 == 3;
+        }
     }
+    
 
     public JeuDeCarte getJeuDeCarte() {
         return jeuDeCarte;

@@ -20,4 +20,12 @@ public class ControleurNouvellePartie {
     }
 
     public int getTour(){return jeu.getTour();}
+    
+    public void incrementerTour(){
+        jeu.incrementerTour();
+    }
+    
+    public void setNuit(Boolean isNuit){
+        jeu.setNuit(isNuit);
+    }
 }

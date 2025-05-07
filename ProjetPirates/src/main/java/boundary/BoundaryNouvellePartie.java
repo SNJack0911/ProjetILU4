@@ -21,4 +21,12 @@ public class BoundaryNouvellePartie {
         }
         return tour;
     }
+    
+    public void incrementerTour(){
+        controleurNouvellePartie.incrementerTour();
+    }
+    
+    public void setNuit(Boolean isNuit){
+        controleurNouvellePartie.setNuit(isNuit);
+    }
 }

@@ -26,7 +26,6 @@ public class BoundaryJeu {
     private BoundaryPiocherCarte boundaryPiocherCarte;
     private ControleurGetCarteInfo controleurGetCarteInfo;
     private ControleurGetPirateInfo controleurGetPirateInfo;
-
     private Scanner scanner = new Scanner(System.in);
 
     public BoundaryJeu(BoundaryJouerCarte boundaryJouerCarte, BoundaryNouvellePartie boundaryNouvellePartie,
@@ -137,10 +136,16 @@ public class BoundaryJeu {
         return boundaryNouvellePartie.getTour();
     }
 
+    public void incrementerTour(){
+        boundaryNouvellePartie.incrementerTour();
+    }
     public ArrayList<String> piocherCarte() {
         return boundaryPiocherCarte.piocherCarte();
     }
 
+    public void setNuit(Boolean isNuit){
+        boundaryNouvellePartie.setNuit(isNuit);
+    }
     
 
     public void JouerPartie(){

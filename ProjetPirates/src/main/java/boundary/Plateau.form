@@ -255,6 +255,12 @@
               <SubComponents>
                 <Component class="boundary.components.JButtonCustom" name="jButtonFinDeTour">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="21" green="46" red="89" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="d" green="4b" red="ab" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Fin de Tour"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>

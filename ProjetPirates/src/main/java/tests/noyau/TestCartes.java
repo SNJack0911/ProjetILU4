@@ -22,7 +22,7 @@ public class TestCartes {
         CarteAttack carte = new CarteAttack("Attaque Test", 0, "Desc", 3, 6, -2, -4, false, false);
 
         Jeu jeu = new Jeu();
-        jeu.setNuit();
+        jeu.setNuit(null);
         Pirate joueur = new Pirate("Tom");
         Pirate adversaire = new Pirate("Jerry");
 
@@ -59,7 +59,7 @@ public class TestCartes {
         CarteDefense carte = new CarteDefense("Bouclier", 0, "def", 5, 2, true);
 
         Jeu jeu = new Jeu();
-        jeu.setNuit();
+        jeu.setNuit(null);
         Pirate joueur = new Pirate("Tom");
         Pirate adversaire = new Pirate("Jerry");
 
