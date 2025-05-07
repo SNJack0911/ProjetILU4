@@ -65,10 +65,14 @@ public class EffetEtatJeu {
         pirate2.setStats("PP", (int) (gameState[2] + newPPPirate2));
         pirate2.setStats("HP", (int) (gameState[3] + newHPPirate2));
 
-        tourRestant--;
+        updateTourRestant();
     }
 
     protected int getGameState(int index){
         return gameState[index];
+    }
+
+    protected void updateTourRestant(){
+        tourRestant--;
     }
 }

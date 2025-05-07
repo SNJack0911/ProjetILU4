@@ -444,7 +444,7 @@ public class Plateau extends javax.swing.JPanel {
         updateInfoPirate();
 
         evenementJeu(resultat);
-        String lastElement = resultat.get(resultat.size()-1);
+        String lastElement = resultat.getLast();
         if (!lastElement.equals("Pas de gagnant")){
             //TODO Here POP UP victoire
             System.out.println("Gagnant : " + lastElement);

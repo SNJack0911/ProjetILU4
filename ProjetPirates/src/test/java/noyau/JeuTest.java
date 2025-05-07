@@ -62,12 +62,12 @@ class JeuTest {
         Carte testCarte = new CartePopularite("Plus1Pop", -1, "Test", 1, 0, false);
         joueur.addCarte(testCarte);
 
-        jeu.jouerCarte("Plus1Pop");
-        assertEquals(1, jeu.getTour(), "Tour faudrait être incrémenté après jouer une carte");
+        jeu.jouerTour("Plus1Pop");
+        assertEquals(1, jeu.getTour(), "Tour devrait être incrémenté après jouer une carte");
     }
 
     @Test
-    void testJouerCarte_Deterministic() {
+    void testJouerTour_Deterministic() {
         Jeu jeu = new Jeu();
         Pirate joueur = jeu.getPirate(0);
         joueur.getMain().clear();
@@ -75,11 +75,11 @@ class JeuTest {
         Carte testCarte = new CartePopularite("UNIQUE_TEST_CARD", -1, "Test", 1, 0, false);
         joueur.addCarte(testCarte);
 
-        List<String> resultValid = jeu.jouerCarte("UNIQUE_TEST_CARD");
+        List<String> resultValid = jeu.jouerTour("UNIQUE_TEST_CARD");
         assertFalse(resultValid.get(0).contains("Carte not found"), "Carte devrait être trouvée et jouée");
         assertEquals(0, joueur.getNbCarte(), "Carte devrait être supprimée après avoir été jouée");
 
-        List<String> resultInvalid = jeu.jouerCarte("Inexistante");
+        List<String> resultInvalid = jeu.jouerTour("Inexistante");
         assertTrue(resultInvalid.get(0).contains("Carte pas trouvée"), "Carte invalide ne devrait pas être jouée");
     }
 
@@ -88,7 +88,7 @@ class JeuTest {
     void testPlayNullCardName() {
         Jeu jeu = new Jeu();
 
-        List<String> result = jeu.jouerCarte(null);
+        List<String> result = jeu.jouerTour(null);
         assertEquals(1, result.size());
         assertTrue(result.get(0).contains("Carte pas trouvée"), "Null carte ne faudrait pas être jouée");
     }
@@ -104,7 +104,7 @@ class JeuTest {
         joueur.addCarte(c1);
         joueur.addCarte(c2);
 
-        jeu.jouerCarte("Dup");
+        jeu.jouerTour("Dup");
 
         assertEquals(1, joueur.getNbCarte(), "Que une carte devrait être jouée");
     }

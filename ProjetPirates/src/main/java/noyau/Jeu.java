@@ -76,36 +76,54 @@ public class Jeu {
     }
 
     public void incrementerTour() {
+
         tour++;
     }
     
     //Update String return
-    public List<String> jouerCarte(String nomCarte) {
+    public List<String> jouerTour(String nomCarte) {
         Pirate joueur = getJoueurActuel();
         Pirate adversaire = getAdversaireActuel();
         Carte carte = joueur.getCarteMain(nomCarte);
 
-        for(EffetEtatJeu effet : effetsJeu){
-            effet.debutTour(joueur, adversaire);
-        }
-
         if (carte == null) {
             return List.of("Carte pas trouvée");
         }
-        carte.appliquerEffet(joueur, adversaire, this);
 
-        for(EffetEtatJeu effet : effetsJeu){
-            effet.finTour(joueur, adversaire);
-            if (!effet.hasTourRestant()) supprimerEffetJeu(effet);
-        }
-
-
-        List<String> resultatTour = genResultat(carte);
+        List<String> resultatTour = jouerCarte(carte, joueur, adversaire);
 
         joueur.supprimerCarteMain(carte);
 
         resultatTour.add(getGagnant());
         return resultatTour;
+    }
+
+    protected List<String> jouerCarte(Carte carte, Pirate joueur, Pirate adversaire) {
+        // Appliquer les effets de début de tour
+        for(EffetEtatJeu effet : effetsJeu){
+            effet.debutTour(joueur, adversaire);
+        }
+
+        // Appliquer l'effet de la carte
+        carte.appliquerEffet(joueur, adversaire, this);
+
+        // Créer une liste temporaire pour stocker les effets à supprimer
+        ArrayList<EffetEtatJeu> effetsASupprimer = new ArrayList<>();
+        
+        // Vérifier les effets de fin de tour
+        for(EffetEtatJeu effet : effetsJeu){
+            effet.finTour(joueur, adversaire);
+            if (!effet.hasTourRestant()) {
+                effetsASupprimer.add(effet);
+            }
+        }
+        
+        // Supprimer les effets terminés après l'itération
+        for(EffetEtatJeu effet : effetsASupprimer) {
+            supprimerEffetJeu(effet);
+        }
+        
+        return genResultat(carte);
     }
 
     private List<String> genResultat(Carte carte) {
@@ -160,4 +178,3 @@ public class Jeu {
     }
 
 }
-

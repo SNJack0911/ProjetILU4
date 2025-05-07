@@ -6,7 +6,6 @@ import noyau.*;
  *
  * @author yannf
  */
-
 public class CartePiedMarin extends CarteEffet {
 
     public CartePiedMarin(){

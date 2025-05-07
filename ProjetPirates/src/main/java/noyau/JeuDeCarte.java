@@ -1,5 +1,7 @@
 package noyau;
 
+import noyau.carteeffet.*;
+
 import java.util.ArrayList;
 
 /**
@@ -20,8 +22,7 @@ public class JeuDeCarte {
             new Configuration(new CartePopularite("Le malade imaginaire", 9, "Le joueur Gagne 2PP mais perd 1PV", 2, -1, false), 9),
             new Configuration(new CartePopularite("La chance du joueur", 10, "Le joueur lance un pièce, tant que face, il gagne +1 PP", 1, 0, true), 3),
             new Configuration(new CartePopularite("Invité au banquet", 12, "Le joueur Gagne 2 PP", 2, 0, false), 8),
-            new Configuration(new CartePopularite("Tournée de rhum", 23, "Le joueur Gagne 1PP", 1, 0, false), 16),
-            //new Configuration(new CarteEffet())
+            new Configuration(new CartePopularite("Tournée de rhum", 23, "Le joueur Gagne 1PP", 1, 0, false), 16)
     };
 
     private Configuration[] config = {
@@ -40,7 +41,12 @@ public class JeuDeCarte {
             new Configuration(new CartePiecePopularite("Invité au banquet", 12, "Le joueur Gagne 2 PP", BasicCategorie.POPULARITE,
                     ((pirate, jeu) -> pirate.getPP()+2), null), 6),
             new Configuration(new CartePopulariteLambda("Tournée de rhum", 23, "Le joueur Gagne 1PP", BasicCategorie.POPULARITE,
-                    ((pirate, jeu) -> pirate.getPP()+2), null), 12)
+                    ((pirate, jeu) -> pirate.getPP()+2), null), 12),
+            new Configuration(new CarteToucheEncre(), 6),
+            new Configuration(new CarteEffetAmplificateur(), 4),
+            new Configuration(new CarteSourdOreille(), 7),
+            new Configuration(new CarteAntidouleur(), 5),
+            new Configuration(new CartePiedMarin(), 5)
 
     };
 

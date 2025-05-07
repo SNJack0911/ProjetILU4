@@ -20,8 +20,11 @@ public class CarteToucheEncre extends CarteEffet {
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
         List<Carte> possible = adversaire.getMain();
+        int nbCarte = possible.size();
+        if (nbCarte <= 0) {return;}
+
         Random rand = new Random();
-        int randomIndex = rand.nextInt(possible.size());
+        int randomIndex = rand.nextInt(nbCarte);
         adversaire.supprimerCarteMain(possible.get(randomIndex));
     }
 }

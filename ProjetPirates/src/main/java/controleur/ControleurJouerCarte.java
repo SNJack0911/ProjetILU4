@@ -20,6 +20,6 @@ public class ControleurJouerCarte {
     }
 
     public List<String> jouerCarte(String nomCarte) {
-        return jeu.jouerCarte(nomCarte);
+        return jeu.jouerTour(nomCarte);
     }
 }
