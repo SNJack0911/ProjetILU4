@@ -137,7 +137,6 @@ public class Plateau extends javax.swing.JPanel {
 
         jMainJoueur2.setBackground(new java.awt.Color(255, 204, 204));
         jMainJoueur2.setMinimumSize(new java.awt.Dimension(460, 160));
-        jMainJoueur2.setOpaque(true);
         jMainJoueur2.setPreferredSize(new java.awt.Dimension(460, 160));
         jMainJoueur2.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -169,7 +168,6 @@ public class Plateau extends javax.swing.JPanel {
 
         jMainJoueur1.setBackground(new java.awt.Color(255, 153, 153));
         jMainJoueur1.setMinimumSize(new java.awt.Dimension(460, 160));
-        jMainJoueur1.setOpaque(true);
         jMainJoueur1.setPreferredSize(new java.awt.Dimension(460, 160));
         jMainJoueur1.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
