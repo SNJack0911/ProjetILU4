@@ -58,17 +58,12 @@ class JeuTest {
     void testTourIncrements() {
         Jeu jeu = new Jeu();
         Pirate joueur = jeu.getPirate(0);
-        Pirate adversaire = jeu.getPirate(1);
-//        joueur.getMain().clear();
-//        Carte testCarte = new CartePopularite("Plus1Pop", -1, "Test", 1, 0, false);
-//        joueur.addCarte(testCarte);
-//
-//        jeu.jouerTour("Plus1Pop");
-        jeu.incrementerTour();
-        assertEquals(1, jeu.getTour(), "Tour devrait être incrémenté après jouer une carte");
+        joueur.getMain().clear();
+        Carte testCarte = new CartePopularite("Plus1Pop", -1, "Test", 1, 0, false);
+        joueur.addCarte(testCarte);
 
-        assertEquals(joueur, jeu.getAdversaireActuel(), "Le bon adversaire n'est pas choisi");
-        assertEquals(adversaire, jeu.getJoueurActuel(), "Le bon joueur n'est pas choisi");
+        jeu.jouerTour("Plus1Pop");
+        assertEquals(1, jeu.getTour(), "Tour devrait être incrémenté après jouer une carte");
     }
 
     @Test

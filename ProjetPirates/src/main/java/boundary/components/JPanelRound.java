@@ -24,6 +24,26 @@ public class JPanelRound extends JPanel{
         setDoubleBuffered(true);
     }
 
+    /*
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D)g;
+        Color c1 = new Color(150, 110, 75, 40);
+        g2d.setColor(c1);
+
+        int width = getWidth();
+        int height = getHeight();
+        g2d.drawRoundRect(0, 0, width, height, width/12 ,height/12);
+
+        int newWidth = (int) (getWidth() *0.92);
+        int newHeight = (int) (getWidth() *0.92);
+
+        Color c2 = new Color(200, 160, 125, 80);
+        g2d.setColor(c2);
+        g2d.drawRoundRect((width-newWidth)/2, (height-newHeight)/2, newWidth, newHeight, width/12 ,height/12);
+    }*/
+
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);

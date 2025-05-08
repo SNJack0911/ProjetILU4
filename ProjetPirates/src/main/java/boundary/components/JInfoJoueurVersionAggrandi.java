@@ -12,6 +12,7 @@ import noyau.Pirate;
  *
  * @author vince
  */
+//TODO fix link boundary & noyau
 public class JInfoJoueurVersionAggrandi extends javax.swing.JPanel {
     private String nom;
     int idPirate;

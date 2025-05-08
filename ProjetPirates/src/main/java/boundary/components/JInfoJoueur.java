@@ -8,8 +8,9 @@ import boundary.BoundaryJeu;
 
 /**
  *
- * @author leo, retouche vincent, yannf
+ * @author leo, retouche vincent
  */
+//TODO fix link boundary & noyau
 public class JInfoJoueur extends javax.swing.JPanel {
     private String nom;         // utile ?
     int idPirate;
