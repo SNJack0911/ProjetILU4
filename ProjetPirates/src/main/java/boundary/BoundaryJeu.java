@@ -64,7 +64,7 @@ public class BoundaryJeu {
     
     public int getCarteId(String nomCarte) {
         int id = controleurGetCarteInfo.getCarteID(nomCarte);
-        if (id < 0 || id > 23) {
+        if (id < 0 || id > 24) {
             System.out.println("Erreur : Carte n'as pas d'image associée ou nom carte invalide.");
             return -1;
         }

@@ -133,9 +133,9 @@ public class Jeu {
             resultatTour = cartePiece.getCoinFlipResult();
         } else if (carte instanceof CartePieceAttaque cartePiece) {
             resultatTour = cartePiece.getCoinFlipResult();
-        } else if (carte instanceof CarteEffet carteEffet) {
+        }/* else if (carte instanceof CarteEffet carteEffet) { //TODO traiter dans l'IHM les cartes effets
             resultatTour.add(carteEffet.getNom());
-        }
+        }*/
         return resultatTour;
     }
 

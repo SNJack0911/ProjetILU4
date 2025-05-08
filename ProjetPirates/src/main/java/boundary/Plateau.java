@@ -237,6 +237,11 @@ public class Plateau extends javax.swing.JPanel {
         jButtonFinDeTour.setForeground(new java.awt.Color(171, 75, 13));
         jButtonFinDeTour.setText("Fin de Tour");
         jButtonFinDeTour.setEnabled(false);
+        jButtonFinDeTour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFinDeTourActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -279,6 +284,76 @@ public class Plateau extends javax.swing.JPanel {
         mainJoueur.setEnabled(true);
         jPioche1.setEnabled(false);
     }//GEN-LAST:event_jPioche1MouseClicked
+
+    private void jButtonFinDeTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinDeTourActionPerformed
+        // TODO add your handling code here:
+        int tour = boundaryJeu.getTour();
+        int joueurActuel = tour % 2;
+        int joueurSuivant = (tour + 1) % 2;
+
+        // je sais pas j'ai tout teste sauf la solution 
+        // Désactiver joueur actuel et retourner ses cartes
+        if (joueurActuel == 0) {
+            jMainJoueur1.setEnabled(false);
+            retournerCartesMain(jMainJoueur1.getMainJoueur());
+            jMainJoueur1.repaint();
+        } else {
+            jMainJoueur2.setEnabled(false);
+            retournerCartesMain(jMainJoueur2.getMainJoueur());
+            jMainJoueur2.repaint();
+        }
+
+        // mettre un wait ????? pour que l'option laisse du temps au carte d'être retourné ?
+
+        // Afficher popup 
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(139, 69, 19)); // marron foncé
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JLabel message = new JLabel("<html><div style='text-align: center; color: white;'><h2>Tour terminé</h2><p>Cliquez pour continuer</p></div></html>");
+        message.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton bouton = new JButton("Commencer le tour suivant");
+        bouton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        bouton.setBackground(new Color(210, 180, 140)); // marron clair
+        bouton.setForeground(Color.BLACK);
+        bouton.setFocusPainted(false);
+        bouton.setFont(new Font("SansSerif", Font.BOLD, 14));
+
+        panel.add(message);
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        panel.add(bouton);
+
+        // Création de la boîte de dialogue personnalisée
+        JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Changement de tour", true);
+        dialog.setUndecorated(false); // garde la bordure standard
+        dialog.getContentPane().add(panel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
+
+        // Action bouton : fermer la boîte
+        bouton.addActionListener(e -> dialog.dispose());
+
+        // Affiche la boîte (modal)
+        dialog.setVisible(true);
+
+        // Activer joueur suivant et retourner ses cartes
+        if (joueurSuivant == 0) {
+            retournerCartesMain(jMainJoueur1.getMainJoueur());
+            jMainJoueur1.setEnabled(true);
+            jMainJoueur1.repaint();
+        } else {
+            retournerCartesMain(jMainJoueur2.getMainJoueur());
+            jMainJoueur2.setEnabled(true);
+            jMainJoueur2.repaint();
+        }
+
+        jButtonFinDeTour.setEnabled(false);
+        jPioche1.setEnabled(true);
+        boundaryJeu.incrementerTour();
+        boundaryJeu.setNuit(null);
+    }//GEN-LAST:event_jButtonFinDeTourActionPerformed
 
     public String getCurrentPirate(){
         int tour = boundaryJeu.getTour();
