@@ -2,6 +2,7 @@ package noyau;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -18,8 +19,8 @@ public class Jeu {
     private final ArrayList<EffetEtatJeu> effetsJeu = new ArrayList<>();
 
     public Jeu(){
-        joueur1 = new Pirate("J1");
-        joueur2 = new Pirate("J2");
+        joueur1 = new Pirate("Jake Gibbs");
+        joueur2 = new Pirate("Tobias Blackbeard");
         jeuDeCarte = new JeuDeCarte();
         pioche = new Pioche(jeuDeCarte.remplirPioche());
         tour = 0;
@@ -143,13 +144,7 @@ public class Jeu {
     }
 
     public void setNuit(Boolean isNuit) {
-        if (isNuit != null)
-        {
-            nuit = isNuit;
-        }
-        else {
-            nuit = tour%4==2 || tour %4 == 3;
-        }
+        nuit = Objects.requireNonNullElseGet(isNuit, () -> tour % 4 == 2 || tour % 4 == 3);
     }
     
 

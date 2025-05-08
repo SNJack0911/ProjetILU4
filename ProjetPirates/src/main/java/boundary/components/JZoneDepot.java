@@ -38,8 +38,7 @@ public class JZoneDepot extends javax.swing.JPanel {
     }
     
     public boolean ajouterCarte (JCarte carte, String pirate){
-        if (!nomPirate.equals(pirate) || carte.getCategorie() != type){ 
-            System.out.println("NomPirate : " + nomPirate +" \t pirate : " + pirate);
+        if (!nomPirate.equals(pirate) || carte.getCategorie() != type){
             return false;
         }
         this.carte = carte.getImage();
@@ -63,28 +62,32 @@ public class JZoneDepot extends javax.swing.JPanel {
 
 
             if (type!= null){
-            
-                //TODO ADD titre
+
+                //TEXT PARAMETERS
                 g2d.setColor(Color.WHITE);
-                String title = type.toString() + " - " + nomPirate; // "\n" doesn't create line break in drawString
+                //String title = type.toString() + " - " + nomPirate; // "\n" doesn't create line break in drawString
                 String typeString = this.type.toString();
                 int fontSize = 14;
                 
                 Font titleFont = new Font("Segoe UI", Font.PLAIN, fontSize);
                 g2d.setFont(titleFont);
                 FontMetrics fm = g2d.getFontMetrics();
-                //int textWidth = fm.stringWidth(title);
+
+                //TYPE
                 int typeWidth = fm.stringWidth(typeString);
-                int nameWidth = fm.stringWidth(nomPirate);
-                //int x = (getWidth() - textWidth) / 2;
                 int x1 = (getWidth() - typeWidth)/2;
-                int x2 = (getWidth() - nameWidth)/2;
-                
-                //int y = (getHeight() / 4); // arbitrary Y position for title
                 int y1 = (getHeight() - fontSize*2 - 6)/2;
-                int y2 = y1 + fontSize + 6;
                 g2d.drawString(typeString, x1, y1);
-                g2d.drawString(nomPirate, x2, y2);
+
+
+                //NOM PIRATE
+                int y2 = y1 + 4;
+                for(String s : nomPirate.split(" ")){
+                    int nameWidth = fm.stringWidth(s);
+                    int x2 = (getWidth() - nameWidth)/2;
+                    y2+= fontSize + 6;
+                    g2d.drawString(s, x2, y2);
+                }
             }
         }    
         
