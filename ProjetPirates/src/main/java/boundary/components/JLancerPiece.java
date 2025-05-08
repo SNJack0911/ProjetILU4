@@ -10,7 +10,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 
 
 /**
@@ -23,7 +25,9 @@ public class JLancerPiece extends javax.swing.JPanel {
     private ImageIcon lancer;
     private String etat = "0";
     private Image currentImage = null;
-    
+    private boolean animationInProgress = false;
+    private Queue<String> animationQueue = new LinkedList<>();
+
     /**
      * Creates new form lancerPiece
      */
@@ -35,14 +39,27 @@ public class JLancerPiece extends javax.swing.JPanel {
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        
+
         if (currentImage != null){
             g.drawImage(currentImage, 0, 0, this);
         }    
     }
-    
+
     public void setEtat(String nEtat){
         if (!nEtat.equals("P") && !nEtat.equals("F")) return;
+
+        // If animation is already in progress, queue this request
+        if (animationInProgress) {
+            animationQueue.add(nEtat);
+            return;
+        }
+
+        // Start the animation
+        startAnimation(nEtat);
+    }
+
+    private void startAnimation(String nEtat) {
+        animationInProgress = true;
         this.etat = nEtat;
 
         // Start the animation sequence
@@ -58,6 +75,13 @@ public class JLancerPiece extends javax.swing.JPanel {
                 etat = "0";
                 currentImage = null;
                 repaint();
+
+                // Animation is complete, check if there are more in the queue
+                animationInProgress = false;
+                if (!animationQueue.isEmpty()) {
+                    String nextAnimation = animationQueue.poll();
+                    startAnimation(nextAnimation);
+                }
             });
             t2.setRepeats(false);
             t2.start();
@@ -65,13 +89,13 @@ public class JLancerPiece extends javax.swing.JPanel {
         t1.setRepeats(false);
         t1.start();
     }
-    
+
     private void initImage(){
         lancer = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Lancer.gif")));
-        iconPile = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Noir.gif")));
-        iconFace = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Jaune.gif")));
+        iconFace = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Noir.gif")));
+        iconPile = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Animation-Jaune.gif")));
     }
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

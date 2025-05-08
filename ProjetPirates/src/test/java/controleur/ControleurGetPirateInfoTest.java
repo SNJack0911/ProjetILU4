@@ -25,8 +25,8 @@ class ControleurGetPirateInfoTest {
 
     @Test
     void testGetNomPirate_ValidInputs() {
-        assertEquals("J1", controleur.getNomPirate(0));
-        assertEquals("J2", controleur.getNomPirate(1));
+        assertEquals("Jake Gibbs", controleur.getNomPirate(0));
+        assertEquals("Tobias Blackbeard", controleur.getNomPirate(1));
     }
 
     @Test

@@ -36,8 +36,8 @@ public class JeuDeCarte {
             new Configuration(new CarteAttaqueLambda("Coup bas", 7, "L'adversaire perds 1PV", null, (p, j) -> p.getHP()-1), 12),
             new Configuration(new CartePopulariteLambda("Le malade imaginaire", 9, "Le joueur Gagne 2PP mais perd 1PV", BasicCategorie.POPULARITE,
                     (pirate, jeu) -> pirate.getPP()+2, (pirate, jeu) -> pirate.getHP()-1), 9),
-            new Configuration(new CartePiecePopularite("La chance du joueur", 10, "Le joueur lance un pièce, tant que face, il gagne +1 PP", BasicCategorie.POPULARITE,
-                    ((pirate, jeu) -> pirate.getPP()+1), null), 3),
+            new Configuration(new CartePiecePopularite("La chance du joueur", 10, "Le joueur lance un pièce, tant que pile, il gagne +1 PP", BasicCategorie.POPULARITE,
+                    ((pirate, jeu) -> pirate.getPP()+1), null), 40), //Quantité = 3
             new Configuration(new CartePiecePopularite("Invité au banquet", 12, "Le joueur Gagne 2 PP", BasicCategorie.POPULARITE,
                     ((pirate, jeu) -> pirate.getPP()+2), null), 6),
             new Configuration(new CartePopulariteLambda("Tournée de rhum", 23, "Le joueur Gagne 1PP", BasicCategorie.POPULARITE,

@@ -37,16 +37,13 @@ public class Plateau extends javax.swing.JPanel {
     
     private String nomPirate1;
     private String nomPirate2; 
-            
-    JFrame parentFrame;
 
     /**
      * Creates new form Plateau
-     * @param frame
+     * 
      */
-    public Plateau(JFrame frame) {
+    public Plateau() { //PAS DE PARMAETRE DANS LES COMPOSANT JAVASWING
         initComponents();
-        this.parentFrame = frame;
         plateauBackground.setImage("PlateauJour.png");
         //TODO Set Boundary
     }
@@ -70,10 +67,8 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur1 = new boundary.components.JInfoJoueur();
         jMainJoueur1 = new boundary.components.JMainJoueur();
         jPirateIcon1 = new boundary.components.JPirateIcon();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jButtonFinDeTour = new boundary.components.JButtonCustom();
         jLancerPiece1 = new boundary.components.JLancerPiece();
+        jButtonFinDeTour = new boundary.components.JButtonCustom();
 
         setMinimumSize(new java.awt.Dimension(720, 480));
 
@@ -104,10 +99,11 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.18;
         gridBagConstraints.weighty = 0.19;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 70, 0);
         plateauBackground.add(jPioche1, gridBagConstraints);
 
         jZoneInteraction1.setMinimumSize(new java.awt.Dimension(420, 160));
@@ -216,29 +212,6 @@ public class Plateau extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         plateauBackground.add(jPirateIcon1, gridBagConstraints);
 
-        jPanel2.setMinimumSize(new java.awt.Dimension(130, 160));
-        jPanel2.setOpaque(false);
-        jPanel2.setLayout(new java.awt.CardLayout());
-
-        jPanel3.setBackground(new java.awt.Color(204, 204, 0));
-        jPanel3.setMinimumSize(new java.awt.Dimension(130, 160));
-        jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(130, 160));
-        jPanel3.setLayout(new java.awt.CardLayout(20, 60));
-
-        jButtonFinDeTour.setBackground(new java.awt.Color(137, 70, 33));
-        jButtonFinDeTour.setForeground(new java.awt.Color(171, 75, 13));
-        jButtonFinDeTour.setText("Fin de Tour");
-        jButtonFinDeTour.setEnabled(false);
-        jButtonFinDeTour.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonFinDeTourMouseClicked(evt);
-            }
-        });
-        jPanel3.add(jButtonFinDeTour, "card4");
-
-        jPanel2.add(jPanel3, "card3");
-
         jLancerPiece1.setBackground(new java.awt.Color(255, 153, 153));
         jLancerPiece1.setMinimumSize(new java.awt.Dimension(130, 160));
         jLancerPiece1.setPreferredSize(new java.awt.Dimension(130, 160));
@@ -251,20 +224,25 @@ public class Plateau extends javax.swing.JPanel {
         );
         jLancerPiece1Layout.setVerticalGroup(
             jLancerPiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        jPanel2.add(jLancerPiece1, "card3");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 0.18;
-        gridBagConstraints.weighty = 0.33;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 2, 0);
-        plateauBackground.add(jPanel2, gridBagConstraints);
+        plateauBackground.add(jLancerPiece1, gridBagConstraints);
+
+        jButtonFinDeTour.setBackground(new java.awt.Color(137, 70, 33));
+        jButtonFinDeTour.setForeground(new java.awt.Color(171, 75, 13));
+        jButtonFinDeTour.setText("Fin de Tour");
+        jButtonFinDeTour.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.insets = new java.awt.Insets(127, 20, 30, 20);
+        plateauBackground.add(jButtonFinDeTour, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -301,79 +279,6 @@ public class Plateau extends javax.swing.JPanel {
         mainJoueur.setEnabled(true);
         jPioche1.setEnabled(false);
     }//GEN-LAST:event_jPioche1MouseClicked
-
-    private void jButtonFinDeTourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFinDeTourMouseClicked
-    int tour = boundaryJeu.getTour();
-    int joueurActuel = tour % 2;
-    int joueurSuivant = (tour + 1) % 2;
-
-    // Désactiver joueur actuel et retourner ses cartes
-    if (joueurActuel == 0) {
-        jMainJoueur1.setEnabled(false);
-        retournerCartesMain(jMainJoueur1.getMainJoueur());
-        jMainJoueur1.repaint();
-
-    } else {
-        jMainJoueur2.setEnabled(false);
-        retournerCartesMain(jMainJoueur2.getMainJoueur());
-        jMainJoueur2.repaint();
-    }
-
-    // mettre un wait ????? pour que l'option laisse du temps au carte d'être retourné ?
-    
-    // Afficher popup 
-     JPanel panel = new JPanel();
-    panel.setBackground(new Color(139, 69, 19)); // marron foncé
-    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-    JLabel message = new JLabel("<html><div style='text-align: center; color: white;'><h2>Tour terminé</h2><p>Cliquez pour continuer</p></div></html>");
-    message.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-    JButton bouton = new JButton("Commencer le tour suivant");
-    bouton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    bouton.setBackground(new Color(210, 180, 140)); // marron clair
-    bouton.setForeground(Color.BLACK);
-    bouton.setFocusPainted(false);
-    bouton.setFont(new Font("SansSerif", Font.BOLD, 14));
-
-    panel.add(message);
-    panel.add(Box.createRigidArea(new Dimension(0, 20)));
-    panel.add(bouton);
-
-    // Création de la boîte de dialogue personnalisée
-    JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Changement de tour", true);
-    dialog.setUndecorated(false); // garde la bordure standard
-    dialog.getContentPane().add(panel);
-    dialog.pack();
-    dialog.setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
-
-    // Action bouton : fermer la boîte
-    bouton.addActionListener(e -> dialog.dispose());
-
-    // Affiche la boîte (modal)
-    dialog.setVisible(true);
-
-    // Activer joueur suivant et retourner ses cartes
-    if (joueurSuivant == 0) {
-        retournerCartesMain(jMainJoueur1.getMainJoueur());
-        jMainJoueur1.setEnabled(true);
-        jMainJoueur1.repaint();
-
-    } else {
-        retournerCartesMain(jMainJoueur2.getMainJoueur());
-        jMainJoueur2.setEnabled(true);
-        jMainJoueur2.repaint();
-
-    }
-
-    
-    jButtonFinDeTour.setEnabled(false);
-    jPioche1.setEnabled(true);
-    boundaryJeu.incrementerTour();
-    boundaryJeu.setNuit(null);
-    
-    }//GEN-LAST:event_jButtonFinDeTourMouseClicked
 
     public String getCurrentPirate(){
         int tour = boundaryJeu.getTour();
@@ -413,18 +318,27 @@ public class Plateau extends javax.swing.JPanel {
         jMainJoueur1.setEnabled(false);
         jButtonFinDeTour.setEnabled(false);
     }
-    
-    private void evenementJeu(List<String> evenements){
-        for(String e : evenements){
-            if(e.equals("0")){
-                jLancerPiece1.setEtat("P");
-            }else if (e.equals("1")){
-                jLancerPiece1.setEtat("F");
+
+    private void evenementJeu(List<String> evenements) {
+        System.out.println("Evenements : " + evenements);
+        Thread animationThread = new Thread(() -> {
+            for (String e : evenements) {
+                if (e.equals("0")) {
+                    jLancerPiece1.setEtat("P");
+                } else if (e.equals("1")) {
+                    jLancerPiece1.setEtat("F");
+                }
+                try {
+                    Thread.sleep(1000); // Wait 1 second between animations
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
             }
-        }
+        });
+        animationThread.start();
     }
-    
-    public BoundaryJeu getBoundaryJeu(){
+
+    public BoundaryJeu getBoundaryJeu() {
         return boundaryJeu;
     }
     
@@ -435,7 +349,7 @@ public class Plateau extends javax.swing.JPanel {
 
     //never used?
     private void victory (){
-        PopUpVictory victoire = new PopUpVictory(parentFrame);
+        PopUpVictory victoire = new PopUpVictory((JFrame) this.getTopLevelAncestor());
         victoire.setVisible(true);
     }
   
@@ -482,8 +396,6 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JLancerPiece jLancerPiece1;
     private boundary.components.JMainJoueur jMainJoueur1;
     private boundary.components.JMainJoueur jMainJoueur2;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private boundary.components.JPioche jPioche1;
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;

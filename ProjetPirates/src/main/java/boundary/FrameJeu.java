@@ -76,7 +76,7 @@ public class FrameJeu extends javax.swing.JFrame {
         volumeValueLabel = new javax.swing.JLabel();
         menuBoutonOp = new boundary.components.JButtonCustom();
         plateauPanel = new javax.swing.JPanel();
-        plateau1 = new boundary.Plateau(this);
+        plateau1 = new boundary.Plateau();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Argonautes : New Horizons");
@@ -375,17 +375,8 @@ public class FrameJeu extends javax.swing.JFrame {
                 plateauPanelKeyPressed(evt);
             }
         });
-
-        javax.swing.GroupLayout plateauPanelLayout = new javax.swing.GroupLayout(plateauPanel);
-        plateauPanel.setLayout(plateauPanelLayout);
-        plateauPanelLayout.setHorizontalGroup(
-            plateauPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateau1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        plateauPanelLayout.setVerticalGroup(
-            plateauPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plateau1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        plateauPanel.setLayout(new java.awt.BorderLayout());
+        plateauPanel.add(plateau1, java.awt.BorderLayout.CENTER);
 
         jPanelParent.add(plateauPanel, "card4");
 
@@ -608,6 +599,7 @@ public class FrameJeu extends javax.swing.JFrame {
     public Plateau getPlateau(){
         return plateau1;
     }
+    
     /**
      * @param args the command line arguments
      */
