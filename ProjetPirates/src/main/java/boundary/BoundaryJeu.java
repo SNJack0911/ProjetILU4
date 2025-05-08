@@ -7,6 +7,7 @@ import boundary.components.JCarte;
 import controleur.ControleurGetCarteInfo;
 import controleur.ControleurGetPirateInfo;
 import noyau.BasicCategorie;
+import noyau.ExtendCategorie;
 import noyau.ICategorieCarte;
 
 import java.util.ArrayList;
@@ -71,9 +72,20 @@ public class BoundaryJeu {
     }
 
     public void printCarteInfo(String nomCarte){
-        System.out.println("Carte : " + nomCarte);
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_BOLD = "\u001B[1m";
+        ICategorieCarte categorieCarte = getTypeCarte(nomCarte);
+        String ANSI_COLOR = switch (categorieCarte) {
+            case BasicCategorie.POPULARITE -> "\u001B[32m";
+            case BasicCategorie.ATTAQUE -> "\u001B[31m";
+            case ExtendCategorie.DEFENSE -> "\u001B[35m";
+            case ExtendCategorie.EFFET -> "\u001B[33m";
+            default -> "\u001B[34m";
+        };
+
+        System.out.println(ANSI_BOLD + ANSI_COLOR + "Carte : " + nomCarte + ANSI_RESET);
         System.out.println("Description : " + getDescription(nomCarte));
-        System.out.println("Type : " + getTypeCarte(nomCarte));
+        System.out.println("Type : " + ANSI_COLOR + categorieCarte + ANSI_RESET);
         System.out.println("Zone de depot : " + getZoneDepot(nomCarte));
     }
     
@@ -111,16 +123,19 @@ public class BoundaryJeu {
         return main;
     }
     
-     public void printPirateInfo(int pirateID, boolean isAdversaire){
-        System.out.println("Pirate : " + getPirateName(pirateID));
-        System.out.println("HP : " + getPirateHp(pirateID));
-        System.out.println("PP : " + getPiratePp(pirateID));
-        if (!isAdversaire) {
-            System.out.println("Main : ");
-            ArrayList<String> main = getPirateMain(pirateID);
-            for (int i = 0; i < main.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + main.get(i));
-            }
+     public void printPirateInfo(int pirateID){
+         System.out.println("*********************************");
+         System.out.println("***  " + getPirateName(pirateID) + " :\t  ***");
+         System.out.println("*********************************");
+        System.out.println("HP : " + getPirateHp(pirateID) + "\t" +
+                            "PP : " + getPiratePp(pirateID));
+    }
+
+    private void printMainPirate(int pirateID){
+        System.out.println("Main : ");
+        ArrayList<String> main = getPirateMain(pirateID);
+        for (int i = 0; i < main.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + main.get(i));
         }
     }
     
@@ -153,21 +168,11 @@ public class BoundaryJeu {
         List<String> res;
         do{
             int tour = getTour();
-            System.out.println("**********************");
-            System.out.println("***  Adversaire :  ***");
-            System.out.println("**********************");
-            printPirateInfo((tour+1)%2, true);
-            System.out.println("---------------------------------------");
-            ArrayList<String> cartesPiocher = piocherCarte();
-            System.out.println("Carte(s) piochée(s) en début de tour : \n");
-            for(String carte : cartesPiocher){
-                printCarteInfo(carte);
-            }
-            System.out.println("---------------------------------------");
-            System.out.println("**********************");
-            System.out.println("***  Joueur :      ***");
-            System.out.println("**********************");
-            printPirateInfo(tour%2, false);
+            printPirateInfo((tour+1)%2);
+            System.out.println("\n----------------------\n");
+            printPirateInfo(tour%2);
+            printCartePiocher();
+            printMainPirate(tour%2);
             ArrayList<String> main = getPirateMain(tour%2);
             int carte = -1;
             String nomCarte = "";
@@ -183,8 +188,19 @@ public class BoundaryJeu {
                 choix = scanner.next();
             } while (!choix.equals("O"));
             res = boundaryJouerCarte.jouerCarte(main.get(carte));
+            boundaryNouvellePartie.incrementerTour();
         }while((res.getLast()).equals("Pas de gagnant"));
 
+    }
+
+    private void printCartePiocher(){
+        System.out.println("---------------------------------------");
+        ArrayList<String> cartesPiocher = piocherCarte();
+        System.out.println("Carte(s) piochée(s) en début de tour : \n");
+        for(String carte : cartesPiocher){
+            printCarteInfo(carte);
+        }
+        System.out.println("---------------------------------------");
     }
 
 

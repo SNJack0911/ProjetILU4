@@ -39,16 +39,11 @@ public class JZoneInteraction extends javax.swing.JPanel {
         jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.POPULARITE);*/
     }
 
+    //TODO delete this method
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
-        /*g2.setColor(carteDedans ? Color.BLUE : Color.PINK);
-        g2.fillRect(0, 0, getWidth(), getHeight());
-        */
-        //g2.setColor(Color.BLACK);
-        //g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
     }
 
     // Méthode pour vérifier si une carte a été déposée dans la zone
@@ -193,15 +188,9 @@ public class JZoneInteraction extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void initZoneDepot(String nomPirate1, String nomPirate2) {
-        System.out.println("P1 : " + nomPirate1 + " P2 : " + nomPirate2);
         jZoneDepot1.createZoneDepot(nomPirate1, BasicCategorie.POPULARITE);
         jZoneDepot2.createZoneDepot(nomPirate1, BasicCategorie.ATTAQUE);
         jZoneDepot3.createZoneDepot(nomPirate2, BasicCategorie.ATTAQUE);
         jZoneDepot4.createZoneDepot(nomPirate2, BasicCategorie.POPULARITE);
-        
-        /*System.out.println(" Zone  1 : " + jZoneDepot1.toString() + "\n");
-        System.out.println(" Zone  2 : " + jZoneDepot2.toString() + "\n");
-        System.out.println(" Zone  3 : " + jZoneDepot3.toString() + "\n");
-        System.out.println(" Zone  4 : " + jZoneDepot4.toString() + "\n");*/
     }
 }

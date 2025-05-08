@@ -191,7 +191,6 @@ public class JCarte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        //System.out.println("MousePressed");
         if (mainOrigine != null) {
             indexOrigineMain = mainOrigine.getMainJoueur().indexOf(this);
         }
@@ -276,11 +275,9 @@ private void handleMainDrop(MouseEvent evt) {
 }
     
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        //System.out.println("MouseClicked");
         if (!isFront) return;
         
         if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2 && isFront && frontCard != null) {
-            //System.out.println("DoubleClick + is front : " + isFront);
                     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 
                     if (popUp != null) {
