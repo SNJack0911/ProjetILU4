@@ -16,7 +16,7 @@ public class CarteSourdOreille extends CarteEffet {
 
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        jeu.ajouterEffetJeu(new EffetEtatJeu(1, 0, 0, 0, 0,
+        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire,1, 0, 0, 0, 0,
                 TypeChangement.DIMINUTION));
     }
 }

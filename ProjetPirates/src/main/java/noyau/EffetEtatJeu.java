@@ -16,7 +16,7 @@ public class EffetEtatJeu {
     private final int[] gameState = new int[4];
 
 
-    public EffetEtatJeu(int duree, double multiplieurHPPirate1, double multiplieurHPPirate2,
+    public EffetEtatJeu(Pirate pirate1, Pirate pirate2, int duree, double multiplieurHPPirate1, double multiplieurHPPirate2,
                         double multiplieurPPPirate1, double multiplieurPPPirate2, TypeChangement typeChangement){
         tourRestant = duree;
         this.multiplieurHPPirate1 = multiplieurHPPirate1;
@@ -24,6 +24,8 @@ public class EffetEtatJeu {
         this.multiplieurPPPirate1 = multiplieurPPPirate1;
         this.multiplieurPPPirate2 = multiplieurPPPirate2;
         this.typeChangement = typeChangement;
+
+        debutTour(pirate1, pirate2);
 
     }
 

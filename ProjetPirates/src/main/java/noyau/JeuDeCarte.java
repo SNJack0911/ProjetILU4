@@ -46,7 +46,7 @@ public class JeuDeCarte {
             new Configuration(new CarteEffetAmplificateur(), 4),
             new Configuration(new CarteSourdOreille(), 7),
             new Configuration(new CarteAntidouleur(), 5),
-            new Configuration(new CartePiedMarin(), 50)
+            new Configuration(new CartePiedMarin(), 5)
     };
 
     private final Configuration[] testCards = {new Configuration(new CartePopularite("Plus1Pop", -1, "Le joueur Gagne 1PP", 1, 0, false), 10),

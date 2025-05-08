@@ -16,7 +16,7 @@ public class CarteEffetAmplificateur extends CarteEffet {
 
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        jeu.ajouterEffetJeu(new EffetEtatJeu(3, 2, 2, 2, 2,
+        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire, 3, 2, 2, 2, 2,
                 TypeChangement.AUGMENTATION));
     }
 }

@@ -15,7 +15,7 @@ public class CartePiedMarin extends CarteEffet {
 
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        jeu.ajouterEffetJeu(new EffetEtatJeu(2, 0.5, 0.5, 1, 1,
+        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire, 2, 0.5, 0.5, 1, 1,
                 TypeChangement.TOUS));
     }
 }

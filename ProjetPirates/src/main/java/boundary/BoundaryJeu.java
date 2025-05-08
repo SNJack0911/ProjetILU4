@@ -125,7 +125,9 @@ public class BoundaryJeu {
     
      public void printPirateInfo(int pirateID){
          System.out.println("*********************************");
-         System.out.println("***  " + getPirateName(pirateID) + " :\t  ***");
+         String name = getPirateName(pirateID);
+         name =  pirateID == 0 ? name + " : \t\t" : name + " : ";
+         System.out.println("***  " + name + "\t  ***");
          System.out.println("*********************************");
         System.out.println("HP : " + getPirateHp(pirateID) + "\t" +
                             "PP : " + getPiratePp(pirateID));
