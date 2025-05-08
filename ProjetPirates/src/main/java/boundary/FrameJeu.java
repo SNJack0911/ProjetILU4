@@ -237,6 +237,11 @@ public class FrameJeu extends javax.swing.JFrame {
                 optionPanelComponentShown(evt);
             }
         });
+        optionPanel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                optionPanelKeyReleased(evt);
+            }
+        });
 
         optionPanelBackground.setImage("pirates_background(4).png");
         java.awt.GridBagLayout optionPanelBackgroundLayout1 = new java.awt.GridBagLayout();
@@ -482,7 +487,7 @@ public class FrameJeu extends javax.swing.JFrame {
         // Uniquement des fichiers audio .wav !
         // Ajoutez le fichier nommé SongX.wav avec X = nb_musics +1
         // Pensez à incrémenter le nombre de musique
-        int nb_musics = 4;
+        int nb_musics = 1;
         ArrayList<String> playlist = new ArrayList<>();
         for (int i = 1; i <= nb_musics; i++) {
             playlist.add("src/main/resources/Song" + i + ".wav");
@@ -493,10 +498,19 @@ public class FrameJeu extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void volumeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_volumeSliderStateChanged
-        int volume = volumeSlider.getValue();
-        volumeValueLabel.setText(volume + "%");
-        setVolume((float) volume/100);
+        int newVolume = volumeSlider.getValue();
+        volumeValueLabel.setText(newVolume + "%");
+        volume = newVolume / 100;
+        setVolume(volume);
     }//GEN-LAST:event_volumeSliderStateChanged
+
+    private void optionPanelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_optionPanelKeyReleased
+        Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && optionPanel.equals(focused)){
+            switchPanel(menuPanel);
+            optionPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_optionPanelKeyReleased
 
     private void switchPanel (JPanel p){
         jPanelParent.removeAll();
@@ -553,7 +567,7 @@ public class FrameJeu extends javax.swing.JFrame {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
             clip = AudioSystem.getClip();
             clip.open(audioStream);
-            setVolume(0.5f);
+            setVolume(volume);
             clip.start();
 
             // Quand le son est fini, passer au suivant
@@ -660,6 +674,7 @@ public class FrameJeu extends javax.swing.JFrame {
     private final String[] resolution ={"720x480", "1280x720", "1920x1080"};
     private int currentRes = 0;
     private Clip clip;
+    private float volume = 0.5f; // Volume entre 0 et 1
     private ArrayList<String> playlist = new ArrayList<>();
     private int currentIndex = 0;
 }
