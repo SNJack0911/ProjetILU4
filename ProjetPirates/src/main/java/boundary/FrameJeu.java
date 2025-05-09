@@ -487,7 +487,7 @@ public class FrameJeu extends javax.swing.JFrame {
         // Uniquement des fichiers audio .wav !
         // Ajoutez le fichier nommé SongX.wav avec X = nb_musics +1
         // Pensez à incrémenter le nombre de musique
-        int nb_musics = 1;
+        int nb_musics = 4;
         ArrayList<String> playlist = new ArrayList<>();
         for (int i = 1; i <= nb_musics; i++) {
             playlist.add("src/main/resources/Song" + i + ".wav");

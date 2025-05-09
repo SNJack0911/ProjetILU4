@@ -189,8 +189,17 @@ public class BoundaryJeu {
             do {
                 do {
                     System.out.println("Choisissez le chiffre d'une carte de votre main : ");
+                    if (!scanner.hasNextInt()) {
+                        System.out.println("Entrée invalide. Veuillez entrer un chiffre.");
+                        scanner.next();
+                        continue;
+                    }
+
                     carte = scanner.nextInt() - 1;
-                } while (carte >= main.size());
+                    if (carte < 0 || carte >= main.size()) {
+                        System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et " + main.size() + ".");
+                    }
+                } while (carte < 0 || carte >= main.size());
                 nomCarte = main.get(carte);
                 printCarteInfo(nomCarte);
                 System.out.println("Appliquer l'effet ? (O/N)");
