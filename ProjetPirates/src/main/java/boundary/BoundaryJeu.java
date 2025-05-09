@@ -160,9 +160,10 @@ public class BoundaryJeu {
         return boundaryPiocherCarte.piocherCarte();
     }
 
-    public void setNuit(Boolean isNuit){
+    /*public void setNuit(Boolean isNuit){
         boundaryNouvellePartie.setNuit(isNuit);
-    }
+    }*/
+
     
 
     public void JouerPartie(){
@@ -170,6 +171,12 @@ public class BoundaryJeu {
         List<String> res;
         do{
             int tour = getTour();
+            if (boundaryNouvellePartie.isNuit()){
+                printMoon();
+            }else{
+                printSun();
+            }
+            System.out.println("---------------------------------------");
             printPirateInfo((tour+1)%2);
             System.out.println("\n----------------------\n");
             printPirateInfo(tour%2);
@@ -205,5 +212,23 @@ public class BoundaryJeu {
         System.out.println("---------------------------------------");
     }
 
+    private void printMoon(){
+        System.out.println("                                        .. '      * \n" +
+                            "  .   '.              .-.  +               *       \n" +
+                            "               +     ( (       '                   \n" +
+                            "  .      .:'          `-'         .          '     \n" +
+                            "      *         ' *          *  *    .+     .'     \n" +
+                            "     .   .              *      +                 *   ");
+    }
+
+    private void printSun (){
+        System.out.println("                                                     \n" +
+                "                                 .-.  .--                    \n" +
+                "          _⠀⢀     ⠀⠀⠀           (   +(    )                   \n" +
+                "⠀       _(⠀) ⠀),⠀                 `-(        )                  \n" +
+                "       (_⡀⠀⠀⠀⠀⢀))                  (______(__))                 \n" +
+                "⠀        (__)___)                                                        ");
+
+    }
 
 }

@@ -25,7 +25,10 @@ public class ControleurNouvellePartie {
         jeu.incrementerTour();
     }
     
-    public void setNuit(Boolean isNuit){
+    /*public void setNuit(Boolean isNuit){
         jeu.setNuit(isNuit);
-    }
+    }*/
+
+    public boolean isNuit(){return jeu.isNuit();}
+
 }

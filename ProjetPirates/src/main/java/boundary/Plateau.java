@@ -352,7 +352,7 @@ public class Plateau extends javax.swing.JPanel {
         jButtonFinDeTour.setEnabled(false);
         jPioche1.setEnabled(true);
         boundaryJeu.incrementerTour();
-        boundaryJeu.setNuit(null);
+        //boundaryJeu.setNuit(null);
     }//GEN-LAST:event_jButtonFinDeTourActionPerformed
 
     public String getCurrentPirate(){

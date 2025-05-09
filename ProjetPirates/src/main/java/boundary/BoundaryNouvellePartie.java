@@ -26,7 +26,10 @@ public class BoundaryNouvellePartie {
         controleurNouvellePartie.incrementerTour();
     }
     
-    public void setNuit(Boolean isNuit){
+    /*public void setNuit(Boolean isNuit){
         controleurNouvellePartie.setNuit(isNuit);
-    }
+    }*/
+
+    public boolean isNuit(){return controleurNouvellePartie.isNuit();}
+
 }

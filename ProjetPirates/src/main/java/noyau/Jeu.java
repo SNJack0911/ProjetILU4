@@ -77,8 +77,8 @@ public class Jeu {
     }
 
     public void incrementerTour() {
-
         tour++;
+        updateNuit();
     }
     
     //Update String return
@@ -145,6 +145,10 @@ public class Jeu {
 
     public void setNuit(Boolean isNuit) {
         nuit = Objects.requireNonNullElseGet(isNuit, () -> tour % 4 == 2 || tour % 4 == 3);
+    }
+
+    public void updateNuit(){
+        nuit = tour % 8 >= 4;
     }
     
 
