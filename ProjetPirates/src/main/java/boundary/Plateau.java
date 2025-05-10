@@ -351,11 +351,11 @@ public class Plateau extends javax.swing.JPanel {
         // Activer joueur suivant et retourner ses cartes
         if (joueurSuivant == 0) {
             retournerCartesMain(jMainJoueur1.getMainJoueur());
-            jMainJoueur1.setEnabled(true);
+            jMainJoueur1.setEnabled(false);
             jMainJoueur1.repaint();
         } else {
             retournerCartesMain(jMainJoueur2.getMainJoueur());
-            jMainJoueur2.setEnabled(true);
+            jMainJoueur2.setEnabled(false);
             jMainJoueur2.repaint();
         }
 
