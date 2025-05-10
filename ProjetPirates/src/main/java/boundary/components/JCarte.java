@@ -199,8 +199,7 @@ public class JCarte extends javax.swing.JPanel {
 
         this.origine = evt.getPoint();
         Plateau plateauPanel = (Plateau) mainOrigine.getParent().getParent();
-        plateauPanel.setComponentZOrder(this, 0);
-        repaint();   
+        plateauPanel.setComponentZOrder(this, 0); 
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
@@ -268,39 +267,26 @@ public class JCarte extends javax.swing.JPanel {
             main.add(fallbackIndex, this);
         }
 
-        mainOrigine.removeAll();
-        for (int i = 0; i < main.size(); i++) {
-            JCarte jc = main.get(i);
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.insets = new Insets(10, 10, 10, 10);
-            gbc.gridy = 0;
-            gbc.gridx = i;
-            mainOrigine.add(jc, gbc);
-        }
-        mainOrigine.revalidate();
-        mainOrigine.repaint();
+        mainOrigine.setGridCartes();
     }
     
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         if (!isFront) return;
         
         if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2 && isFront && frontCard != null) {
-                    JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 
-                    if (popUp != null) {
-                        popUp.dispose(); // si une précédente pop-up traîne
-                    }
+            if (popUp != null) {
+                popUp.dispose(); // si une précédente pop-up traîne
+            }
 
-                    // Crée une image agrandie pour le zoom
-                    int width = frontCard.getWidth(this);
-                    int height = frontCard.getHeight(this);
-                    if (width <= 0 || height <= 0) {
-                        width = 100;
-                        height = 150;
-                    }
-                    Image scaledImage = frontCard.getScaledInstance(width * 3, height * 3, Image.SCALE_SMOOTH);
+            // Crée une image agrandie pour le zoom
+            int height = parentFrame.getHeight() - 80;
+            int width = (int) (height * 0.72);
 
-                    popUp = new JCartePopUp(parentFrame, scaledImage);
+            Image scaledImage = frontCard.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+            popUp = new JCartePopUp(parentFrame, scaledImage);
         }
     }//GEN-LAST:event_formMouseClicked
 
@@ -313,8 +299,9 @@ public class JCarte extends javax.swing.JPanel {
             if (parent instanceof Plateau plateau) {
                 Point global = SwingUtilities.convertPoint(this, getCentreCarte(), plateau);
                 effets.ajouterFumee(global.x, global.y); //plateau.getGestionnaireEffetsFumee().ajouterFumee(global.x, global.y);
-                }
+            }
             lancerFumee();
+            
             // Move card
             int xMoved = evt.getX() - origine.x;
             int yMoved = evt.getY() - origine.y;

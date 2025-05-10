@@ -57,22 +57,23 @@ public class JMainJoueur extends javax.swing.JPanel {
         newCarte.changeCardFace();
         return newCarte;
     }
-    private void redimensionnerCarte(JCarte carte) {
-        // Taille de base (720 x 480)
-        int baseWidth = 84;
-        int baseHeight = 117;
-        
-        // Largeur de la main
+
+    private void redimensionnerCarte(JCarte carte, int totalCartes) {
         int largeurMain = this.getWidth();
-        
+
+        int margeTotaleParCarte = 20;
+        int largeurDisponible = largeurMain - (totalCartes * margeTotaleParCarte);
+        int largeurCarte = largeurDisponible / totalCartes;
+
+        int baseWidth = 84;
+
         double scale = 1.0;
-        // Agrandissement des cartes
         if (largeurMain > 420) {
             scale = 1.5;
         }
-        
-        int width = (int) (baseWidth * scale);
-        int height = (int) (baseHeight * scale);
+
+        int width = Math.min((int) (baseWidth * scale), largeurCarte);
+        int height = (int) (width * 1.4);
 
         carte.setMinimumSize(new java.awt.Dimension(width, height));
         carte.setPreferredSize(new java.awt.Dimension(width, height));
@@ -81,6 +82,7 @@ public class JMainJoueur extends javax.swing.JPanel {
     public void deleteCard(JCarte jcarte){
         if (mainJoueur.contains(jcarte)) {
             mainJoueur.remove(jcarte);
+            setGridCartes();
             
         } else {
             throw new IllegalArgumentException("Carte non trouvée dans la main du joueur\n");
@@ -89,38 +91,31 @@ public class JMainJoueur extends javax.swing.JPanel {
     
     public void ajouterJCarte(JCarte jCarte) {
         mainJoueur.add(jCarte);
-    
-        this.removeAll();
-    
-        for (int i = 0; i < mainJoueur.size(); i++) {
-            JCarte carte = mainJoueur.get(i);
-            redimensionnerCarte(carte);
-
-            if (carte.getParent() != null) {
-                ((Container) carte.getParent()).remove(carte);
-            }
-    
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.insets = new Insets(10, 10, 10, 10);
-            gbc.gridy = 0;
-            gbc.gridx = i;
-            gbc.fill = GridBagConstraints.BOTH;
-            gbc.weightx = 0.72;
-            gbc.weighty = 1;
-
-            if (carte.getParent() != null) {
-                ((Container) carte.getParent()).remove(carte);
-            }            
-    
-            carte.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // debug
-            carte.setVisible(true);
-            this.add(carte, gbc);
-        }
+        setGridCartes();
 
         this.revalidate();
         this.repaint();
     }
-   
+    
+    public void setGridCartes() {
+        this.removeAll();
+        int totalCartes = mainJoueur.size();
+        
+        for (int i = 0; i < totalCartes; i++) {
+            JCarte jcarte = mainJoueur.get(i);
+            redimensionnerCarte(jcarte, totalCartes);
+            
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5, 5, 5, 5);
+            gbc.gridy = 0;
+            gbc.gridx = i;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            this.add(jcarte, gbc);
+        }
+        
+        this.revalidate();
+        this.repaint();
+    }
     
     public List<JCarte> getMainJoueur() {
         return mainJoueur;
