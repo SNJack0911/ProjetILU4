@@ -4,6 +4,8 @@
  */
 package boundary.components;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import static java.awt.GridBagConstraints.BOTH;
@@ -11,12 +13,14 @@ import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+
 import noyau.BasicCategorie;
 import noyau.ICategorieCarte;
 
 /**
  *
- * @author yannf et leo, retouche vincent
+ * @author yannf, leo et vincent
  */
 public class JMainJoueur extends javax.swing.JPanel {
     private List<JCarte> mainJoueur = new ArrayList<>();
@@ -74,35 +78,49 @@ public class JMainJoueur extends javax.swing.JPanel {
         carte.setPreferredSize(new java.awt.Dimension(width, height));
     }
     
-                    // ça sert ????? Aucune ref dans la main du joueur. visiblement pas
-    public void deleteCard(String nomCarte){
-        for(JCarte carte : mainJoueur){
-            if (nomCarte.equals(carte.getNomCarte())){
-                //TODO
-                return;
-            }
+    public void deleteCard(JCarte jcarte){
+        if (mainJoueur.contains(jcarte)) {
+            mainJoueur.remove(jcarte);
+            
+        } else {
+            throw new IllegalArgumentException("Carte non trouvée dans la main du joueur\n");
         }
     }
     
-    public void ajouterJCarte(JCarte jCarte){
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.gridy = 0;
-        gbc.gridx = mainJoueur.size();
-        gbc.fill = BOTH;
-        gbc.weightx = 0.72;
-        gbc.weighty = 1;
-        
+    public void ajouterJCarte(JCarte jCarte) {
         mainJoueur.add(jCarte);
-      
-        for (JCarte carte : mainJoueur) {
+    
+        this.removeAll();
+    
+        for (int i = 0; i < mainJoueur.size(); i++) {
+            JCarte carte = mainJoueur.get(i);
             redimensionnerCarte(carte);
+
+            if (carte.getParent() != null) {
+                ((Container) carte.getParent()).remove(carte);
+            }
+    
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.gridy = 0;
+            gbc.gridx = i;
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.weightx = 0.72;
+            gbc.weighty = 1;
+
+            if (carte.getParent() != null) {
+                ((Container) carte.getParent()).remove(carte);
+            }            
+    
+            carte.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // debug
+            carte.setVisible(true);
+            this.add(carte, gbc);
         }
-        
-        jPanel1.add(jCarte, gbc);
-        jPanel1.revalidate();
-        jPanel1.repaint();
+
+        this.revalidate();
+        this.repaint();
     }
+   
     
     public List<JCarte> getMainJoueur() {
         return mainJoueur;
@@ -129,30 +147,17 @@ public class JMainJoueur extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
-
-        jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
-        setMinimumSize(new java.awt.Dimension(0, 0));
+        setMinimumSize(new java.awt.Dimension(420, 160));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        setPreferredSize(new java.awt.Dimension(420, 160));
         setLayout(new java.awt.GridBagLayout());
-
-        jPanel1.setBackground(new java.awt.Color(102, 255, 0));
-        jPanel1.setOpaque(false);
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

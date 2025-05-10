@@ -24,7 +24,7 @@ import noyau.ICategorieCarte;
 
 /**
  *
- * @author leo et yannf
+ * @author leo et yannf, retouche vincent
  */
 public class JCarte extends javax.swing.JPanel {
     private Image frontCard;
@@ -94,12 +94,13 @@ public class JCarte extends javax.swing.JPanel {
 
     @Override 
     protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
        
         if(isFront && frontCard != null){
             g2d.drawImage(frontCard, 0,0, getWidth(), getHeight(), this);
-            super.paintComponent(g);
         }else if (backCard != null){
             g2d.drawImage(backCard, 0,0, getWidth(), getHeight(), this);
         }
@@ -226,10 +227,13 @@ public class JCarte extends javax.swing.JPanel {
 
     private boolean handleZoneInteraction(Component c, Point pointInPlateau, JPanel plateauPanel, Plateau plateau) {
         if (c instanceof JZoneInteraction zoneInteraction) {
+            Rectangle boundsCarte = SwingUtilities.convertRectangle(this.getParent(), this.getBounds(), plateauPanel);
             Rectangle boundsZone = zoneInteraction.getBounds();
-            if (boundsZone.intersects(getBounds())) {
+
+            if (boundsZone.intersects(boundsCarte)) {
                 String pirate = plateau.getCurrentPirate();
                 boolean res = zoneInteraction.ajouteCarte(this, pointInPlateau, plateauPanel, pirate);
+
                 if (res) {
                     plateau.jouerTour(this);
                     plateau.remove(this);
@@ -239,40 +243,43 @@ public class JCarte extends javax.swing.JPanel {
                 }
             }
         }
+
         return false;
     }
 
-private void handleMainDrop(MouseEvent evt) {
-    Point dropPoint = SwingUtilities.convertPoint(this, evt.getPoint(), mainOrigine);
-    Component comp = mainOrigine.getComponentAt(dropPoint);
 
-    mainOrigine.getMainJoueur().remove(this);
+    private void handleMainDrop(MouseEvent evt) {
+        Point dropPoint = SwingUtilities.convertPoint(this, evt.getPoint(), mainOrigine);
+        Component comp = mainOrigine.getComponentAt(dropPoint);
 
-    if (comp instanceof JCarte other && other != this) {
-        int index = mainOrigine.getMainJoueur().indexOf(other);
-        if (index != -1) {
-            int newIndex = Math.min(index + 1, mainOrigine.getMainJoueur().size());
-            mainOrigine.getMainJoueur().add(newIndex, this);
+        List<JCarte> main = mainOrigine.getMainJoueur();
+        main.remove(this);
+
+        if (comp instanceof JCarte other) {
+            int index = main.indexOf(other);
+            if (index != -1) {
+                int newIndex = Math.min(index + 1, main.size());
+                main.add(newIndex, this);
+            } else {
+                main.add(this);
+            }
         } else {
-            mainOrigine.getMainJoueur().add(this);
+            int fallbackIndex = (indexOrigineMain >= 0 && indexOrigineMain <= main.size()) ? indexOrigineMain : main.size();
+            main.add(fallbackIndex, this);
         }
-    } else {
-        int fallbackIndex = (indexOrigineMain >= 0 && indexOrigineMain <= mainOrigine.getMainJoueur().size()) ? indexOrigineMain : mainOrigine.getMainJoueur().size();
-        mainOrigine.getMainJoueur().add(fallbackIndex, this);
-    }
 
-    mainOrigine.removeAll();
-    for (int i = 0; i < mainOrigine.getMainJoueur().size(); i++) {
-        JCarte jc = mainOrigine.getMainJoueur().get(i);
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.gridy = 0;
-        gbc.gridx = i;
-        mainOrigine.add(jc, gbc);
+        mainOrigine.removeAll();
+        for (int i = 0; i < main.size(); i++) {
+            JCarte jc = main.get(i);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.gridy = 0;
+            gbc.gridx = i;
+            mainOrigine.add(jc, gbc);
+        }
+        mainOrigine.revalidate();
+        mainOrigine.repaint();
     }
-    mainOrigine.revalidate();
-    mainOrigine.repaint();
-}
     
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         if (!isFront) return;

@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import noyau.Carte;
 
 /**
  *
@@ -271,6 +272,11 @@ public class Plateau extends javax.swing.JPanel {
         JMainJoueur mainJoueur = (tour % 2 == 0) ? jMainJoueur1 : jMainJoueur2;
         
         for (String nomCarte : listNomCarte) {
+            if (nomCarte == null) {
+                System.out.println("Carte null détectée !");
+                continue;
+            }
+
             mainJoueur.ajouterCarte(
                 nomCarte,
                 boundaryJeu.getCarteId(nomCarte),
@@ -278,6 +284,7 @@ public class Plateau extends javax.swing.JPanel {
                 boundaryJeu.getDescription(nomCarte),
                 boundaryJeu.getZoneDepot(nomCarte)                  
                 );
+            mainJoueur.revalidate();
             mainJoueur.repaint();
         }
         
@@ -429,6 +436,7 @@ public class Plateau extends javax.swing.JPanel {
     }
   
     public void jouerTour(JCarte carte){
+        int tour = boundaryJeu.getTour();
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
 
@@ -437,7 +445,10 @@ public class Plateau extends javax.swing.JPanel {
         if (!lastElement.equals("Pas de gagnant")){
             //TODO Here POP UP victoire
             System.out.println("Gagnant : " + lastElement);
-        }        
+        }
+        
+        JMainJoueur mainJoueur = (tour % 2 == 0) ? jMainJoueur1 : jMainJoueur2;
+        mainJoueur.deleteCard(carte);     
         
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);

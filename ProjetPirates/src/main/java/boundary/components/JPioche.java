@@ -35,7 +35,7 @@ public class JPioche extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D)g;
         
         // Draw the background image.
-        if(isHover && hoverIcon != null){    
+        if(isHover && hoverIcon != null && this.isEnabled()){    
             g2d.drawImage(hoverIcon, 0, 0, getWidth(), getHeight(), this);
         } else if(defaultIcon != null ){
             g2d.drawImage(defaultIcon, 0, 0, getWidth(), getHeight(), this);
