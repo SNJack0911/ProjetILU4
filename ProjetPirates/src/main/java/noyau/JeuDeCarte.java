@@ -33,7 +33,7 @@ public class JeuDeCarte {
             new Configuration(new CarteNuitAttaque("Fureur de la nuit", 5, "Inflige -1 PV à l'adversaire, Inflige -1 PV de plus si la nuit", null, (p, j) -> p.getHP()-1), 10),
             new Configuration(new CarteAttaqueLambda("Kamikaze", 6, "Inflige 2 PV à l'adversaire. Inflige 1 PV à soi-même",
                     (pirate, jeu) -> pirate.getHP()-1, ((pirate, jeu) -> pirate.getHP()-2)), 9),
-            new Configuration(new CarteAttaqueLambda("Coup bas", 7, "L'adversaire perds 1PV", null, (p, j) -> p.getHP()-1), 12),
+            new Configuration(new CarteAttaqueLambda("Coup bas", 7, "L'adversaire perd 1PV", null, (p, j) -> p.getHP()-1), 12),
             new Configuration(new CartePopulariteLambda("Le malade imaginaire", 9, "Le joueur Gagne 2PP mais perd 1PV", BasicCategorie.POPULARITE,
                     (pirate, jeu) -> pirate.getPP()+2, (pirate, jeu) -> pirate.getHP()-1), 9),
             new Configuration(new CartePiecePopularite("La chance du joueur", 10, "Le joueur lance un pièce, tant que pile, il gagne +1 PP", BasicCategorie.POPULARITE,
