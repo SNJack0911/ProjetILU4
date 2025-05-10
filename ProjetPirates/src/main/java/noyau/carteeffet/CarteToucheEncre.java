@@ -14,7 +14,7 @@ public class CarteToucheEncre extends CarteEffet {
 
 
     public CarteToucheEncre() {
-        super("Touché d'encre", 20, "Une des cartes de l'adversaire est défaussée ", BasicCategorie.ATTAQUE);
+        super("Toucher d'encre", 20, "Une des cartes de l'adversaire est défaussée ", BasicCategorie.ATTAQUE);
     }
 
     @Override

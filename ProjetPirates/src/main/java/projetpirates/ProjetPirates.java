@@ -57,7 +57,7 @@ public class ProjetPirates {
             FrameJeu frameJeu = new FrameJeu(boundaryJeu, false);
             frameJeu.setVisible(true);
         } else {
-            boundaryJeu.JouerPartie();
+            boundaryJeu.nouveauJeu();
         }
 
     }

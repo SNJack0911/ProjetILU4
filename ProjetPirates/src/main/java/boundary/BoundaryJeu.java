@@ -167,10 +167,38 @@ public class BoundaryJeu {
         boundaryNouvellePartie.setNuit(isNuit);
     }*/
 
-    
+    public void nouveauJeu(){
+        System.out.println("""
+                La mer est vaste, mais pas assez pour deux légendes.
+                \tLe capitaine Tobias Blackbeard, impitoyable, commande la Forsaken Fancy d'une main de fer
+                et d’un cœur de feu. Son nom inspire la peur sur toute la Mer de Marona
+                
+                \tLe capitaine Jake Gibbs, rapide et tranchant, vogue à bord du Serpent des Tempêtes, ne\s
+                laissant derrière lui que des murmures et des épaves.""");
+
+        String choix;
+        do {
+            System.out.println("""
+                    Choisissez une des deux options suivantes pour commencer votre aventure :\s
+                    \t (c) Vous êtes prêts à hisser les voiles et à mettre le cap vers le trésor.
+                    \t (q) Vous souhaitez abandonner ce navire avant qu’il ne coule.""");
+            choix = scanner.next();
+        }while (!(choix.equals("c") || choix.equals("q") || choix.equals("C") || choix.equals("Q")));
+        if (choix.equals("q") || choix.equals("Q")) {
+            System.out.println("Au revoir.");
+        }
+        do {
+            initNewGame();
+            JouerPartie();
+            System.out.println("""
+                    Choisissez une des deux options suivantes :\s
+                    \t (_) Vous voulez continuer à naviguer sur les mers.
+                    \t (q) La dernière aventure vous a suffi.""");
+            choix = scanner.next();
+        }while (!(choix.equals("q") || choix.equals("Q")));
+    }
 
     public void JouerPartie(){
-        initNewGame();
         List<String> res;
         do{
             int tour = getTour();
