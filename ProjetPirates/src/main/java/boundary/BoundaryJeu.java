@@ -156,6 +156,9 @@ public class BoundaryJeu {
     public void incrementerTour(){
         boundaryNouvellePartie.incrementerTour();
     }
+
+    public boolean isNuit(){return boundaryNouvellePartie.isNuit();}
+    
     public ArrayList<String> piocherCarte() {
         return boundaryPiocherCarte.piocherCarte();
     }

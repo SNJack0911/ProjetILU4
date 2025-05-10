@@ -38,6 +38,9 @@ public class Plateau extends javax.swing.JPanel {
     
     private String nomPirate1;
     private String nomPirate2; 
+    //Represente le jour et la nuit
+    //intitialiser à false pour le jour
+    private boolean etatPlateau = false; 
 
     /**
      * Creates new form Plateau
@@ -359,9 +362,24 @@ public class Plateau extends javax.swing.JPanel {
         jButtonFinDeTour.setEnabled(false);
         jPioche1.setEnabled(true);
         boundaryJeu.incrementerTour();
+        updatePlateau();
         //boundaryJeu.setNuit(null);
     }//GEN-LAST:event_jButtonFinDeTourActionPerformed
 
+    
+    private void updatePlateau(){
+        boolean newEtat = boundaryJeu.isNuit();
+        if(newEtat != etatPlateau){
+            etatPlateau = newEtat;
+            //Peut être à faire dans un nouveau thread
+            if(newEtat){ plateauBackground.setImage("PlateauNuit.png");}
+            else {plateauBackground.setImage("PlateauJour.png");}
+            plateauBackground.revalidate();
+            plateauBackground.repaint();
+        }
+    }
+    
+    
     public String getCurrentPirate(){
         int tour = boundaryJeu.getTour();
         if(tour%2 == 0){
