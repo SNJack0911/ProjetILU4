@@ -152,6 +152,16 @@ public class JMainJoueur extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
     }// </editor-fold>//GEN-END:initComponents
 
+    public boolean deleteCardName(String cardName) {
+       for(JCarte carte : mainJoueur){
+            if (cardName.equals(carte.getNomCarte())){
+                deleteCard(carte);
+                return true;
+            }
+        }
+       return false;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

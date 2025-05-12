@@ -20,10 +20,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import noyau.Carte;
 
 /**
  *
@@ -419,25 +417,36 @@ public class Plateau extends javax.swing.JPanel {
         jButtonFinDeTour.setEnabled(false);
     }
 
-    private void evenementJeu(List<String> evenements) {
-        System.out.println("Evenements : " + evenements);
+    private void evenementJeu(List<String> evenements, JMainJoueur mainAdversaire) {
+        //System.out.println("Evenements : " + evenements);
         Thread animationThread = new Thread(() -> {
             for (String e : evenements) {
                 if (e.equals("0")) {
                     jLancerPiece1.setEtat("P");
+                    sleep1s();
                 } else if (e.equals("1")) {
                     jLancerPiece1.setEtat("F");
+                    sleep1s();
+                } else if (e.contains("Toucher d'encre")){
+                    String[] res = e.split("[:]");
+                    mainAdversaire.deleteCardName((res[res.length-1]).trim());
+                    mainAdversaire.revalidate();
+                    mainAdversaire.repaint();
                 }
-                try {
-                    Thread.sleep(1000); // Wait 1 second between animations
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
+                
             }
         });
         animationThread.start();
     }
 
+    private void sleep1s(){
+        try {
+            Thread.sleep(1000); // Wait 1 second between animations
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+    
     public BoundaryJeu getBoundaryJeu() {
         return boundaryJeu;
     }
@@ -457,20 +466,31 @@ public class Plateau extends javax.swing.JPanel {
         int tour = boundaryJeu.getTour();
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
-
-        evenementJeu(resultat);
+        
+        JMainJoueur mainJoueur;
+        JMainJoueur mainAdversaire;
+        if(tour%2 ==0){
+            mainJoueur = jMainJoueur1;
+            mainAdversaire = jMainJoueur2;
+        }else {
+            mainJoueur = jMainJoueur2;
+            mainAdversaire = jMainJoueur1;
+        }
+        
+        
+        evenementJeu(resultat, mainAdversaire);
         String lastElement = resultat.getLast();
         if (!lastElement.equals("Pas de gagnant")){
             //TODO Here POP UP victoire
+            victory();
             System.out.println("Gagnant : " + lastElement);
         }
         
-        JMainJoueur mainJoueur = (tour % 2 == 0) ? jMainJoueur1 : jMainJoueur2;
+        
         mainJoueur.deleteCard(carte);     
         
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
-        //jLancerPiece1.setEtat("P");
         jButtonFinDeTour.setEnabled(true);
         jPioche1.setEnabled(false);
     }

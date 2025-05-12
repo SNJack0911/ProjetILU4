@@ -11,7 +11,7 @@ import java.util.Random;
  */
 
 public class CarteToucheEncre extends CarteEffet {
-
+    private Carte cardDeleted;
 
     public CarteToucheEncre() {
         super("Toucher d'encre", 20, "Une des cartes de l'adversaire est défaussée ", BasicCategorie.ATTAQUE);
@@ -25,6 +25,14 @@ public class CarteToucheEncre extends CarteEffet {
 
         Random rand = new Random();
         int randomIndex = rand.nextInt(nbCarte);
-        adversaire.supprimerCarteMain(possible.get(randomIndex));
+        cardDeleted = possible.get(randomIndex);
+        adversaire.supprimerCarteMain(cardDeleted);
+    }
+
+    public String getResult(){
+        if (cardDeleted == null){
+            return "Erreur Supprimer Carte TDE";
+        }
+        return "Toucher d'encre : " + cardDeleted.getNom();
     }
 }

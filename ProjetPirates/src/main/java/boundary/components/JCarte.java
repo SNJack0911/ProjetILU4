@@ -58,7 +58,7 @@ public class JCarte extends javax.swing.JPanel {
     }
 
     public void ajouterAttribut(String nom, int carteID, ICategorieCarte type, String description, BasicCategorie zoneDepot, JMainJoueur mainOrigine){
-        this.carteID = 0;
+        this.carteID = carteID;
         this.nom = nom;
         this.type = type;
         this.description = description;
@@ -113,7 +113,8 @@ public class JCarte extends javax.swing.JPanel {
         
         g2d.dispose();
     }
-    
+
+    //NO USAGES
     //Projet pour faire les effet de particule    
     public void deplacerVers(int xFinal, int yFinal) {
         Timer timer = new Timer(10, null);
@@ -154,7 +155,6 @@ public class JCarte extends javax.swing.JPanel {
             System.out.println("Card not found : " + userDirectory + "src/main/resources/Carte/Card1Front" + type.toString() + ".png");
             System.out.println("Card ID : " + carteID + "\tIHM : " + type.toString());
         }
-        //this.nom = cardName;
     }
     
     @SuppressWarnings("unchecked")

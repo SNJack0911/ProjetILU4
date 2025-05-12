@@ -1,5 +1,7 @@
 package noyau;
 
+import noyau.carteeffet.CarteToucheEncre;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -133,9 +135,9 @@ public class Jeu {
             resultatTour = cartePiece.getCoinFlipResult();
         } else if (carte instanceof CartePieceAttaque cartePiece) {
             resultatTour = cartePiece.getCoinFlipResult();
-        }/* else if (carte instanceof CarteEffet carteEffet) { //TODO traiter dans l'IHM les cartes effets
-            resultatTour.add(carteEffet.getNom());
-        }*/
+        } else if (carte instanceof CarteToucheEncre carteToucheEncre) {
+            resultatTour.add(carteToucheEncre.getResult());
+        }
         return resultatTour;
     }
 
