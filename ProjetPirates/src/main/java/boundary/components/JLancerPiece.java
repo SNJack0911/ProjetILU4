@@ -26,7 +26,7 @@ public class JLancerPiece extends javax.swing.JPanel {
     private String etat = "0";
     private Image currentImage = null;
     private boolean animationInProgress = false;
-    private Queue<String> animationQueue = new LinkedList<>();
+    private final Queue<String> animationQueue = new LinkedList<>();
 
     /**
      * Creates new form lancerPiece
@@ -48,13 +48,12 @@ public class JLancerPiece extends javax.swing.JPanel {
     public void setEtat(String nEtat){
         if (!nEtat.equals("P") && !nEtat.equals("F")) return;
 
-        // If animation is already in progress, queue this request
+        // Si l'animation est déjà en cours, mettre cette requete en file d'attente
         if (animationInProgress) {
             animationQueue.add(nEtat);
             return;
         }
-
-        // Start the animation
+        
         startAnimation(nEtat);
     }
 

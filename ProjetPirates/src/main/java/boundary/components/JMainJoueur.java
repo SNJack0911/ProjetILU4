@@ -4,16 +4,10 @@
  */
 package boundary.components;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import static java.awt.GridBagConstraints.BOTH;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.BorderFactory;
 
 import noyau.BasicCategorie;
 import noyau.ICategorieCarte;
@@ -23,7 +17,7 @@ import noyau.ICategorieCarte;
  * @author yannf, leo et vincent
  */
 public class JMainJoueur extends javax.swing.JPanel {
-    private List<JCarte> mainJoueur = new ArrayList<>();
+    private final List<JCarte> mainJoueur = new ArrayList<>();
     private int idPirate;
     
     /**

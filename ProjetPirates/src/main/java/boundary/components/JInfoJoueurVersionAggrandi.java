@@ -26,14 +26,7 @@ public class JInfoJoueurVersionAggrandi extends javax.swing.JPanel {
         setOpaque(false);
     }
     
-    /*public void setPirate(Pirate pirate, JMainJoueur jMainJoueur) {
-        this.pirate = pirate;
-        this.jMainJoueur = jMainJoueur;
-    }*/
-    
     public void finTour() {
-        //Component c = getParent();
-        //System.out.println("C: " + c.getClass().getSimpleName());
         Plateau p = (Plateau) getParent().getParent();
         BoundaryJeu boundaryJeu = p.getBoundaryJeu(); 
         setHP(boundaryJeu.getPirateHp(idPirate));

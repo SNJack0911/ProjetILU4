@@ -16,7 +16,7 @@ import noyau.BasicCategorie;
 
 
 /**
- * Désué; remplacé par JZoneDepot.
+ * 
  * @author leo
  */
 public class JZoneInteraction extends javax.swing.JPanel {
@@ -27,23 +27,7 @@ public class JZoneInteraction extends javax.swing.JPanel {
      */
     public JZoneInteraction() {
         initComponents();
-        //setBackground(Color.PINK);
         setBounds(500,200,150,150);
-        /*jZoneDepot1.setName("Dep1");
-        jZoneDepot1.createZoneDepot("Pirate1", BasicCategorie.POPULARITE);
-        jZoneDepot2.setName("Dep2");
-        jZoneDepot1.createZoneDepot("Pirate1", BasicCategorie.ATTAQUE);
-        jZoneDepot3.setName("Dep3");
-        jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.ATTAQUE);
-        jZoneDepot4.setName("Dep4");
-        jZoneDepot1.createZoneDepot("Pirate2", BasicCategorie.POPULARITE);*/
-    }
-
-    //TODO delete this method
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
     }
 
     // Méthode pour vérifier si une carte a été déposée dans la zone

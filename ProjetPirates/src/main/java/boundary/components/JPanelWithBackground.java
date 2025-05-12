@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.io.*;
-import java.nio.file.Path;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -46,7 +45,6 @@ public class JPanelWithBackground extends JPanel {
             String userDirectory = new File("").getAbsolutePath();
             System.out.print("Background not found : " + userDirectory);
         }        
-        //backgroundImage = ImageIO.read(new File(fileName));
     }
 }
 

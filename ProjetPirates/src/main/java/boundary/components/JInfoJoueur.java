@@ -13,7 +13,6 @@ import boundary.BoundaryJeu;
 public class JInfoJoueur extends javax.swing.JPanel {
     private String nom;         // utile ?
     int idPirate;
-    //private Pirate pirate;
     private JMainJoueur jMainJoueur;    // utile ?
     private BoundaryJeu boundaryJeu;
 
@@ -25,10 +24,6 @@ public class JInfoJoueur extends javax.swing.JPanel {
         setOpaque(false);
     }
     
-    /*public void setPirate(Pirate pirate, JMainJoueur jMainJoueur) {
-        this.pirate = pirate;
-        this.jMainJoueur = jMainJoueur;
-    }*/
     public void initJoueur(String nom, int idPirate, JMainJoueur mainJoueur, BoundaryJeu boundaryJeu){
         this.nom = nom;         // utile ?
         this.idPirate = idPirate;
@@ -36,17 +31,11 @@ public class JInfoJoueur extends javax.swing.JPanel {
         this.boundaryJeu = boundaryJeu;
     }
     
-    
     public void finTour() {
-        //Component c = getParent();
-        //System.out.println("C: " + c.getClass().getSimpleName());
-        //Plateau p = (Plateau) getParent().getParent();
-        //BoundaryJeu boundaryJeu = p.getBoundaryJeu(); 
         int newHP = boundaryJeu.getPirateHp(idPirate);
         int newPP = boundaryJeu.getPiratePp(idPirate);
         setHP(newHP);
         setPP(newPP);
-        //System.out.println("Id = " + idPirate + ";\tHP = " + newHP + ";\tPP = " + newPP);
         repaint();
     }
     

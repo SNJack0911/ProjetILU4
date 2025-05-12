@@ -4,7 +4,6 @@
  */
 package boundary.components;
 
-import boundary.components.VictoryScreen;
 import javax.swing.JFrame;
 
 /**

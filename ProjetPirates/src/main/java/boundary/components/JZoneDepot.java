@@ -65,7 +65,6 @@ public class JZoneDepot extends javax.swing.JPanel {
 
                 //TEXT PARAMETERS
                 g2d.setColor(Color.WHITE);
-                //String title = type.toString() + " - " + nomPirate; // "\n" doesn't create line break in drawString
                 String typeString = this.type.toString();
                 int fontSize = 14;
                 
@@ -79,7 +78,6 @@ public class JZoneDepot extends javax.swing.JPanel {
                 int y1 = (getHeight() - fontSize*2 - 6)/2;
                 g2d.drawString(typeString, x1, y1);
 
-
                 //NOM PIRATE
                 int y2 = y1 + 4;
                 for(String s : nomPirate.split(" ")){
@@ -90,8 +88,6 @@ public class JZoneDepot extends javax.swing.JPanel {
                 }
             }
         }    
-        
-
         g2d.dispose();
     }
     

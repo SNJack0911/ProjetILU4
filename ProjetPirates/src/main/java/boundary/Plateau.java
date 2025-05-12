@@ -29,25 +29,18 @@ import javax.swing.SwingUtilities;
  */
 public class Plateau extends javax.swing.JPanel {
     private BoundaryJeu boundaryJeu;
-    //private JZoneInteraction zoneInteraction = null;
-    //private JCarte carte;
-    //private GestionnaireCartes gestionnaire = new GestionnaireCartes();
-    //private GestionnaireEffetFumee gestionnairefumee = new GestionnaireEffetFumee();
     
     private String nomPirate1;
     private String nomPirate2; 
-    //Represente le jour et la nuit
-    //intitialiser à false pour le jour
-    private boolean etatPlateau = false; 
-
+    private boolean faitNuit = false; //donc jour
+   
     /**
      * Creates new form Plateau
      * 
      */
-    public Plateau() { //PAS DE PARMAETRE DANS LES COMPOSANT JAVASWING
+    public Plateau() {
         initComponents();
         plateauBackground.setImage("PlateauJour.png");
-        //TODO Set Boundary
     }
 
     /**
@@ -367,8 +360,8 @@ public class Plateau extends javax.swing.JPanel {
     
     private void updatePlateau(){
         boolean newEtat = boundaryJeu.isNuit();
-        if(newEtat != etatPlateau){
-            etatPlateau = newEtat;
+        if(newEtat != faitNuit){
+            faitNuit = newEtat;
             //Peut être à faire dans un nouveau thread
             if(newEtat){ plateauBackground.setImage("PlateauNuit.png");}
             else {plateauBackground.setImage("PlateauJour.png");}
@@ -418,22 +411,25 @@ public class Plateau extends javax.swing.JPanel {
     }
 
     private void evenementJeu(List<String> evenements, JMainJoueur mainAdversaire) {
-        //System.out.println("Evenements : " + evenements);
         Thread animationThread = new Thread(() -> {
             for (String e : evenements) {
-                if (e.equals("0")) {
-                    jLancerPiece1.setEtat("P");
-                    sleep1s();
-                } else if (e.equals("1")) {
-                    jLancerPiece1.setEtat("F");
-                    sleep1s();
-                } else if (e.contains("Toucher d'encre")){
-                    String[] res = e.split("[:]");
-                    mainAdversaire.deleteCardName((res[res.length-1]).trim());
-                    mainAdversaire.revalidate();
-                    mainAdversaire.repaint();
+                switch (e) {
+                    case "0" -> {
+                        jLancerPiece1.setEtat("P");
+                        sleep1s(); 
+                    }case "1" -> {
+                        jLancerPiece1.setEtat("F");
+                        sleep1s();  
+                    }default -> {
+                        if (e.contains("Toucher d'encre")) {
+                            String[] res = e.split(":");
+                            String cardName = res[res.length - 1].trim();
+                            mainAdversaire.deleteCardName(cardName);
+                            mainAdversaire.revalidate();
+                            mainAdversaire.repaint();
+                        }
+                    }
                 }
-                
             }
         });
         animationThread.start();
@@ -456,7 +452,6 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur2.finTour();
     }
 
-    //never used?
     private void victory (){
         PopUpVictory victoire = new PopUpVictory((JFrame) this.getTopLevelAncestor());
         victoire.setVisible(true);
@@ -466,29 +461,24 @@ public class Plateau extends javax.swing.JPanel {
         int tour = boundaryJeu.getTour();
         List<String> resultat = boundaryJeu.jouerCarte(carte);
         updateInfoPirate();
-        
-        JMainJoueur mainJoueur;
-        JMainJoueur mainAdversaire;
-        if(tour%2 ==0){
-            mainJoueur = jMainJoueur1;
-            mainAdversaire = jMainJoueur2;
-        }else {
-            mainJoueur = jMainJoueur2;
-            mainAdversaire = jMainJoueur1;
-        }
-        
-        
+            // Détermine les mains des joueurs selon le tour
+        JMainJoueur mainJoueur = (tour % 2 == 0) ? jMainJoueur1 : jMainJoueur2;
+        JMainJoueur mainAdversaire = (tour % 2 == 0) ? jMainJoueur2 : jMainJoueur1;
+            // Lance les animations/effets du tour
         evenementJeu(resultat, mainAdversaire);
-        String lastElement = resultat.getLast();
-        if (!lastElement.equals("Pas de gagnant")){
-            //TODO Here POP UP victoire
-            victory();
-            System.out.println("Gagnant : " + lastElement);
+            // Vérifie la victoire
+        String dernierResultat = resultat.getLast();
+        if (!dernierResultat.equals("Pas de gagnant")){
+            victory();  // Affiche écran de victoire
+            System.out.println("Gagnant : " + dernierResultat);
         }
-        
-        
+            // Supprime la carte jouée
         mainJoueur.deleteCard(carte);     
-        
+            // Active / désactive les bonnes zones de l'IHM
+        setEtatInterfaceFinDeTour();
+    }
+    
+    private void setEtatInterfaceFinDeTour() {
         jMainJoueur1.setEnabled(false);
         jMainJoueur2.setEnabled(false);
         jButtonFinDeTour.setEnabled(true);

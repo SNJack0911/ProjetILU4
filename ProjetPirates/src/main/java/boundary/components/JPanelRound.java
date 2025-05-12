@@ -57,8 +57,6 @@ public class JPanelRound extends JPanel{
         g2d.setColor(c2);
         g2d.fillRoundRect(innerPadding, innerPadding, newWidth, newHeight, width/12, height/12);
 
-
-
         // === TITLE LOZENGE ===
         String title = "Options";
         Font titleFont = new Font("Windlass", Font.PLAIN, 16);

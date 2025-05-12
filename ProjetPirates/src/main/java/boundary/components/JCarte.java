@@ -31,7 +31,6 @@ public class JCarte extends javax.swing.JPanel {
     private Image backCard;
     private boolean isFront = false;
     private Point origine = null;
-    //private boolean isSelected = false;
     private JCartePopUp popUp = null;
     private JMainJoueur mainOrigine; 
     
@@ -69,28 +68,28 @@ public class JCarte extends javax.swing.JPanel {
     }
     
     public void lancerFumee() {
-    if (timerFumee != null && timerFumee.isRunning()) return;
+        if (timerFumee != null && timerFumee.isRunning()) return;
 
-    timerFumee = new Timer(150, e -> {
-        if (getParent() == null) return;
+        timerFumee = new Timer(150, e -> {
+            if (getParent() == null) return;
 
-        JPanel plateauPanel = (JPanel) mainOrigine.getParent(); // utilise le même système que ton release
-        Point carteSurPlateau = SwingUtilities.convertPoint(this, getWidth()/2, getHeight()/2, plateauPanel);
+            JPanel plateauPanel = (JPanel) mainOrigine.getParent();
+            Point carteSurPlateau = SwingUtilities.convertPoint(this, getWidth()/2, getHeight()/2, plateauPanel);
 
-        Image img = effets.getRandomImage();
-        if (img != null) {
-            fumees.add(new SmokeEffect(img, carteSurPlateau.x, carteSurPlateau.y));
-        }
+            Image img = effets.getRandomImage();
+            if (img != null) {
+                fumees.add(new SmokeEffect(img, carteSurPlateau.x, carteSurPlateau.y));
+            }
 
-        for (SmokeEffect f : fumees) {
-            f.diminuerAlpha(0.05f);
-        }
+            for (SmokeEffect f : fumees) {
+                f.diminuerAlpha(0.05f);
+            }
 
-        fumees.removeIf(SmokeEffect::estTerminee);
-        repaint();
-    });
-    timerFumee.start();
-}
+            fumees.removeIf(SmokeEffect::estTerminee);
+            repaint();
+        });
+        timerFumee.start();
+    }
 
     @Override 
     protected void paintComponent(Graphics g){
@@ -112,26 +111,6 @@ public class JCarte extends javax.swing.JPanel {
 
         
         g2d.dispose();
-    }
-
-    //NO USAGES
-    //Projet pour faire les effet de particule    
-    public void deplacerVers(int xFinal, int yFinal) {
-        Timer timer = new Timer(10, null);
-        timer.addActionListener(e -> {
-            int x = getX();
-            int y = getY();
-            int dx = (xFinal - x) / 5;
-            int dy = (yFinal - y) / 5;
-
-            if (Math.abs(xFinal - x) < 2 && Math.abs(yFinal - y) < 2) {
-                setLocation(xFinal, yFinal);
-                timer.stop();
-            } else {
-                setLocation(x + dx, y + dy);
-            }
-        });
-        timer.start();
     }
     
     public Point getCentreCarte() {
@@ -214,9 +193,7 @@ public class JCarte extends javax.swing.JPanel {
         if (handleZoneInteraction(c, pointInPlateau, plateauPanel, plateau)) return;
         // Renvoyer dans la main si non joué
         if (mainOrigine != null) handleMainDrop(evt);
-        
  
-        //System.out.println("Not dropped on a drop zone.");
         if (mainOrigine != null && !mainOrigine.getMainJoueur().contains(this)) {
             mainOrigine.ajouterJCarte(this);
         }
@@ -232,7 +209,6 @@ public class JCarte extends javax.swing.JPanel {
             if (boundsZone.intersects(boundsCarte)) {
                 String pirate = plateau.getCurrentPirate();
                 boolean res = zoneInteraction.ajouteCarte(this, pointInPlateau, plateauPanel, pirate);
-
                 if (res) {
                     plateau.jouerTour(this);
                     plateau.remove(this);
@@ -242,10 +218,8 @@ public class JCarte extends javax.swing.JPanel {
                 }
             }
         }
-
         return false;
     }
-
 
     private void handleMainDrop(MouseEvent evt) {
         Point dropPoint = SwingUtilities.convertPoint(this, evt.getPoint(), mainOrigine);
@@ -266,7 +240,7 @@ public class JCarte extends javax.swing.JPanel {
             int fallbackIndex = (indexOrigineMain >= 0 && indexOrigineMain <= main.size()) ? indexOrigineMain : main.size();
             main.add(fallbackIndex, this);
         }
-
+        
         mainOrigine.setGridCartes();
     }
     
@@ -276,8 +250,8 @@ public class JCarte extends javax.swing.JPanel {
         if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2 && isFront && frontCard != null) {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 
-            if (popUp != null) {
-                popUp.dispose(); // si une précédente pop-up traîne
+            if (popUp != null) { // si une précédente pop-up traîne
+                popUp.dispose(); 
             }
 
             // Crée une image agrandie pour le zoom
@@ -298,7 +272,7 @@ public class JCarte extends javax.swing.JPanel {
             Container parent = SwingUtilities.getAncestorOfClass(Plateau.class, this);
             if (parent instanceof Plateau plateau) {
                 Point global = SwingUtilities.convertPoint(this, getCentreCarte(), plateau);
-                effets.ajouterFumee(global.x, global.y); //plateau.getGestionnaireEffetsFumee().ajouterFumee(global.x, global.y);
+                effets.ajouterFumee(global.x, global.y); 
             }
             lancerFumee();
             
@@ -307,7 +281,7 @@ public class JCarte extends javax.swing.JPanel {
             int yMoved = evt.getY() - origine.y;
             this.setLocation(this.getX() + xMoved, this.getY() + yMoved);
 
-            // Repaint only nearby overlapping cards
+            // Repeindre uniquement les cartes qui se chevauchent à proximite
             Rectangle bounds = this.getBounds();
             for (Component comp : getParent().getComponents()) {
                 if (comp instanceof JCarte && comp != this && comp.getBounds().intersects(bounds)) {

@@ -163,10 +163,6 @@ public class BoundaryJeu {
         return boundaryPiocherCarte.piocherCarte();
     }
 
-    /*public void setNuit(Boolean isNuit){
-        boundaryNouvellePartie.setNuit(isNuit);
-    }*/
-
     public void nouveauJeu(){
         System.out.println("""
                 La mer est vaste, mais pas assez pour deux légendes.

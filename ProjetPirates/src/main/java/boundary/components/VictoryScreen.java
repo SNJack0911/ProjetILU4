@@ -11,10 +11,13 @@ import projetpirates.ProjetPirates;
 
 /**
  *
- * @author Amaterasu/hai
+ * @author Amaterasu/hai , leo
  */
 public class VictoryScreen extends JPanel {
-
+    private float scale = 0.1f;
+    private float alpha = 0.0f;
+    private Timer timer;
+    
     /**
      * Creates new form VictoryScreen
      */
@@ -42,7 +45,7 @@ public class VictoryScreen extends JPanel {
         timer.start();
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,9 +105,7 @@ public class VictoryScreen extends JPanel {
             .addComponent(jPanelWithBackground1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    private float scale = 0.1f;
-    private float alpha = 0.0f;
-    private Timer timer;
+    
     private void RerunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RerunMouseClicked
         this.setVisible(false);
         ProjetPirates.main(null);
