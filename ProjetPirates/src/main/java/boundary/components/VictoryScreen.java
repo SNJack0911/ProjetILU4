@@ -21,9 +21,23 @@ public class VictoryScreen extends JPanel {
     public VictoryScreen() {
         setBackground(Color.BLACK);
         timer = new Timer(30, (ActionEvent e) -> {
-            if (scale < 1.0f) scale += 0.02f;
-            if (alpha < 1.0f) alpha += 0.02f;
-            repaint();
+            boolean repaintNeeded = false;
+
+            if (scale < 1.0f) {
+                scale += 0.02f;
+                repaintNeeded = true;
+            }
+
+            if (alpha < 1.0f) {
+                alpha += 0.02f;
+                repaintNeeded = true;
+            }
+
+            if (repaintNeeded) {
+                repaint();
+            } else {
+                timer.stop(); // Stoppe le timer quand l’animation est terminée
+            }
         });
         timer.start();
         initComponents();
@@ -111,7 +125,9 @@ public class VictoryScreen extends JPanel {
 
         String text = "VICTORY";
         g2d.setFont(getFont().deriveFont(Font.BOLD, 80 * scale));
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+        float safeAlpha = Math.max(0f, Math.min(1f, alpha));
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, safeAlpha));
+
         g2d.setColor(Color.YELLOW);
 
         FontMetrics fm = g2d.getFontMetrics();
