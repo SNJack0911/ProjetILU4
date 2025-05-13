@@ -10,9 +10,9 @@ import java.util.Random;
  */
 
 public class CartePopularite extends Carte {
-    private int PPajoutJ;   //final ?
-    private int PVajoutJ;   //final ?
-    private boolean lancerPiece; //final ?
+    private final int PPajoutJ;
+    private final int PVajoutJ;
+    private final boolean lancerPiece;
     private static final Random rand = new Random();
 
 
@@ -38,6 +38,5 @@ public class CartePopularite extends Carte {
         }
         joueur.applyStats("HP", PVajoutJ);
         joueur.applyStats("PP", PPajoutJ*compteur);
-        //return listeFace;
     }
 }

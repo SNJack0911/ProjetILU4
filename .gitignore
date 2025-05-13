@@ -1,1 +1,5 @@
 /ProjetPirates/target/
+.project
+ProjetPirates/.project
+ProjetPirates/.settings/org.eclipse.core.resources.prefs
+ProjetPirates/.settings/org.eclipse.jdt.core.prefs

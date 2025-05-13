@@ -1,7 +1,5 @@
 package noyau;
 
-import java.util.*;
-
 /**
  *
  * @author yannf
@@ -21,15 +19,10 @@ public class CarteDefense extends  Carte{
 
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        //List<String> listeFace = new ArrayList<String>();
         if(affecterNuit && !jeu.isNuit()){
             PVajout += PVajout;
         }
         joueur.applyStats("HP", PVajout);
         joueur.applyStats("PP", PPajout);
-        //Voir pour ajouter effet
-
-        //Effet e = new Effet(joueur,  new Map<String, Integer>());
-        //return new ArrayList<String>();
     }
 }

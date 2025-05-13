@@ -1,8 +1,5 @@
 package noyau;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author yannf
@@ -21,20 +18,7 @@ public abstract class CarteLambda extends Carte {
 
     }
 
-
-
+    
     protected abstract void appliquerEffetJoueur(Pirate joueur, Pirate adversaire, Jeu jeu
             , int newValue1, int newValue2);
-   /* protected void appliquerEffetJoueur(Pirate joueur, Pirate adversaire, int newPPJ, int newHPJ){
-        joueur.applyStats("PP", newPPJ);
-        joueur.applyStats("HP", newHPJ);
-    }
-
-    protected IEffet getEffet1() {
-        return effet1;
-    }
-
-    protected IEffet getEffet2() {
-        return effet2;
-    }*/
 }

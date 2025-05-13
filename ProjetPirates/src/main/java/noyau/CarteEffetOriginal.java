@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package noyau;
 
 import java.util.ArrayList;
@@ -19,6 +15,7 @@ public class CarteEffetOriginal extends Carte {
         super(nom, carteID, description, categorie, zoneDepot);
         this.effectname = effectname;
     }
+    
     private List<String> toucher_d_encre(Pirate joueur,Pirate adversaire,Jeu jeu){
         List<Carte> possible = adversaire.getMain();
         Random rand = new Random();
@@ -26,13 +23,15 @@ public class CarteEffetOriginal extends Carte {
         adversaire.supprimerCarteMain(possible.get(randomIndex));
         return new ArrayList<String>();
     }
+    
     private List<String> sourd_d_oreille(Pirate joueur,Pirate adversaire,Jeu jeu){
-        int PPjoueur = joueur.getPP();
+        /*int PPjoueur = joueur.getPP();
         int PVjoueur = joueur.getHP();
         int PPadver = adversaire.getPP();
-        int PVadver = adversaire.getHP();
+        int PVadver = adversaire.getHP();*/
         return null;
     }
+    
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
          switch (effectname) {
@@ -42,6 +41,8 @@ public class CarteEffetOriginal extends Carte {
 //            case EFFET_AMPLIFICATEUR -> effet_amplificateur(joueur, adversaire,jeu);
 //            case DENIE -> denie(joueur, adversaire,jeu);
 //            case CARTE_PIEGE_YUGI -> carte_piege_yugi(joueur, adversaire,jeu);
+            
+		default -> throw new IllegalArgumentException("Effet: " + effectname);
 
         };
     }

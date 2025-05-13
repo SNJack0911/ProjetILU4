@@ -2,9 +2,8 @@ package noyau;
 
 /**
  * 
- * @auhor yannf et leo a l'origine
+ * @author yannf et leo a l'origine
  */
-import java.util.List;
 
 public abstract class Carte {
     private String nom;
@@ -40,32 +39,4 @@ public abstract class Carte {
     }
 
     public abstract void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu);
-
-    //private List<Effet> effets;
-    /*
-    public Carte(String nom, String description, List<Effet> effets){
-        this.nom = nom;
-        this.description = description;
-        this.effets = effets;
-    }
-    
-    @Override
-    public String getNom() {
-        return nom;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-    
-    public void appliqueEffets(){
-        for (Effet effet : effets) {
-            effet.appliqueEffet();
-        }
-    }*/
-
-    
-
-
 }

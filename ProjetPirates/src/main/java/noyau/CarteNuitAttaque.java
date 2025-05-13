@@ -14,7 +14,6 @@ public class CarteNuitAttaque extends CarteAttaqueLambda {
 
     @Override
     protected void appliquerEffetJoueur(Pirate joueur, Pirate adversaire, Jeu jeu, int newHPJ, int newHPA) {
-        //System.out.println(newHPA);
         if(jeu.isNuit()){
             super.appliquerEffetJoueur(joueur, adversaire, jeu, newHPJ, newHPA-1);
         }else{

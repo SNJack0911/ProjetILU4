@@ -45,13 +45,12 @@ public class CarteAttack extends Carte{
                 face = rand.nextInt(2);
                 compteur+=1;
                 listeFace.add(face + "");
-            }while (face != 1 && compteur <= 3); //Je pense que ca sert a rien de limiter
+            }while (face != 1 && compteur <= 3);
         }
 
         joueur.applyStats("HP", PVajoutJ);
         joueur.applyStats("PP", PPajoutJ);
         adversaire.applyStats("PP", PPajoutA);
         adversaire.applyStats("HP", PVajoutA*compteur);
-        //return listeFace;
     }
 }

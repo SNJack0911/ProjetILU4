@@ -83,7 +83,6 @@ public class Jeu {
         updateNuit();
     }
     
-    //Update String return
     public List<String> jouerTour(String nomCarte) {
         Pirate joueur = getJoueurActuel();
         Pirate adversaire = getAdversaireActuel();

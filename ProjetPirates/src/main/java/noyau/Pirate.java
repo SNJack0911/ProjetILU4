@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  *
- * @author ..., yannf, vincent et duc hai
+ * @author yannf, vincent et duc hai
  */
 
 
@@ -24,8 +24,7 @@ public class Pirate {
     }
 
     /* HP > 0 = ajouter des HP 
-       HP < 0 = enlever des HP
-    */
+       HP < 0 = enlever des HP */
     public void addHP(int value) {
         int newHP = HP + value;
         if (newHP > 5) {
@@ -42,8 +41,7 @@ public class Pirate {
     }
 
     /* PP > 0 = ajouter des PP 
-       PP < 0 = enlever des PP
-    */
+       PP < 0 = enlever des PP */
     public void addPP(int value) {
         int newPP = PP + value;
         if (newPP > 5) {
@@ -91,7 +89,6 @@ public class Pirate {
     public void supprimerCarteMain(Carte carte) {
         if (hands.contains(carte)) {
             hands.remove(carte);
-            //carte.appliqueEffets();
         } else {
             throw new IllegalArgumentException("Carte non trouvée dans la main du joueur\n");
         }
@@ -99,7 +96,6 @@ public class Pirate {
     
     public void addCarte(Carte carte) {
         hands.add(carte);
-        //System.out.println("Carte ajouter dans la main du joueur : " + carte.getNom() + "\n");
     }
 
     @Override
@@ -111,7 +107,6 @@ public class Pirate {
                 '}';
     }
 
-    //Useless now
     public ArrayList<Carte> getMain() {
         return hands;
     }
@@ -123,7 +118,6 @@ public class Pirate {
             }
         }
         
-        //System.out.println("Carte non trouvée dans la main du joueur\n");
         return null;
     }
     
