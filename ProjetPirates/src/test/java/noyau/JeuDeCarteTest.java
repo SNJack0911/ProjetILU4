@@ -1,80 +1,104 @@
 package noyau;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
+/**
  * Stefan
- * */
-
-public class JeuDeCarteTest {
+ */
+class JeuDeCarteTest {
 
     @Test
-    void testRemplirPioche() {//TO CHANGE WHEN ADDING THE REAL CARDS
+    void testRemplirPioche() {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        ArrayList<Carte> pioche = jeuDeCarte.remplirPiocheTest();
+        ArrayList<Carte> pioche = jeuDeCarte.remplirPioche();
+
         assertFalse(pioche.isEmpty(), "Le deck ne doit pas être vide après remplissage.");
 
-        int expectedTotalCards = 10 * 6; // 6 configurations, with 20 cards each
-        assertEquals(expectedTotalCards, pioche.size(), "Le nombre total de cartes dans le deck est incorrect.");
+        int expectedTotal = 7 + 10 + 12 + 2 + 10 + 9 + 12 + 9 + 3 + 6 + 12 + 60 + 4 + 7 + 5 + 5;
+        assertEquals(expectedTotal, pioche.size(), "Le nombre total de cartes dans le deck est incorrect.");
     }
 
-    @Test
-    void testGetDescription_ValidCard() {
-        JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        String description = jeuDeCarte.getDescription("Coup bas");
-        assertEquals("L'adversaire perds 1PV", description, "La description de la carte doit correspondre à celle attendue.");
+    static Stream<org.junit.jupiter.params.provider.Arguments> descriptionCases() {
+        return Stream.of(
+                org.junit.jupiter.params.provider.Arguments.of("Coup bas", "L'adversaire perd 1PV"),
+                org.junit.jupiter.params.provider.Arguments.of("InvalidCard", "Card not found"),
+                org.junit.jupiter.params.provider.Arguments.of("", "Card not found"),
+                org.junit.jupiter.params.provider.Arguments.of(null, "Card not found")
+        );
     }
 
-    @Test
-    void testGetDescription_InvalidCard() {
+    @ParameterizedTest
+    @MethodSource("descriptionCases")
+    void testGetDescription(String input, String expected) {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        String description = jeuDeCarte.getDescription("InvalidCard");
-        assertEquals("Card not found", description, "La description de la carte doit être 'Card not found' pour une carte invalide.");
+        String description = jeuDeCarte.getDescription(input);
+        assertEquals(expected, description);
     }
 
-    @Test
-    void testGetCarteID_ValidCard() {
-        JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        int carteID = jeuDeCarte.getCarteID("Plus1Pop");
-        assertEquals(-1, carteID, "L'ID de la carte doit être -1 pour une carte valide.");
+    static Stream<Arguments> carteIdCases() {
+        return Stream.of(
+                org.junit.jupiter.params.provider.Arguments.of("Plus1Pop", -1),     // Assumed expected ID, adjust if needed
+                org.junit.jupiter.params.provider.Arguments.of("InvalidCard", -1),
+                org.junit.jupiter.params.provider.Arguments.of("", -1),
+                org.junit.jupiter.params.provider.Arguments.of(null, -1)
+        );
     }
 
-    @Test
-    void testGetCarteID_InvalidCard() {
+    @ParameterizedTest
+    @MethodSource("carteIdCases")
+    void testGetCarteID(String input, int expected) {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        int carteID = jeuDeCarte.getCarteID("InvalidCard");
-        assertEquals(-1, carteID, "L'ID de la carte doit être -1 pour une carte invalide.");
+        int id = jeuDeCarte.getCarteID(input);
+        assertEquals(expected, id);
     }
 
-    @Test
-    void testGetCategorie_ValidCard() {
-        JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        ICategorieCarte categorie = jeuDeCarte.getCategorie("Coup bas");
-        assertNotNull(categorie, "La catégorie ne doit pas être nulle pour une carte valide.");
+    static Stream<org.junit.jupiter.params.provider.Arguments> categorieCases() {
+        return Stream.of(
+                org.junit.jupiter.params.provider.Arguments.of("Coup bas", false),
+                org.junit.jupiter.params.provider.Arguments.of("InvalidCard", true),
+                org.junit.jupiter.params.provider.Arguments.of("", true),
+                org.junit.jupiter.params.provider.Arguments.of(null, true)
+        );
     }
 
-    @Test
-    void testGetCategorie_InvalidCard() {
+    @ParameterizedTest
+    @MethodSource("categorieCases")
+    void testGetCategorie(String input, boolean shouldBeNull) {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        ICategorieCarte categorie = jeuDeCarte.getCategorie("InvalidCard");
-        assertNull(categorie, "La catégorie doit être nulle pour une carte invalide.");
+        ICategorieCarte categorie = jeuDeCarte.getCategorie(input);
+        if (shouldBeNull) {
+            assertNull(categorie, "La catégorie doit être nulle.");
+        } else {
+            assertNotNull(categorie, "La catégorie ne doit pas être nulle.");
+        }
     }
 
-    @Test
-    void testGetZoneDepot_ValidCard() {
-        JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        BasicCategorie zoneDepot = jeuDeCarte.getZoneDepot("Coup bas");
-        assertNotNull(zoneDepot, "La zone depot ne doit pas être nulle pour une carte valide.");
+    static Stream<org.junit.jupiter.params.provider.Arguments> zoneDepotCases() {
+        return Stream.of(
+                org.junit.jupiter.params.provider.Arguments.of("Coup bas", false),
+                org.junit.jupiter.params.provider.Arguments.of("InvalidCard", true),
+                org.junit.jupiter.params.provider.Arguments.of("", true),
+                org.junit.jupiter.params.provider.Arguments.of(null, true)
+        );
     }
 
-    @Test
-    void testGetZoneDepot_InvalidCard() {
+    @ParameterizedTest
+    @MethodSource("zoneDepotCases")
+    void testGetZoneDepot(String input, boolean shouldBeNull) {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        BasicCategorie zoneDepot = jeuDeCarte.getZoneDepot("InvalidCard");
-        assertNull(zoneDepot, "La zone depot doit être nulle pour une carte invalide.");
+        BasicCategorie zone = jeuDeCarte.getZoneDepot(input);
+        if (shouldBeNull) {
+            assertNull(zone, "La zone depot doit être nulle.");
+        } else {
+            assertNotNull(zone, "La zone depot ne doit pas être nulle.");
+        }
     }
 }

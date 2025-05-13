@@ -59,11 +59,6 @@ class JeuTest {
         Jeu jeu = new Jeu();
         Pirate joueur = jeu.getPirate(0);
         Pirate adversaire = jeu.getPirate(1);
-//        joueur.getMain().clear();
-//        Carte testCarte = new CartePopularite("Plus1Pop", -1, "Test", 1, 0, false);
-//        joueur.addCarte(testCarte);
-//
-//        jeu.jouerTour("Plus1Pop");
         jeu.incrementerTour();
         assertEquals(1, jeu.getTour(), "Tour devrait être incrémenté après jouer une carte");
 
@@ -138,6 +133,18 @@ class JeuTest {
         jeu.setNuit(true);
         assertTrue(jeu.isNuit(), "Il faudrait être nuit après le changement");
     }
+
+    @Test
+    void testJouerPiocheWhenHandFull() {
+        Jeu jeu = new Jeu();
+        Pirate joueur = jeu.getPirate(0);
+        while (joueur.getNbCarte() < 5) {
+            joueur.addCarte(new CartePopularite("Test", 1, "Desc", 0, 0, false));
+        }
+        ArrayList<Carte> newCards = jeu.jouerPioche();
+        assertEquals(0, newCards.size(), "Aucune carte ne devrait être piochée si la main est déjà pleine");
+    }
+
 
 
 

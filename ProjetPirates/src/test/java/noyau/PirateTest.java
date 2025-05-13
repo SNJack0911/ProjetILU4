@@ -94,4 +94,28 @@ class PirateTest {
         }
         System.out.println("testSupprimerCarteMain passed");
     }
+
+    @Test
+    void testApplyStats_InvalidStat() {
+        Pirate p = new Pirate("InvalidStatTester");
+        boolean result = p.applyStats("XYZ", 3);
+        assertFalse(result, "applyStats should return false for unrecognized stat");
+    }
+
+    @Test
+    void testSetStats_InvalidStat() {
+        Pirate p = new Pirate("StatSetter");
+        assertThrows(IllegalArgumentException.class, () -> p.setStats("XYZ", 3));
+    }
+
+    @Test
+    void testEquals() {
+        Pirate p1 = new Pirate("Jack");
+        Pirate p2 = new Pirate("Jack");
+        Pirate p3 = new Pirate("Anne");
+
+        assertEquals(p1, p2);
+        assertNotEquals(p1, p3);
+    }
+
 }

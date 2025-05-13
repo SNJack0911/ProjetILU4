@@ -7,10 +7,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
- * Stefan
- * */
-
 class PiocheTest {
 
     private Pioche pioche;
@@ -19,10 +15,10 @@ class PiocheTest {
     @BeforeEach
     void setUp() {
         cartes = new ArrayList<>();
-        cartes.add(new CarteAttack("Attaque 1", 1, "Une attaque", 10, 20, -5, -10, false, false));
-        cartes.add(new CarteDefense("Défense 1", 2, "Une défense", 15, 5, true));
-        cartes.add(new CartePopularite("Popularité 1", 3, "Une popularité", 8, 12, false));
-        pioche = new Pioche(cartes);
+        cartes.add(new CarteAttack("A1", 1, "Une attaque", 10, 20, -5, -10, false, false));
+        cartes.add(new CarteDefense("D1", 2, "Une défense", 15, 5, true));
+        cartes.add(new CartePopularite("P1", 3, "Une popularité", 8, 12, false));
+        pioche = new Pioche(new ArrayList<>(cartes));
     }
 
     @Test
@@ -32,18 +28,18 @@ class PiocheTest {
 
     @Test
     void testPiocherReducesSize() {
-        int initialSize = cartes.size();
-        Carte carte = pioche.piocher();
+        int sizeBefore = cartes.size();
+        Carte p = pioche.piocher();
 
-        assertNotNull(carte, "Carte piochée ne doit pas être null.");
-        assertEquals(initialSize - 1, cartes.size(), "Le nombre de cartes devrait diminuer de 1.");
+        assertNotNull(p, "Carte piochée ne doit pas être null.");
+        assertEquals(sizeBefore - 1, pioche.getNbCartes(), "Le nombre de cartes devrait diminuer de 1.");
     }
 
     @Test
     void testEstVideAfterAllCardsPioched() {
         while (!pioche.estVide()) {
-            Carte c = pioche.piocher();
-            assertNotNull(c, "Chaque carte piochée devrait exister.");
+            Carte carte = pioche.piocher();
+            assertNotNull(carte, "Chaque carte piochée devrait exister.");
         }
         assertTrue(pioche.estVide(), "La pioche devrait être vide après avoir tout pioché.");
     }
@@ -55,5 +51,28 @@ class PiocheTest {
         }
         assertThrows(IllegalStateException.class, () -> pioche.piocher(),
                 "Piocher dans une pioche vide devrait lancer une exception.");
+    }
+
+    @Test
+    void testBoundaryCaseSingleCard() {
+        ArrayList<Carte> uneCarte = new ArrayList<>();
+        uneCarte.add(new CarteDefense("Unique", 10, "Unique", 20, 5, false));
+        Pioche piocheUnique = new Pioche(uneCarte);
+
+        assertFalse(piocheUnique.estVide(), "La pioche avec une carte ne devrait pas être vide.");
+        Carte p = piocheUnique.piocher();
+        assertNotNull(p, "Carte piochée ne doit pas être null.");
+        assertTrue(piocheUnique.estVide(), "La pioche devrait être vide après avoir pioché la seule carte.");
+        assertThrows(IllegalStateException.class, piocheUnique::piocher,
+                "Piocher une deuxième fois devrait lancer une exception.");
+    }
+
+    @Test
+    void testNbCartesConsistentWithSize() {
+        while (!pioche.estVide()) {
+            pioche.piocher();
+            assertEquals(pioche.getCartesSize(), pioche.getNbCartes(),
+                    "Le compteur nbCartes doit être cohérent avec la taille réelle de la liste.");
+        }
     }
 }

@@ -49,14 +49,6 @@ public class JeuDeCarte {
             new Configuration(new CartePiedMarin(), 5)
     };
 
-    private final Configuration[] testCards = {new Configuration(new CartePopularite("Plus1Pop", -1, "Le joueur Gagne 1PP", 1, 0, false), 10),
-            new Configuration(new CartePopularite("Moins1Pop", -1, "Le joueur Perd 1PP", -1, 0, false), 10),
-            new Configuration(new CartePopularite("Plus1PV pop", -1, "Le joueur gagne 1PV", 0, 1, false), 10),
-            new Configuration(new CarteAttack("Plus1PV att", -1, "Le joueur Gagne 1 PV Attaque", 0, 1, 0, 0, false, false), 10),
-            new Configuration(new CarteAttack("Moins1PVA", -1, "L'adversaire perd 1 PV", 0, 0, 0, -1, false, false), 10),
-            new Configuration(new CarteAttack("Moins1PPA", -1, "L'adversaire perd 1 PP", 0, 0, -1, 0, false, false), 10),
-    };
-
     private static class Configuration{
         Carte carte;
         int quantite;
@@ -76,19 +68,6 @@ public class JeuDeCarte {
         ArrayList<Carte> cartes = new ArrayList<>();
         Carte carte;
         for (Configuration c : config){
-            carte = c.getCarte();
-            for (int i= 0; i < c.getQuantite(); i++) {
-                cartes.add(carte);
-            }
-        }
-        return cartes;
-    }
-
-    //Used to test the size of the deck
-    public ArrayList<Carte> remplirPiocheTest(){
-        ArrayList<Carte> cartes = new ArrayList<>();
-        Carte carte;
-        for (Configuration c : testCards){
             carte = c.getCarte();
             for (int i= 0; i < c.getQuantite(); i++) {
                 cartes.add(carte);

@@ -1,8 +1,6 @@
 package noyau;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 
 /**
@@ -31,5 +29,12 @@ public class Pioche {
         cartes.remove(randomNum);
         nbCartes--;
         return carte;
+    }
+    public int getNbCartes() {
+        return nbCartes;
+    }
+
+    public int getCartesSize() {
+        return cartes.size();
     }
 }
