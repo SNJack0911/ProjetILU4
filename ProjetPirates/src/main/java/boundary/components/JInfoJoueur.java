@@ -10,10 +10,8 @@ import boundary.BoundaryJeu;
  *
  * @author leo, retouche vincent, yannf
  */
-public class JInfoJoueur extends javax.swing.JPanel {
-    private String nom;         // utile ?
+public class JInfoJoueur extends javax.swing.JPanel { // utile ?
     int idPirate;
-    private JMainJoueur jMainJoueur;    // utile ?
     private BoundaryJeu boundaryJeu;
 
     /**
@@ -24,10 +22,8 @@ public class JInfoJoueur extends javax.swing.JPanel {
         setOpaque(false);
     }
     
-    public void initJoueur(String nom, int idPirate, JMainJoueur mainJoueur, BoundaryJeu boundaryJeu){
-        this.nom = nom;         // utile ?
+    public void initJoueur(int idPirate, BoundaryJeu boundaryJeu){
         this.idPirate = idPirate;
-        this.jMainJoueur = mainJoueur;      // utile ?
         this.boundaryJeu = boundaryJeu;
     }
     
