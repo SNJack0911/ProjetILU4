@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import noyau.BasicCategorie;
-import noyau.GestionnaireEffetFumee;
 import noyau.ICategorieCarte;
 
 

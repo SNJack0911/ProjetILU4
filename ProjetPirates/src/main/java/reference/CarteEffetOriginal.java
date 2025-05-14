@@ -1,4 +1,6 @@
-package noyau;
+package reference;
+
+import noyau.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class CarteEffetOriginal extends Carte {
         this.effectname = effectname;
     }
     
-    private List<String> toucher_d_encre(Pirate joueur,Pirate adversaire,Jeu jeu){
+    private List<String> toucher_d_encre(Pirate joueur, Pirate adversaire, Jeu jeu){
         List<Carte> possible = adversaire.getMain();
         Random rand = new Random();
         int randomIndex = rand.nextInt(possible.size());

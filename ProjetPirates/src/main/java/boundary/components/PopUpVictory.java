@@ -21,12 +21,13 @@ public class PopUpVictory extends javax.swing.JDialog {
      * Creates new form PopUp
      * @param parent
      */
-    public PopUpVictory(JFrame parent) {
-        super(parent, true);
-        setContentPane(new VictoryScreen());  // Use custom panel here
-        setSize(300, 300);
-        setLocationRelativeTo(parent);
-        initComponents();
+	private String winner;
+    public PopUpVictory(JFrame parent,String winner) {
+    	super(parent, true);
+    	setContentPane(new VictoryScreen(winner));
+    	pack();                    // size to VictoryScreen’s preferred size
+    	setLocationRelativeTo(parent);
+    	setVisible(true);
     }
 
     /**

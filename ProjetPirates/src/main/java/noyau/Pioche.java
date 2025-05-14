@@ -10,15 +10,15 @@ import java.util.Random;
 
 public class Pioche {
     private int nbCartes;
-    private ArrayList<Carte> cartes;
-    private static Random rand = new Random();
+    private final ArrayList<Carte> cartes;
+    private static final Random rand = new Random();
 
     public Pioche(ArrayList<Carte> cartes){
         nbCartes = cartes.size();
         this.cartes = cartes;
     }
 
-    public boolean estVide(){return nbCartes <= 0;};
+    public boolean estVide(){return nbCartes <= 0;}
 
     public Carte piocher() throws IllegalStateException{
         if (estVide()) {

@@ -448,8 +448,8 @@ public class Plateau extends javax.swing.JPanel {
         jInfoJoueur2.finTour();
     }
 
-    private void victory (){
-        PopUpVictory victoire = new PopUpVictory((JFrame) this.getTopLevelAncestor());
+    private void victory (String winner){
+        PopUpVictory victoire = new PopUpVictory((JFrame) this.getTopLevelAncestor(),winner);
         victoire.setVisible(true);
     }
   
@@ -465,7 +465,7 @@ public class Plateau extends javax.swing.JPanel {
             // Vérifie la victoire
         String dernierResultat = resultat.getLast();
         if (!dernierResultat.equals("Pas de gagnant")){
-            victory();  // Affiche écran de victoire
+            victory(dernierResultat);  // Affiche écran de victoire
             System.out.println("Gagnant : " + dernierResultat);
         }
             // Supprime la carte jouée
