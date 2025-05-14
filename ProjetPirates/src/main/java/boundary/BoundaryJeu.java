@@ -18,9 +18,7 @@ import java.util.Scanner;
  *
  * @author yannf et fanny
  */
-/*
-    Used to condense the amount of arguments given when creating a panel or a frame
- */
+
 public class BoundaryJeu {
     private final BoundaryJouerCarte boundaryJouerCarte;
     private final BoundaryNouvellePartie boundaryNouvellePartie;

@@ -12,38 +12,20 @@ import projetpirates.ProjetPirates;
 
 /**
  *
- * @author Amaterasu/hai , leo
+ * @author hai , leo
  */
 public class VictoryScreen extends JPanel {
-    private float scale = 0.1f;
-    private float alpha = 0.0f;
-    private Timer timer;
     
     /**
      * Creates new form VictoryScreen
      */
-    public VictoryScreen() {
-        setBackground(Color.BLACK);
-        timer = new Timer(30, (ActionEvent e) -> {
-            boolean repaintNeeded = false;
-
-            if (scale < 1.0f) {
-                scale += 0.02f;
-                repaintNeeded = true;
-            }
-
-            if (alpha < 1.0f) {
-                alpha += 0.02f;
-                repaintNeeded = true;
-            }
-
-            if (repaintNeeded) {
-                repaint();
-            } else {
-                timer.stop(); // Stoppe le timer quand l’animation est terminée
-            }
-        });
-        timer.start();
+    private String filenameVictory;
+    public VictoryScreen(String winner) {
+        if (winner.equals("Jake Gibbs")) {
+        	filenameVictory = "IconP1.png";
+        }else {
+        	filenameVictory = "IconP2.png";
+        }
         initComponents();
     }
     
@@ -56,93 +38,96 @@ public class VictoryScreen extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelWithBackground1 = new boundary.components.JPanelWithBackground();
         Rerun = new boundary.components.JButtonCustom();
         jButtonCustom4 = new boundary.components.JButtonCustom();
+        jPanelWithBackground2 = new boundary.components.JPanelWithBackground();
+        drawVictoryPanel1 = new boundary.components.DrawVictoryPanel();
+        jPanelWithBackground2.setImage(filenameVictory);
 
         Rerun.setText("Main Menu");
         Rerun.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RerunMouseClicked(evt);
+                RerunMouseClicked();
             }
         });
 
         jButtonCustom4.setText("Exit");
         jButtonCustom4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonCustom4MouseClicked(evt);
+                jButtonCustom4MouseClicked();
             }
         });
 
-        javax.swing.GroupLayout jPanelWithBackground1Layout = new javax.swing.GroupLayout(jPanelWithBackground1);
-        jPanelWithBackground1.setLayout(jPanelWithBackground1Layout);
-        jPanelWithBackground1Layout.setHorizontalGroup(
-            jPanelWithBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelWithBackground1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(Rerun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                .addComponent(jButtonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+        javax.swing.GroupLayout jPanelWithBackground2Layout = new javax.swing.GroupLayout(jPanelWithBackground2);
+        jPanelWithBackground2.setLayout(jPanelWithBackground2Layout);
+        jPanelWithBackground2Layout.setHorizontalGroup(
+            jPanelWithBackground2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 436, Short.MAX_VALUE)
         );
-        jPanelWithBackground1Layout.setVerticalGroup(
-            jPanelWithBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelWithBackground1Layout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
-                .addGroup(jPanelWithBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Rerun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+        jPanelWithBackground2Layout.setVerticalGroup(
+            jPanelWithBackground2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 197, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout drawVictoryPanel1Layout = new javax.swing.GroupLayout(drawVictoryPanel1);
+        drawVictoryPanel1.setLayout(drawVictoryPanel1Layout);
+        drawVictoryPanel1Layout.setHorizontalGroup(
+            drawVictoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        drawVictoryPanel1Layout.setVerticalGroup(
+            drawVictoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 94, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelWithBackground1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelWithBackground2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(Rerun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(drawVictoryPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelWithBackground1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelWithBackground2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(drawVictoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Rerun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    private void RerunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RerunMouseClicked
+    private void RerunMouseClicked() {//GEN-FIRST:event_RerunMouseClicked
         this.setVisible(false);
         ProjetPirates.main(null);
     }//GEN-LAST:event_RerunMouseClicked
 
-    private void jButtonCustom4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCustom4MouseClicked
+    private void jButtonCustom4MouseClicked() {//GEN-FIRST:event_jButtonCustom4MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jButtonCustom4MouseClicked
-    
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g.create();
 
-        // Enable anti-aliasing
-        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-                             RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        String text = "VICTORY";
-        g2d.setFont(getFont().deriveFont(Font.BOLD, 80 * scale));
-        float safeAlpha = Math.max(0f, Math.min(1f, alpha));
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, safeAlpha));
-
-        g2d.setColor(Color.YELLOW);
-
-        FontMetrics fm = g2d.getFontMetrics();
-        int x = (getWidth() - fm.stringWidth(text)) / 2;
-        int y = (getHeight() + fm.getAscent()) / 2;
-
-        g2d.drawString(text, x, y);
-        g2d.dispose();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private boundary.components.JButtonCustom Rerun;
+    private boundary.components.DrawVictoryPanel drawVictoryPanel1;
     private boundary.components.JButtonCustom jButtonCustom4;
-    private boundary.components.JPanelWithBackground jPanelWithBackground1;
+    private boundary.components.JPanelWithBackground jPanelWithBackground2;
     // End of variables declaration//GEN-END:variables
 }
