@@ -19,7 +19,11 @@ import javax.swing.JButton;
  * @author yannf
  */
 public class JButtonCustom extends JButton{
-    private Image defaultIcon = null;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Image defaultIcon = null;
     private Image pressedIcon = null;
     private boolean isPressed = false;
     

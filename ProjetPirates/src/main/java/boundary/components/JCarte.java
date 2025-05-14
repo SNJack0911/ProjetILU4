@@ -27,7 +27,11 @@ import noyau.ICategorieCarte;
  * @author leo et yannf, retouche vincent
  */
 public class JCarte extends javax.swing.JPanel {
-    private Image frontCard;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Image frontCard;
     private Image backCard;
     private boolean isFront = false;
     private Point origine = null;
@@ -134,7 +138,7 @@ public class JCarte extends javax.swing.JPanel {
         }
     }
     
-    @SuppressWarnings("unchecked")
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

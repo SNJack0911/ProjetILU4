@@ -1,7 +1,6 @@
 package controleur;
 
 import noyau.Jeu;
-import noyau.Pirate;
 
 import java.util.ArrayList;
 

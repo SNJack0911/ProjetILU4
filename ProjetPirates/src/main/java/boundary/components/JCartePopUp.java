@@ -21,7 +21,12 @@ import java.awt.event.*;
 
 public class JCartePopUp extends JWindow {
 
-    public JCartePopUp(JFrame parent, Image image) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public JCartePopUp(JFrame parent, Image image) {
         super(parent);
 
         JLabel label = new JLabel(new ImageIcon(image));

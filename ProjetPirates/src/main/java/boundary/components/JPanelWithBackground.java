@@ -18,7 +18,11 @@ import javax.swing.JPanel;
  */
 public class JPanelWithBackground extends JPanel {
 
-    private Image backgroundImage;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Image backgroundImage;
 
 
     public JPanelWithBackground(){

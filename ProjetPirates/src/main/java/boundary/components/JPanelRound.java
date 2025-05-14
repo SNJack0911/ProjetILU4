@@ -18,7 +18,12 @@ import javax.swing.JPanel;
  */
 public class JPanelRound extends JPanel{
 
-    public JPanelRound(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public JPanelRound(){
         super();
         setOpaque(false);
         setDoubleBuffered(true);

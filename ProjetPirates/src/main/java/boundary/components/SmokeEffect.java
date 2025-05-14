@@ -11,8 +11,6 @@ public class SmokeEffect {
     public Image image;
     public int x, y;
     public float alpha = 1.0f;
-    private int size = 60; //appelle dans gestionnaire fumee
-
     public SmokeEffect(Image image, int x, int y) {
         this.image = image;
         this.x = x;
@@ -28,6 +26,5 @@ public class SmokeEffect {
     }
 
     public void setSize(int size) {
-        this.size = size;
     }
 }

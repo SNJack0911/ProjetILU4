@@ -15,7 +15,11 @@ import java.awt.Graphics2D;
  * @author yannf
  */
 public class JPirateIcon extends JPanelWithBackground{
-    private String nomPirate;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String nomPirate;
     
     @Override
     protected void paintComponent(Graphics g){
