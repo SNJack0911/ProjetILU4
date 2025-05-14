@@ -9,7 +9,7 @@ import java.util.*;
  * @author hai
  */
 public class CarteEffetOriginal extends Carte {
-    private EffectName effectname;
+    private final EffectName effectname;
 
     protected CarteEffetOriginal(String nom, int carteID, String description, ICategorieCarte categorie, BasicCategorie zoneDepot, EffectName effectname) {
         super(nom, carteID, description, categorie, zoneDepot);

@@ -22,12 +22,12 @@ import java.util.Scanner;
     Used to condense the amount of arguments given when creating a panel or a frame
  */
 public class BoundaryJeu {
-    private BoundaryJouerCarte boundaryJouerCarte;
-    private BoundaryNouvellePartie boundaryNouvellePartie;
-    private BoundaryPiocherCarte boundaryPiocherCarte;
-    private ControleurGetCarteInfo controleurGetCarteInfo;
-    private ControleurGetPirateInfo controleurGetPirateInfo;
-    private Scanner scanner = new Scanner(System.in);
+    private final BoundaryJouerCarte boundaryJouerCarte;
+    private final BoundaryNouvellePartie boundaryNouvellePartie;
+    private final BoundaryPiocherCarte boundaryPiocherCarte;
+    private final ControleurGetCarteInfo controleurGetCarteInfo;
+    private final ControleurGetPirateInfo controleurGetPirateInfo;
+    private final Scanner scanner = new Scanner(System.in);
 
     public BoundaryJeu(BoundaryJouerCarte boundaryJouerCarte, BoundaryNouvellePartie boundaryNouvellePartie,
                        BoundaryPiocherCarte boundaryPiocherCarte, ControleurGetCarteInfo controleurGetCarteInfo, ControleurGetPirateInfo controleurGetPirateInfo) {
@@ -182,6 +182,7 @@ public class BoundaryJeu {
         }while (!(choix.equals("c") || choix.equals("q") || choix.equals("C") || choix.equals("Q")));
         if (choix.equals("q") || choix.equals("Q")) {
             System.out.println("Au revoir.");
+            return;
         }
         do {
             initNewGame();
@@ -249,7 +250,8 @@ public class BoundaryJeu {
     }
 
     private void printMoon(){
-        System.out.println("                                        .. '      * \n" +
+        System.out.println( "Il fait nuit \n "+
+                            "                                        .. '      * \n" +
                             "  .   '.              .-.  +               *       \n" +
                             "               +     ( (       '                   \n" +
                             "  .      .:'          `-'         .          '     \n" +
@@ -258,7 +260,8 @@ public class BoundaryJeu {
     }
 
     private void printSun (){
-        System.out.println("                                                     \n" +
+        System.out.println("Il fait jour \n" +
+                "                                                     \n" +
                 "                                 .-.  .--                    \n" +
                 "          _⠀⢀     ⠀⠀⠀           (   +(    )                   \n" +
                 "⠀       _(⠀) ⠀),⠀                 `-(        )                  \n" +

@@ -3,7 +3,7 @@ package boundary;
 import controleur.ControleurNouvellePartie;
 
 public class BoundaryNouvellePartie {
-    private ControleurNouvellePartie controleurNouvellePartie;
+    private final ControleurNouvellePartie controleurNouvellePartie;
 
     public BoundaryNouvellePartie(ControleurNouvellePartie controleurNouvellePartie) {
         this.controleurNouvellePartie = controleurNouvellePartie;

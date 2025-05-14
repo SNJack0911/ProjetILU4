@@ -5,7 +5,7 @@ import controleur.ControleurPiocherCarte;
 import java.util.ArrayList;
 
 public class BoundaryPiocherCarte {
-    private ControleurPiocherCarte controleurPiocherCarte;
+    private final ControleurPiocherCarte controleurPiocherCarte;
 
     public BoundaryPiocherCarte(ControleurPiocherCarte controleurPiocherCarte) {
         this.controleurPiocherCarte = controleurPiocherCarte;

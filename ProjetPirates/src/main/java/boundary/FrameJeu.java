@@ -25,7 +25,7 @@ import javax.swing.JPanel;
  * @author yannf et vincent
  */
 public class FrameJeu extends javax.swing.JFrame {
-    private BoundaryJeu boundaryJeu;
+    private final BoundaryJeu boundaryJeu;
     /**
      * Creates new form FrameJeu
      * @param boundaryJeu
@@ -425,15 +425,10 @@ public class FrameJeu extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustom1ActionPerformed
         switchPanel(plateauPanel);
         menuPanel.setVisible(false);
-        /*System.out.println("Size plateauPanel : " + plateauPanel.getSize().toString());
-        System.out.println("Size plateau1 : " + plateau1.getSize().toString());*/
-        //boundaryJeu.initNewGame();
         
         plateauPanel.setSize(getWidth(), getHeight());
         plateau1.setSize(getWidth(), getHeight());
-        /*System.out.println("Size plateauPanel : " + plateauPanel.getSize().toString());
-        System.out.println("Size plateau1 : " + plateau1.getSize().toString());*/
-        
+
         plateau1.setBoundaryJeu(boundaryJeu);
     }//GEN-LAST:event_jButtonCustom1ActionPerformed
 
@@ -463,10 +458,8 @@ public class FrameJeu extends javax.swing.JFrame {
     
     
     private void plateauPanelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plateauPanelKeyPressed
-        //System.out.println(getFocusOwner());
         Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && plateauPanel.equals(focused)){
-            //System.out.println("Escape pressed1!");
             switchPanel(menuPanel);
             plateauPanel.setVisible(false);
         }
@@ -581,7 +574,7 @@ public class FrameJeu extends javax.swing.JFrame {
             });
 
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-            e.printStackTrace(); //Throwable printStackTrace() should be remove
+            System.out.println("Musique non trouvé.");
         }
     }
     

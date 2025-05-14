@@ -287,12 +287,10 @@ public class Plateau extends javax.swing.JPanel {
     }//GEN-LAST:event_jPioche1MouseClicked
 
     private void jButtonFinDeTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinDeTourActionPerformed
-        // TODO add your handling code here:
         int tour = boundaryJeu.getTour();
         int joueurActuel = tour % 2;
         int joueurSuivant = (tour + 1) % 2;
 
-        // je sais pas j'ai tout teste sauf la solution 
         // Désactiver joueur actuel et retourner ses cartes
         if (joueurActuel == 0) {
             jMainJoueur1.setEnabled(false);
@@ -303,8 +301,6 @@ public class Plateau extends javax.swing.JPanel {
             retournerCartesMain(jMainJoueur2.getMainJoueur());
             jMainJoueur2.repaint();
         }
-
-        // mettre un wait ????? pour que l'option laisse du temps au carte d'être retourné ?
 
         // Afficher popup 
         JPanel panel = new JPanel();
@@ -354,7 +350,6 @@ public class Plateau extends javax.swing.JPanel {
         jPioche1.setEnabled(true);
         boundaryJeu.incrementerTour();
         updatePlateau();
-        //boundaryJeu.setNuit(null);
     }//GEN-LAST:event_jButtonFinDeTourActionPerformed
 
     

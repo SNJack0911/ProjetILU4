@@ -6,8 +6,8 @@ import controleur.ControleurJouerCarte;
 import java.util.List;
 
 public class BoundaryJouerCarte {
-    private ControleurJouerCarte controleurJouerCarte; //final ?
-    private ControleurGetCarteInfo controleurGetCarteInfo;  //final ?
+    private final ControleurJouerCarte controleurJouerCarte; 
+    private final ControleurGetCarteInfo controleurGetCarteInfo;  
 
     public BoundaryJouerCarte(ControleurJouerCarte controleurJouerCarte, ControleurGetCarteInfo controleurGetCarteInfo) {
         this.controleurJouerCarte = controleurJouerCarte;

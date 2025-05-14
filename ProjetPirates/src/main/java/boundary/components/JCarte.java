@@ -35,7 +35,6 @@ public class JCarte extends javax.swing.JPanel {
     private JMainJoueur mainOrigine; 
     
     private String nom;
-    private int carteID; // never read ?
     private ICategorieCarte type;
     private String description;
     private BasicCategorie zoneDepot;
@@ -57,7 +56,6 @@ public class JCarte extends javax.swing.JPanel {
     }
 
     public void ajouterAttribut(String nom, int carteID, ICategorieCarte type, String description, BasicCategorie zoneDepot, JMainJoueur mainOrigine){
-        this.carteID = carteID;
         this.nom = nom;
         this.type = type;
         this.description = description;
@@ -108,7 +106,6 @@ public class JCarte extends javax.swing.JPanel {
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, smoke.alpha));
             g2d.drawImage(smoke.image, smoke.x - getX(), smoke.y - getY(), 40, 40, this); // taille ajustable
         }
-
         
         g2d.dispose();
     }

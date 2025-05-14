@@ -15,7 +15,7 @@ import noyau.Jeu;
 public class ProjetPirates {
 
     public static void main(String[] args) {
-        boolean IHM = true;
+        boolean IHM = false;
 
         Jeu jeu = new Jeu();
         ControleurNouvellePartie controleurNouvellePartie = new ControleurNouvellePartie(jeu);
