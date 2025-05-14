@@ -50,7 +50,7 @@ class CarteEffetTest {
         assertEquals(5, adversaire.getHP(), "Ajout des HP est incorrect");
 
         CartePopulariteLambda carte2 = new CartePopulariteLambda("Carte", -1, "desc", BasicCategorie.POPULARITE,
-                null, ((pirate, jeu) -> pirate.getHP() - 1));
+                null, ((pirate, game) -> pirate.getHP() - 1));
         jeu.jouerCarte(carte2, joueur, adversaire);
 
         assertEquals(5, joueur.getHP(), "Protection contre les attaques incorrect");
@@ -67,13 +67,13 @@ class CarteEffetTest {
         carte1.appliquerEffet(joueur, adversaire, jeu);
 
         CartePopulariteLambda carte2 = new CartePopulariteLambda("Carte", -1, "desc", BasicCategorie.POPULARITE,
-                null, ((pirate, jeu) -> pirate.getHP() - 1));
+                null, ((pirate, game) -> pirate.getHP() - 1));
         jeu.jouerCarte(carte2, joueur, adversaire);
 
         assertEquals(4, joueur.getHP(), "Suppression des HP est incorrect");
 
         CartePopulariteLambda carte3 = new CartePopulariteLambda("Carte", -1, "desc", BasicCategorie.POPULARITE,
-                ((pirate, jeu) -> pirate.getPP() + 1), null);
+                ((pirate, game) -> pirate.getPP() + 1), null);
 
         jeu.jouerCarte(carte3, joueur, adversaire);
 
@@ -86,13 +86,13 @@ class CarteEffetTest {
         carte1.appliquerEffet(joueur, adversaire, jeu);
 
         CartePopulariteLambda carte2 = new CartePopulariteLambda("Carte", -1, "desc", BasicCategorie.POPULARITE,
-                ((pirate, jeu) -> pirate.getPP() + 2), null);
+                ((pirate, game) -> pirate.getPP() + 2), null);
         jeu.jouerCarte(carte2, adversaire, joueur);
         assertEquals(2, adversaire.getPP(), "L'ajout des PP de l'adversaire est incorrect");
 
 
         CarteAttaqueLambda carte3 = new CarteAttaqueLambda("Carte", -1, "desc",
-                null, ((pirate, jeu) -> pirate.getHP() - 2));
+                null, ((pirate, game) -> pirate.getHP() - 2));
         jeu.jouerCarte(carte3, joueur, adversaire);
         assertEquals(4, adversaire.getHP(), "La suppression des HP de l'adversaire n'est pas bien diviser par deux");
     }
@@ -103,7 +103,7 @@ class CarteEffetTest {
         carte1.appliquerEffet(joueur, adversaire, jeu);
 
         CartePopulariteLambda carte2 = new CartePopulariteLambda("Carte", -1, "desc", BasicCategorie.POPULARITE,
-                null, ((pirate, jeu) -> pirate.getHP() - 2));
+                null, ((pirate, game) -> pirate.getHP() - 2));
         jeu.jouerCarte(carte2, joueur, adversaire);
         assertEquals(5, joueur.getHP(), "La carte popularité ne doit pas avoir d'effet");
     }
@@ -114,7 +114,7 @@ class CarteEffetTest {
         carte1.appliquerEffet(joueur, adversaire, jeu);
 
         CartePopulariteLambda carte2 = new CartePopulariteLambda("Carte", -1, "desc", BasicCategorie.POPULARITE,
-                ((pirate, jeu) -> pirate.getPP() + 2), null);
+                ((pirate, game) -> pirate.getPP() + 2), null);
         jeu.jouerCarte(carte2, joueur, adversaire);
         assertEquals(2, joueur.getPP(), "La carte effet ne doit pas avoir d'effet");
     }

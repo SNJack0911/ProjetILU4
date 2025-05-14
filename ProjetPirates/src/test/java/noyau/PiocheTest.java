@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+* @author Stefan
+* */
+
 class PiocheTest {
 
     private Pioche pioche;
