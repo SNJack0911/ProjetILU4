@@ -1,6 +1,5 @@
-package noyau;
+package boundary.components;
 
-import boundary.components.SmokeEffect;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;

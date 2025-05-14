@@ -258,16 +258,21 @@ public class Plateau extends javax.swing.JPanel {
 
     private void jPioche1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPioche1MouseClicked
         if(!jPioche1.isEnabled()) {return;}
+        
         int tour = boundaryJeu.getTour();
-        
-        //get carte from noyeau
-        List<String> listNomCarte = boundaryJeu.piocherCarte();
-        
         JMainJoueur mainJoueur = (tour % 2 == 0) ? jMainJoueur1 : jMainJoueur2;
+
+        List<String> listNomCarte = boundaryJeu.piocherCarte();
+        ajouterCartesAMain(listNomCarte,mainJoueur);
         
-        for (String nomCarte : listNomCarte) {
+        mainJoueur.setEnabled(true);
+        jPioche1.setEnabled(false);
+    }//GEN-LAST:event_jPioche1MouseClicked
+
+    private void ajouterCartesAMain(List<String> nomsCartes, JMainJoueur mainJoueur) {
+        for (String nomCarte : nomsCartes) {
             if (nomCarte == null) {
-                System.out.println("Carte null détectée !");
+                System.err.println("Carte null détectée !");
                 continue;
             }
 
@@ -276,23 +281,31 @@ public class Plateau extends javax.swing.JPanel {
                 boundaryJeu.getCarteId(nomCarte),
                 boundaryJeu.getTypeCarte(nomCarte),
                 boundaryJeu.getDescription(nomCarte),
-                boundaryJeu.getZoneDepot(nomCarte)                  
-                );
-            mainJoueur.revalidate();
-            mainJoueur.repaint();
+                boundaryJeu.getZoneDepot(nomCarte)
+            );
         }
-        
-        mainJoueur.setEnabled(true);
-        jPioche1.setEnabled(false);
-    }//GEN-LAST:event_jPioche1MouseClicked
+
+        mainJoueur.revalidate();
+        mainJoueur.repaint();
+    }
 
     private void jButtonFinDeTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinDeTourActionPerformed
         int tour = boundaryJeu.getTour();
         int joueurActuel = tour % 2;
         int joueurSuivant = (tour + 1) % 2;
+   
+        RetournerCarte(joueurActuel);
+        afficherPopupFinDeTour();
+        RetournerCarte(joueurSuivant);
+        
+        jButtonFinDeTour.setEnabled(false);
+        jPioche1.setEnabled(true);
+        boundaryJeu.incrementerTour();
+        updatePlateau();
+    }//GEN-LAST:event_jButtonFinDeTourActionPerformed
 
-        // Désactiver joueur actuel et retourner ses cartes
-        if (joueurActuel == 0) {
+    private void RetournerCarte(int joueur){
+        if (joueur == 0) {
             jMainJoueur1.setEnabled(false);
             retournerCartesMain(jMainJoueur1.getMainJoueur());
             jMainJoueur1.repaint();
@@ -301,8 +314,9 @@ public class Plateau extends javax.swing.JPanel {
             retournerCartesMain(jMainJoueur2.getMainJoueur());
             jMainJoueur2.repaint();
         }
-
-        // Afficher popup 
+    }
+       
+    private void afficherPopupFinDeTour() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(139, 69, 19)); // marron foncé
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -334,24 +348,7 @@ public class Plateau extends javax.swing.JPanel {
 
         // Affiche la boîte (modal)
         dialog.setVisible(true);
-
-        // Activer joueur suivant et retourner ses cartes
-        if (joueurSuivant == 0) {
-            retournerCartesMain(jMainJoueur1.getMainJoueur());
-            jMainJoueur1.setEnabled(false);
-            jMainJoueur1.repaint();
-        } else {
-            retournerCartesMain(jMainJoueur2.getMainJoueur());
-            jMainJoueur2.setEnabled(false);
-            jMainJoueur2.repaint();
-        }
-
-        jButtonFinDeTour.setEnabled(false);
-        jPioche1.setEnabled(true);
-        boundaryJeu.incrementerTour();
-        updatePlateau();
-    }//GEN-LAST:event_jButtonFinDeTourActionPerformed
-
+    }
     
     private void updatePlateau(){
         boolean newEtat = boundaryJeu.isNuit();
@@ -364,8 +361,7 @@ public class Plateau extends javax.swing.JPanel {
             plateauBackground.repaint();
         }
     }
-    
-    
+      
     public String getCurrentPirate(){
         int tour = boundaryJeu.getTour();
         if(tour%2 == 0){
@@ -390,8 +386,8 @@ public class Plateau extends javax.swing.JPanel {
     
     private void initPlateau (){
         //Init Pirate
-        jInfoJoueur1.initJoueur(nomPirate1, 0, jMainJoueur1, boundaryJeu);  // utile ?
-        jInfoJoueur2.initJoueur(nomPirate2, 1, jMainJoueur2, boundaryJeu);  // utile ?
+        jInfoJoueur1.initJoueur(0, boundaryJeu);
+        jInfoJoueur2.initJoueur(1, boundaryJeu);
 
         //Init info
         updateInfoPirate();
@@ -484,6 +480,7 @@ public class Plateau extends javax.swing.JPanel {
         retournerCartesMain(jMainJoueur2.getMainJoueur());
         retournerCartesMain(jMainJoueur1.getMainJoueur());
     }
+    
     private void retournerCartesMain(List<JCarte> main){
         for (JCarte jCarte : main) {
             jCarte.changeCardFace();

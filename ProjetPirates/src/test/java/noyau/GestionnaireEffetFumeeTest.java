@@ -1,5 +1,6 @@
 package noyau;
 
+import boundary.components.GestionnaireEffetFumee;
 import boundary.components.SmokeEffect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
