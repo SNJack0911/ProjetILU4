@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Amaterasu
+ * @author Hai
  */
 public class PopUpVictory extends javax.swing.JDialog {
 
