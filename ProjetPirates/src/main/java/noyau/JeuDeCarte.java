@@ -28,7 +28,7 @@ public class JeuDeCarte {
                     ((pirate, jeu) -> pirate.getPP()+2), null), 6),
             new Configuration(new CartePopulariteLambda("Tournée de rhum", 23, "Le joueur Gagne 1PP", BasicCategorie.POPULARITE,
                     ((pirate, jeu) -> pirate.getPP()+1), null), 12),
-            new Configuration(new CarteToucheEncre(), 60), //Quantite 6
+            new Configuration(new CarteToucheEncre(), 6),
             new Configuration(new CarteEffetAmplificateur(), 4),
             new Configuration(new CarteSourdOreille(), 7),
             new Configuration(new CarteAntidouleur(), 5),
