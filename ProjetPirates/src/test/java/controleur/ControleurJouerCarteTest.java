@@ -1,7 +1,7 @@
 package controleur;
 
 import noyau.Carte;
-import noyau.CartePopularite;
+import reference.CartePopularite;
 import noyau.Jeu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

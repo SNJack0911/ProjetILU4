@@ -35,8 +35,8 @@ class CarteLambdaTest {
     void carteNuitPopularite(){
         joueur.addHP(-3);
         assertEquals(2, joueur.getHP(), "HP joueur incorrect pour le test");
-        CarteNuitPopularite carte = new CarteNuitPopularite("Carte", -1, "desc", BasicCategorie.POPULARITE,
-                null, ((pirate, game) -> pirate.getHP() + 1));
+        CartePopulariteLambda carte = new CartePopulariteLambda("Carte", -1, "desc", BasicCategorie.POPULARITE,
+                null, ((pirate, game) -> jeu.isNuit() ? pirate.getHP() + 1 : pirate.getHP() + 2));
         carte.appliquerEffet(joueur, adversaire, jeu);
 
         assertEquals(4, joueur.getHP(), "HP joueur incorrect après tour jour");
@@ -84,8 +84,8 @@ class CarteLambdaTest {
 
     @Test
     void carteNuitAttaque(){
-        CarteNuitAttaque carte = new CarteNuitAttaque("Carte", -1, "desc",
-                null, ((pirate, game) -> pirate.getHP()-1));
+        CarteAttaqueLambda carte = new CarteAttaqueLambda("Carte", -1, "desc",
+                null, ((pirate, game) -> jeu.isNuit() ? pirate.getHP()-2 : pirate.getHP()-1));
         /*Carte Equivalent
         CarteAttaqueLambda carte2 = new CarteAttaqueLambda("Carte", -1, "desc",
                 null, ((pirate, game) -> {
