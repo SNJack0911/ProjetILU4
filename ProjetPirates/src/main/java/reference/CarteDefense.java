@@ -1,11 +1,13 @@
-package noyau;
+package reference;
+
+import noyau.*;
 
 /**
  *
  * @author yannf
  */
 
-public class CarteDefense extends  Carte{
+public class CarteDefense extends Carte {
     private int PVajout;
     private int PPajout;
     private boolean affecterNuit;

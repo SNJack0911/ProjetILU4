@@ -1,4 +1,9 @@
-package noyau;
+package reference;
+
+import noyau.BasicCategorie;
+import noyau.Carte;
+import noyau.Jeu;
+import noyau.Pirate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +43,6 @@ public class CartePopularite extends Carte {
         }
         joueur.applyStats("HP", PVajoutJ);
         joueur.applyStats("PP", PPajoutJ*compteur);
+        //return listeFace;
     }
 }

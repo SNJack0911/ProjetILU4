@@ -1,8 +1,8 @@
 package controleur;
 
 import noyau.Carte;
-import noyau.CarteDefense;
-import noyau.CartePopularite;
+import reference.CarteDefense;
+import reference.CartePopularite;
 import noyau.Jeu;
 import org.junit.jupiter.api.Test;
 

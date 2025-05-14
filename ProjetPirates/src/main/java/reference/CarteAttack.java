@@ -1,4 +1,9 @@
-package noyau;
+package reference;
+
+import noyau.BasicCategorie;
+import noyau.Carte;
+import noyau.Jeu;
+import noyau.Pirate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +14,7 @@ import java.util.Random;
  * @author yannf
  */
 
-public class CarteAttack extends Carte{
+public class CarteAttack extends Carte {
     private int PPajoutJ;
     private int PVajoutJ;
     private int PPajoutA;
@@ -52,5 +57,6 @@ public class CarteAttack extends Carte{
         joueur.applyStats("PP", PPajoutJ);
         adversaire.applyStats("PP", PPajoutA);
         adversaire.applyStats("HP", PVajoutA*compteur);
+        //return listeFace
     }
 }

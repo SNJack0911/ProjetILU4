@@ -35,6 +35,7 @@ public class JCarte extends javax.swing.JPanel {
     private JMainJoueur mainOrigine; 
     
     private String nom;
+    //private int carteID; // never read ?
     private ICategorieCarte type;
     private String description;
     private BasicCategorie zoneDepot;
