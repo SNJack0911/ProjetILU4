@@ -1,11 +1,6 @@
 package noyau;
 
 import org.junit.jupiter.api.Test;
-import utils.CartesCSV;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,25 +30,6 @@ class CarteTest {
     }
 
     @Test
-    void testPopEffet() {
-        /*CartePopularite carte = new CartePopularite("Fan Club", 0, "desc", 1, 5, true);
-
-        Jeu jeu = new Jeu();
-        jeu.setNuit(true);
-        Pirate joueur = new Pirate("Tom");
-        Pirate adversaire = new Pirate("Jerry");
-
-        //Jouer Carte
-        List<String> result = carte.appliquerEffet(joueur, adversaire, jeu);
-
-        assertEquals(5, joueur.getHP(), "HP joueur incorrect");
-        //assertEquals(1, joueur.getPP(), "PP joueur incorrect"); //Impossible to test cause random
-        assertFalse(result.isEmpty(), "Il devrait y avoir des tirages");
-
-        System.out.println("✔ popEffet");*/
-    }
-
-    @Test
     void testDefenseEffet() {
         CarteDefense carte = new CarteDefense("Bouclier", 0,"def", 1, 2, true);
 
@@ -69,23 +45,4 @@ class CarteTest {
         System.out.println("✔ defenseEffet");
     }
 
-    @Test
-    void testCsvLoad() {
-        /*
-        * Pas necessaire de tester l'utilisation de csv pour le chargement de donnees.
-        * Les cartes existes deja dans la classe JeuDeCarte -=> duplication de code
-        * */
-        InputStream is = CartesCSV.class.getClassLoader().getResourceAsStream("cartes.csv"); // On charge le fichier CSV
-        try{
-            if (is == null) throw new FileNotFoundException("Fichier non trouvé !");
-            List<Carte> cartes = CartesCSV.lireCartes(is);
-            if (cartes == null) System.err.println("Erreur de lecture du fichier CSV");
-            Carte c = cartes.getFirst();
-            assertEquals("Touché d'encre", c.getNom(), "Nom incorrect");
-
-            System.out.println("✔ csvLoad");
-        } catch (FileNotFoundException e) {
-            System.err.println("Erreur de chargement du fichier : " + e.getMessage());
-        }
-    }
 }
