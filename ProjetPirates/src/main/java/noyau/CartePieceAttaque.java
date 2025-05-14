@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 public class CartePieceAttaque extends CarteAttaqueLambda {
-    private CoinFlip coinFlip = new CoinFlip();
+    private final CoinFlip coinFlip = new CoinFlip();
 
     public CartePieceAttaque(String nom, int carteID, String description, IEffet effetHPJ, IEffet effetHPA) {
         super(nom, carteID, description, effetHPJ, effetHPA);

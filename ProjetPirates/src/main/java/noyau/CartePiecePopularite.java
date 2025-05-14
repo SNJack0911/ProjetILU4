@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class CartePiecePopularite extends CartePopulariteLambda{
-    private CoinFlip coinFlip = new CoinFlip();
+    private final CoinFlip coinFlip = new CoinFlip();
 
     public CartePiecePopularite(String nom, int carteID, String description, ICategorieCarte categorie, IEffet effetPPJ, IEffet effetHPJ) {
         super(nom, carteID, description, categorie, effetPPJ, effetHPJ);
