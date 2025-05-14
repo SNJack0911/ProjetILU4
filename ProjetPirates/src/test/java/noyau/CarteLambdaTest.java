@@ -86,13 +86,6 @@ class CarteLambdaTest {
     void carteNuitAttaque(){
         CarteAttaqueLambda carte = new CarteAttaqueLambda("Carte", -1, "desc",
                 null, ((pirate, game) -> jeu.isNuit() ? pirate.getHP()-2 : pirate.getHP()-1));
-        /*Carte Equivalent
-        CarteAttaqueLambda carte2 = new CarteAttaqueLambda("Carte", -1, "desc",
-                null, ((pirate, game) -> {
-                    if (jeu.isNuit()) return pirate.getHP()-2;
-                    return pirate.getHP()-1;
-                    }));
-        */
         carte.appliquerEffet(joueur, adversaire, jeu);
         assertEquals(4, adversaire.getHP(),"HP adversaire incorrect pendant le tour jour");
 
