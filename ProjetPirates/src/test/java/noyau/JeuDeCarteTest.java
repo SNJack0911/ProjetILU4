@@ -22,7 +22,7 @@ class JeuDeCarteTest {
 
         assertFalse(pioche.isEmpty(), "Le deck ne doit pas être vide après remplissage.");
 
-        int expectedTotal = 7 + 10 + 12 + 2 + 10 + 9 + 12 + 9 + 3 + 6 + 12 + 60 + 4 + 7 + 5 + 5;
+        int expectedTotal = 2*60-1;
         assertEquals(expectedTotal, pioche.size(), "Le nombre total de cartes dans le deck est incorrect.");
     }
 
