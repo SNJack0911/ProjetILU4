@@ -6,11 +6,11 @@ package noyau;
  */
 
 public abstract class Carte {
-    private String nom;
-    private int carteID;
-    private String description;
-    private ICategorieCarte categorie;
-    private BasicCategorie zoneDepot;
+    private final String nom;
+    private final int carteID;
+    private final String description;
+    private final ICategorieCarte categorie;
+    private final BasicCategorie zoneDepot;
 
     protected Carte(String nom, int CarteID, String description, ICategorieCarte categorie, BasicCategorie zoneDepot) {
         this.nom = nom;
