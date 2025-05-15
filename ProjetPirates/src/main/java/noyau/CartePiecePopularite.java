@@ -1,6 +1,5 @@
 package noyau;
 
-import java.util.List;
 
 /**
  *
@@ -8,7 +7,7 @@ import java.util.List;
  */
 
 public class CartePiecePopularite extends CartePopulariteLambda{
-    private final CoinFlip coinFlip = new CoinFlip();
+   
 
     public CartePiecePopularite(String nom, int carteID, String description, ICategorieCarte categorie, IEffet effetPPJ, IEffet effetHPJ) {
         super(nom, carteID, description, categorie, effetPPJ, effetHPJ);
@@ -20,8 +19,6 @@ public class CartePiecePopularite extends CartePopulariteLambda{
         joueur.setStats("PP", newPPJ+compteur);
         joueur.setStats("HP", newHPJ);
     }
-
-    public List<String> getCoinFlipResult(){
-        return coinFlip.getFace();
-    }
+    
+    
 }
