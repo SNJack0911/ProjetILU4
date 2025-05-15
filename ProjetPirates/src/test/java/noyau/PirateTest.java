@@ -118,4 +118,42 @@ class PirateTest {
         assertNotEquals(p1, p3);
     }
 
+    @Test
+    void testSetStatsLimits() {
+        Pirate p = new Pirate("StatLimiter");
+
+        p.setStats("HP", 10);
+        assertEquals(5, p.getHP(), "HP should not exceed 5");
+
+        p.setStats("HP", -3);
+        assertEquals(0, p.getHP(), "HP should not go below 0");
+
+        p.setStats("PP", 7);
+        assertEquals(5, p.getPP(), "PP should not exceed 5");
+
+        p.setStats("PP", -1);
+        assertEquals(0, p.getPP(), "PP should not go below 0");
+    }
+
+    @Test
+    void testToStringContainsNameAndStats() {
+        Pirate p = new Pirate("Jean");
+        String repr = p.toString();
+
+        assertTrue(repr.contains("Jean"), "toString should contain the pirate's name");
+        assertTrue(repr.contains("HP=5"), "toString should show initial HP");
+        assertTrue(repr.contains("PP=0"), "toString should show initial PP");
+    }
+
+    @Test
+    void testGetCarteMainNotFound() {
+        Pirate p = new Pirate("NoCardFinder");
+        Carte result = p.getCarteMain("GhostCard");
+
+        assertNull(result, "Should return null when the card is not found in hand");
+    }
+
+
+
+
 }
