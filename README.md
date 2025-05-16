@@ -32,7 +32,6 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
 
 ```text
 .
-├─ repo_visualization.ipynb
 └─ ProjetILU4
    ├─ README.md
    ├─ .gitignore
