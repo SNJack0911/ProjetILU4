@@ -30,8 +30,8 @@ public class JCarte extends javax.swing.JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Image frontCard;
-    private Image backCard;
+	private transient Image frontCard;
+    private transient Image backCard;
     private boolean isFront = false;
     private Point origine = null;
     private JCartePopUp popUp = null;
@@ -39,12 +39,12 @@ public class JCarte extends javax.swing.JPanel {
     
     private String nom;
     //private int carteID; // never read ?
-    private ICategorieCarte type;
+    private transient ICategorieCarte type;
     private String description;
     private BasicCategorie zoneDepot;
     
     private final List<SmokeEffect> fumees = new ArrayList<>();
-    private final GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
+    private final transient GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
     private Timer timerFumee;
 
     private int indexOrigineMain = -1;
@@ -123,16 +123,17 @@ public class JCarte extends javax.swing.JPanel {
     }
     
     public void setImage(int carteID) {
+    	String url_default = "src/main/resources/Carte/Card1Front";
         try {
             backCard = ImageIO.read(new File("src/main/resources/" + "Card1Back.png"));
             if (carteID == -1){
-                frontCard = ImageIO.read(new File("src/main/resources/Carte/Card1Front" + type.toString() + ".png"));
+                frontCard = ImageIO.read(new File(url_default + type.toString() + ".png"));
             }else{
-                frontCard = ImageIO.read(new File("src/main/resources/Carte/Card1Front" + carteID + ".png"));
+                frontCard = ImageIO.read(new File(url_default + carteID + ".png"));
             }
         } catch (IOException e){
             String userDirectory = new File("").getAbsolutePath();
-            System.out.println("Card not found : " + userDirectory + "src/main/resources/Carte/Card1Front" + type.toString() + ".png");
+            System.out.println("Card not found : " + userDirectory + url_default + type.toString() + ".png");
             System.out.println("Card ID : " + carteID + "\tIHM : " + type.toString());
         }
     }
@@ -143,17 +144,21 @@ public class JCarte extends javax.swing.JPanel {
 
         setOpaque(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        	@Override
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
             }
         });
         addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
+        	@Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
+        	@Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
             }
@@ -248,7 +253,7 @@ public class JCarte extends javax.swing.JPanel {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         if (!isFront) return;
         
-        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2 && isFront && frontCard != null) {
+        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2  && frontCard != null) {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 
             if (popUp != null) { // si une précédente pop-up traîne

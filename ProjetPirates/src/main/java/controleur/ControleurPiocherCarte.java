@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author yannf
  */
 public class ControleurPiocherCarte {
-    private Jeu jeu;// mettre Final
+    private Jeu jeu;
 
     public ControleurPiocherCarte(Jeu jeu) {
         this.jeu = jeu;
@@ -23,7 +23,6 @@ public class ControleurPiocherCarte {
     public static ArrayList<String> listeCarteToString(ArrayList<Carte> lstCarte){
         ArrayList<String> lstCarteString = new ArrayList<String>(); // ??
         for(Carte carte : lstCarte){
-            //String[] info = new String[5];
             lstCarteString.add(carte.getNom());
         }
         return lstCarteString;
