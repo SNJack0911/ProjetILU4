@@ -27,7 +27,10 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
   <li> Le package controleur permet de faire le lien entre le noyau et le boundary. Il garantit que le noyau reçoit des éléments du bon type et valide. </li>
   <li> Le package boundary contient l'IHM (et l'affiche console). Il permet de récupérer les entrées utilisateur. </li>
 </ul>
+
 ## Structure du code en github :
+
+```text
 .
 ├─ repo_visualization.ipynb
 └─ ProjetILU4
@@ -42,15 +45,15 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
       └─ src
          ├─ main
          │  ├─ java
-         │  │  ├─ noyau/ (les fonctionnalites principales)
+         │  │  ├─ noyau/ (les fonctionnalités principales)
          │  │  │    ├─ Jeu.java
          │  │  │    ├─ Carte.java
          │  │  │    ├─ Pirate.java
          │  │  │    ├─ EffetEtatJeu.java
          │  │  │    └─ CartePopulariteLambda.java
-         │  │  ├─ reference/ (Implmenttation ancienne des Cartes)
+         │  │  ├─ reference/ (Implémentation ancienne des Cartes)
          │  │  │    └─ CarteEffetOriginal.java
-         │  │  ├─ controleur/ (Communication entre Boundary et Noyau/Responsable du fluidite du jeu)
+         │  │  ├─ controleur/ (communication Noyau↔Boundary)
          │  │  │    ├─ ControleurNouvellePartie.java
          │  │  │    ├─ ControleurPiocherCarte.java
          │  │  │    ├─ ControleurJouerCarte.java
@@ -63,29 +66,18 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
          │  │       ├─ BoundaryPiocherCarte.java
          │  │       ├─ FrameJeu.java
          │  │       ├─ Plateau.java
-         │  │       └─ components/ (composant customise du projet)
-         │  │            ├─ JCarte.java
-         │  │            ├─ JInfoJoueur.java
-         │  │            ├─ JMainJoueur.java
-         │  │            ├─ JPioche.java
-         │  │            ├─ JPointDeVie.java
-         │  │            ├─ JZoneDepot.java
-         │  │            ├─ JPirateIcon.java
-         │  │            ├─ JLancerPiece.java
-         │  │            ├─ JPanelWithBackground.java
-         │  │            ├─ JPanelRound.java
-         │  │            ├─ GestionnaireEffetFumee.java
-         │  │            └─ SmokeEffect.java
-         └─ resources/ 
-             └─ (images, audio)
-      └─ test
-         └─ java
-            └─ noyau/ (test unitaire)
-                 ├─ PiocheTest.java
-                 ├─ CarteTest.java
-                 ├─ PirateTest.java
-                 ├─ CarteEffetTest.java
-                 └─ GestionnaireEffetFumeeTest.java
+         │  │       └─ components/ (custom UI)
+         │  └─ resources/ 
+         │       └─ (images, audio)
+         └─ test
+            └─ java
+               └─ noyau/ (tests unitaires)
+                    ├─ PiocheTest.java
+                    ├─ CarteTest.java
+                    ├─ PirateTest.java
+                    ├─ CarteEffetTest.java
+                    └─ GestionnaireEffetFumeeTest.java
+```
 ## Deroulement du Jeu
 ![Main menu du jeu](assets/readme_assets/main_menu.png "Main Menu Jeu")
 ![Configuration du jeu](assets/readme_assets/config.png "Configuration Jeu")
