@@ -27,4 +27,71 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
   <li> Le package controleur permet de faire le lien entre le noyau et le boundary. Il garantit que le noyau reçoit des éléments du bon type et valide. </li>
   <li> Le package boundary contient l'IHM (et l'affiche console). Il permet de récupérer les entrées utilisateur. </li>
 </ul>
-
+## Structure du code en github :
+.
+├─ repo_visualization.ipynb
+└─ ProjetILU4
+   ├─ README.md
+   ├─ .gitignore
+   └─ ProjetPirates
+      ├─ .classpath
+      ├─ .gitignore
+      ├─ pom.xml
+      ├─ lib/
+      │    └─ AbsoluteLayout-RELEASE250.jar (pour compiler et release)
+      └─ src
+         ├─ main
+         │  ├─ java
+         │  │  ├─ noyau/ (les fonctionnalites principales)
+         │  │  │    ├─ Jeu.java
+         │  │  │    ├─ Carte.java
+         │  │  │    ├─ Pirate.java
+         │  │  │    ├─ EffetEtatJeu.java
+         │  │  │    └─ CartePopulariteLambda.java
+         │  │  ├─ reference/ (Implmenttation ancienne des Cartes)
+         │  │  │    └─ CarteEffetOriginal.java
+         │  │  ├─ controleur/ (Communication entre Boundary et Noyau/Responsable du fluidite du jeu)
+         │  │  │    ├─ ControleurNouvellePartie.java
+         │  │  │    ├─ ControleurPiocherCarte.java
+         │  │  │    ├─ ControleurJouerCarte.java
+         │  │  │    ├─ ControleurGetCarteInfo.java
+         │  │  │    └─ ControleurGetPirateInfo.java
+         │  │  └─ boundary/ (Interface utilisateur)
+         │  │       ├─ BoundaryJeu.java
+         │  │       ├─ BoundaryNouvellePartie.java
+         │  │       ├─ BoundaryJouerCarte.java
+         │  │       ├─ BoundaryPiocherCarte.java
+         │  │       ├─ FrameJeu.java
+         │  │       ├─ Plateau.java
+         │  │       └─ components/ (composant customise du projet)
+         │  │            ├─ JCarte.java
+         │  │            ├─ JInfoJoueur.java
+         │  │            ├─ JMainJoueur.java
+         │  │            ├─ JPioche.java
+         │  │            ├─ JPointDeVie.java
+         │  │            ├─ JZoneDepot.java
+         │  │            ├─ JPirateIcon.java
+         │  │            ├─ JLancerPiece.java
+         │  │            ├─ JPanelWithBackground.java
+         │  │            ├─ JPanelRound.java
+         │  │            ├─ GestionnaireEffetFumee.java
+         │  │            └─ SmokeEffect.java
+         └─ resources/ 
+             └─ (images, audio)
+      └─ test
+         └─ java
+            └─ noyau/ (test unitaire)
+                 ├─ PiocheTest.java
+                 ├─ CarteTest.java
+                 ├─ PirateTest.java
+                 ├─ CarteEffetTest.java
+                 └─ GestionnaireEffetFumeeTest.java
+## Deroulement du Jeu
+![Main menu du jeu](assets/readme_assets/main_menu.png "Main Menu Jeu")
+![Configuration du jeu](assets/readme_assets/config.png "Configuration Jeu")
+![Main plateau du jeu](assets/readme_assets/plateau.png "Plateau Jeu")
+![Carte du jeu](assets/readme_assets/Carte.png "Carte Jeu")
+![Pioche du carte](assets/readme_assets/pioche.gif "Pioche Carte")
+![Terminer d'un tour](assets/readme_assets/termine.gif "Termine Tour")
+![Fin du jeu](assets/readme_assets/fin.gif "Fin Jeu")
+![Drag carte](assets/readme_assets/gameplay.gif)
