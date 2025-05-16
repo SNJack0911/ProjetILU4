@@ -13,6 +13,7 @@ import noyau.ICategorieCarte;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,6 +27,11 @@ public class BoundaryJeu {
     private final ControleurGetCarteInfo controleurGetCarteInfo;
     private final ControleurGetPirateInfo controleurGetPirateInfo;
     private final Scanner scanner = new Scanner(System.in);
+    private String erreurCarte = "Erreur : nom carte invalide.";
+    private String erreurPirate = "Erreur : Numero de pirates invalide choisir 0 ou 1";
+    private String separateur = "---------------------------------------";
+    
+    Logger logger = Logger.getLogger(getClass().getName());
 
     public BoundaryJeu(BoundaryJouerCarte boundaryJouerCarte, BoundaryNouvellePartie boundaryNouvellePartie,
                        BoundaryPiocherCarte boundaryPiocherCarte, ControleurGetCarteInfo controleurGetCarteInfo, ControleurGetPirateInfo controleurGetPirateInfo) {
@@ -39,7 +45,7 @@ public class BoundaryJeu {
     public String getDescription(String nomCarte){
         String description = controleurGetCarteInfo.getDescription(nomCarte);
         if (description.equals("Card not found")) {
-            System.out.println("Erreur : nom carte invalide.");
+        	logger.info(erreurCarte);
         }
         return controleurGetCarteInfo.getDescription(nomCarte);
     }
@@ -47,7 +53,7 @@ public class BoundaryJeu {
     public ICategorieCarte getTypeCarte(String nomCarte){
         ICategorieCarte typeCarte = controleurGetCarteInfo.getTypeCarte(nomCarte);
         if (typeCarte == null) {
-            System.out.println("Erreur : nom carte invalide.");
+        	logger.info(erreurCarte);
         }
         return typeCarte;
     }
@@ -55,7 +61,7 @@ public class BoundaryJeu {
     public BasicCategorie getZoneDepot(String nomCarte){
         BasicCategorie zoneDepot = controleurGetCarteInfo.getZoneDepotCarte(nomCarte);
         if (zoneDepot == null) {
-            System.out.println("Erreur : nom carte invalide.");
+        	logger.info(erreurCarte);
         }
         return zoneDepot;
     }
@@ -63,7 +69,7 @@ public class BoundaryJeu {
     public int getCarteId(String nomCarte) {
         int id = controleurGetCarteInfo.getCarteID(nomCarte);
         if (id < 0 || id > 24) {
-            System.out.println("Erreur : Carte n'as pas d'image associée ou nom carte invalide.");
+        	logger.info("Erreur : Carte n'as pas d'image associée ou nom carte invalide.");
             return -1;
         }
         return id;
@@ -73,7 +79,7 @@ public class BoundaryJeu {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_BOLD = "\u001B[1m";
         ICategorieCarte categorieCarte = getTypeCarte(nomCarte);
-        String ANSI_COLOR = switch (categorieCarte) {
+        String ainsiColor = switch (categorieCarte) {
             case BasicCategorie.POPULARITE -> "\u001B[32m";
             case BasicCategorie.ATTAQUE -> "\u001B[31m";
             case ExtendCategorie.DEFENSE -> "\u001B[35m";
@@ -81,16 +87,16 @@ public class BoundaryJeu {
             default -> "\u001B[34m";
         };
 
-        System.out.println(ANSI_BOLD + ANSI_COLOR + "Carte : " + nomCarte + ANSI_RESET);
+        System.out.println(ANSI_BOLD + ainsiColor + "Carte : " + nomCarte + ANSI_RESET);
         System.out.println("Description : " + getDescription(nomCarte));
-        System.out.println("Type : " + ANSI_COLOR + categorieCarte + ANSI_RESET);
+        System.out.println("Type : " + ainsiColor + categorieCarte + ANSI_RESET);
         System.out.println("Zone de depot : " + getZoneDepot(nomCarte));
     }
     
     public String getPirateName(int pirateID) {
         String nomPirate = controleurGetPirateInfo.getNomPirate(pirateID);
         if (nomPirate.equals("Numero de pirates invalide choisir 0 ou 1")) {
-            System.out.println("Erreur : " + nomPirate);
+        	System.out.println("Erreur : "+ nomPirate);
             return "";
         }
         return nomPirate;
@@ -99,7 +105,7 @@ public class BoundaryJeu {
     public int getPirateHp(int pirateID) {
         int hp = controleurGetPirateInfo.getPirateHp(pirateID);
         if (hp < 0) {
-            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+        	logger.info(erreurPirate);
         }
         return hp;
     }
@@ -107,35 +113,35 @@ public class BoundaryJeu {
     public int getPiratePp(int pirateID) {
         int pp = controleurGetPirateInfo.getPiratePp(pirateID);
         if (pp < 0) {
-            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+        	logger.info(erreurPirate);
         }
         return pp;
     }
 
-    public ArrayList<String> getPirateMain(int pirateID) {
+    public List<String> getPirateMain(int pirateID) {
         ArrayList<String> main = controleurGetPirateInfo.getPirateMain(pirateID);
         if (main == null) {
-            System.out.println("Erreur : Numero de pirates invalide choisir 0 ou 1");
+        	logger.info(erreurPirate);
             return new ArrayList<>();
         }
         return main;
     }
     
      public void printPirateInfo(int pirateID){
-         System.out.println("*********************************");
+    	 logger.info("*********************************");
          String name = getPirateName(pirateID);
          name =  pirateID == 0 ? name + " : \t\t" : name + " : ";
          System.out.println("***  " + name + "\t  ***");
-         System.out.println("*********************************");
-        System.out.println("HP : " + getPirateHp(pirateID) + "\t" +
+         logger.info("*********************************");
+         System.out.println("HP : " + getPirateHp(pirateID) + "\t" +
                             "PP : " + getPiratePp(pirateID));
     }
 
     private void printMainPirate(int pirateID){
-        System.out.println("Main : ");
-        ArrayList<String> main = getPirateMain(pirateID);
+    	logger.info("Main : ");
+        List<String> main = getPirateMain(pirateID);
         for (int i = 0; i < main.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + main.get(i));
+        	System.out.println("\t" + (i + 1) + ". " + main.get(i));
         }
     }
     
@@ -157,12 +163,12 @@ public class BoundaryJeu {
 
     public boolean isNuit(){return boundaryNouvellePartie.isNuit();}
 
-    public ArrayList<String> piocherCarte() {
+    public List<String> piocherCarte() {
         return boundaryPiocherCarte.piocherCarte();
     }
 
     public void nouveauJeu(){
-        System.out.println("""
+    	logger.info("""
                 La mer est vaste, mais pas assez pour deux légendes.
                 \tLe capitaine Tobias Blackbeard, impitoyable, commande la Forsaken Fancy d'une main de fer
                 et d’un cœur de feu. Son nom inspire la peur sur toute la Mer de Marona
@@ -172,20 +178,20 @@ public class BoundaryJeu {
 
         String choix;
         do {
-            System.out.println("""
+        	 logger.info("""
                     Choisissez une des deux options suivantes pour commencer votre aventure :\s
                     \t (c) Vous êtes prêts à hisser les voiles et à mettre le cap vers le trésor.
                     \t (q) Vous souhaitez abandonner ce navire avant qu’il ne coule.""");
             choix = scanner.next();
         }while (!(choix.equals("c") || choix.equals("q") || choix.equals("C") || choix.equals("Q")));
         if (choix.equals("q") || choix.equals("Q")) {
-            System.out.println("Au revoir.");
+        	logger.info("Au revoir.");
             return;
         }
         do {
             initNewGame();
-            JouerPartie();
-            System.out.println("""
+            jouerPartie();
+            logger.info("""
                     Choisissez une des deux options suivantes :\s
                     \t (_) Vous voulez continuer à naviguer sur les mers.
                     \t (q) La dernière aventure vous a suffi.""");
@@ -193,7 +199,7 @@ public class BoundaryJeu {
         }while (!(choix.equals("q") || choix.equals("Q")));
     }
 
-    public void JouerPartie(){
+    public void jouerPartie(){
         List<String> res;
         do{
             int tour = getTour();
@@ -202,33 +208,33 @@ public class BoundaryJeu {
             }else{
                 printSun();
             }
-            System.out.println("---------------------------------------");
+            logger.info(separateur);
             printPirateInfo((tour+1)%2);
-            System.out.println("\n----------------------\n");
+            logger.info("\n----------------------\n");
             printPirateInfo(tour%2);
             printCartePiocher();
             printMainPirate(tour%2);
-            ArrayList<String> main = getPirateMain(tour%2);
+            List<String> main = getPirateMain(tour%2);
             int carte = -1;
             String nomCarte = "";
             String choix = "";
             do {
                 do {
-                    System.out.println("Choisissez le chiffre d'une carte de votre main : ");
+                	logger.info("Choisissez le chiffre d'une carte de votre main : ");
                     if (!scanner.hasNextInt()) {
-                        System.out.println("Entrée invalide. Veuillez entrer un chiffre.");
+                    	logger.info("Entrée invalide. Veuillez entrer un chiffre.");
                         scanner.next();
                         continue;
                     }
 
                     carte = scanner.nextInt() - 1;
                     if (carte < 0 || carte >= main.size()) {
-                        System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et " + main.size() + ".");
+                    	System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et " + main.size() + ".");
                     }
                 } while (carte < 0 || carte >= main.size());
                 nomCarte = main.get(carte);
                 printCarteInfo(nomCarte);
-                System.out.println("Appliquer l'effet ? (O/N)");
+                logger.info("Appliquer l'effet ? (O/N)");
                 choix = scanner.next();
             } while (!choix.equals("O"));
             res = boundaryJouerCarte.jouerCarte(main.get(carte));
@@ -238,34 +244,37 @@ public class BoundaryJeu {
     }
 
     private void printCartePiocher(){
-        System.out.println("---------------------------------------");
-        ArrayList<String> cartesPiocher = piocherCarte();
-        System.out.println("Carte(s) piochée(s) en début de tour : \n");
+    	logger.info(separateur);
+        List<String> cartesPiocher = piocherCarte();
+        logger.info("Carte(s) piochée(s) en début de tour : \n");
         for(String carte : cartesPiocher){
             printCarteInfo(carte);
         }
-        System.out.println("---------------------------------------");
+        logger.info(separateur);
     }
 
-    private void printMoon(){
-        System.out.println( "Il fait nuit \n "+
-                            "                                        .. '      * \n" +
-                            "  .   '.              .-.  +               *       \n" +
-                            "               +     ( (       '                   \n" +
-                            "  .      .:'          `-'         .          '     \n" +
-                            "      *         ' *          *  *    .+     .'     \n" +
-                            "     .   .              *      +                 *   ");
+    private void printMoon() {
+        logger.info("""
+                Il fait nuit 
+                                            .. '      *  
+                  .   '.              .-.  +               *        
+                               +     ( (       '                    
+                  .      .:'          `-'         .          '      
+                      *         ' *          *  *    .+     .'      
+                     .   .              *      +                 *   
+                """);
     }
+
 
     private void printSun (){
-        System.out.println("Il fait jour \n" +
-                "                                                     \n" +
-                "                                 .-.  .--                    \n" +
-                "          _⠀⢀     ⠀⠀⠀           (   +(    )                   \n" +
-                "⠀       _(⠀) ⠀),⠀                 `-(        )                  \n" +
-                "       (_⡀⠀⠀⠀⠀⢀))                  (______(__))                 \n" +
-                "⠀        (__)___)                                                        ");
-
+    	logger.info("""
+    			Il fait jour
+    											.-. .--
+    						_   .				   (  +(	)
+    					_( ) ),					  `-(	   )
+    						(_.		.))					(_____(__))
+    						  (__)___)
+    				""");
     }
 
 }

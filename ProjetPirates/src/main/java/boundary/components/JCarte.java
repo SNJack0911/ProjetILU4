@@ -30,21 +30,20 @@ public class JCarte extends javax.swing.JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Image frontCard;
-    private Image backCard;
+	private transient Image frontCard;
+    private transient Image backCard;
     private boolean isFront = false;
     private Point origine = null;
     private JCartePopUp popUp = null;
     private JMainJoueur mainOrigine; 
     
     private String nom;
-    //private int carteID; // never read ?
-    private ICategorieCarte type;
+    private transient ICategorieCarte type;
     private String description;
     private BasicCategorie zoneDepot;
     
     private final List<SmokeEffect> fumees = new ArrayList<>();
-    private final GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
+    private final transient GestionnaireEffetFumee effets = new GestionnaireEffetFumee();
     private Timer timerFumee;
 
     private int indexOrigineMain = -1;
@@ -123,37 +122,46 @@ public class JCarte extends javax.swing.JPanel {
     }
     
     public void setImage(int carteID) {
+        String basePath = "src/main/resources/";
         try {
-            backCard = ImageIO.read(new File("src/main/resources/" + "Card1Back.png"));
-            if (carteID == -1){
-                frontCard = ImageIO.read(new File("src/main/resources/Carte/Card1Front" + type.toString() + ".png"));
-            }else{
-                frontCard = ImageIO.read(new File("src/main/resources/Carte/Card1Front" + carteID + ".png"));
+            backCard = ImageIO.read(new File(basePath + "Card1Back.png"));
+
+            String frontCardPath;
+            if (carteID == -1) {
+                frontCardPath = basePath + "Carte/Card1Front" + type + ".png";
+            } else {
+                frontCardPath = basePath + "Carte/Card1Front" + carteID + ".png";
             }
-        } catch (IOException e){
+
+            frontCard = ImageIO.read(new File(frontCardPath));
+
+        } catch (IOException e) {
             String userDirectory = new File("").getAbsolutePath();
-            System.out.println("Card not found : " + userDirectory + "src/main/resources/Carte/Card1Front" + type.toString() + ".png");
-            System.out.println("Card ID : " + carteID + "\tIHM : " + type.toString());
+            System.out.printf("Card not found: {}src/main/resources/Carte/Card1Front{}.png", userDirectory, carteID == -1 ? type : carteID, e);
+            System.out.printf("Card ID: {}\tIHM type: {}", carteID, type);
         }
     }
-    
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         setOpaque(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            @Override
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
             }
         });
         addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
+            @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
             }
@@ -248,7 +256,7 @@ public class JCarte extends javax.swing.JPanel {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         if (!isFront) return;
         
-        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2 && isFront && frontCard != null) {
+        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2 && frontCard != null) {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 
             if (popUp != null) { // si une précédente pop-up traîne

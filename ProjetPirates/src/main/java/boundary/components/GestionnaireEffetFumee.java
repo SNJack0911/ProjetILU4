@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.imageio.ImageIO;
+import java.util.logging.Logger;
 
 /**
 *
@@ -16,6 +17,8 @@ import javax.imageio.ImageIO;
 public class GestionnaireEffetFumee {
 
 private final List<Image> images = new ArrayList<>();
+Logger logger = Logger.getLogger(getClass().getName());
+Random aleatoire = new Random();
 
 public GestionnaireEffetFumee() {
     try {
@@ -24,13 +27,13 @@ public GestionnaireEffetFumee() {
             images.add(img);
         }
     } catch (IOException | IllegalArgumentException e) {
-        System.err.println("Erreur chargement fumées : " + e.getMessage());
+    	logger.info("Erreur chargement fumées : " + e.getMessage());
     }
 }
 
 public Image getRandomImage() {
     if (images.isEmpty()) return null;
-    return images.get(new Random().nextInt(images.size()));
+    return images.get(aleatoire.nextInt(images.size()));
 }
 
 private final List<SmokeEffect> fumeeList = new ArrayList<>();
