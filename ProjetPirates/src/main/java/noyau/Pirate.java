@@ -29,11 +29,7 @@ public class Pirate {
         int newHP = HP + value;
         if (newHP > 5) {
             this.HP = 5;
-        } else if (newHP < 0) {
-            this.HP = 0;
-        } else {
-            this.HP = newHP;
-        }
+        } else this.HP = Math.max(newHP, 0);
     }
 
     public int getPP() {
@@ -46,11 +42,7 @@ public class Pirate {
         int newPP = PP + value;
         if (newPP > 5) {
             this.PP = 5;
-        } else if (newPP < 0) {
-            this.PP = 0;
-        } else {
-            this.PP = newPP;
-        }
+        } else this.PP = Math.max(newPP, 0);
     }
     
     public String getNom() {
