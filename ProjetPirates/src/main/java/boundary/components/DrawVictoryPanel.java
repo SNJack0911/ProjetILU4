@@ -28,6 +28,8 @@ public class DrawVictoryPanel extends javax.swing.JPanel {
     private float alpha = 0.0f;
     private Timer timer;
     public DrawVictoryPanel() {
+    	setOpaque(false);
+        setBackground(new Color(0,0,0,0));  // fully transparent
         timer = new Timer(30, (ActionEvent e) -> {
             boolean repaintNeeded = false;
 

@@ -20,7 +20,7 @@ public class PopUpVictory extends javax.swing.JDialog {
      */
     public PopUpVictory(JFrame parent,String winner) {
     	super(parent, true);
-    	setContentPane(new VictoryScreen(winner));
+    	setContentPane(new VictoryScreen(winner,parent));
     	pack();
     	setLocationRelativeTo(parent);
     	setVisible(true);
