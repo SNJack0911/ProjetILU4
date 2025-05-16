@@ -15,7 +15,7 @@ import noyau.Jeu;
 public class ProjetPirates {
 
     public static void main(String[] args) {
-        boolean IHM = true;
+        boolean ihm = true;
 
         Jeu jeu = new Jeu();
         ControleurNouvellePartie controleurNouvellePartie = new ControleurNouvellePartie(jeu);
@@ -36,15 +36,9 @@ public class ProjetPirates {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }   
         //</editor-fold>
         BoundaryJouerCarte boundaryJouerCarte = new BoundaryJouerCarte(controleurJouerCarte, controleurGetCarteInfo);
         BoundaryNouvellePartie boundaryNouvellePartie = new BoundaryNouvellePartie(controleurNouvellePartie);
@@ -53,7 +47,7 @@ public class ProjetPirates {
 
         BoundaryJeu boundaryJeu = new BoundaryJeu(boundaryJouerCarte, boundaryNouvellePartie, boundaryPiocherCarte, controleurGetCarteInfo, controleurGetPirateInfo);
 
-        if(IHM){
+        if(ihm){
             FrameJeu frameJeu = new FrameJeu(boundaryJeu, false);
             frameJeu.setVisible(true);
         } else {
