@@ -5,8 +5,8 @@
 /*author*/
 package boundary.components;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 import projetpirates.ProjetPirates;
 
@@ -15,14 +15,9 @@ import projetpirates.ProjetPirates;
  * @author hai , leo
  */
 public class VictoryScreen extends JPanel {
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private float scale = 0.1f;
-    private float alpha = 0.0f;
-    private Timer timer;
-    
+	
     /**
      * Creates new form VictoryScreen
      */
@@ -33,7 +28,7 @@ public class VictoryScreen extends JPanel {
         }else {
         	filenameVictory = "IconP2.png";
         }
-        initComponents();
+		initComponents();
     }
     
     /**
@@ -45,14 +40,15 @@ public class VictoryScreen extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Rerun = new boundary.components.JButtonCustom();
-        jButtonCustom4 = new boundary.components.JButtonCustom();
-        jPanelWithBackground2 = new boundary.components.JPanelWithBackground();
-        drawVictoryPanel1 = new boundary.components.DrawVictoryPanel();
-        jPanelWithBackground2.setImage(filenameVictory);
+    	boundary.components.JButtonCustom Rerun = new boundary.components.JButtonCustom();
+    	boundary.components.JButtonCustom jButtonCustom4 = new boundary.components.JButtonCustom();
+    	boundary.components.JPanelWithBackground jPanelWithBackground2 = new boundary.components.JPanelWithBackground();
+        boundary.components.DrawVictoryPanel drawVictoryPanel1 = new boundary.components.DrawVictoryPanel();
+		jPanelWithBackground2.setImage(filenameVictory);
 
         Rerun.setText("Main Menu");
         Rerun.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RerunMouseClicked();
             }
@@ -60,6 +56,7 @@ public class VictoryScreen extends JPanel {
 
         jButtonCustom4.setText("Exit");
         jButtonCustom4.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonCustom4MouseClicked();
             }
@@ -130,11 +127,4 @@ public class VictoryScreen extends JPanel {
         System.exit(0);
     }//GEN-LAST:event_jButtonCustom4MouseClicked
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private boundary.components.JButtonCustom Rerun;
-    private boundary.components.DrawVictoryPanel drawVictoryPanel1;
-    private boundary.components.JButtonCustom jButtonCustom4;
-    private boundary.components.JPanelWithBackground jPanelWithBackground2;
-    // End of variables declaration//GEN-END:variables
 }
