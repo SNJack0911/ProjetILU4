@@ -10,8 +10,6 @@ import noyau.Jeu;
  *
  * @author yannf
  */
-//PAS NECESSAIRE
-    //TODO Transformer en creer nouvelle partie
 public class ControleurNouvellePartie {
     private Jeu jeu;
 
@@ -24,11 +22,6 @@ public class ControleurNouvellePartie {
     public void incrementerTour(){
         jeu.incrementerTour();
     }
-    
-    /*public void setNuit(Boolean isNuit){
-        jeu.setNuit(isNuit);
-    }*/
-
     public boolean isNuit(){return jeu.isNuit();}
 
 }

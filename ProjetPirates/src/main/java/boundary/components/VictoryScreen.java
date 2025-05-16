@@ -13,25 +13,30 @@ import projetpirates.ProjetPirates;
  * @author hai , leo
  */
 public class VictoryScreen extends JPanel {
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private float scale = 0.1f;
-    private float alpha = 0.0f;
-    private Timer timer;
-    
+	
     /**
      * Creates new form VictoryScreen
      */
     private String filenameVictory;
-    public VictoryScreen(String winner) {
+    private Image fieldImage;
+    private final JFrame parentFrame;
+    private String winner;
+    public VictoryScreen(String winner,JFrame parent) {
+    	this.winner = winner;
+    	this.parentFrame= parent;
         if (winner.equals("Jake Gibbs")) {
         	filenameVictory = "IconP1.png";
         }else {
         	filenameVictory = "IconP2.png";
         }
-        initComponents();
+        try {
+        	fieldImage = ImageIO.read(getClass().getResource("/pirates_background(1).png"));
+        }catch (IOException e){
+        	e.printStackTrace();
+        }
+		initComponents();
     }
     
     /**
@@ -43,14 +48,19 @@ public class VictoryScreen extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Rerun = new boundary.components.JButtonCustom();
-        jButtonCustom4 = new boundary.components.JButtonCustom();
-        jPanelWithBackground2 = new boundary.components.JPanelWithBackground();
-        drawVictoryPanel1 = new boundary.components.DrawVictoryPanel();
-        jPanelWithBackground2.setImage(filenameVictory);
+    	boundary.components.JButtonCustom Rerun = new boundary.components.JButtonCustom();
+    	boundary.components.JButtonCustom jButtonCustom4 = new boundary.components.JButtonCustom();
+    	boundary.components.JPirateIcon pirateVictoire = new boundary.components.JPirateIcon();
+        boundary.components.DrawVictoryPanel drawVictoryPanel1 = new boundary.components.DrawVictoryPanel();
+        pirateVictoire.setNomPirate(winner);
+		pirateVictoire.setImage(filenameVictory);
+		Rerun.setImage("B");
+		jButtonCustom4.setImage("B");
+		
 
         Rerun.setText("Main Menu");
         Rerun.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RerunMouseClicked();
             }
@@ -58,13 +68,14 @@ public class VictoryScreen extends JPanel {
 
         jButtonCustom4.setText("Exit");
         jButtonCustom4.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonCustom4MouseClicked();
             }
         });
 
-        javax.swing.GroupLayout jPanelWithBackground2Layout = new javax.swing.GroupLayout(jPanelWithBackground2);
-        jPanelWithBackground2.setLayout(jPanelWithBackground2Layout);
+        javax.swing.GroupLayout jPanelWithBackground2Layout = new javax.swing.GroupLayout(pirateVictoire);
+        pirateVictoire.setLayout(jPanelWithBackground2Layout);
         jPanelWithBackground2Layout.setHorizontalGroup(
             jPanelWithBackground2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 436, Short.MAX_VALUE)
@@ -91,7 +102,7 @@ public class VictoryScreen extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelWithBackground2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pirateVictoire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
@@ -108,7 +119,7 @@ public class VictoryScreen extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelWithBackground2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pirateVictoire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(drawVictoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -120,19 +131,33 @@ public class VictoryScreen extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void RerunMouseClicked() {//GEN-FIRST:event_RerunMouseClicked
-        this.setVisible(false);
-        ProjetPirates.main(null);
+    	// 1) Close the JDialog (or whatever top‐level Window) that holds this panel:
+        Window popup = SwingUtilities.getWindowAncestor(this);
+        if (popup != null) {
+            popup.dispose();
+        }
+
+        // 2) Close the original game JFrame you passed in:
+        if (parentFrame != null) {
+            parentFrame.dispose();
+        }
+
+        new javax.swing.Timer(300, e -> {
+            ((javax.swing.Timer)e.getSource()).stop();
+            ProjetPirates.main(null);
+        }).start();
     }//GEN-LAST:event_RerunMouseClicked
 
     private void jButtonCustom4MouseClicked() {//GEN-FIRST:event_jButtonCustom4MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jButtonCustom4MouseClicked
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (fieldImage != null) {
+            // stretch to fill the panel, or supply your own width/height
+            g.drawImage(fieldImage, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private boundary.components.JButtonCustom Rerun;
-    private boundary.components.DrawVictoryPanel drawVictoryPanel1;
-    private boundary.components.JButtonCustom jButtonCustom4;
-    private boundary.components.JPanelWithBackground jPanelWithBackground2;
-    // End of variables declaration//GEN-END:variables
 }

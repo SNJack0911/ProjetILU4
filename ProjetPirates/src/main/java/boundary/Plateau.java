@@ -29,10 +29,10 @@ import javax.swing.SwingUtilities;
  */
 @SuppressWarnings("serial")
 public class Plateau extends javax.swing.JPanel {
-    private BoundaryJeu boundaryJeu;
+    private  transient BoundaryJeu boundaryJeu;
     
-    private String nomPirate1;
-    private String nomPirate2; 
+    
+     
     private boolean faitNuit = false; //donc jour
    
     /**
@@ -75,8 +75,9 @@ public class Plateau extends javax.swing.JPanel {
         jPioche1.setMinimumSize(new java.awt.Dimension(130, 80));
         jPioche1.setPreferredSize(new java.awt.Dimension(130, 80));
         jPioche1.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPioche1MouseClicked(evt);
+                jPioche1MouseClicked();
             }
         });
 
@@ -233,11 +234,7 @@ public class Plateau extends javax.swing.JPanel {
         jButtonFinDeTour.setForeground(new java.awt.Color(171, 75, 13));
         jButtonFinDeTour.setText("Fin de Tour");
         jButtonFinDeTour.setEnabled(false);
-        jButtonFinDeTour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFinDeTourActionPerformed(evt);
-            }
-        });
+        jButtonFinDeTour.addActionListener(this::jButtonFinDeTourActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -257,7 +254,7 @@ public class Plateau extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPioche1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPioche1MouseClicked
+    private void jPioche1MouseClicked() {//GEN-FIRST:event_jPioche1MouseClicked
         if(!jPioche1.isEnabled()) {return;}
         
         int tour = boundaryJeu.getTour();
@@ -373,10 +370,12 @@ public class Plateau extends javax.swing.JPanel {
     }
     
     public void setBoundaryJeu(BoundaryJeu boundaryJeu){
+        String nomPirate1;
+        String nomPirate2;
         if (this.boundaryJeu == null && boundaryJeu != null){
             this.boundaryJeu = boundaryJeu;
-            this.nomPirate1 = boundaryJeu.getPirateName(0);
-            this.nomPirate2 = boundaryJeu.getPirateName(1);
+            nomPirate1 = boundaryJeu.getPirateName(0);
+            nomPirate2 = boundaryJeu.getPirateName(1);
             jZoneInteraction1.initZoneDepot(nomPirate1, nomPirate2);
             jPirateIcon1.setNomPirate(nomPirate1);
             jPirateIcon2.setNomPirate(nomPirate2);
@@ -511,6 +510,6 @@ public class Plateau extends javax.swing.JPanel {
     private boundary.components.JPirateIcon jPirateIcon1;
     private boundary.components.JPirateIcon jPirateIcon2;
     private boundary.components.JZoneInteraction jZoneInteraction1;
-    public boundary.components.JPanelWithBackground plateauBackground;
+    private boundary.components.JPanelWithBackground plateauBackground;
     // End of variables declaration//GEN-END:variables
 }

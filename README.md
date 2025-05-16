@@ -28,3 +28,69 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
   <li> Le package boundary contient l'IHM (et l'affiche console). Il permet de récupérer les entrées utilisateur. </li>
 </ul>
 
+## Structure du code en github :
+
+```text
+.
+└─ ProjetILU4
+   ├─ README.md
+   ├─ .gitignore
+   └─ ProjetPirates
+      ├─ .classpath
+      ├─ .gitignore
+      ├─ pom.xml
+      ├─ lib/
+      │    └─ AbsoluteLayout-RELEASE250.jar (pour compiler et release)
+      └─ src
+         ├─ main
+         │  ├─ java
+         │  │  ├─ noyau/ (les fonctionnalités principales)
+         │  │  │    ├─ Jeu.java
+         │  │  │    ├─ Carte.java
+         │  │  │    ├─ Pirate.java
+         │  │  │    ├─ EffetEtatJeu.java
+         │  │  │    └─ CartePopulariteLambda.java
+         │  │  ├─ reference/ (Implémentation ancienne des Cartes)
+         │  │  │    └─ CarteEffetOriginal.java
+         │  │  ├─ controleur/ (communication Noyau↔Boundary)
+         │  │  │    ├─ ControleurNouvellePartie.java
+         │  │  │    ├─ ControleurPiocherCarte.java
+         │  │  │    ├─ ControleurJouerCarte.java
+         │  │  │    ├─ ControleurGetCarteInfo.java
+         │  │  │    └─ ControleurGetPirateInfo.java
+         │  │  └─ boundary/ (Interface utilisateur)
+         │  │       ├─ BoundaryJeu.java
+         │  │       ├─ BoundaryNouvellePartie.java
+         │  │       ├─ BoundaryJouerCarte.java
+         │  │       ├─ BoundaryPiocherCarte.java
+         │  │       ├─ FrameJeu.java
+         │  │       ├─ Plateau.java
+         │  │       └─ components/ (custom UI)
+         │  └─ resources/ 
+         │       └─ (images, audio)
+         └─ test
+            └─ java
+               └─ noyau/ (tests unitaires)
+                    ├─ PiocheTest.java
+                    ├─ CarteTest.java
+                    ├─ PirateTest.java
+                    ├─ CarteEffetTest.java
+                    └─ GestionnaireEffetFumeeTest.java
+```
+## Deroulement du Jeu
+### Main menu
+![Main menu du jeu](assets/readme_assets/main_menu.png "Main Menu Jeu")
+### Configuration menu
+![Configuration du jeu](assets/readme_assets/config.png "Configuration Jeu")
+### Plateau principale
+![Main plateau du jeu](assets/readme_assets/plateau.png "Plateau Jeu")
+### Visualisation du Carte
+![Carte du jeu](assets/readme_assets/Carte.png "Carte Jeu")
+### Action du pioche
+![Pioche du carte](assets/readme_assets/pioche.gif "Pioche Carte")
+### Termine un tour apres jouer 1 carte
+![Terminer d'un tour](assets/readme_assets/termine.gif "Termine Tour")
+### La Fin du Jeu
+![Fin du jeu](assets/readme_assets/fin.png "Fin Jeu")
+### Jouer un Carte
+![Drag carte](assets/readme_assets/gameplay.gif)

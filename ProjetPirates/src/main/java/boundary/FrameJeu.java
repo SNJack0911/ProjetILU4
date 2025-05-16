@@ -90,6 +90,7 @@ public class FrameJeu extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(720, 480));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
+        	@Override
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -103,6 +104,7 @@ public class FrameJeu extends javax.swing.JFrame {
         menuPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuPanel.setOpaque(false);
         menuPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+        	@Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 menuPanelComponentShown(evt);
             }
@@ -238,11 +240,13 @@ public class FrameJeu extends javax.swing.JFrame {
         optionPanel.setBackground(new java.awt.Color(51, 51, 255));
         optionPanel.setPreferredSize(new java.awt.Dimension(720, 480));
         optionPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+        	@Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 optionPanelComponentShown(evt);
             }
         });
         optionPanel.addKeyListener(new java.awt.event.KeyAdapter() {
+        	@Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 optionPanelKeyReleased(evt);
             }
