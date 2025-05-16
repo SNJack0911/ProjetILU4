@@ -13,7 +13,7 @@ import java.util.List;
  * @author yannf
  */
 public class ControleurJouerCarte {
-    private Jeu jeu; //Mettre final ?
+    private Jeu jeu;
 
     public ControleurJouerCarte(Jeu jeu) {
         this.jeu = jeu;

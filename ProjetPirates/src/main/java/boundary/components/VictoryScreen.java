@@ -5,7 +5,6 @@
 /*author*/
 package boundary.components;
 
-import java.io.IOException;
 
 import javax.swing.*;
 import projetpirates.ProjetPirates;
