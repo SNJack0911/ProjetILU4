@@ -79,11 +79,19 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
                     └─ GestionnaireEffetFumeeTest.java
 ```
 ## Deroulement du Jeu
+### Main menu
 ![Main menu du jeu](assets/readme_assets/main_menu.png "Main Menu Jeu")
+### Configuration menu
 ![Configuration du jeu](assets/readme_assets/config.png "Configuration Jeu")
+### Plateau principale
 ![Main plateau du jeu](assets/readme_assets/plateau.png "Plateau Jeu")
+### Visualisation du Carte
 ![Carte du jeu](assets/readme_assets/Carte.png "Carte Jeu")
+### Action du pioche
 ![Pioche du carte](assets/readme_assets/pioche.gif "Pioche Carte")
+### Termine un tour apres jouer 1 carte
 ![Terminer d'un tour](assets/readme_assets/termine.gif "Termine Tour")
+### La Fin du Jeu
 ![Fin du jeu](assets/readme_assets/fin.gif "Fin Jeu")
+### Jouer un Carte
 ![Drag carte](assets/readme_assets/gameplay.gif)
