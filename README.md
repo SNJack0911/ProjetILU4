@@ -91,6 +91,6 @@ Dans la branche main se trouvent les fichiers qui fonctionnent. Les autres branc
 ### Termine un tour apres jouer 1 carte
 ![Terminer d'un tour](assets/readme_assets/termine.gif "Termine Tour")
 ### La Fin du Jeu
-![Fin du jeu](assets/readme_assets/fin.gif "Fin Jeu")
+![Fin du jeu](assets/readme_assets/fin.png "Fin Jeu")
 ### Jouer un Carte
 ![Drag carte](assets/readme_assets/gameplay.gif)
