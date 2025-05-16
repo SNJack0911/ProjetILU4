@@ -14,9 +14,9 @@ public class JInfoJoueur extends javax.swing.JPanel { /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-// utile ?
+
     int idPirate;
-    private BoundaryJeu boundaryJeu;
+    private transient BoundaryJeu boundaryJeu;
 
     /**
      * Creates new form JJoueurInfo

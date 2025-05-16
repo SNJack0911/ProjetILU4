@@ -20,8 +20,8 @@ public class JPioche extends javax.swing.JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Image defaultIcon = null;
-    private Image hoverIcon = null;
+	private transient Image defaultIcon = null;
+    private transient Image hoverIcon = null;
     private boolean isHover = false;
     
     /**
@@ -67,11 +67,13 @@ public class JPioche extends javax.swing.JPanel {
 
         setOpaque(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                formMouseEntered(evt);
+                formMouseEntered();
             }
+            @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                formMouseExited(evt);
+                formMouseExited();
             }
         });
 
@@ -87,12 +89,12 @@ public class JPioche extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+    private void formMouseEntered() {//GEN-FIRST:event_formMouseEntered
         isHover = true;
         repaint();
     }//GEN-LAST:event_formMouseEntered
 
-    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+    private void formMouseExited() {//GEN-FIRST:event_formMouseExited
         isHover = false;
         repaint();
     }//GEN-LAST:event_formMouseExited

@@ -153,31 +153,22 @@ public class FrameJeu extends javax.swing.JFrame {
         startButton.setForeground(new java.awt.Color(255, 255, 255));
         startButton.setText("Start");
         startButton.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startButtonActionPerformed(evt);
-            }
-        });
+
+        startButton.addActionListener(this::startButtonActionPerformed);
+
 
         optionButton.setBackground(new java.awt.Color(0, 51, 102));
         optionButton.setForeground(new java.awt.Color(255, 255, 255));
         optionButton.setText("Option");
         optionButton.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
-        optionButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optionButtonActionPerformed(evt);
-            }
-        });
+        optionButton.addActionListener(this::optionButtonActionPerformed);
 
         quitButton.setBackground(new java.awt.Color(0, 51, 102));
         quitButton.setForeground(new java.awt.Color(255, 255, 255));
         quitButton.setText("Quit");
         quitButton.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
-        quitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitButtonActionPerformed(evt);
-            }
-        });
+        quitButton.addActionListener(this::quitButtonActionPerformed);
+
 
         javax.swing.GroupLayout MenuButtonPanelLayout = new javax.swing.GroupLayout(MenuButtonPanel);
         MenuButtonPanel.setLayout(MenuButtonPanelLayout);
@@ -297,27 +288,18 @@ public class FrameJeu extends javax.swing.JFrame {
         volumeLabel.setText("Volume : ");
         optionPanelRound.add(volumeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
-        fullScreenCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fullScreenCheckBoxActionPerformed(evt);
-            }
-        });
+        fullScreenCheckBox.addActionListener(this::fullScreenCheckBoxActionPerformed);
+
         optionPanelRound.add(fullScreenCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
-        volumeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                volumeSliderStateChanged(evt);
-            }
-        });
+        volumeSlider.addChangeListener(this::volumeSliderStateChanged);
+
         optionPanelRound.add(volumeSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
         leftArrowRes.setPreferredSize(new java.awt.Dimension(20, 20));
         leftArrowRes.setImage("L");
-        leftArrowRes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leftArrowResActionPerformed(evt);
-            }
-        });
+        leftArrowRes.addActionListener(this::leftArrowResActionPerformed);
+
         optionPanelRound.add(leftArrowRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
 
         rightArrowRes.setPreferredSize(new java.awt.Dimension(20, 20));
@@ -380,11 +362,13 @@ public class FrameJeu extends javax.swing.JFrame {
 
         plateauPanel.setMinimumSize(new java.awt.Dimension(720, 480));
         plateauPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 plateauPanelComponentShown(evt);
             }
         });
         plateauPanel.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 plateauPanelKeyPressed(evt);
             }

@@ -22,7 +22,7 @@ public class JPanelWithBackground extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Image backgroundImage;
+	private transient Image backgroundImage;
 
 
     public JPanelWithBackground(){
