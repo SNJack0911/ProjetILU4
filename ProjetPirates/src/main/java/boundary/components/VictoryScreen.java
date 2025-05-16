@@ -44,6 +44,9 @@ public class VictoryScreen extends JPanel {
     	boundary.components.JPanelWithBackground jPanelWithBackground2 = new boundary.components.JPanelWithBackground();
         boundary.components.DrawVictoryPanel drawVictoryPanel1 = new boundary.components.DrawVictoryPanel();
 		jPanelWithBackground2.setImage(filenameVictory);
+		Rerun.setImage("B");
+		jButtonCustom4.setImage("B");
+		
 
         Rerun.setText("Main Menu");
         Rerun.addMouseListener(new java.awt.event.MouseAdapter() {
