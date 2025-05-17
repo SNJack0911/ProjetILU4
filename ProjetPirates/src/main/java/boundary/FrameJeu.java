@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -51,14 +53,26 @@ public class FrameJeu extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        boundary.components.JButtonCustom menuBoutonOp;
+        javax.swing.JPanel menuButtonPanel;
+        boundary.components.JPanelWithBackground menuPanelBackground;
+        boundary.components.JButtonCustom optionButton;
+        boundary.components.JPanelWithBackground optionPanelBackground;
+        boundary.components.JButtonCustom quitButton;
+        boundary.components.JButtonCustom startButton;
+        boundary.components.JPanelWithBackground titleBackground;
+        boundary.components.JPanelWithBackground titleBackground1;
+        javax.swing.JLabel volumeLabel;
+        javax.swing.JPanel bottomPanel;
+        javax.swing.JLabel fullScreenLabel;
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanelParent = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
         menuPanelBackground = new boundary.components.JPanelWithBackground();
         titleBackground = new boundary.components.JPanelWithBackground();
-        BottomPanel = new javax.swing.JPanel();
-        MenuButtonPanel = new javax.swing.JPanel();
+        bottomPanel = new javax.swing.JPanel();
+        menuButtonPanel = new javax.swing.JPanel();
         startButton = new boundary.components.JButtonCustom();
         startButton.setImage("B");
         optionButton = new boundary.components.JButtonCustom();
@@ -90,7 +104,7 @@ public class FrameJeu extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(720, 480));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-        	@Override
+            @Override
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -104,7 +118,7 @@ public class FrameJeu extends javax.swing.JFrame {
         menuPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuPanel.setOpaque(false);
         menuPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
-        	@Override
+            @Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 menuPanelComponentShown(evt);
             }
@@ -141,54 +155,51 @@ public class FrameJeu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 100, 0, 100);
         menuPanelBackground.add(titleBackground, gridBagConstraints);
 
-        BottomPanel.setAlignmentX(0.0F);
-        BottomPanel.setAlignmentY(0.0F);
-        BottomPanel.setMinimumSize(new java.awt.Dimension(620, 363));
-        BottomPanel.setOpaque(false);
-        BottomPanel.setLayout(new java.awt.GridBagLayout());
+        bottomPanel.setAlignmentX(0.0F);
+        bottomPanel.setAlignmentY(0.0F);
+        bottomPanel.setMinimumSize(new java.awt.Dimension(620, 363));
+        bottomPanel.setOpaque(false);
+        bottomPanel.setLayout(new java.awt.GridBagLayout());
 
-        MenuButtonPanel.setOpaque(false);
+        menuButtonPanel.setOpaque(false);
 
         startButton.setBackground(new java.awt.Color(0, 51, 102));
         startButton.setForeground(new java.awt.Color(255, 255, 255));
         startButton.setText("Start");
-        startButton.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
-
+        startButton.setFont(new java.awt.Font(fontType, 0, 14)); // NOI18N
         startButton.addActionListener(this::startButtonActionPerformed);
-
 
         optionButton.setBackground(new java.awt.Color(0, 51, 102));
         optionButton.setForeground(new java.awt.Color(255, 255, 255));
         optionButton.setText("Option");
-        optionButton.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
+        optionButton.setFont(new java.awt.Font(fontType, 0, 14)); // NOI18N
         optionButton.addActionListener(this::optionButtonActionPerformed);
 
         quitButton.setBackground(new java.awt.Color(0, 51, 102));
         quitButton.setForeground(new java.awt.Color(255, 255, 255));
         quitButton.setText("Quit");
-        quitButton.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
+        quitButton.setFont(new java.awt.Font(fontType, 0, 14)); // NOI18N
         quitButton.addActionListener(this::quitButtonActionPerformed);
 
-
-        javax.swing.GroupLayout MenuButtonPanelLayout = new javax.swing.GroupLayout(MenuButtonPanel);
-        MenuButtonPanel.setLayout(MenuButtonPanelLayout);
-        MenuButtonPanelLayout.setHorizontalGroup(
-            MenuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout menuButtonPanelLayout = new javax.swing.GroupLayout(menuButtonPanel);
+        menuButtonPanel.setLayout(menuButtonPanelLayout);
+        menuButtonPanelLayout.setHorizontalGroup(
+            menuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(MenuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(MenuButtonPanelLayout.createSequentialGroup()
+            .addGroup(menuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(menuButtonPanelLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(MenuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(optionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        MenuButtonPanelLayout.setVerticalGroup(
-            MenuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        menuButtonPanelLayout.setVerticalGroup(
+            menuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 126, Short.MAX_VALUE)
-            .addGroup(MenuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(MenuButtonPanelLayout.createSequentialGroup()
+            .addGroup(menuButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(menuButtonPanelLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(24, 24, 24)
@@ -203,7 +214,7 @@ public class FrameJeu extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
         gridBagConstraints.weightx = 1.0;
-        BottomPanel.add(MenuButtonPanel, gridBagConstraints);
+        bottomPanel.add(menuButtonPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -213,7 +224,7 @@ public class FrameJeu extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 30, 50);
-        menuPanelBackground.add(BottomPanel, gridBagConstraints);
+        menuPanelBackground.add(bottomPanel, gridBagConstraints);
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -231,13 +242,13 @@ public class FrameJeu extends javax.swing.JFrame {
         optionPanel.setBackground(new java.awt.Color(51, 51, 255));
         optionPanel.setPreferredSize(new java.awt.Dimension(720, 480));
         optionPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
-        	@Override
+            @Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 optionPanelComponentShown(evt);
             }
         });
         optionPanel.addKeyListener(new java.awt.event.KeyAdapter() {
-        	@Override
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 optionPanelKeyReleased(evt);
             }
@@ -274,52 +285,82 @@ public class FrameJeu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(50, 50, 0, 50);
         optionPanelBackground.add(titleBackground1, gridBagConstraints);
 
-        optionPanelRound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        resolutionLabel.setFont(new java.awt.Font("Windlass", 0, 18)); // NOI18N
+        resolutionLabel.setFont(new java.awt.Font(fontType, 0, 18)); // NOI18N
         resolutionLabel.setText("Resolution : ");
-        optionPanelRound.add(resolutionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
-        fullScreenLabel.setFont(new java.awt.Font("Windlass", 0, 18)); // NOI18N
+        fullScreenLabel.setFont(new java.awt.Font(fontType, 0, 18)); // NOI18N
         fullScreenLabel.setText("FullScreen : ");
-        optionPanelRound.add(fullScreenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
-        volumeLabel.setFont(new java.awt.Font("Windlass", 0, 18)); // NOI18N
+        volumeLabel.setFont(new java.awt.Font(fontType, 0, 18)); // NOI18N
         volumeLabel.setText("Volume : ");
-        optionPanelRound.add(volumeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         fullScreenCheckBox.addActionListener(this::fullScreenCheckBoxActionPerformed);
 
-        optionPanelRound.add(fullScreenCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
-
         volumeSlider.addChangeListener(this::volumeSliderStateChanged);
-
-        optionPanelRound.add(volumeSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
         leftArrowRes.setPreferredSize(new java.awt.Dimension(20, 20));
         leftArrowRes.setImage("L");
         leftArrowRes.addActionListener(this::leftArrowResActionPerformed);
 
-        optionPanelRound.add(leftArrowRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
-
         rightArrowRes.setPreferredSize(new java.awt.Dimension(20, 20));
         rightArrowRes.setImage("R");
-        rightArrowRes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rightArrowResActionPerformed(evt);
-            }
-        });
-        optionPanelRound.add(rightArrowRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
+        rightArrowRes.addActionListener(this::rightArrowResActionPerformed);
 
         resolutionNbLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         resolutionNbLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resolutionNbLabel.setText("720x480");
-        optionPanelRound.add(resolutionNbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 85, -1));
 
         volumeValueLabel.setBackground(new java.awt.Color(0, 0, 0));
         volumeValueLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         volumeValueLabel.setText("50%");
-        optionPanelRound.add(volumeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 37, -1));
+
+        javax.swing.GroupLayout optionPanelRoundLayout = new javax.swing.GroupLayout(optionPanelRound);
+        optionPanelRound.setLayout(optionPanelRoundLayout);
+        optionPanelRoundLayout.setHorizontalGroup(
+            optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(optionPanelRoundLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(optionPanelRoundLayout.createSequentialGroup()
+                        .addComponent(resolutionLabel)
+                        .addGap(48, 48, 48)
+                        .addComponent(leftArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(resolutionNbLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(rightArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(optionPanelRoundLayout.createSequentialGroup()
+                        .addComponent(fullScreenLabel)
+                        .addGap(47, 47, 47)
+                        .addComponent(fullScreenCheckBox))
+                    .addGroup(optionPanelRoundLayout.createSequentialGroup()
+                        .addComponent(volumeLabel)
+                        .addGap(84, 84, 84)
+                        .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(volumeValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        optionPanelRoundLayout.setVerticalGroup(
+            optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(optionPanelRoundLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(resolutionLabel)
+                    .addComponent(leftArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resolutionNbLabel)
+                    .addComponent(rightArrowRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fullScreenLabel)
+                    .addComponent(fullScreenCheckBox))
+                .addGap(16, 16, 16)
+                .addGroup(optionPanelRoundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(volumeLabel)
+                    .addGroup(optionPanelRoundLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(volumeValueLabel)))
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -333,13 +374,9 @@ public class FrameJeu extends javax.swing.JFrame {
         menuBoutonOp.setBackground(new java.awt.Color(0, 51, 102));
         menuBoutonOp.setForeground(new java.awt.Color(255, 255, 255));
         menuBoutonOp.setText("Return Menu");
-        menuBoutonOp.setFont(new java.awt.Font("Windlass", 0, 14)); // NOI18N
+        menuBoutonOp.setFont(new java.awt.Font(fontType, 0, 14)); // NOI18N
         menuBoutonOp.setImage("B");
-        menuBoutonOp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuBoutonOpActionPerformed(evt);
-            }
-        });
+        menuBoutonOp.addActionListener(this::menuBoutonOpActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -402,7 +439,7 @@ public class FrameJeu extends javax.swing.JFrame {
         if (currentRes <0){ currentRes = resolution.length -1 ;}
         resolutionNbLabel.setText(resolution[currentRes]);
 
-        String[] res = (resolution[currentRes]).split("[x]");
+        String[] res = (resolution[currentRes]).split("x");
         setSize(Integer.parseInt(res[0]), Integer.parseInt(res[1]));
     }//GEN-LAST:event_leftArrowResActionPerformed
 
@@ -410,7 +447,7 @@ public class FrameJeu extends javax.swing.JFrame {
         currentRes = (currentRes + 1)%resolution.length;
         resolutionNbLabel.setText(resolution[currentRes]);
 
-        String[] res = (resolution[currentRes]).split("[x]");
+        String[] res = (resolution[currentRes]).split("x");
         setSize(Integer.parseInt(res[0]), Integer.parseInt(res[1]));
     }//GEN-LAST:event_rightArrowResActionPerformed
 
@@ -471,22 +508,22 @@ public class FrameJeu extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // Uniquement des fichiers audio .wav !
-        // Ajoutez le fichier nommé SongX.wav avec X = nb_musics +1
+        // Ajoutez le fichier nommé SongX.wav avec X = nbMusics +1
         // Pensez à incrémenter le nombre de musique
-        int nb_musics = 4;
-        ArrayList<String> playlist = new ArrayList<>();
-        for (int i = 1; i <= nb_musics; i++) {
-            playlist.add("src/main/resources/Song" + i + ".wav");
+        int nbMusics = 4;
+        ArrayList<String> playlistSong = new ArrayList<>();
+        for (int i = 1; i <= nbMusics; i++) {
+            playlistSong.add("src/main/resources/Song" + i + ".wav");
         }
-        Collections.shuffle(playlist);
+        Collections.shuffle(playlistSong);
         
-        playMusics(playlist);
+        playMusics(playlistSong);
     }//GEN-LAST:event_formWindowOpened
 
     private void volumeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_volumeSliderStateChanged
         int newVolume = volumeSlider.getValue();
         volumeValueLabel.setText(newVolume + "%");
-        volume = newVolume / 100;
+        volume = (float) newVolume / 100;
         setVolume(volume);
     }//GEN-LAST:event_volumeSliderStateChanged
 
@@ -517,7 +554,7 @@ public class FrameJeu extends javax.swing.JFrame {
             res  = ImageIO.read(new File("src/main/resources/" + filename));
         }catch(IOException e){
             String userDirectory = new File("").getAbsolutePath();
-            System.out.print("Icon not found : " + userDirectory + "src/main/resources/" + filename);
+            logger.info("Icon not found : " + userDirectory + "src/main/resources/" + filename);
         }
         return res;
     }
@@ -544,7 +581,7 @@ public class FrameJeu extends javax.swing.JFrame {
             File audioFile = new File(filepath);
 
             if (!audioFile.exists()) {
-                System.out.println("Fichier introuvable : " + filepath);
+            	logger.info("Fichier introuvable : " + filepath);
                 currentIndex++;
                 playCurrentTrack();
                 return;
@@ -566,16 +603,16 @@ public class FrameJeu extends javax.swing.JFrame {
             });
 
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-            System.out.println("Musique non trouvé.");
+        	logger.info("Musique non trouvé.");
         }
     }
     
-    public void playMusics(ArrayList<String> filepaths) {
+    public void playMusics(List<String> filepaths) {
         if (filepaths == null || filepaths.isEmpty()) {
-            System.out.println("La liste de lecture est vide.");
+        	logger.info("La liste de lecture est vide.");
             return;
         }
-        this.playlist = filepaths;
+        this.playlist = (ArrayList<String>) filepaths;
         this.currentIndex = 0;
         playCurrentTrack();
     }
@@ -603,7 +640,7 @@ public class FrameJeu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -624,43 +661,35 @@ public class FrameJeu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new FrameJeu(null, false).setVisible(true);
-        });
+        java.awt.EventQueue.invokeLater(() -> new FrameJeu(null, false).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BottomPanel;
-    private javax.swing.JPanel MenuButtonPanel;
+    
     private javax.swing.JCheckBox fullScreenCheckBox;
-    private javax.swing.JLabel fullScreenLabel;
+    
     private javax.swing.JPanel jPanelParent;
     private boundary.components.JButtonCustom leftArrowRes;
-    private boundary.components.JButtonCustom menuBoutonOp;
+    
+    
     private javax.swing.JPanel menuPanel;
-    private boundary.components.JPanelWithBackground menuPanelBackground;
-    private boundary.components.JButtonCustom optionButton;
     private javax.swing.JPanel optionPanel;
-    private boundary.components.JPanelWithBackground optionPanelBackground;
     private boundary.components.JPanelRound optionPanelRound;
     private boundary.Plateau plateau1;
     private javax.swing.JPanel plateauPanel;
-    private boundary.components.JButtonCustom quitButton;
     private javax.swing.JLabel resolutionLabel;
     private javax.swing.JLabel resolutionNbLabel;
     private boundary.components.JButtonCustom rightArrowRes;
-    private boundary.components.JButtonCustom startButton;
-    private boundary.components.JPanelWithBackground titleBackground;
-    private boundary.components.JPanelWithBackground titleBackground1;
-    private javax.swing.JLabel volumeLabel;
     private javax.swing.JSlider volumeSlider;
     private javax.swing.JLabel volumeValueLabel;
     // End of variables declaration//GEN-END:variables
 
     private final String[] resolution ={"720x480", "1280x720", "1920x1080"};
     private int currentRes = 0;
-    private Clip clip;
+    private transient Clip clip;
     private float volume = 0.5f; // Volume entre 0 et 1
     private ArrayList<String> playlist = new ArrayList<>();
     private int currentIndex = 0;
+    private Logger logger = Logger.getLogger(getClass().getName());
+    private final String fontType = "Windlass";
 }
