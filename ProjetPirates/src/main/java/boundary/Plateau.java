@@ -292,9 +292,9 @@ public class Plateau extends javax.swing.JPanel {
         int joueurActuel = tour % 2;
         int joueurSuivant = (tour + 1) % 2;
    
-        RetournerCarte(joueurActuel);
+        retournerCarte(joueurActuel);
         afficherPopupFinDeTour();
-        RetournerCarte(joueurSuivant);
+        retournerCarte(joueurSuivant);
         
         jButtonFinDeTour.setEnabled(false);
         jPioche1.setEnabled(true);
@@ -302,7 +302,7 @@ public class Plateau extends javax.swing.JPanel {
         updatePlateau();
     }//GEN-LAST:event_jButtonFinDeTourActionPerformed
 
-    private void RetournerCarte(int joueur){
+    private void retournerCarte(int joueur){
         if (joueur == 0) {
             jMainJoueur1.setEnabled(false);
             retournerCartesMain(jMainJoueur1.getMainJoueur());
