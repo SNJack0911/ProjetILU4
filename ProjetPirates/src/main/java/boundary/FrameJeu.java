@@ -31,7 +31,7 @@ public class FrameJeu extends javax.swing.JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final BoundaryJeu boundaryJeu;
+	private final transient BoundaryJeu boundaryJeu;
     /**
      * Creates new form FrameJeu
      * @param boundaryJeu
@@ -106,7 +106,7 @@ public class FrameJeu extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
+                formWindowOpened();
             }
         });
 
@@ -120,7 +120,7 @@ public class FrameJeu extends javax.swing.JFrame {
         menuPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                menuPanelComponentShown(evt);
+                menuPanelComponentShown();
             }
         });
 
@@ -166,19 +166,19 @@ public class FrameJeu extends javax.swing.JFrame {
         startButton.setBackground(new java.awt.Color(0, 51, 102));
         startButton.setForeground(new java.awt.Color(255, 255, 255));
         startButton.setText("Start");
-        startButton.setFont(new java.awt.Font(fontType, 0, 14)); // NOI18N
+        startButton.setFont(new java.awt.Font(FONTTYPE, 0, 14)); // NOI18N
         startButton.addActionListener(this::startButtonActionPerformed);
 
         optionButton.setBackground(new java.awt.Color(0, 51, 102));
         optionButton.setForeground(new java.awt.Color(255, 255, 255));
         optionButton.setText("Option");
-        optionButton.setFont(new java.awt.Font(fontType, 0, 14)); // NOI18N
+        optionButton.setFont(new java.awt.Font(FONTTYPE, 0, 14)); // NOI18N
         optionButton.addActionListener(this::optionButtonActionPerformed);
 
         quitButton.setBackground(new java.awt.Color(0, 51, 102));
         quitButton.setForeground(new java.awt.Color(255, 255, 255));
         quitButton.setText("Quit");
-        quitButton.setFont(new java.awt.Font(fontType, 0, 14)); // NOI18N
+        quitButton.setFont(new java.awt.Font(FONTTYPE, 0, 14)); // NOI18N
         quitButton.addActionListener(this::quitButtonActionPerformed);
 
         javax.swing.GroupLayout menuButtonPanelLayout = new javax.swing.GroupLayout(menuButtonPanel);
@@ -244,7 +244,7 @@ public class FrameJeu extends javax.swing.JFrame {
         optionPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                optionPanelComponentShown(evt);
+                optionPanelComponentShown();
             }
         });
         optionPanel.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -285,13 +285,13 @@ public class FrameJeu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(50, 50, 0, 50);
         optionPanelBackground.add(titleBackground1, gridBagConstraints);
 
-        resolutionLabel.setFont(new java.awt.Font(fontType, 0, 18)); // NOI18N
+        resolutionLabel.setFont(new java.awt.Font(FONTTYPE, 0, 18)); // NOI18N
         resolutionLabel.setText("Resolution : ");
 
-        fullScreenLabel.setFont(new java.awt.Font(fontType, 0, 18)); // NOI18N
+        fullScreenLabel.setFont(new java.awt.Font(FONTTYPE, 0, 18)); // NOI18N
         fullScreenLabel.setText("FullScreen : ");
 
-        volumeLabel.setFont(new java.awt.Font(fontType, 0, 18)); // NOI18N
+        volumeLabel.setFont(new java.awt.Font(FONTTYPE, 0, 18)); // NOI18N
         volumeLabel.setText("Volume : ");
 
         fullScreenCheckBox.addActionListener(this::fullScreenCheckBoxActionPerformed);
@@ -374,7 +374,7 @@ public class FrameJeu extends javax.swing.JFrame {
         menuBoutonOp.setBackground(new java.awt.Color(0, 51, 102));
         menuBoutonOp.setForeground(new java.awt.Color(255, 255, 255));
         menuBoutonOp.setText("Return Menu");
-        menuBoutonOp.setFont(new java.awt.Font(fontType, 0, 14)); // NOI18N
+        menuBoutonOp.setFont(new java.awt.Font(FONTTYPE, 0, 14)); // NOI18N
         menuBoutonOp.setImage("B");
         menuBoutonOp.addActionListener(this::menuBoutonOpActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -401,7 +401,7 @@ public class FrameJeu extends javax.swing.JFrame {
         plateauPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                plateauPanelComponentShown(evt);
+                plateauPanelComponentShown();
             }
         });
         plateauPanel.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -494,19 +494,19 @@ public class FrameJeu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_plateauPanelKeyPressed
 
-    private void plateauPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_plateauPanelComponentShown
+    private void plateauPanelComponentShown() {//GEN-FIRST:event_plateauPanelComponentShown
         plateauPanel.requestFocusInWindow();
     }//GEN-LAST:event_plateauPanelComponentShown
 
-    private void menuPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_menuPanelComponentShown
+    private void menuPanelComponentShown() {//GEN-FIRST:event_menuPanelComponentShown
         menuPanel.requestFocusInWindow();
     }//GEN-LAST:event_menuPanelComponentShown
 
-    private void optionPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_optionPanelComponentShown
+    private void optionPanelComponentShown() {//GEN-FIRST:event_optionPanelComponentShown
        optionPanel.requestFocusInWindow();
     }//GEN-LAST:event_optionPanelComponentShown
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened() {//GEN-FIRST:event_formWindowOpened
         // Uniquement des fichiers audio .wav !
         // Ajoutez le fichier nommé SongX.wav avec X = nbMusics +1
         // Pensez à incrémenter le nombre de musique
@@ -549,8 +549,6 @@ public class FrameJeu extends javax.swing.JFrame {
     private Image getIcon(String filename){
         Image res = null;
         try{
-            /*ImageIcon icon = new ImageIcon(getClass().getResource(fileName));
-            res = icon.getImage();*/
             res  = ImageIO.read(new File("src/main/resources/" + filename));
         }catch(IOException e){
             String userDirectory = new File("").getAbsolutePath();
@@ -581,7 +579,7 @@ public class FrameJeu extends javax.swing.JFrame {
             File audioFile = new File(filepath);
 
             if (!audioFile.exists()) {
-            	logger.info("Fichier introuvable : " + filepath);
+            	System.out.println("Fichier introuvable : " + filepath);
                 currentIndex++;
                 playCurrentTrack();
                 return;
@@ -690,6 +688,6 @@ public class FrameJeu extends javax.swing.JFrame {
     private float volume = 0.5f; // Volume entre 0 et 1
     private ArrayList<String> playlist = new ArrayList<>();
     private int currentIndex = 0;
-    private Logger logger = Logger.getLogger(getClass().getName());
-    private final String fontType = "Windlass";
+    private transient Logger logger = Logger.getLogger(getClass().getName());
+    private static final String FONTTYPE = "Windlass";
 }

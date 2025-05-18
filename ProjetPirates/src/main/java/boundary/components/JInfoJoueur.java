@@ -59,6 +59,7 @@ public class JInfoJoueur extends javax.swing.JPanel { /**
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        javax.swing.JPanel jPanel1;
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
@@ -230,7 +231,7 @@ public class JInfoJoueur extends javax.swing.JPanel { /**
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    
     private boundary.components.JPointDeVie jPointDeVie;
     private boundary.components.JPointDeVie jPointDeVie2;
     private boundary.components.JPointDeVie jPointDeVie3;

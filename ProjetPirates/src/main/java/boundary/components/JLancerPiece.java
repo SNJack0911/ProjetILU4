@@ -27,8 +27,8 @@ public class JLancerPiece extends javax.swing.JPanel {
 	private ImageIcon iconPile;
     private ImageIcon iconFace;
     private ImageIcon lancer;
-    private String etat = "0";
-    private Image currentImage = null;
+    private transient String etat = "0";
+    private transient Image currentImage = null;
     private boolean animationInProgress = false;
     private final Queue<String> animationQueue = new LinkedList<>();
 
