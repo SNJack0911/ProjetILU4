@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,7 @@ class JeuDeCarteTest {
     @Test
     void testRemplirPioche() {
         JeuDeCarte jeuDeCarte = new JeuDeCarte();
-        ArrayList<Carte> pioche = jeuDeCarte.remplirPioche();
+        List<Carte> pioche = jeuDeCarte.remplirPioche();
 
         assertFalse(pioche.isEmpty(), "Le deck ne doit pas être vide après remplissage.");
 

@@ -1,6 +1,7 @@
 package noyau;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -10,12 +11,12 @@ import java.util.Random;
 
 public class Pioche {
     private int nbCartes;
-    private final ArrayList<Carte> cartes;
+    private final List<Carte> cartes;
     private static final Random rand = new Random();
 
-    public Pioche(ArrayList<Carte> cartes){
-        nbCartes = cartes.size();
-        this.cartes = cartes;
+    public Pioche(List<Carte> list){
+        nbCartes = list.size();
+        this.cartes = list;
     }
 
     public boolean estVide(){return nbCartes <= 0;}

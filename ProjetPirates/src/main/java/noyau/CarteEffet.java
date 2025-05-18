@@ -6,8 +6,8 @@ package noyau;
  */
 
 public abstract class CarteEffet extends Carte{
-    protected CarteEffet(String nom, int CarteID, String description, BasicCategorie zoneDepot) {
-        super(nom, CarteID, description, ExtendCategorie.EFFET, zoneDepot);
+    protected CarteEffet(String nom, int carteID, String description, BasicCategorie zoneDepot) {
+        super(nom, carteID, description, ExtendCategorie.EFFET, zoneDepot);
     }
 
 }

@@ -5,6 +5,8 @@ import noyau.ICategorieCarte;
 import noyau.Jeu;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /*
@@ -23,11 +25,11 @@ public class ControleurIntegrationTest {
     void testGetPirateMain_AfterInitialization() {
         ControleurGetPirateInfo controleur = new ControleurGetPirateInfo(jeu);
 
-        ArrayList<String> mainPirate1 = controleur.getPirateMain(0);
+        List<String> mainPirate1 = controleur.getPirateMain(0);
         assertNotNull(mainPirate1);
         assertTrue(mainPirate1.size() > 0, "La main du pirate 1 devrait avoir des cartes assignées");
 
-        ArrayList<String> mainPirate2 = controleur.getPirateMain(1);
+        List<String> mainPirate2 = controleur.getPirateMain(1);
         assertNotNull(mainPirate2);
         assertTrue(mainPirate2.size() > 0, "La main du pirate 2 devrait avoir des cartes assignées");
     }
@@ -36,7 +38,7 @@ public class ControleurIntegrationTest {
     void testPiocherCarte() {
         ControleurPiocherCarte controleurPiocherCarte = new ControleurPiocherCarte(jeu);
 
-        ArrayList<String> cartesTirees = controleurPiocherCarte.piocherCarte();
+        List<String> cartesTirees = controleurPiocherCarte.piocherCarte();
 
         assertNotNull(cartesTirees);
         assertTrue(cartesTirees.size() > 0, "La pioche de cartes ne devrait pas être vide");

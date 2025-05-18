@@ -110,7 +110,7 @@ public class Jeu {
         carte.appliquerEffet(joueur, adversaire, this);
 
         // Créer une liste temporaire pour stocker les effets à supprimer
-        ArrayList<EffetEtatJeu> effetsASupprimer = new ArrayList<>();
+        List<EffetEtatJeu> effetsASupprimer =  new ArrayList<>();
         
         // Vérifier les effets de fin de tour
         for(EffetEtatJeu effet : effetsJeu){
@@ -129,7 +129,7 @@ public class Jeu {
     }
 
     private List<String> genResultat(Carte carte) {
-        List<String> resultatTour = new ArrayList<>();
+        List<String> resultatTour =  new ArrayList<>();
         if (carte instanceof CartePiecePopularite cartePiece) {
             resultatTour = cartePiece.getCoinFlipResult();
         } else if (carte instanceof CartePieceAttaque cartePiece) {

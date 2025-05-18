@@ -3,6 +3,7 @@ package noyau;
 import noyau.carteeffet.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *N
@@ -52,7 +53,7 @@ public class JeuDeCarte {
         private int getQuantite(){return quantite;}
     }
 
-    public ArrayList<Carte> remplirPioche(){
+    public List<Carte> remplirPioche(){
         ArrayList<Carte> cartes = new ArrayList<>();
         Carte carte;
         for (Configuration c : config){

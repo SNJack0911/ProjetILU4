@@ -13,7 +13,7 @@ public class BoundaryPiocherCarte {
     }
 
     public List<String> piocherCarte() {
-        ArrayList<String> p = controleurPiocherCarte.piocherCarte();
+        List<String> p = controleurPiocherCarte.piocherCarte();
         if (p == null || p.isEmpty()){
             System.out.println("Aucune carte n'a été piochée.");
         }

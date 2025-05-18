@@ -12,7 +12,7 @@ public abstract class CarteLambda extends Carte {
     IEffet effet2;
     final CoinFlip coinFlip ;
 
-    public CarteLambda(String nom, int carteID, String description, ICategorieCarte categorie, BasicCategorie zoneDepot,
+    protected CarteLambda(String nom, int carteID, String description, ICategorieCarte categorie, BasicCategorie zoneDepot,
                        IEffet effet1, IEffet effet2) {
         super(nom, carteID, description, categorie, zoneDepot);
         this.effet1 = effet1;

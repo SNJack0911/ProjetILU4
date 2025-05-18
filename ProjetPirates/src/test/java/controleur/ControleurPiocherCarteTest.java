@@ -7,6 +7,7 @@ import noyau.Jeu;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +25,7 @@ class ControleurPiocherCarteTest {
         cartes.add(new CarteDefense("Carte2", 2, "desc", 10, 5, false));
 
         // Action
-        ArrayList<String> noms = ControleurPiocherCarte.listeCarteToString(cartes);
+        List<String> noms = ControleurPiocherCarte.listeCarteToString(cartes);
 
         // Assertion
         assertEquals(2, noms.size());
@@ -37,7 +38,7 @@ class ControleurPiocherCarteTest {
         // Construir un jeu fictif
         Jeu jeu = new Jeu();
         ControleurPiocherCarte controleur = new ControleurPiocherCarte(jeu);
-        ArrayList<String> noms = controleur.piocherCarte();
+        List<String> noms = controleur.piocherCarte();
         assertNotNull(noms);
         assertFalse(noms.isEmpty(), "La liste de cartes piochées ne devrait pas être vide.");
         // Vérifier que les noms des cartes piochées sont valides

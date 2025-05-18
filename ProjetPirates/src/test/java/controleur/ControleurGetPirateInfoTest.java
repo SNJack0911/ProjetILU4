@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,8 +62,8 @@ class ControleurGetPirateInfoTest {
 
     @Test
     void testGetPirateMain_ValidInputs() {
-        ArrayList<String> mainPirate1 = controleur.getPirateMain(0);
-        ArrayList<String> mainPirate2 = controleur.getPirateMain(1);
+        List<String> mainPirate1 = controleur.getPirateMain(0);
+        List<String> mainPirate2 = controleur.getPirateMain(1);
 
         assertNotNull(mainPirate1);
         assertNotNull(mainPirate2);

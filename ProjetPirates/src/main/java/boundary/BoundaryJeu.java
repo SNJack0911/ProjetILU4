@@ -119,7 +119,7 @@ public class BoundaryJeu {
     }
 
     public List<String> getPirateMain(int pirateID) {
-        ArrayList<String> main = controleurGetPirateInfo.getPirateMain(pirateID);
+        List<String> main = controleurGetPirateInfo.getPirateMain(pirateID);
         if (main == null) {
         	logger.info(erreurPirate);
             return new ArrayList<>();

@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class CarteToucheEncre extends CarteEffet {
     private Carte cardDeleted;
-
+    private Random rand = new Random();
     public CarteToucheEncre() {
         super("Toucher d'encre", 20, "Une des cartes de l'adversaire est défaussée ", BasicCategorie.ATTAQUE);
     }
@@ -23,7 +23,6 @@ public class CarteToucheEncre extends CarteEffet {
         int nbCarte = possible.size();
         if (nbCarte <= 0) {return;}
 
-        Random rand = new Random();
         int randomIndex = rand.nextInt(nbCarte);
         cardDeleted = possible.get(randomIndex);
         adversaire.supprimerCarteMain(cardDeleted);

@@ -12,12 +12,12 @@ public abstract class Carte {
     private final ICategorieCarte categorie;
     private final BasicCategorie zoneDepot;
 
-    protected Carte(String nom, int CarteID, String description, ICategorieCarte categorie, BasicCategorie zoneDepot) {
+    protected Carte(String nom, int carteID, String description, ICategorieCarte categorie, BasicCategorie zoneDepot) {
         this.nom = nom;
         this.description = description;
         this.categorie = categorie;
         this.zoneDepot = zoneDepot;
-        this.carteID = CarteID;
+        this.carteID = carteID;
     }
 
     public String getNom() {

@@ -13,6 +13,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.util.List;
+import java.util.logging.Logger;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -31,7 +33,7 @@ import javax.swing.SwingUtilities;
 public class Plateau extends javax.swing.JPanel {
     private  transient BoundaryJeu boundaryJeu;
     
-    
+    transient Logger  logger = Logger.getLogger(getClass().getName());
      
     private boolean faitNuit = false; //donc jour
    
@@ -270,7 +272,7 @@ public class Plateau extends javax.swing.JPanel {
     private void ajouterCartesAMain(List<String> nomsCartes, JMainJoueur mainJoueur) {
         for (String nomCarte : nomsCartes) {
             if (nomCarte == null) {
-                System.err.println("Carte null détectée !");
+                logger.info("Carte null détectée !");
                 continue;
             }
 
@@ -383,8 +385,7 @@ public class Plateau extends javax.swing.JPanel {
             initPlateau();
         }
         else { 
-        	System.out.print("boundary est null");
-        	System.out.print(boundaryJeu != null);
+        	logger.info("boundary est null");
         }
     }
     
