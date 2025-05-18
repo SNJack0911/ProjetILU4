@@ -4,7 +4,7 @@ import noyau.*;
 
 /**
  *
- * @author yannf
+ * @author yannf et fanny
  */
 
 public class CarteEffetAmplificateur extends CarteEffet {
@@ -16,7 +16,8 @@ public class CarteEffetAmplificateur extends CarteEffet {
 
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire, 3, 2, 2, 2, 2,
+    	double[] multiplieur = {2,2,2,2};
+        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire, 3,multiplieur,
                 TypeChangement.AUGMENTATION));
     }
 }

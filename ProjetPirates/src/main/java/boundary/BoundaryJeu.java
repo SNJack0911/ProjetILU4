@@ -202,46 +202,62 @@ public class BoundaryJeu {
     public void jouerPartie(){
         List<String> res;
         do{
-            int tour = getTour();
-            if (boundaryNouvellePartie.isNuit()){
-                printMoon();
-            }else{
-                printSun();
-            }
-            logger.info(separateur);
-            printPirateInfo((tour+1)%2);
-            logger.info("\n----------------------\n");
-            printPirateInfo(tour%2);
-            printCartePiocher();
-            printMainPirate(tour%2);
-            List<String> main = getPirateMain(tour%2);
-            int carte = -1;
-            String nomCarte = "";
-            String choix = "";
-            do {
-                do {
-                	logger.info("Choisissez le chiffre d'une carte de votre main : ");
-                    if (!scanner.hasNextInt()) {
-                    	logger.info("Entrée invalide. Veuillez entrer un chiffre.");
-                        scanner.next();
-                        continue;
-                    }
-
-                    carte = scanner.nextInt() - 1;
-                    if (carte < 0 || carte >= main.size()) {
-                    	System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et " + main.size() + ".");
-                    }
-                } while (carte < 0 || carte >= main.size());
-                nomCarte = main.get(carte);
-                printCarteInfo(nomCarte);
-                logger.info("Appliquer l'effet ? (O/N)");
-                choix = scanner.next();
-            } while (!choix.equals("O"));
-            res = boundaryJouerCarte.jouerCarte(main.get(carte));
+        	int tour = getTour();
+        	afficherInfosTour(tour);
+        	String nomCarte = demanderCarteAJouer(tour);
+            res = boundaryJouerCarte.jouerCarte(nomCarte);
             boundaryNouvellePartie.incrementerTour();
         }while((res.getLast()).equals("Pas de gagnant"));
 
     }
+    
+    private void afficherInfosTour(int tour) {
+        if (boundaryNouvellePartie.isNuit()){
+            printMoon();
+        }else{
+            printSun();
+        }
+        logger.info(separateur);
+        printPirateInfo((tour+1)%2);
+        logger.info("\n----------------------\n");
+        printPirateInfo(tour%2);
+        printCartePiocher();
+        printMainPirate(tour%2);
+    }
+    
+    private String demanderCarteAJouer(int tour) {
+    	List<String> main = getPirateMain(tour%2);
+    	int carte;
+        String choix;
+        do {
+        	carte = demanderIndexCarte(main);
+            String nomCarte = main.get(carte);
+            printCarteInfo(nomCarte);
+            logger.info("Appliquer l'effet ? (O/N)");
+            choix = scanner.next();
+            if(choix.equals("O")) return nomCarte;
+        } while (true);
+    	
+    }
+    
+    private int demanderIndexCarte(List<String> main) {
+    	int carte = -1;
+    	do {
+        	logger.info("Choisissez le chiffre d'une carte de votre main : ");
+            if (!scanner.hasNextInt()) {
+            	logger.info("Entrée invalide. Veuillez entrer un chiffre.");
+                scanner.next();
+                continue;
+            }
+
+            carte = scanner.nextInt() - 1;
+            if (carte < 0 || carte >= main.size()) {
+            	System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et " + main.size() + ".");
+            }
+        } while (carte < 0 || carte >= main.size());
+    	return carte;
+    }
+    
 
     private void printCartePiocher(){
     	logger.info(separateur);

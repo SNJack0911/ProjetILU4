@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  *
- * @author yannf
+ * @author yannf et fanny
  */
 
 public class Jeu {
@@ -46,7 +46,7 @@ public class Jeu {
         return "Pas de gagnant";
     }
 
-    public ArrayList<Carte> jouerPioche() {
+    public List<Carte> jouerPioche() {
         return piocherInf5(getJoueurActuel());
     }
 

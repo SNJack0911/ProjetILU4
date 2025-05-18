@@ -2,7 +2,7 @@ package noyau;
 
 /**
  * 
- * @author yannf et leo a l'origine
+ * @author yannf, leo et fanny
  */
 
 public abstract class Carte {

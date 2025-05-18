@@ -4,7 +4,7 @@ import noyau.*;
 
 /**
  *
- * @author yannf
+ * @author yannf et fanny
  */
 
 public class CarteAntidouleur extends CarteEffet {
@@ -17,7 +17,8 @@ public class CarteAntidouleur extends CarteEffet {
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
         joueur.applyStats("HP", 1);
-        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire, 1, 1,1, 1,1,TypeChangement.TOUS){
+        double[] multiplieur = {1,1,1,1};
+        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire, 1,multiplieur,TypeChangement.TOUS){
             @Override
             public void finTour(Pirate pirate1, Pirate pirate2) {
                 if(pirate1.equals(joueur) && pirate1.getHP() < getGameState(1)){

@@ -2,7 +2,6 @@ package noyau;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,7 +48,7 @@ class JeuTest {
         current.getMain().clear(); // Empty hand pour test
         assertEquals(0, current.getNbCarte());
 
-        ArrayList<Carte> cartes = jeu.jouerPioche();
+        List<Carte> cartes = jeu.jouerPioche();
         assertEquals(5, current.getNbCarte(), "Main faudra avoir 5 cartes après piocher");
         assertEquals(5, cartes.size(), "Il faut 5 cartes dans la main du joueur");
     }
@@ -141,7 +140,7 @@ class JeuTest {
         while (joueur.getNbCarte() < 5) {
             joueur.addCarte(new CartePopularite("Test", 1, "Desc", 0, 0, false));
         }
-        ArrayList<Carte> newCards = jeu.jouerPioche();
+        List<Carte> newCards = jeu.jouerPioche();
         assertEquals(0, newCards.size(), "Aucune carte ne devrait être piochée si la main est déjà pleine");
     }
 

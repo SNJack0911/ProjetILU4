@@ -4,7 +4,7 @@ import noyau.*;
 
 /**
  *
- * @author yannf
+ * @author yannf et fanny
  */
 
 public class CarteSourdOreille extends CarteEffet {
@@ -16,7 +16,8 @@ public class CarteSourdOreille extends CarteEffet {
 
     @Override
     public void appliquerEffet(Pirate joueur, Pirate adversaire, Jeu jeu) {
-        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire,1, 0, 0, 0, 0,
+    	double[] multiplieur = {0,0,0,0};
+        jeu.ajouterEffetJeu(new EffetEtatJeu(joueur, adversaire,1, multiplieur,
                 TypeChangement.DIMINUTION));
     }
 }

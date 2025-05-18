@@ -8,7 +8,7 @@ import noyau.Jeu;
 
 /**
  *
- * @author yannf
+ * @author yannf et fanny
  */
 public class ControleurNouvellePartie {
     private Jeu jeu;

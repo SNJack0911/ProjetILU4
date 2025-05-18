@@ -27,7 +27,7 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author leo et yannf et Vincent
+ * @author leo et yannf et Vincent et fanny
  */
 @SuppressWarnings("serial")
 public class Plateau extends javax.swing.JPanel {

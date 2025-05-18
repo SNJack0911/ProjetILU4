@@ -9,40 +9,40 @@ import java.util.*;
 
 
 public class Pirate {
-    private int HP;
-    private int PP;
+    private int hP;
+    private int pP;
     private final String nom;
     private final ArrayList<Carte> hands = new ArrayList<>() ;
     public Pirate(String nom) {
-        this.HP = 5;
-        this.PP = 0;
+        this.hP = 5;
+        this.pP = 0;
         this.nom = nom;
     }
 
     public int getHP() {
-        return HP;
+        return hP;
     }
 
     /* HP > 0 = ajouter des HP 
        HP < 0 = enlever des HP */
     public void addHP(int value) {
-        int newHP = HP + value;
+        int newHP = hP + value;
         if (newHP > 5) {
-            this.HP = 5;
-        } else this.HP = Math.max(newHP, 0);
+            this.hP = 5;
+        } else this.hP = Math.max(newHP, 0);
     }
 
     public int getPP() {
-        return PP;
+        return pP;
     }
 
     /* PP > 0 = ajouter des PP 
        PP < 0 = enlever des PP */
     public void addPP(int value) {
-        int newPP = PP + value;
+        int newPP = pP + value;
         if (newPP > 5) {
-            this.PP = 5;
-        } else this.PP = Math.max(newPP, 0);
+            this.pP = 5;
+        } else this.pP = Math.max(newPP, 0);
     }
     
     public String getNom() {
@@ -66,15 +66,9 @@ public class Pirate {
     public void setStats(String stat, int value) {
         int newStat = value>5?5: Math.max(value, 0);
         switch (stat) {
-            case "HP" -> {
-                this.HP = newStat;
-            }
-            case "PP" -> {
-                this.PP = newStat;
-            }
-            default -> {
-                throw new IllegalArgumentException("Stat non reconnue\n");
-            }
+            case "HP" -> this.hP = newStat;
+            case "PP" -> this.pP = newStat;
+            default -> throw new IllegalArgumentException("Stat non reconnue\n");
         }
     }
     
@@ -93,13 +87,13 @@ public class Pirate {
     @Override
     public String toString() {
         return "Pirate{" +
-                "HP=" + HP +
-                ", PP=" + PP +
+                "HP=" + hP +
+                ", PP=" + pP +
                 ", nom='" + nom + '\'' +
                 '}';
     }
 
-    public ArrayList<Carte> getMain() {
+    public List<Carte> getMain() {
         return hands;
     }
     
@@ -124,5 +118,10 @@ public class Pirate {
         }
         return false;
     }
-
+    
+    @Override
+    public int hashCode() {
+    	return nom != null ? nom.hashCode() : 0;
+    }
+    
 }

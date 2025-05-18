@@ -8,6 +8,7 @@ import noyau.Carte;
 import noyau.Jeu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,16 +21,16 @@ public class ControleurPiocherCarte {
         this.jeu = jeu;
     }
 
-    public static ArrayList<String> listeCarteToString(ArrayList<Carte> lstCarte){
-        ArrayList<String> lstCarteString = new ArrayList<String>(); // ??
-        for(Carte carte : lstCarte){
+    public static List<String> listeCarteToString(List<Carte> list){
+        ArrayList<String> lstCarteString = new ArrayList<>(); // ??
+        for(Carte carte : list){
             lstCarteString.add(carte.getNom());
         }
         return lstCarteString;
     }
 
-    public ArrayList<String> piocherCarte() {
-        ArrayList<Carte> cartes = jeu.jouerPioche();
+    public List<String> piocherCarte() {
+        List<Carte> cartes = jeu.jouerPioche();
         return listeCarteToString(cartes);
     }
 }

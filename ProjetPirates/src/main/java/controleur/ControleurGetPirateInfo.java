@@ -2,7 +2,8 @@ package controleur;
 
 import noyau.Jeu;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ControleurGetPirateInfo {
     private Jeu jeu;
@@ -32,10 +33,10 @@ public class ControleurGetPirateInfo {
         return -1;
     }
 
-    public ArrayList<String> getPirateMain(int pirateID) {
+    public List<String> getPirateMain(int pirateID) {
         if (pirateID == 0 || pirateID == 1){
             return ControleurPiocherCarte.listeCarteToString(jeu.getPirate(pirateID).getMain());
         }
-        return null;
+        return Collections.emptyList();
     }
 }

@@ -4,7 +4,6 @@ import noyau.BasicCategorie;
 import noyau.ICategorieCarte;
 import noyau.Jeu;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Stefan
  * */
 
-public class ControleurIntegrationTest {
+class ControleurIntegrationTest {
 
     private Jeu jeu;
 

@@ -4,7 +4,8 @@ import noyau.Jeu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -73,7 +74,7 @@ class ControleurGetPirateInfoTest {
 
     @Test
     void testGetPirateMain_InvalidInput() {
-        assertNull(controleur.getPirateMain(2));
-        assertNull(controleur.getPirateMain(-1));
+    	assertEquals(Collections.emptyList(), controleur.getPirateMain(2));
+    	assertEquals(Collections.emptyList(), controleur.getPirateMain(-1));
     }
 }

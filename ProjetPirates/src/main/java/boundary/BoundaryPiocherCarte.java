@@ -2,7 +2,6 @@ package boundary;
 
 import controleur.ControleurPiocherCarte;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BoundaryPiocherCarte {
