@@ -45,9 +45,9 @@ class CarteEffetTest {
     @Test
     void carteAntidouleurJoueurTest(){
         CarteAntidouleur carte1 = new CarteAntidouleur();
-        adversaire.addPP(-1);
+        joueur.addHP(-1);
         carte1.appliquerEffet(joueur, adversaire, jeu);
-        assertEquals(5, adversaire.getHP(), "Ajout des HP est incorrect");
+        assertEquals(5, joueur.getHP(), "Ajout des HP est incorrect");
 
         CartePopulariteLambda carte2 = new CartePopulariteLambda("Carte", -1, "desc", BasicCategorie.POPULARITE,
                 null, ((pirate, game) -> pirate.getHP() - 1));
