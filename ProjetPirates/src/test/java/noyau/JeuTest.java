@@ -127,10 +127,24 @@ class JeuTest {
     @Test
     void testNuitToggle() {
         Jeu jeu = new Jeu();
-        assertFalse(jeu.isNuit(), "Il faudrait être jour par défaut");
+        
+        jeu.incrementerTour();
+        jeu.incrementerTour();
+        jeu.setNuit(null);
+        assertTrue(jeu.isNuit(), "Nuit doit être true pour tour % 4 == 2");
 
-        jeu.setNuit(true);
-        assertTrue(jeu.isNuit(), "Il faudrait être nuit après le changement");
+        jeu.incrementerTour();
+        jeu.setNuit(null);
+        assertTrue(jeu.isNuit(), "Nuit doit être true pour tour % 4 == 3");
+
+        jeu.incrementerTour();
+        jeu.setNuit(null);
+        assertFalse(jeu.isNuit(), "Nuit doit être false pour tour % 4 == 1");
+
+        jeu.incrementerTour();
+        jeu.setNuit(null);
+        assertFalse(jeu.isNuit(), "Nuit doit être false pour tour % 4 == 0");
+        
     }
 
     @Test
@@ -144,6 +158,12 @@ class JeuTest {
         assertEquals(0, newCards.size(), "Aucune carte ne devrait être piochée si la main est déjà pleine");
     }
 
+    @Test
+    void testGetPirateNull() {
+    	Jeu jeu = new Jeu();
+        Pirate joueur = jeu.getPirate(2);
+        assertNull(joueur, "Un pirate d'id autre que 0 ou 1 n'existe pas");
+    }
 
 
 

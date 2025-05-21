@@ -141,4 +141,32 @@ class CarteEffetTest {
         assertEquals(0, adversaire.getNbCarte(), "La taille de la main de l'adversaire a changé");
 
     }
+    
+    @Test
+    void CarteToucheEncreGetResultTest() {
+        CarteToucheEncre carte = new CarteToucheEncre();
+        Carte carte1 = new CarteAntidouleur();
+        Carte carte2 = new CartePiedMarin();
+
+        adversaire.addCarte(carte1);
+        adversaire.addCarte(carte2);
+
+        carte.appliquerEffet(joueur, adversaire, jeu);
+
+        String result = carte.getResult();
+        assertTrue(result.startsWith("Toucher d'encre : "), "Le message de résultat devrait commencer par 'Toucher d'encre : '");
+    }
+    
+    @Test
+    void CarteToucheEncreGetResultSansEffetTest() {
+        CarteToucheEncre carte = new CarteToucheEncre();
+
+        // Main vide
+        carte.appliquerEffet(joueur, adversaire, jeu);
+
+        String result = carte.getResult();
+        assertEquals("Erreur Supprimer Carte TDE", result, "Le résultat devrait indiquer une erreur si aucune carte n'a été supprimée");
+    }
+
+
 }

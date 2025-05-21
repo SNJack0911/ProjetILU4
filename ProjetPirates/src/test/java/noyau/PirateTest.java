@@ -87,11 +87,10 @@ class PirateTest {
         p.supprimerCarteMain(card);
         assertEquals(0, p.getNbCarte(), "Card not deleted properly from the Pirate's hand");
 
-        try{
+        assertThrows(IllegalArgumentException.class, () -> {
             p.supprimerCarteMain(card);
-        }catch(IllegalArgumentException e){
-            System.out.println("Expected exception caught: " + e.getMessage().trim());
-        }
+        }, "Expected IllegalArgumentException when removing a card not in hand");
+        
         System.out.println("testSupprimerCarteMain passed");
     }
 
@@ -113,9 +112,11 @@ class PirateTest {
         Pirate p1 = new Pirate("Jack");
         Pirate p2 = new Pirate("Jack");
         Pirate p3 = new Pirate("Anne");
+        Integer i1 = 0;
 
         assertEquals(p1, p2);
         assertNotEquals(p1, p3);
+        assertNotEquals(p1, i1);
     }
 
     @Test
@@ -153,6 +154,18 @@ class PirateTest {
         assertNull(result, "Should return null when the card is not found in hand");
     }
 
+    @Test
+    void testPirateHashCode() {
+        Pirate p1 = new Pirate("Jack");
+        Pirate p2 = new Pirate("Jack");
+        Pirate p3 = new Pirate("Anne");
+        Pirate p4 = new Pirate(null);
+
+        assertEquals(p1.hashCode(), p2.hashCode(), "Deux pirates avec le même nom doivent avoir le même hashCode");
+        assertNotEquals(p1.hashCode(), p3.hashCode(), "Deux pirates avec des noms différents devraient avoir des hashCodes différents");
+        assertEquals(p4.hashCode(), 0, "Un pirate sans nom a un hashCode invalide de 0");
+        
+    }
 
 
 

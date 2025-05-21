@@ -69,6 +69,13 @@ class CarteLambdaTest {
         assertEquals(4, joueur.getHP(),"HP joueur incorrect");
         System.out.println("✔ CarteDefenseLambda");
     }
+    
+    @Test
+    void testExtendCategorieGetType() {
+        assertEquals("Effet", ExtendCategorie.EFFET.getType(), "Le type d'EFFET devrait être 'Effet'");
+        assertEquals("Defense", ExtendCategorie.DEFENSE.getType(), "Le type de DEFENSE devrait être 'Defense'");
+    }
+
 
     @Test
     void carteAttaqueLambda(){
@@ -81,6 +88,13 @@ class CarteLambdaTest {
         assertEquals(4, adversaire.getHP(),"HP adversaire incorrect");
         System.out.println("✔ CarteAttaqueLambda");
     }
+    
+    @Test
+    void testBasicCategorieGetType() {
+        assertEquals("Popularite", BasicCategorie.POPULARITE.getType(), "Le type de POPULARITE devrait être 'Popularite'");
+        assertEquals("Attaque", BasicCategorie.ATTAQUE.getType(), "Le type d'ATTAQUE devrait être 'Attaque'");
+    }
+
 
     @Test
     void carteNuitAttaque(){
