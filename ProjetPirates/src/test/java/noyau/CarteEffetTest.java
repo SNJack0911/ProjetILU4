@@ -25,7 +25,7 @@ class CarteEffetTest {
     @Test
     void carteAntidouleurAdversaireTest(){
         CarteAntidouleur carte1 = new CarteAntidouleur();
-        joueur.addPP(-1);
+        joueur.addHP(-1);
         carte1.appliquerEffet(joueur, adversaire, jeu);
         assertEquals(5, joueur.getHP(), "Ajout des HP est incorrect");
 
