@@ -68,29 +68,44 @@ public class JCarte extends javax.swing.JPanel {
         setImage(carteID);
     }
     
+
     public void lancerFumee() {
-        if (timerFumee != null && timerFumee.isRunning()) return;
+        if (fumeeDejaEnCours()) return;
 
         timerFumee = new Timer(150, e -> {
             if (getParent() == null) return;
+            Point positionCarte = calculerPositionSurPlateau();
 
-            JPanel plateauPanel = (JPanel) mainOrigine.getParent();
-            Point carteSurPlateau = SwingUtilities.convertPoint(this, getWidth()/2, getHeight()/2, plateauPanel);
-
-            Image img = effets.getRandomImage();
-            if (img != null) {
-                fumees.add(new SmokeEffect(img, carteSurPlateau.x, carteSurPlateau.y));
-            }
-
-            for (SmokeEffect f : fumees) {
-                f.diminuerAlpha(0.05f);
-            }
-
-            fumees.removeIf(SmokeEffect::estTerminee);
+            ajouterNouvelleFumee(positionCarte);
+            mettreAJourFumees();
             repaint();
         });
         timerFumee.start();
     }
+
+    private boolean fumeeDejaEnCours() {
+        return timerFumee != null && timerFumee.isRunning();
+    }
+
+    private Point calculerPositionSurPlateau() {
+        JPanel plateauPanel = (JPanel) mainOrigine.getParent();
+        return SwingUtilities.convertPoint(this, getWidth() / 2, getHeight() / 2, plateauPanel);
+    }
+
+    private void ajouterNouvelleFumee(Point position) {
+        Image img = effets.getRandomImage();
+        if (img != null) {
+            fumees.add(new SmokeEffect(img, position.x, position.y));
+        }
+    }
+
+    private void mettreAJourFumees() {
+        for (SmokeEffect f : fumees) {
+            f.diminuerAlpha(0.05f);
+        }
+        fumees.removeIf(SmokeEffect::estTerminee);
+    }
+
 
     @Override 
     protected void paintComponent(Graphics g){
@@ -199,9 +214,9 @@ public class JCarte extends javax.swing.JPanel {
         Point pointInPlateau = SwingUtilities.convertPoint(this, evt.getPoint(), plateauPanel);
         Component c = plateauPanel.getComponentAt(pointInPlateau);
 
-        if (handleZoneInteraction(c, pointInPlateau, plateauPanel, plateau)) return;
+        if (gererInteractionZone(c, pointInPlateau, plateauPanel, plateau)) return;
         // Renvoyer dans la main si non joué
-        if (mainOrigine != null) handleMainDrop(evt);
+        if (mainOrigine != null) gererMainDrop(evt);
  
         if (mainOrigine != null && !mainOrigine.getMainJoueur().contains(this)) {
             mainOrigine.ajouterJCarte(this);
@@ -210,7 +225,7 @@ public class JCarte extends javax.swing.JPanel {
         
     }//GEN-LAST:event_formMouseReleased
 
-    private boolean handleZoneInteraction(Component c, Point pointInPlateau, JPanel plateauPanel, Plateau plateau) {
+    private boolean gererInteractionZone(Component c, Point pointInPlateau, JPanel plateauPanel, Plateau plateau) {
         if (c instanceof JZoneInteraction zoneInteraction) {
             Rectangle boundsCarte = SwingUtilities.convertRectangle(this.getParent(), this.getBounds(), plateauPanel);
             Rectangle boundsZone = zoneInteraction.getBounds();
@@ -230,21 +245,14 @@ public class JCarte extends javax.swing.JPanel {
         return false;
     }
 
-    private void handleMainDrop(MouseEvent evt) {
+    private void gererMainDrop(MouseEvent evt) {
         Point dropPoint = SwingUtilities.convertPoint(this, evt.getPoint(), mainOrigine);
         Component comp = mainOrigine.getComponentAt(dropPoint);
-
         List<JCarte> main = mainOrigine.getMainJoueur();
         main.remove(this);
 
-        if (comp instanceof JCarte other) {
-            int index = main.indexOf(other);
-            if (index != -1) {
-                int newIndex = Math.min(index + 1, main.size());
-                main.add(newIndex, this);
-            } else {
-                main.add(this);
-            }
+        if (comp instanceof JCarte autreCarte) {
+            insererPresDe(autreCarte,main);
         } else {
             int fallbackIndex = (indexOrigineMain >= 0 && indexOrigineMain <= main.size()) ? indexOrigineMain : main.size();
             main.add(fallbackIndex, this);
@@ -253,56 +261,79 @@ public class JCarte extends javax.swing.JPanel {
         mainOrigine.setGridCartes();
     }
     
+    private void insererPresDe(JCarte autreCarte, List<JCarte> main) {
+        int index = main.indexOf(autreCarte);
+        if (index != -1) {
+            int nouvelIndex = Math.min(index + 1, main.size());
+            main.add(nouvelIndex, this);
+        } else {
+            main.add(this);
+        }
+    }
+    
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         if (!isFront) return;
-        
-        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2 && frontCard != null) {
-            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
 
-            if (popUp != null) { // si une précédente pop-up traîne
-                popUp.dispose(); 
-            }
-
-            // Crée une image agrandie pour le zoom
-            int height = parentFrame.getHeight() - 80;
-            int width = (int) (height * 0.72);
-
-            Image scaledImage = frontCard.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-            popUp = new JCartePopUp(parentFrame, scaledImage);
-        }
+    if (clicGaucheDouble(evt) && frontCard != null) {
+        JFrame fenetreParente = (JFrame) SwingUtilities.getWindowAncestor(JCarte.this);
+        fermerAnciennePopUpSiExiste();
+        afficherCarteZoomee(fenetreParente);
+    }
     }//GEN-LAST:event_formMouseClicked
 
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        if (!isFront || !isEnabled()) return;
-        
-        if (origine != null) {
-            	    // Ajoute une fumée sur le plateau
-            Container parent = SwingUtilities.getAncestorOfClass(Plateau.class, this);
-            if (parent instanceof Plateau plateau) {
-                Point global = SwingUtilities.convertPoint(this, getCentreCarte(), plateau);
-                effets.ajouterFumee(global.x, global.y); 
-            }
-            lancerFumee();
-            
-            // Move card
-            int xMoved = evt.getX() - origine.x;
-            int yMoved = evt.getY() - origine.y;
-            this.setLocation(this.getX() + xMoved, this.getY() + yMoved);
+    private boolean clicGaucheDouble(MouseEvent evt) {
+        return SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2;
+    }
 
-            // Repeindre uniquement les cartes qui se chevauchent à proximite
-            Rectangle bounds = this.getBounds();
-            for (Component comp : getParent().getComponents()) {
-                if (comp instanceof JCarte && comp != this && comp.getBounds().intersects(bounds)) {
-                    comp.repaint();
-                }
-            }
-
-            // Minimal repaint
-            this.repaint();
+    private void fermerAnciennePopUpSiExiste() {
+        if (popUp != null) {
+            popUp.dispose();
         }
+    }
+
+    private void afficherCarteZoomee(JFrame fenetreParente) {
+        int hauteur = fenetreParente.getHeight() - 80;
+        int largeur = (int) (hauteur * 0.72);
+        Image imageZoom = frontCard.getScaledInstance(largeur, hauteur, Image.SCALE_SMOOTH);
+        popUp = new JCartePopUp(fenetreParente, imageZoom);
+    }
+
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        if (!isFront || !isEnabled() || origine != null) return;
+
+        genererEffetsFumee();
+        deplacerCarte(evt);
+        repeindreCartesChevauchantes();
+        repaint();
+        
     }//GEN-LAST:event_formMouseDragged
 
+    
+    private void genererEffetsFumee() {
+        Container parent = SwingUtilities.getAncestorOfClass(Plateau.class, this);
+        if (parent instanceof Plateau plateau) {
+            Point global = SwingUtilities.convertPoint(this, getCentreCarte(), plateau);
+            effets.ajouterFumee(global.x, global.y);
+        }
+        lancerFumee();
+    }
+
+    private void deplacerCarte(MouseEvent evt) {
+        int xMoved = evt.getX() - origine.x;
+        int yMoved = evt.getY() - origine.y;
+        setLocation(getX() + xMoved, getY() + yMoved);
+    }
+
+    private void repeindreCartesChevauchantes() {
+        Rectangle bounds = getBounds();
+        for (Component comp : getParent().getComponents()) {
+            if (comp instanceof JCarte && comp != this && comp.getBounds().intersects(bounds)) {
+                comp.repaint();
+            }
+        }
+    }
+    
     public String getNomCarte() {
         return nom;
     }

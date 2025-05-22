@@ -62,16 +62,14 @@ public class EffetEtatJeu {
     
     private double ajusterStat(double stat, double multiplieur) {
     	switch (typeChangement) {
-			case DIMINUTION: {
-				return stat < 0 ? stat * multiplieur : stat;
-			}
-			case AUGMENTATION:{
-				return stat >0? stat * multiplieur : stat;
-			}
-			default:
-				return stat * multiplieur;
-		}
-    	
+	    case DIMINUTION -> {
+		return stat < 0 ? stat * multiplieur : stat;
+            }case AUGMENTATION -> {
+		return stat >0? stat * multiplieur : stat;
+	    }default -> {
+                return stat * multiplieur;
+            }
+	}
     }
 
     protected int getGameState(int index){

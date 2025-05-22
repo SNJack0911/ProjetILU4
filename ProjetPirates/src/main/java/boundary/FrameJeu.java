@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
@@ -568,43 +569,56 @@ public class FrameJeu extends javax.swing.JFrame {
         frame.resolutionLabel.setEnabled(bool);
         frame.resolutionNbLabel.setEnabled(bool);
     }
-    
-    private void playCurrentTrack() {
+
+    private void jouerPisteActuelle() {
+        if (playlist.isEmpty()) return;
+
+        currentIndex %= playlist.size();
+        File file = new File(playlist.get(currentIndex));
+
+        if (!fichierEstValide(file)) {
+            gererFichierInvalide(file);
+            return;
+        }
+
         try {
-            if (currentIndex >= playlist.size()) {
-                currentIndex = 0;
-            }
-
-            String filepath = playlist.get(currentIndex);
-            File audioFile = new File(filepath);
-
-            if (!audioFile.exists()) {
-            	System.out.println("Fichier introuvable : " + filepath);
-                currentIndex++;
-                playCurrentTrack();
-                return;
-            }
-
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-            clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            setVolume(volume);
-            clip.start();
-
-            // Quand le son est fini, passer au suivant
-            clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    clip.close();
-                    currentIndex++;
-                    playCurrentTrack();
-                }
-            });
-
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-        	logger.info("Musique non trouvé.");
+            lireFichierAudio(file);
+        } catch (Exception e) {
+            logger.log(Level.INFO, "Erreur lecture musique : {0}", e.getMessage());
+            currentIndex++;
+            jouerPisteActuelle();
         }
     }
-    
+
+    private boolean fichierEstValide(File file) {
+        return file.exists();
+    }
+
+    private void gererFichierInvalide(File file) {
+        System.out.println("Fichier introuvable : " + file.getPath());
+        currentIndex++;
+        jouerPisteActuelle();
+    }
+
+    private void lireFichierAudio(File file) throws Exception {
+        clip = AudioSystem.getClip();
+        clip.open(AudioSystem.getAudioInputStream(file));
+        setVolume(volume);
+        clip.start();
+        ajouterEcouteurFinPiste();
+    }
+
+    private void ajouterEcouteurFinPiste() {
+        // Quand le son est fini, passer au suivant
+        clip.addLineListener(e -> {
+            if (e.getType() == LineEvent.Type.STOP) {
+                clip.close();
+                currentIndex++;
+                jouerPisteActuelle();
+            }
+        });
+    }
+
     public void playMusics(List<String> filepaths) {
         if (filepaths == null || filepaths.isEmpty()) {
         	logger.info("La liste de lecture est vide.");
@@ -612,7 +626,7 @@ public class FrameJeu extends javax.swing.JFrame {
         }
         this.playlist = (ArrayList<String>) filepaths;
         this.currentIndex = 0;
-        playCurrentTrack();
+        jouerPisteActuelle();
     }
     
     public void stopMusic() {
